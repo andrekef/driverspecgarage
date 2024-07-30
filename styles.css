@@ -19,11 +19,10 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
 }
 
 .logo img {
-    height: 120px; /* Increase logo size */
+    height: 120px; /* Adjust logo size */
 }
 
 nav {
@@ -35,7 +34,6 @@ nav ul {
     display: flex;
     justify-content: center; /* Center navigation items */
     padding: 0;
-    margin: 0;
 }
 
 nav ul li {
@@ -76,18 +74,17 @@ nav ul li:hover .dropdown {
 }
 
 main {
-    padding: 0;
+    padding: 20px;
 }
 
 .landing {
     text-align: center;
-    padding: 0;
-    position: relative;
+    padding: 50px 20px;
 }
 
 .landing img {
     width: 100%; /* Extend image to full width */
-    height: 70vh; /* Adjust height to fit within the viewport */
+    height: 65vh; /* Adjust height to fit within the viewport */
     object-fit: cover; /* Ensure the image covers the area */
     object-position: top center; /* Focuses on the upper part of the image */
     display: block;
@@ -95,7 +92,20 @@ main {
 
 .description {
     margin-top: 20px;
-    padding: 20px;
+}
+
+.description h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 3rem; /* Adjust size as needed */
+    font-weight: 700;
+    margin: 0;
+}
+
+.description p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem; /* Adjust size as needed */
+    font-weight: 300;
+    margin-top: 10px;
 }
 
 footer {
