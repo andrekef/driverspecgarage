@@ -79,7 +79,7 @@ nav ul li:hover .dropdown {
 
 main {
     padding: 0; /* Remove any default padding */
-    margin-top: 100px; /* Add margin to avoid content being hidden under the fixed header and add padding */
+    margin-top: 100px; /* Add margin to avoid content being hidden under the fixed header */
 }
 
 .landing {
@@ -131,4 +131,35 @@ footer {
 
 .footer-content a:hover {
     text-decoration: underline;
+}
+
+.footer-content p {
+    margin: 0;
+    display: inline-block;
+}
+
+/* Page-specific styling */
+.page-content {
+    padding-top: 100px; /* Add top padding for content */
+}
+
+.section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section img {
+    width: 50%;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.section div {
+    width: 50%;
+}
+
+.price {
+    margin-top: 10px; /* Add spacing before pricing */
 }
