@@ -19,6 +19,10 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: fixed; /* Fix the header to the top */
+    width: 100%; /* Ensure it spans the full width */
+    top: 0; /* Align it to the top */
+    z-index: 1000; /* Keep it above other content */
 }
 
 .logo img {
@@ -74,17 +78,18 @@ nav ul li:hover .dropdown {
 }
 
 main {
-    padding: 20px;
+    padding: 0; /* Remove any default padding */
+    margin-top: 80px; /* Add margin to avoid content being hidden under the fixed header */
 }
 
 .landing {
     text-align: center;
-    padding: 50px 20px;
+    padding: 0; /* Remove padding to ensure the image is flush against the header */
 }
 
 .landing img {
-    width: 120%; /* Extend image to full width */
-    height: 50vh; /* Adjust height to fit within the viewport */
+    width: 100%; /* Extend image to full width */
+    height: 80vh; /* Adjust height to fit within the viewport */
     object-fit: cover; /* Ensure the image covers the area */
     object-position: top center; /* Focuses on the upper part of the image */
     display: block;
