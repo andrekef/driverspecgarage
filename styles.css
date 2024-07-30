@@ -9,7 +9,7 @@ nav ul {
 }
 
 nav ul li {
-  position: relative; /* Needed for absolute positioning of the dropdown */
+  position: relative;
 }
 
 nav ul li a {
@@ -17,7 +17,6 @@ nav ul li a {
   padding: 10px 15px;
   text-decoration: none;
   color: #000;
-  white-space: nowrap; /* Prevents text wrapping */
 }
 
 nav ul li ul {
@@ -29,7 +28,6 @@ nav ul li ul {
   border: 1px solid #000;
   padding: 0;
   margin: 0;
-  list-style-type: none;
 }
 
 nav ul li:hover ul {
@@ -38,9 +36,4 @@ nav ul li:hover ul {
 
 nav ul li ul li a {
   padding: 10px;
-  color: #000;
-}
-
-nav ul li ul li a:hover {
-  background-color: #f0f0f0; /* Highlight dropdown items on hover */
 }
