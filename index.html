@@ -8,36 +8,43 @@
 </head>
 <body>
     <header>
-        <a href="index.html"><img src="path/to/your/logo.png" alt="Driver Spec Garage" class="logo"></a>
-        <h1>Welcome to Driver Spec Garage</h1>
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="Driver Spec Garage Logo"></a>
+        </div>
         <nav>
             <ul>
-                <li><a href="services.html">Services</a></li>
+                <li><a href="services.html">Services</a>
+                    <ul class="dropdown">
+                        <li><a href="paint-correction.html">Paint Correction</a></li>
+                        <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
+                        <li><a href="packages.html">Packages</a></li>
+                    </ul>
+                </li>
                 <li><a href="#shop">Shop</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
-    
-    <main>
-        <section id="hero">
-            <img src="path/to/your/car.jpg" alt="Your Car" style="width:100%; max-width:800px;">
-            <h2>About Us</h2>
-            <p>Welcome to Driver Spec Garage. We specialize in top-tier car detailing services including paint correction and ceramic coating. Our goal is to bring out the best in your vehicle with precision and care.</p>
-        </section>
 
-        <section id="shop">
-            <h2>Shop</h2>
-            <p>Stay tuned! Merchandise coming soon.</p>
-        </section>
+    <section class="hero">
+        <img src="your-car-image.jpg" alt="Your Car">
+        <div class="hero-text">
+            <h1>Welcome to Driver Spec Garage</h1>
+            <p>We offer top-quality car detailing services to keep your vehicle looking its best. From paint correction to ceramic coating, we provide professional solutions to enhance and protect your car.</p>
+        </div>
+    </section>
 
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>Email: [your-email@example.com]</p>
-            <p>Phone: (123) 456-7890</p>
-            <p>Follow us on Instagram: <a href="https://www.instagram.com/driverspecgarage/" target="_blank">@driverspecgarage</a></p>
-        </section>
-    </main>
+    <section id="shop">
+        <h2>Shop</h2>
+        <p>Stay tuned! Merchandise coming soon.</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: [your-email@example.com]</p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Follow us on Instagram: <a href="https://www.instagram.com/driverspecgarage/" target="_blank">@driverspecgarage</a></p>
+    </section>
 
     <footer>
         <p>&copy; 2024 Driver Spec Garage</p>
