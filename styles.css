@@ -89,7 +89,7 @@ main {
 
 .landing img {
     width: 100%; /* Extend image to full width */
-    height: 60vh; /* Adjust height to fit within the viewport */
+    height: 70vh; /* Adjust height to fit within the viewport */
     object-fit: cover; /* Ensure the image covers the area */
     object-position: top center; /* Focuses on the upper part of the image */
     display: block;
