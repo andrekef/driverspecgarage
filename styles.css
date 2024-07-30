@@ -87,9 +87,9 @@ main {
 
 .landing img {
     width: 100%; /* Extend image to full width */
-    height: 80vh; /* Adjust height to fit within the viewport */
+    height: 70vh; /* Adjust height to fit within the viewport */
     object-fit: cover; /* Ensure the image covers the area */
-    object-position: center bottom; /* Position the image so the bottom part is centered */
+    object-position: center top; /* Position the image so the bottom part is centered */
     display: block;
 }
 
