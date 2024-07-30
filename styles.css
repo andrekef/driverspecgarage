@@ -1,104 +1,46 @@
-/* Reset default styles */
-body, h1, p, ul, li {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Basic styling */
-body {
-    font-family: Arial, sans-serif;
-    color: #000;
-    background-color: #fff;
-}
-
-header {
-    background-color: #000;
-    color: #fff;
-    padding: 10px 20px;
-    position: relative;
-}
-
-.logo img {
-    height: 40px;
-}
-
-nav {
-    float: right;
-}
-
+/* Basic styling for navigation */
 nav ul {
-    list-style: none;
-    display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #000;
 }
 
 nav ul li {
-    position: relative;
+  position: relative; /* Needed for absolute positioning of the dropdown */
 }
 
-nav a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 15px;
-    display: block;
+nav ul li a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #000;
+  white-space: nowrap; /* Prevents text wrapping */
 }
 
-nav a:hover {
-    background-color: #444;
+nav ul li ul {
+  display: none; /* Hide dropdown items by default */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #000;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
 }
 
-nav .dropdown {
-    display: none;
-    position: absolute;
-    background-color: #000;
-    top: 100%;
-    left: 0;
-    min-width: 160px;
-    z-index: 1;
+nav ul li:hover ul {
+  display: block; /* Show dropdown items on hover */
 }
 
-nav .dropdown li {
-    float: none;
+nav ul li ul li a {
+  padding: 10px;
+  color: #000;
 }
 
-nav .dropdown a {
-    padding: 10px;
-}
-
-nav ul li:hover .dropdown {
-    display: block;
-}
-
-.landing {
-    text-align: center;
-    padding: 50px 20px;
-}
-
-.landing img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-.description {
-    margin-top: 20px;
-}
-
-footer {
-    background-color: #000;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-
-.footer-content a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.footer-content a:hover {
-    text-decoration: underline;
+nav ul li ul li a:hover {
+  background-color: #f0f0f0; /* Highlight dropdown items on hover */
 }
