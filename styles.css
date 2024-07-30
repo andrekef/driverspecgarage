@@ -22,7 +22,7 @@ header {
 }
 
 .logo img {
-    height: 60px; /* Adjust logo size */
+    height: 120px; /* Adjust logo size */
 }
 
 nav {
@@ -83,7 +83,7 @@ main {
 }
 
 .landing img {
-    max-width: 80%; /* Adjust as needed */
+    max-width: 100%; /* Adjust as needed */
     height: auto;
     border-radius: 10px;
 }
