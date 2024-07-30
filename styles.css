@@ -89,7 +89,7 @@ main {
 
 .landing img {
     width: 100%; /* Extend image to full width */
-    height: 70vh; /* Adjust height to fit within the viewport */
+    height: 60vh; /* Adjust height to fit within the viewport */
     object-fit: cover; /* Ensure the image covers the area */
     object-position: top center; /* Focuses on the upper part of the image */
     display: block;
@@ -131,11 +131,4 @@ footer {
 
 .footer-content a:hover {
     text-decoration: underline;
-}
-
-/* Add margin to the top of the first section to push content down */
-.landing {
-    margin-top: 70px; /* Adjust based on header height */
-    text-align: center;
-    padding: 50px 20px;
 }
