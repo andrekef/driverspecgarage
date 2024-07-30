@@ -132,3 +132,8 @@ footer {
 .footer-content a:hover {
     text-decoration: underline;
 }
+
+/* Additional styles for service pages */
+.service-page {
+    padding-top: 60px; /* Adjust this value as needed */
+}
