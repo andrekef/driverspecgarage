@@ -133,7 +133,9 @@ footer {
     text-decoration: underline;
 }
 
-/* Additional styles for service pages */
-.service-page {
-    padding-top: 60px; /* Adjust this value as needed */
+/* Add margin to the top of the first section to push content down */
+.landing {
+    margin-top: 70px; /* Adjust based on header height */
+    text-align: center;
+    padding: 50px 20px;
 }
