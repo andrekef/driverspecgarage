@@ -87,7 +87,7 @@ main {
 
 .landing img {
     width: 100%; /* Extend image to full width */
-    height: 60vh; /* Adjust height to fit within the viewport */
+    height: 80vh; /* Adjust height to fit within the viewport */
     display: block;
 }
 
