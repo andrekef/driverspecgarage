@@ -97,6 +97,7 @@ main {
 
 .description {
     margin-top: 20px;
+    padding: 20px; /* Add padding around the description */
 }
 
 .description h1 {
