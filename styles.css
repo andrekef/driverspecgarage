@@ -145,7 +145,7 @@ footer {
 
 .section {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Align items at the top */
     margin-bottom: 20px;
 }
 
@@ -156,10 +156,12 @@ footer {
     margin-right: 20px;
 }
 
-.section div {
+.section .text-container {
     width: 50%;
 }
 
 .price {
-    margin-top: 10px; /* Add spacing before pricing */
+    margin-top: 10px;
+    font-style: italic; /* Italicize prices */
+    font-weight: bold; /* Bold prices */
 }
