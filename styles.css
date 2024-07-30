@@ -151,9 +151,11 @@ footer {
 
 .section img {
     width: 50%;
-    height: auto;
+    height: auto; /* Ensures aspect ratio is maintained */
     border-radius: 10px;
     margin-right: 20px;
+    object-fit: cover; /* Optional: Ensure image covers the specified area */
+    display: block; /* Ensures image is displayed as a block element */
 }
 
 .section .text-container {
