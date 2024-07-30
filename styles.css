@@ -1,13 +1,14 @@
-/* Basic reset */
-body, h1, h2, p, ul, li {
+/* Reset default styles */
+body, h1, p, ul, li {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Basic styling */
 body {
     font-family: Arial, sans-serif;
-    color: #333;
+    color: #000;
     background-color: #fff;
 }
 
@@ -15,88 +16,89 @@ header {
     background-color: #000;
     color: #fff;
     padding: 10px 20px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
+    position: relative;
 }
 
 .logo img {
     height: 40px;
 }
 
+nav {
+    float: right;
+}
+
 nav ul {
     list-style: none;
     display: flex;
-    padding: 0;
 }
 
 nav ul li {
     position: relative;
 }
 
-nav ul li a {
+nav a {
     color: #fff;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 10px 15px;
     display: block;
 }
 
-nav ul li:hover > a {
+nav a:hover {
     background-color: #444;
 }
 
-nav ul .dropdown {
+nav .dropdown {
     display: none;
     position: absolute;
+    background-color: #000;
     top: 100%;
     left: 0;
-    background-color: #000;
     min-width: 160px;
-    z-index: 1000;
+    z-index: 1;
 }
 
-nav ul .dropdown li {
-    padding: 0;
+nav .dropdown li {
+    float: none;
 }
 
-nav ul .dropdown li a {
+nav .dropdown a {
     padding: 10px;
-    border-bottom: 1px solid #333;
 }
 
 nav ul li:hover .dropdown {
     display: block;
 }
 
-.hero {
+.landing {
     text-align: center;
-    padding: 80px 20px;
-    background: #f4f4f4;
+    padding: 50px 20px;
 }
 
-.hero img {
+.landing img {
     max-width: 100%;
     height: auto;
-    display: block;
-    margin: 0 auto;
+    border-radius: 10px;
 }
 
-.hero-text {
+.description {
     margin-top: 20px;
-}
-
-section {
-    padding: 20px;
 }
 
 footer {
     background-color: #000;
     color: #fff;
     text-align: center;
-    padding: 10px;
-    position: fixed;
+    padding: 20px;
+    position: relative;
     bottom: 0;
     width: 100%;
+}
+
+.footer-content a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-content a:hover {
+    text-decoration: underline;
 }
