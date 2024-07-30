@@ -19,10 +19,11 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 
 .logo img {
-    height: 120px; /* Adjust logo size */
+    height: 120px; /* Increase logo size */
 }
 
 nav {
@@ -34,6 +35,7 @@ nav ul {
     display: flex;
     justify-content: center; /* Center navigation items */
     padding: 0;
+    margin: 0;
 }
 
 nav ul li {
@@ -74,22 +76,24 @@ nav ul li:hover .dropdown {
 }
 
 main {
-    padding: 20px;
+    padding: 0;
 }
 
 .landing {
     text-align: center;
-    padding: 50px 20px;
+    padding: 0;
+    position: relative;
 }
 
 .landing img {
-    max-width: 100%; /* Adjust as needed */
+    width: 100%; /* Extend image to full width */
     height: auto;
-    border-radius: 10px;
+    display: block;
 }
 
 .description {
     margin-top: 20px;
+    padding: 20px;
 }
 
 footer {
