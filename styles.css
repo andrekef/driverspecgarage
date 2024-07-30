@@ -148,3 +148,31 @@ footer {
     margin: 0;
     display: inline-block;
 }
+
+/* Page-specific styling */
+.page-content {
+    padding-top: 100px; /* Add top padding for content */
+}
+
+.section {
+    display: flex;
+    align-items: flex-start; /* Align items at the top */
+    margin-bottom: 20px;
+}
+
+.section img {
+    width: 50%;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.section .text-container {
+    width: 50%;
+}
+
+.price {
+    margin-top: 10px;
+    font-style: italic; /* Italicize prices */
+    font-weight: bold; /* Bold prices */
+}
