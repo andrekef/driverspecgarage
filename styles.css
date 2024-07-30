@@ -151,14 +151,10 @@ footer {
 
 .section img {
     width: 50%;
-    max-height: 300px; /* Set a maximum height to prevent large images */
-    height: auto; /* Maintain aspect ratio */
+    height: auto;
     border-radius: 10px;
     margin-right: 20px;
-    object-fit: cover; /* Ensures the image covers the area without distortion */
-    display: block;
 }
-
 
 .section .text-container {
     width: 50%;
