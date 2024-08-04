@@ -32,7 +32,7 @@ header {
 nav {
     display: flex;
     justify-content: center; /* Center the nav items */
-    background-color: #000; /* Example background color */
+    background-color: #000; /* Same color as header */
     padding: 0; /* Ensure no padding */
     width: 100%; /* Ensure nav is full width */
     margin: 0; /* Ensure no margin */
@@ -162,7 +162,7 @@ footer {
 }
 
 .service-img {
-    max-width: 45%; /* Adjust image size */
+    max-width: 40%; /* Smaller image size */
     height: auto;
     margin-right: 20px;
 }
@@ -170,6 +170,7 @@ footer {
 .text-container {
     flex: 1;
 }
+
 /* Add margin/padding to the text in the section */
 .text-container p {
     margin-top: 10px;
@@ -177,8 +178,10 @@ footer {
     font-weight: bold;
     color: #333; /* Lighter hue of black */
 }
+
 .price {
-    margin-top: 10px;
+    margin-top: 30px; /* Add additional spacing before the price */
     font-style: italic;
     font-weight: bold;
+    color: #333; /* Lighter hue of black */
 }
