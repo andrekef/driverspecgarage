@@ -153,26 +153,27 @@ footer {
 .page-content {
     padding-top: 100px; /* Add top padding for content */
 }
-
+/* Ensures that the section takes up half the space for image and text */
 .section {
-    display: flex;
-    align-items: flex-start; /* Align items at the top */
+    display: flex; /* Enable flexbox layout */
+    align-items: flex-start; /* Align items at the start */
     margin-bottom: 20px;
+    gap: 20px; /* Space between image and text */
 }
 
 .section img {
-    width: 50%;
-    height: auto;
-    border-radius: 10px;
-    margin-right: 20px;
+    flex: 1; /* Takes up half of the section space */
+    max-width: 100%; /* Ensures the image fits within its container */
+    height: auto; /* Maintain aspect ratio */
 }
 
-.section .text-container {
-    width: 50%;
+.text-container {
+    flex: 1; /* Takes up the other half of the section space */
 }
 
 .price {
     margin-top: 10px;
-    font-style: italic; /* Italicize prices */
-    font-weight: bold; /* Bold prices */
+    font-style: italic;
+    font-weight: bold;
 }
+
