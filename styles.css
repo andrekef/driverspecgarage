@@ -38,6 +38,7 @@ nav ul {
     display: flex;
     justify-content: center;
     padding: 0;
+    margin: 0;
 }
 
 nav ul li {
@@ -80,6 +81,8 @@ nav ul li:hover .dropdown {
 nav .non-clickable {
     pointer-events: none; /* Disable clicking */
     cursor: default; /* Show default cursor */
+    color: #fff; /* Ensure text color matches */
+    background: none; /* Remove background if any */
 }
 
 main {
@@ -148,13 +151,13 @@ footer {
     display: flex;
     align-items: flex-start;
     margin-bottom: 20px;
-    gap: 20px;
 }
 
 .section img {
     flex: 1;
-    max-width: 100%;
+    max-width: 50%; /* Ensure images take up half the space */
     height: auto;
+    margin-right: 20px;
 }
 
 .text-container {
