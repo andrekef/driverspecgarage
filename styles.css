@@ -157,30 +157,38 @@ footer {
     display: flex;
     align-items: flex-start;
     margin-bottom: 20px;
-    padding: 10px; /* Existing padding, you can adjust as needed */
+    padding: 10px 15%; /* Increased padding for better spacing */
     border-bottom: 1px solid #000; /* Divider line */
 }
 
-/* Adjust image and text container specifically */
+/* Adjust the image size and position */
 .service-img {
-    margin-left: 100px;
-    max-width: 23%; /* Adjust image size */
+    max-width: 25%; /* Adjust image size */
     height: auto;
+    margin-left: 20px; /* Space between image and text */
 }
 
-/* Service title style */
+/* Service text container adjustments */
+.text-container {
+    flex: 1;
+    margin-left: 20px; /* Space between image and text container */
+}
+
+/* Adjust text style */
 .service-title {
     font-weight: bold; /* Make title bold */
 }
 
+/* Adjust paragraph text size and margin */
 .text-container p {
-    font-size: 0.875rem; /* Smaller paragraph text */
+    font-size: 0.625rem; /* Smaller paragraph text (50% smaller) */
     color: #666; /* Lighter hue of black */
     margin-top: 10px;
     margin-bottom: 30px; /* Spacing before price */
-    margin-right: 100px; /* Increase space between image and text */
+    margin-right: 20px; /* Increase space between image and text */
 }
 
+/* Price styling */
 .price {
     font-size: 1rem; /* Slightly smaller font size for price */
     color: #666; /* Lighter hue of black */
