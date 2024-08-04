@@ -30,21 +30,21 @@ header {
 }
 /* Navigation bar styling */
 nav {
-    flex-grow: 1;
     text-align: center; /* Center-align the nav items */
 }
 
 nav ul {
     list-style: none;
-    display: inline-block; /* Align nav items inline */
-    margin: 0;
     padding: 0;
+    margin: 0;
+    display: inline-block; /* Make the UL inline-block for centering */
     vertical-align: top; /* Align vertically to the top */
 }
 
 nav ul li {
-    display: inline-block; /* Display items inline */
+    display: inline-block; /* Display LI elements inline */
     position: relative;
+    margin: 0 10px; /* Add some margin between items */
     vertical-align: top; /* Align items vertically to the top */
 }
 
@@ -81,11 +81,11 @@ nav ul li:hover .dropdown {
     display: block;
 }
 
-.non-clickable a {
+.non-clickable > a {
     pointer-events: none; /* Disable pointer events for non-clickable items */
     cursor: default; /* Change cursor to default */
+    color: inherit; /* Maintain text color */
 }
-
 
 main {
     padding: 0;
