@@ -198,6 +198,7 @@ footer {
 .service-title {
     font-weight: bold; /* Make title bold */
     color: #666; /* Lighter hue of black */
+    font-style: italic; /* Italicize the title */
 }
 
 /* Single horizontal divider line below the first photo */
@@ -209,6 +210,7 @@ footer {
     font-size: 0.5rem; /* Match this to the size of other paragraphs if needed */
     color: #666; /* Ensure readability */
     margin-top: 500px;
+    font-style: italic; /* Italicize the title */
     margin: 0; /* Adjust if there's any extra space */
 }
 
