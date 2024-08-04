@@ -150,24 +150,25 @@ footer {
 .footer-content p {
     margin: 0;
     display: inline-block;
-}/* Ensure section layout is consistent */
-.section {
-    display: flex;
-    align-items: center; /* Align items vertically center */
-    margin-bottom: 20px;
-    padding: 10px 5%; /* Adjust padding for space around sections */
-    position: relative; /* Make it a positioning context for the pseudo-element */
-    gap: 20px; /* Add gap between image and text container */
 }
 
-/* Vertical divider line */
+/* Ensure section layout is consistent */
+.section {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 10px 15%; /* Increase left and right padding for more space */
+    position: relative; /* Make it a positioning context for the pseudo-element */
+}
+
+/* Horizontal divider line */
 .section::before {
     content: "";
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%; /* Place the line in the center */
-    width: 1px; /* Line width */
+    top: 50%; /* Center vertically */
+    left: 0;
+    right: 0;
+    height: 1px; /* Line height */
     background-color: #000; /* Line color */
     z-index: 1; /* Ensure it is above the background */
 }
@@ -176,19 +177,18 @@ footer {
 .service-img {
     max-width: 40%; /* Adjust image size as needed */
     height: auto;
-    margin-left: 20px; /* Add margin to separate image from the text */
-    z-index: 2; /* Ensure image is above the divider line */
+    order: 2; /* Ensure image is on the right */
 }
 
 /* Ensure text container takes remaining space */
-.service-text {
+.text-container {
     flex: 1; /* Take remaining space */
-    margin-right: 20px; /* Space between image and text container */
-    z-index: 2; /* Ensure text is above the divider line */
+    margin-right: 20px; /* Space between text container and image */
+    order: 1; /* Ensure text is on the left */
 }
 
 /* Adjust paragraph text size and margin */
-.service-text p {
+.text-container p {
     font-size: 0.625rem; /* Smaller paragraph text (50% smaller) */
     color: #666; /* Lighter hue of black */
     margin-top: 10px;
@@ -201,7 +201,7 @@ footer {
     color: #666; /* Lighter hue of black */
 }
 
-/* Ensure service title is bold */
+/* Adjust text style */
 .service-title {
     font-weight: bold; /* Make title bold */
 }
