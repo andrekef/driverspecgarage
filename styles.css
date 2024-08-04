@@ -16,14 +16,11 @@ body {
 header {
     background-color: #000;
     color: #fff;
-    padding: 10px 20px; /* Adjusted vertical padding */
+    padding: 10px 20px; /* Adjust vertical padding */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
+    /* Removed fixed positioning to allow scrolling with page */
 }
 
 /* Logo image */
@@ -95,7 +92,7 @@ nav ul li:hover .dropdown {
 /* Main content styling */
 main {
     padding: 0;
-    margin-top: 100px; /* Space for header */
+    margin-top: 70px; /* Adjust to fit the height of header and nav */
 }
 
 /* Landing section styling */
