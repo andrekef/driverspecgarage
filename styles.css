@@ -32,7 +32,7 @@ header {
 nav {
     display: flex;
     justify-content: center; /* Center the nav items */
-    background-color: #333; /* Example background color */
+    background-color: #000; /* Example background color */
     padding: 10px 0; /* Add padding for spacing */
     width: 100%; /* Ensure nav is full width */
 }
