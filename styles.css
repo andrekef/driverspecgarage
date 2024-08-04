@@ -170,7 +170,7 @@ footer {
 
 /* Adjust image size and position */
 .service-img {
-    max-width: 40%; /* Adjust image size as needed */
+    max-width: 20%; /* Adjust image size as needed */
     height: auto;
     margin-left: auto; /* Align image to the right */
 }
@@ -193,13 +193,15 @@ footer {
 .price {
     font-size: 1.875rem; /* Adjust price font size */
     color: #666; /* Lighter hue of black */
+    font-family: Arial, sans-serif; /* Ensure the same font family if necessary */
 }
 
 /* Adjust text style */
 .service-title {
     font-weight: bold; /* Make title bold */
     color: #666; /* Lighter hue of black */
-    font-size: 1.875rem; /* Adjust price font size */
+    font-size: 1.875rem; /* Match the price font size */
+    font-family: Arial, sans-serif; /* Ensure the same font family if necessary */
 }
 
 /* Single horizontal divider line below the first photo */
