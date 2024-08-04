@@ -133,7 +133,7 @@ footer {
     background-color: #222; /* Slightly lighter black hue */
     color: #fff;
     text-align: center;
-    padding: 100px 0; /* Increased padding */
+    padding: 100px 20px; /* Increased padding */
 }
 
 /* Footer content styling */
