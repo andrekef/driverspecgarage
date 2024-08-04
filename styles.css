@@ -38,6 +38,7 @@ nav ul {
     display: flex;
     justify-content: center;
     padding: 0;
+    margin: 0; /* Ensure there's no extra margin causing misalignment */
 }
 
 nav ul li {
@@ -45,15 +46,15 @@ nav ul li {
     padding: 10px 15px;
 }
 
-nav a {
+nav ul li a, nav ul li {
+    display: block;
     color: #fff;
     text-decoration: none;
     padding: 10px 15px;
-    display: block;
 }
 
-nav a:hover {
-    background-color: #444;
+nav ul li:hover > .dropdown {
+    display: block;
 }
 
 nav .dropdown {
@@ -77,10 +78,6 @@ nav .dropdown a:hover {
     background-color: #444;
 }
 
-nav ul li:hover .dropdown {
-    display: block;
-}
-
 .non-clickable {
     color: #aaa;
     cursor: default;
@@ -96,31 +93,36 @@ main {
     margin-top: 120px;
 }
 
-.page-content {
-    padding-top: 100px;
+.landing {
+    text-align: center;
+    padding: 0;
 }
 
-.section {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 20px;
+.landing img {
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
 }
 
-.section img {
-    width: 20%; /* Reduced the image width */
-    height: auto;
-    border-radius: 10px;
-    margin-right: 20px; /* Space between image and text */
+.description {
+    margin-top: 20px;
+    padding: 20px;
 }
 
-.section .text-container {
-    width: 75%; /* Increased the text container width */
+.description h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
 }
 
-.price {
+.description p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 300;
     margin-top: 10px;
-    font-style: italic;
-    font-weight: bold;
 }
 
 footer {
