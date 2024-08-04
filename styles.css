@@ -67,10 +67,13 @@ nav .dropdown {
 
 nav .dropdown li {
     float: none;
+    color: #fff;
+    padding: 10px;
+    cursor: default; /* Indicate non-clickable items */
 }
 
-nav .dropdown a {
-    padding: 10px;
+nav .dropdown li:hover {
+    background-color: #444; /* Add hover effect if desired */
 }
 
 nav ul li:hover .dropdown {
