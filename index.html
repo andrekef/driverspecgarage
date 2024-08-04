@@ -7,6 +7,26 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <style>
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -15,8 +35,9 @@
         </div>
         <nav>
             <ul>
-                <li class="non-clickable">Services
-                    <ul class="dropdown">
+                <li class="dropdown">
+                    <span class="dropdown-button">Services</span>
+                    <ul class="dropdown-content">
                         <li><a href="paint-correction.html">Paint Correction</a></li>
                         <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
                         <li><a href="packages.html">Packages</a></li>
@@ -38,12 +59,34 @@
         </section>
     </main>
 
-   <footer>
+    <footer>
         <div class="footer-content" style="text-align: center; padding: 10px 0;">
             <p>&copy; 2024 Driver Spec Garage</p>
             <p style="margin: 5px 0;">(929) 569-9420</p>
             <p style="margin: 5px 0;"><a href="mailto:driverspecgarage@gmail.com" style="color: #0000EE; text-decoration: underline;">driverspecgarage@gmail.com</a></p>
         </div>
     </footer>
+
+    <script>
+        // JavaScript to handle dropdown toggle on click
+        document.addEventListener('DOMContentLoaded', function() {
+            var dropdownButton = document.querySelector('.dropdown-button');
+            var dropdownContent = document.querySelector('.dropdown-content');
+
+            dropdownButton.addEventListener('click', function() {
+                // Toggle the visibility of the dropdown content
+                dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Optional: Close the dropdown if clicking outside of it
+            window.addEventListener('click', function(event) {
+                if (!event.target.matches('.dropdown-button')) {
+                    if (dropdownContent.style.display === 'block') {
+                        dropdownContent.style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
