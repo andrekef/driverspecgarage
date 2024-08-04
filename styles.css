@@ -96,69 +96,12 @@ main {
     margin: 0; /* Remove top margin if any */
 }
 
-/* Landing section styling */
-.landing {
-    text-align: center;
-    padding: 0;
-}
-
-.landing img {
-    width: 100%;
-    height: 60vh;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-}
-
-.description {
-    margin-top: 20px;
-    padding: 20px;
-}
-
-.description h1 {
-    font-family: 'Roboto Slab', serif;
-    font-size: 3rem;
-    font-weight: 700;
-    margin: 0;
-}
-
-.description p {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 300;
-    margin-top: 10px;
-}
-
-/* Footer styling */
-footer {
-    background-color: #222; /* Slightly lighter black hue */
-    color: #fff;
-    text-align: center;
-    padding: 150px 40px; /* Increased padding */
-}
-
-/* Footer content styling */
-.footer-content a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.footer-content a:hover {
-    text-decoration: underline;
-}
-
-.footer-content p {
-    margin: 0;
-    display: inline-block;
-}
-
 /* Ensure section layout is consistent */
 .section {
     display: flex;
     flex-direction: column; /* Stack items vertically */
     margin-bottom: 10px;
-    margin-top: 40px;
-    padding: 10px 20%; /* Increase left and right padding for more space */
+    padding: 0 15%; /* Adjust padding for better spacing */
     position: relative; /* Make it a positioning context for the pseudo-element */
 }
 
@@ -167,7 +110,6 @@ footer {
     display: flex;
     align-items: flex-start;
     margin-bottom: 10px; /* Space between content and divider */
-    
 }
 
 /* Adjust image size and position */
@@ -187,7 +129,7 @@ footer {
 .text-container p {
     font-size: 0.625rem; /* Smaller paragraph text */
     color: #666; /* Lighter hue of black */
-    margin-top: 50px;
+    margin-top: 10px; /* Adjust spacing */
     margin-bottom: 30px; /* Spacing before price */
 }
 
@@ -195,6 +137,14 @@ footer {
 .service-title {
     font-weight: bold; /* Make title bold */
     color: #666; /* Lighter hue of black */
+    font-size: 0.625rem; /* Match font size with price text */
+}
+
+/* Price styling */
+.price {
+    font-size: 0.625rem; /* Ensure the same font size as text */
+    color: #666; /* Lighter hue of black */
+    font-weight: bold; /* Make title bold */
 }
 
 /* Single horizontal divider line below the first photo */
@@ -202,8 +152,9 @@ footer {
     content: "";
     display: block;
     width: 100%; /* Full width */
-    height: 23px; /* Line height */
+    height: 1px; /* Line height */
     background-color: #000; /* Black line color */
     margin-top: 20px; /* Space above the line */
-    position: relative; /* Position relative to ensure it appears below the content */
+    position: absolute; /* Position absolute to ensure it appears below the content */
+    bottom: 0; /* Align to the bottom of the .section */
 }
