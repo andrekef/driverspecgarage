@@ -19,14 +19,14 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
+    position: fixed; /* Fix the header to the top */
+    width: 100%; /* Ensure it spans the full width */
+    top: 0; /* Align it to the top */
+    z-index: 1000; /* Keep it above other content */
 }
 
 .logo img {
-    height: 120px;
+    height: 120px; /* Adjust logo size */
 }
 
 nav {
@@ -36,25 +36,24 @@ nav {
 nav ul {
     list-style: none;
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Center navigation items */
     padding: 0;
     margin: 0;
 }
 
 nav ul li {
     position: relative;
-    padding: 10px 15px;
 }
 
-nav ul li a, nav ul li {
-    display: block;
+nav a {
     color: #fff;
     text-decoration: none;
     padding: 10px 15px;
+    display: block;
 }
 
-nav ul li:hover > .dropdown {
-    display: block;
+nav a:hover {
+    background-color: #444;
 }
 
 nav .dropdown {
@@ -67,15 +66,16 @@ nav .dropdown {
     z-index: 1;
 }
 
-nav .dropdown a {
-    color: #fff;
-    padding: 10px;
-    display: block;
-    text-decoration: none;
+nav .dropdown li {
+    float: none;
 }
 
-nav .dropdown a:hover {
-    background-color: #444;
+nav .dropdown a {
+    padding: 10px;
+}
+
+nav ul li:hover .dropdown {
+    display: block;
 }
 
 .non-clickable {
@@ -89,13 +89,13 @@ nav .dropdown a:hover {
 }
 
 main {
-    padding: 20px;
-    margin-top: 120px; /* Adjust margin to fit the fixed header */
+    padding: 0; /* Remove any default padding */
+    margin-top: 100px; /* Add margin to avoid content being hidden under the fixed header */
 }
 
 .landing {
     text-align: center;
-    padding: 0; /* Ensure image is flush against the header */
+    padding: 0; /* Remove padding to ensure the image is flush against the header */
 }
 
 .landing img {
@@ -108,19 +108,19 @@ main {
 
 .description {
     margin-top: 20px;
-    padding: 20px;
+    padding: 20px; /* Add padding around the description */
 }
 
 .description h1 {
     font-family: 'Roboto Slab', serif;
-    font-size: 3rem;
+    font-size: 3rem; /* Adjust size as needed */
     font-weight: 700;
     margin: 0;
 }
 
 .description p {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.25rem; /* Adjust size as needed */
     font-weight: 300;
     margin-top: 10px;
 }
