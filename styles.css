@@ -168,10 +168,9 @@ footer {
     height: auto;
 }
 
-/* Style adjustments for text within services */
-.text-container h2 {
-    font-size: 1.5rem; /* Smaller heading size */
-    color: #666; /* Lighter hue of black */
+/* Service title style */
+.service-title {
+    font-weight: bold; /* Make title bold */
 }
 
 .text-container p {
