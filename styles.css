@@ -28,21 +28,24 @@ header {
 .logo img {
     height: 120px;
 }
-
+/* Navigation bar styling */
 nav {
     flex-grow: 1;
+    text-align: center; /* Center-align the nav items */
 }
 
 nav ul {
     list-style: none;
-    display: flex;
-    padding: 0;
+    display: inline-block; /* Align nav items inline */
     margin: 0;
+    padding: 0;
+    vertical-align: top; /* Align vertically to the top */
 }
 
 nav ul li {
+    display: inline-block; /* Display items inline */
     position: relative;
-    margin: 0 10px;
+    vertical-align: top; /* Align items vertically to the top */
 }
 
 nav a {
@@ -78,12 +81,11 @@ nav ul li:hover .dropdown {
     display: block;
 }
 
-nav .non-clickable {
-    pointer-events: none;
-    cursor: default;
-    color: #fff;
-    background: none;
+.non-clickable a {
+    pointer-events: none; /* Disable pointer events for non-clickable items */
+    cursor: default; /* Change cursor to default */
 }
+
 
 main {
     padding: 0;
