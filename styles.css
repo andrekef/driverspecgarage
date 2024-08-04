@@ -157,6 +157,7 @@ footer {
     display: flex;
     flex-direction: column; /* Stack items vertically */
     margin-bottom: 10px;
+    margin-top: 40px;
     padding: 10px 20%; /* Increase left and right padding for more space */
     position: relative; /* Make it a positioning context for the pseudo-element */
 }
@@ -165,7 +166,8 @@ footer {
 .section-content {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 5px; /* Space between content and divider */
+    margin-bottom: 10px; /* Space between content and divider */
+    
 }
 
 /* Adjust image size and position */
