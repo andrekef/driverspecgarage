@@ -31,31 +31,31 @@ header {
 /* Navigation bar styling */
 nav {
     text-align: center; /* Center-align the nav items */
+    background-color: #333; /* Example background color */
+    padding: 10px 0; /* Add padding for spacing */
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: inline-block; /* Make the UL inline-block for centering */
-    vertical-align: top; /* Align vertically to the top */
+    display: inline-block; /* Center UL by making it inline-block */
 }
 
 nav ul li {
     display: inline-block; /* Display LI elements inline */
     position: relative;
-    margin: 0 10px; /* Add some margin between items */
-    vertical-align: top; /* Align items vertically to the top */
+    margin: 0 15px; /* Add some margin between items */
 }
 
-nav a {
+nav ul li a {
     color: #fff;
     text-decoration: none;
     padding: 10px 15px;
     display: block;
 }
 
-nav a:hover {
+nav ul li a:hover {
     background-color: #444;
 }
 
