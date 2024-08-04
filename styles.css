@@ -16,7 +16,7 @@ body {
 header {
     background-color: #000;
     color: #fff;
-    padding: 10px 20px;
+    padding: 5px 10px;
     display: flex;
     align-items: center;
     justify-content: center; /* Center the content */
