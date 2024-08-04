@@ -38,6 +38,7 @@ nav ul {
     display: flex;
     justify-content: center;
     padding: 0;
+    margin: 0;
 }
 
 nav ul li {
@@ -45,15 +46,15 @@ nav ul li {
     padding: 10px 15px;
 }
 
-nav a {
+nav ul li a, nav ul li {
+    display: block;
     color: #fff;
     text-decoration: none;
     padding: 10px 15px;
-    display: block;
 }
 
-nav a:hover {
-    background-color: #444;
+nav ul li:hover > .dropdown {
+    display: block;
 }
 
 nav .dropdown {
@@ -77,10 +78,6 @@ nav .dropdown a:hover {
     background-color: #444;
 }
 
-nav ul li:hover .dropdown {
-    display: block;
-}
-
 .non-clickable {
     color: #aaa;
     cursor: default;
@@ -93,34 +90,39 @@ nav ul li:hover .dropdown {
 
 main {
     padding: 20px;
-    margin-top: 120px;
+    margin-top: 120px; /* Adjust margin to fit the fixed header */
 }
 
-.page-content {
-    padding-top: 100px;
+.landing {
+    text-align: center;
+    padding: 0; /* Ensure image is flush against the header */
 }
 
-.section {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 20px;
+.landing img {
+    width: 100%; /* Extend image to full width */
+    height: 60vh; /* Adjust height to fit within the viewport */
+    object-fit: cover; /* Ensure the image covers the area */
+    object-position: top center; /* Focuses on the upper part of the image */
+    display: block;
 }
 
-.section img {
-    width: 20%; /* Reduced the image width */
-    height: auto;
-    border-radius: 10px;
-    margin-right: 20px; /* Space between image and text */
+.description {
+    margin-top: 20px;
+    padding: 20px;
 }
 
-.section .text-container {
-    width: 75%; /* Increased the text container width */
+.description h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
 }
 
-.price {
+.description p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 300;
     margin-top: 10px;
-    font-style: italic;
-    font-weight: bold;
 }
 
 footer {
