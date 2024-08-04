@@ -126,7 +126,7 @@ main {
 }
 /* Footer styling */
 footer {
-    background-color: #000;
+    background-color: #333333; /* Softer black hue */
     color: #fff;
     text-align: center;
     padding: 200px 100px; /* Increased padding */
