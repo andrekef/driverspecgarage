@@ -36,13 +36,13 @@ nav {
 nav ul {
     list-style: none;
     display: flex;
-    justify-content: center;
     padding: 0;
     margin: 0;
 }
 
 nav ul li {
     position: relative;
+    margin: 0 10px;
 }
 
 nav a {
@@ -79,15 +79,15 @@ nav ul li:hover .dropdown {
 }
 
 nav .non-clickable {
-    pointer-events: none; /* Disable clicking */
-    cursor: default; /* Show default cursor */
-    color: #fff; /* Ensure text color matches */
-    background: none; /* Remove background if any */
+    pointer-events: none;
+    cursor: default;
+    color: #fff;
+    background: none;
 }
 
 main {
     padding: 0;
-    margin-top: 100px; /* Adjust for fixed header */
+    margin-top: 100px;
 }
 
 .landing {
@@ -155,7 +155,7 @@ footer {
 
 .section img {
     flex: 1;
-    max-width: 50%; /* Ensure images take up half the space */
+    max-width: 40%; /* Smaller image size */
     height: auto;
     margin-right: 20px;
 }
