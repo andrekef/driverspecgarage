@@ -150,14 +150,14 @@ footer {
 .footer-content p {
     margin: 0;
     display: inline-block;
-}
-/* Ensure section layout is consistent */
+}/* Ensure section layout is consistent */
 .section {
     display: flex;
-    align-items: flex-start;
+    align-items: center; /* Align items vertically center */
     margin-bottom: 20px;
     padding: 10px 5%; /* Adjust padding for space around sections */
     position: relative; /* Make it a positioning context for the pseudo-element */
+    gap: 20px; /* Add gap between image and text container */
 }
 
 /* Vertical divider line */
@@ -176,19 +176,19 @@ footer {
 .service-img {
     max-width: 40%; /* Adjust image size as needed */
     height: auto;
-    margin-left: 0; /* Remove margin if using divider line */
+    margin-left: 20px; /* Add margin to separate image from the text */
     z-index: 2; /* Ensure image is above the divider line */
 }
 
 /* Ensure text container takes remaining space */
-.text-container {
+.service-text {
     flex: 1; /* Take remaining space */
-    margin-left: 20px; /* Space between image and text container */
+    margin-right: 20px; /* Space between image and text container */
     z-index: 2; /* Ensure text is above the divider line */
 }
 
 /* Adjust paragraph text size and margin */
-.text-container p {
+.service-text p {
     font-size: 0.625rem; /* Smaller paragraph text (50% smaller) */
     color: #666; /* Lighter hue of black */
     margin-top: 10px;
@@ -201,6 +201,7 @@ footer {
     color: #666; /* Lighter hue of black */
 }
 
+/* Ensure service title is bold */
 .service-title {
-    font-weight: bold !important; /* Test with !important */
+    font-weight: bold; /* Make title bold */
 }
