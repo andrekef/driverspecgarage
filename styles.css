@@ -159,6 +159,7 @@ footer {
     margin-bottom: 20px;
     padding: 10px 15%; /* Increased padding for better spacing */
     border-bottom: 1px solid #000; /* Divider line */
+    flex-direction: row-reverse; /* Move image to the right of the text */
 }
 
 /* Adjust the image size and position */
@@ -166,17 +167,14 @@ footer {
     max-width: 25%; /* Adjust image size */
     height: auto;
     margin-left: 20px; /* Space between image and text */
+    margin-right: 0; /* Remove right margin */
 }
 
-/* Service text container adjustments */
+/* Adjust text container adjustments */
 .text-container {
     flex: 1;
-    margin-left: 20px; /* Space between image and text container */
-}
-
-/* Adjust text style */
-.service-title {
-    font-weight: bold; /* Make title bold */
+    margin-left: 0; /* Ensure no left margin */
+    margin-right: 20px; /* Space between image and text container */
 }
 
 /* Adjust paragraph text size and margin */
@@ -185,7 +183,6 @@ footer {
     color: #666; /* Lighter hue of black */
     margin-top: 10px;
     margin-bottom: 30px; /* Spacing before price */
-    margin-right: 20px; /* Increase space between image and text */
 }
 
 /* Price styling */
