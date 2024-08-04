@@ -157,7 +157,7 @@ footer {
     display: flex;
     flex-direction: column; /* Stack items vertically */
     margin-bottom: 20px;
-    padding: 20px 30%; /* Increase left and right padding for more space */
+    padding: 30px 40%; /* Increase left and right padding for more space */
     position: relative; /* Make it a positioning context for the pseudo-element */
 }
 
@@ -170,7 +170,7 @@ footer {
 
 /* Adjust image size and position */
 .service-img {
-    max-width: 25%; /* Adjust image size as needed */
+    max-width: 30%; /* Adjust image size as needed */
     height: auto;
     margin-left: auto; /* Align image to the right */
 }
