@@ -157,12 +157,11 @@ footer {
     display: flex;
     align-items: flex-start;
     margin-bottom: 20px;
-    padding: 10px 0; /* Add padding to create space around sections */
+    padding: 10px 5%; /* Add padding to create space around sections */
     border-bottom: 1px solid #000; /* Divider line */
 }
 
-.section img {
-    flex: 1;
+.service-img {
     max-width: 45%; /* Adjust image size */
     height: auto;
     margin-right: 20px;
@@ -171,7 +170,13 @@ footer {
 .text-container {
     flex: 1;
 }
-
+/* Add margin/padding to the text in the section */
+.text-container p {
+    margin-top: 10px;
+    font-style: italic;
+    font-weight: bold;
+    color: #333; /* Lighter hue of black */
+}
 .price {
     margin-top: 10px;
     font-style: italic;
