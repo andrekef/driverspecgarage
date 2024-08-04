@@ -201,14 +201,8 @@ footer {
 }
 
 /* Single horizontal divider line below the first photo */
-.page-content::after {
-    content: "";
-    display: block;
-    width: 100%; /* Full width */
-    height: 23px; /* Line height */
-    background-color: #000; /* Black line color */
-    margin-top: 20px; /* Space above the line */
-    position: relative; /* Position relative to ensure it appears below the content */
+.page-content {
+    position: relative; /* Ensure relative positioning */
 }
 
 .price {
