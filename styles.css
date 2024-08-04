@@ -19,7 +19,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* Removed fixed positioning to allow scrolling with page */
+    margin: 0; /* Ensure no margin */
+    padding: 0; /* Ensure no padding */
 }
 
 /* Logo image */
@@ -32,8 +33,9 @@ nav {
     display: flex;
     justify-content: center; /* Center the nav items */
     background-color: #000; /* Example background color */
-    padding: 10px 0; /* Add padding for spacing */
+    padding: 0; /* Ensure no padding */
     width: 100%; /* Ensure nav is full width */
+    margin: 0; /* Ensure no margin */
 }
 
 nav ul {
@@ -91,7 +93,7 @@ nav ul li:hover .dropdown {
 /* Main content styling */
 main {
     padding: 0;
-    margin-top: 70px; /* Adjust to fit the height of header and nav */
+    margin: 0; /* Remove top margin if any */
 }
 
 /* Landing section styling */
