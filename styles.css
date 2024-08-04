@@ -207,3 +207,9 @@ footer {
     margin-top: 20px; /* Space above the line */
     position: relative; /* Position relative to ensure it appears below the content */
 }
+
+.price {
+    font-size: 1.25rem; /* Match this to the size of other paragraphs if needed */
+    color: #666; /* Ensure readability */
+    margin: 0; /* Adjust if there's any extra space */
+}
