@@ -226,8 +226,3 @@ hr.divider {
     max-width: 40%;
     height: auto;
 }
-.package-description {
-    font-family: Arial, sans-serif; /* Replace with your specific font-family */
-    font-size: 1rem; /* Adjust size as needed */
-    color: #333; /* Adjust color to match your site's text color */
-}
