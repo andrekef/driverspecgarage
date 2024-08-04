@@ -209,7 +209,7 @@ footer {
 }
 
 .price {
-    font-size: 5.25rem; /* Match this to the size of other paragraphs if needed */
+    font-size: 100.25rem; /* Match this to the size of other paragraphs if needed */
     color: #666; /* Ensure readability */
     margin: 0; /* Adjust if there's any extra space */
 }
