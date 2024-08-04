@@ -162,7 +162,7 @@ footer {
 }
 
 .service-img {
-    max-width: 40%; /* Smaller image size */
+    max-width: 20%; /* Adjust to half of the previous 45% */
     height: auto;
     margin-right: 20px;
 }
