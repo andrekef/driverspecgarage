@@ -16,7 +16,7 @@ body {
 header {
     background-color: #000;
     color: #fff;
-    padding: 5px 20px; /* Reduce vertical padding */
+    padding: 10px 20px; /* Adjusted vertical padding */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -26,15 +26,18 @@ header {
     z-index: 1000;
 }
 
+/* Logo image */
 .logo img {
-    height: 120px;
+    height: 100px; /* Adjust height as needed */
 }
+
 /* Navigation bar styling */
 nav {
     display: flex;
     justify-content: center; /* Center the nav items */
     background-color: #333; /* Example background color */
     padding: 10px 0; /* Add padding for spacing */
+    width: 100%; /* Ensure nav is full width */
 }
 
 nav ul {
@@ -89,11 +92,13 @@ nav ul li:hover .dropdown {
     color: inherit; /* Maintain text color */
 }
 
+/* Main content styling */
 main {
     padding: 0;
-    margin-top: 100px;
+    margin-top: 100px; /* Space for header */
 }
 
+/* Landing section styling */
 .landing {
     text-align: center;
     padding: 0;
@@ -125,14 +130,16 @@ main {
     font-weight: 300;
     margin-top: 10px;
 }
+
 /* Footer styling */
 footer {
-    background-color: #333333; /* Softer black hue */
+    background-color: #222; /* Slightly lighter black hue */
     color: #fff;
     text-align: center;
-    padding: 200px 100px; /* Increased padding */
+    padding: 100px 0; /* Increased padding */
 }
 
+/* Footer content styling */
 .footer-content a {
     color: #fff;
     text-decoration: none;
@@ -152,11 +159,13 @@ footer {
     display: flex;
     align-items: flex-start;
     margin-bottom: 20px;
+    padding: 10px 0; /* Add padding to create space around sections */
+    border-bottom: 1px solid #000; /* Divider line */
 }
 
 .section img {
     flex: 1;
-    max-width: 40%; /* Smaller image size */
+    max-width: 45%; /* Adjust image size */
     height: auto;
     margin-right: 20px;
 }
