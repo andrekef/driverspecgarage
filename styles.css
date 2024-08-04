@@ -191,13 +191,15 @@ footer {
 
 /* Price styling */
 .price {
-    font-size: 0.875rem; /* Adjust price font size */
+    font-size: 1.875rem; /* Adjust price font size */
     color: #666; /* Lighter hue of black */
 }
 
 /* Adjust text style */
 .service-title {
     font-weight: bold; /* Make title bold */
+    color: #666; /* Lighter hue of black */
+    font-size: 1.875rem; /* Adjust price font size */
 }
 
 /* Single horizontal divider line below the first photo */
