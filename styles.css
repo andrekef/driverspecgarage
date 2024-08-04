@@ -16,17 +16,13 @@ body {
 header {
     background-color: #000;
     color: #fff;
-    padding: 10px 20px;
+    padding: 5px 20px; /* Reduce vertical padding */
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: fixed;
-    width: 80%; /* Adjust width to make it narrower */
-    max-width: 1200px; /* Optional: Set a maximum width */
-    margin: 0 auto; /* Center the header horizontally */
+    width: 100%;
     top: 0;
-    left: 0;
-    right: 0;
     z-index: 1000;
 }
 
