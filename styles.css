@@ -163,8 +163,8 @@ footer {
 
 /* Adjust image and text container specifically */
 .service-img {
-    margin-left: 20px;
-    max-width: 30%; /* Adjust image size */
+    margin-left: 100px;
+    max-width: 23%; /* Adjust image size */
     height: auto;
 }
 
@@ -179,7 +179,7 @@ footer {
     color: #666; /* Lighter hue of black */
     margin-top: 10px;
     margin-bottom: 30px; /* Spacing before price */
-    margin-right: 20px; /* Increase space between image and text */
+    margin-right: 100px; /* Increase space between image and text */
 }
 
 .price {
