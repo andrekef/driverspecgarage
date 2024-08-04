@@ -201,7 +201,6 @@ footer {
     color: #666; /* Lighter hue of black */
 }
 
-/* Adjust text style */
 .service-title {
-    font-weight: bold; /* Make title bold */
+    font-weight: bold !important; /* Test with !important */
 }
