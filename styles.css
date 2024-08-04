@@ -30,7 +30,8 @@ header {
 }
 /* Navigation bar styling */
 nav {
-    text-align: center; /* Center-align the nav items */
+    display: flex;
+    justify-content: center; /* Center the nav items */
     background-color: #333; /* Example background color */
     padding: 10px 0; /* Add padding for spacing */
 }
@@ -39,11 +40,11 @@ nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: inline-block; /* Center UL by making it inline-block */
+    display: flex;
+    align-items: center;
 }
 
 nav ul li {
-    display: inline-block; /* Display LI elements inline */
     position: relative;
     margin: 0 15px; /* Add some margin between items */
 }
