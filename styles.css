@@ -155,36 +155,30 @@ footer {
 /* Ensure section layout is consistent */
 .section {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column; /* Stack items vertically */
     margin-bottom: 20px;
     padding: 10px 15%; /* Increase left and right padding for more space */
     position: relative; /* Make it a positioning context for the pseudo-element */
 }
 
-/* Horizontal divider line */
-.section::before {
-    content: "";
-    position: absolute;
-    top: 50%; /* Center vertically */
-    left: 0;
-    right: 0;
-    height: 1px; /* Line height */
-    background-color: #000; /* Line color */
-    z-index: 1; /* Ensure it is above the background */
+/* Container for image and text */
+.section-content {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px; /* Space between content and divider */
 }
 
 /* Adjust image size and position */
 .service-img {
     max-width: 40%; /* Adjust image size as needed */
     height: auto;
-    order: 2; /* Ensure image is on the right */
+    margin-left: auto; /* Align image to the right */
 }
 
 /* Ensure text container takes remaining space */
 .text-container {
     flex: 1; /* Take remaining space */
     margin-right: 20px; /* Space between text container and image */
-    order: 1; /* Ensure text is on the left */
 }
 
 /* Adjust paragraph text size and margin */
@@ -204,4 +198,14 @@ footer {
 /* Adjust text style */
 .service-title {
     font-weight: bold; /* Make title bold */
+}
+
+/* Single horizontal divider line below the first photo */
+.page-content::after {
+    content: "";
+    display: block;
+    width: 100%; /* Full width */
+    height: 1px; /* Line height */
+    background-color: #000; /* Line color */
+    margin-top: 20px; /* Space above the line */
 }
