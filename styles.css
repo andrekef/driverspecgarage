@@ -210,6 +210,7 @@ footer {
     font-size: 0.5rem; /* Match this to the size of other paragraphs if needed */
     color: #666; /* Ensure readability */
     margin-top: 500px;
+    font-weight: bold; /* Make title bold */
     font-style: italic; /* Italicize the title */
     margin: 0; /* Adjust if there's any extra space */
 }
