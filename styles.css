@@ -222,3 +222,7 @@ hr.divider {
     width: 70%; /* Adjust this width to change the length */
     margin: 20px auto; /* Center the line and add space above/below */
 }
+.ceramic-coating-img {
+    max-width: 30%;
+    height: auto;
+}
