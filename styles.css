@@ -183,7 +183,7 @@ footer {
 
 /* Adjust paragraph text size and margin */
 .text-container p {
-    font-size: 0.625rem; /* Smaller paragraph text (50% smaller) */
+    font-size: 0.625rem; /* Smaller paragraph text */
     color: #666; /* Lighter hue of black */
     margin-top: 10px;
     margin-bottom: 30px; /* Spacing before price */
@@ -191,10 +191,11 @@ footer {
 
 /* Price styling */
 .price {
+    font-size: 0.625rem; /* Ensure price text size matches */
     color: #666; /* Lighter hue of black */
-    font-weight: bold; /* Make title bold */
-
+    font-weight: bold; /* Make price bold if needed */
 }
+
 
 /* Adjust text style */
 .service-title {
