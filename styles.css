@@ -157,20 +157,34 @@ footer {
     align-items: flex-start;
     margin-bottom: 20px;
     padding: 10px 5%; /* Adjust padding for space around sections */
-    border-bottom: 1px solid #000; /* Divider line */
+    position: relative; /* Make it a positioning context for the pseudo-element */
+}
+
+/* Vertical divider line */
+.section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%; /* Place the line in the center */
+    width: 1px; /* Line width */
+    background-color: #000; /* Line color */
+    z-index: 1; /* Ensure it is above the background */
 }
 
 /* Adjust image size and position */
 .service-img {
     max-width: 40%; /* Adjust image size as needed */
     height: auto;
-    margin-left: 20px; /* Space between image and text */
+    margin-left: 0; /* Remove margin if using divider line */
+    z-index: 2; /* Ensure image is above the divider line */
 }
 
 /* Ensure text container takes remaining space */
 .text-container {
     flex: 1; /* Take remaining space */
-    margin-right: 20px; /* Space between image and text container */
+    margin-left: 20px; /* Space between image and text container */
+    z-index: 2; /* Ensure text is above the divider line */
 }
 
 /* Adjust paragraph text size and margin */
@@ -185,4 +199,9 @@ footer {
 .price {
     font-size: 0.875rem; /* Adjust price font size */
     color: #666; /* Lighter hue of black */
+}
+
+/* Adjust text style */
+.service-title {
+    font-weight: bold; /* Make title bold */
 }
