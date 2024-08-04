@@ -151,22 +151,22 @@ footer {
 .page-content {
     padding-top: 100px;
 }
-
 .section {
     display: flex;
     align-items: flex-start;
     margin-bottom: 20px;
+    flex-wrap: wrap; /* Added to allow wrapping on smaller screens */
 }
 
 .section img {
-    width: 50%;
+    width: 30%; /* Set to 30% of the container width */
     height: auto;
     border-radius: 10px;
-    margin-right: 20px;
+    margin-right: 20px; /* Space between image and text */
 }
 
 .section .text-container {
-    width: 50%;
+    width: 65%; /* Set to 65% of the container width */
 }
 
 .price {
