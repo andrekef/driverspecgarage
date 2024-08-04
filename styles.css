@@ -157,7 +157,7 @@ footer {
     display: flex;
     flex-direction: column; /* Stack items vertically */
     margin-bottom: 10px;
-    padding: 25px 35%; /* Increase left and right padding for more space */
+    padding: 10px 20%; /* Increase left and right padding for more space */
     position: relative; /* Make it a positioning context for the pseudo-element */
 }
 
