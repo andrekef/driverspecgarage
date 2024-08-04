@@ -134,7 +134,7 @@ footer {
     background-color: #222; /* Slightly lighter black hue */
     color: #fff;
     text-align: center;
-    padding: 100px 20px; /* Increased padding */
+    padding: 150px 40px; /* Increased padding */
 }
 
 /* Footer content styling */
@@ -151,29 +151,25 @@ footer {
     margin: 0;
     display: inline-block;
 }
-
 /* Ensure section layout is consistent */
 .section {
     display: flex;
     align-items: flex-start;
     margin-bottom: 20px;
-    padding: 10px 15%; /* Increased padding for better spacing */
+    padding: 10px 5%; /* Adjust padding for space around sections */
     border-bottom: 1px solid #000; /* Divider line */
-    flex-direction: row-reverse; /* Move image to the right of the text */
 }
 
-/* Adjust the image size and position */
+/* Adjust image size and position */
 .service-img {
-    max-width: 25%; /* Adjust image size */
+    max-width: 40%; /* Adjust image size as needed */
     height: auto;
     margin-left: 20px; /* Space between image and text */
-    margin-right: 0; /* Remove right margin */
 }
 
-/* Adjust text container adjustments */
+/* Ensure text container takes remaining space */
 .text-container {
-    flex: 1;
-    margin-left: 0; /* Ensure no left margin */
+    flex: 1; /* Take remaining space */
     margin-right: 20px; /* Space between image and text container */
 }
 
@@ -187,6 +183,6 @@ footer {
 
 /* Price styling */
 .price {
-    font-size: 1rem; /* Slightly smaller font size for price */
+    font-size: 0.875rem; /* Adjust price font size */
     color: #666; /* Lighter hue of black */
 }
