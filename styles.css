@@ -190,9 +190,10 @@ footer {
 }
 
 /* Price styling */
-.price {
+.price p{
     font-size: 0.625rem; /* Ensure price text size matches */
     color: #666; /* Lighter hue of black */
+    margin-top: 30px;
     font-weight: bold; /* Make price bold if needed */
 }
 
