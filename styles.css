@@ -185,7 +185,7 @@ footer {
 .text-container p {
     font-size: 0.625rem; /* Smaller paragraph text */
     color: #666; /* Lighter hue of black */
-    margin-top: 10px;
+    margin-top: 50px;
     margin-bottom: 30px; /* Spacing before price */
 }
 
