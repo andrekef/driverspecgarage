@@ -19,14 +19,14 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: fixed; /* Fix the header to the top */
-    width: 100%; /* Ensure it spans the full width */
-    top: 0; /* Align it to the top */
-    z-index: 1000; /* Keep it above other content */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
 
 .logo img {
-    height: 120px; /* Adjust logo size */
+    height: 120px;
 }
 
 nav {
@@ -36,9 +36,8 @@ nav {
 nav ul {
     list-style: none;
     display: flex;
-    justify-content: center; /* Center navigation items */
+    justify-content: center;
     padding: 0;
-    margin: 0;
 }
 
 nav ul li {
@@ -78,49 +77,44 @@ nav ul li:hover .dropdown {
     display: block;
 }
 
-.non-clickable {
-    color: #aaa;
-    cursor: default;
-    padding: 10px 15px;
-}
-
-.non-clickable:hover {
-    background-color: inherit;
+nav .non-clickable {
+    pointer-events: none; /* Disable clicking */
+    cursor: default; /* Show default cursor */
 }
 
 main {
-    padding: 0; /* Remove any default padding */
-    margin-top: 100px; /* Add margin to avoid content being hidden under the fixed header */
+    padding: 0;
+    margin-top: 100px; /* Adjust for fixed header */
 }
 
 .landing {
     text-align: center;
-    padding: 0; /* Remove padding to ensure the image is flush against the header */
+    padding: 0;
 }
 
 .landing img {
-    width: 100%; /* Extend image to full width */
-    height: 60vh; /* Adjust height to fit within the viewport */
-    object-fit: cover; /* Ensure the image covers the area */
-    object-position: top center; /* Focuses on the upper part of the image */
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
+    object-position: top center;
     display: block;
 }
 
 .description {
     margin-top: 20px;
-    padding: 20px; /* Add padding around the description */
+    padding: 20px;
 }
 
 .description h1 {
     font-family: 'Roboto Slab', serif;
-    font-size: 3rem; /* Adjust size as needed */
+    font-size: 3rem;
     font-weight: 700;
     margin: 0;
 }
 
 .description p {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.25rem; /* Adjust size as needed */
+    font-size: 1.25rem;
     font-weight: 300;
     margin-top: 10px;
 }
@@ -149,26 +143,22 @@ footer {
     display: inline-block;
 }
 
-/* Page-specific styling */
-.page-content {
-    padding-top: 100px; /* Add top padding for content */
-}
-/* Ensures that the section takes up half the space for image and text */
+/* Ensure section layout is consistent */
 .section {
-    display: flex; /* Enable flexbox layout */
-    align-items: flex-start; /* Align items at the start */
+    display: flex;
+    align-items: flex-start;
     margin-bottom: 20px;
-    gap: 20px; /* Space between image and text */
+    gap: 20px;
 }
 
 .section img {
-    flex: 1; /* Takes up half of the section space */
-    max-width: 100%; /* Ensures the image fits within its container */
-    height: auto; /* Maintain aspect ratio */
+    flex: 1;
+    max-width: 100%;
+    height: auto;
 }
 
 .text-container {
-    flex: 1; /* Takes up the other half of the section space */
+    flex: 1;
 }
 
 .price {
@@ -176,4 +166,3 @@ footer {
     font-style: italic;
     font-weight: bold;
 }
-
