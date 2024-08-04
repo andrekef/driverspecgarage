@@ -215,7 +215,7 @@ footer {
 /* Line divider styling */
 hr.divider {
     border: none; /* Remove default border */
-    border-top: 2px solid #000; /* Line color and thickness */
-    width: 50%; /* Adjust this width to change the length */
+    border-top: 1px solid #666; /* Line color and thickness */
+    width: 70%; /* Adjust this width to change the length */
     margin: 20px auto; /* Center the line and add space above/below */
 }
