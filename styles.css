@@ -170,7 +170,7 @@ footer {
 
 /* Adjust image size and position */
 .service-img {
-    max-width: 40%; /* Adjust image size as needed */
+    max-width: 50%; /* Adjust image size as needed */
     height: auto;
     margin-left: auto; /* Align image to the right */
 }
