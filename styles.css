@@ -167,21 +167,20 @@ footer {
     margin-right: 20px;
 }
 
-.text-container {
-    flex: 1;
+/* Style adjustments for text within services */
+.text-container h2 {
+    font-size: 1.5rem; /* Smaller heading size */
+    color: #666; /* Lighter hue of black */
 }
 
-/* Add margin/padding to the text in the section */
 .text-container p {
+    font-size: 0.875rem; /* Smaller paragraph text */
+    color: #666; /* Lighter hue of black */
     margin-top: 10px;
-    font-style: italic;
-    font-weight: bold;
-    color: #333; /* Lighter hue of black */
+    margin-bottom: 30px; /* Spacing before price */
 }
 
 .price {
-    margin-top: 30px; /* Add additional spacing before the price */
-    font-style: italic;
-    font-weight: bold;
-    color: #333; /* Lighter hue of black */
+    font-size: 1rem; /* Slightly smaller font size for price */
+    color: #666; /* Lighter hue of black */
 }
