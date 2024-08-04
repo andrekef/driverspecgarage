@@ -170,7 +170,7 @@ footer {
 
 /* Adjust image size and position */
 .service-img {
-    max-width: 35%; /* Adjust image size as needed */
+    max-width: 28%; /* Adjust image size as needed */
     height: auto;
     margin-left: auto; /* Align image to the right */
 }
@@ -192,6 +192,8 @@ footer {
 /* Price styling */
 .price {
     color: #666; /* Lighter hue of black */
+    font-weight: bold; /* Make title bold */
+
 }
 
 /* Adjust text style */
