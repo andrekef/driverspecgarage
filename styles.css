@@ -19,14 +19,14 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: fixed; /* Fix the header to the top */
-    width: 100%; /* Ensure it spans the full width */
-    top: 0; /* Align it to the top */
-    z-index: 1000; /* Keep it above other content */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
 
 .logo img {
-    height: 120px; /* Adjust logo size */
+    height: 120px;
 }
 
 nav {
@@ -36,12 +36,18 @@ nav {
 nav ul {
     list-style: none;
     display: flex;
-    justify-content: center; /* Center navigation items */
+    justify-content: center;
     padding: 0;
 }
 
 nav ul li {
     position: relative;
+    padding: 10px 15px;
+    cursor: default; /* Indicate non-clickable */
+}
+
+nav ul li:hover {
+    background-color: #444; /* Optional hover effect for visual feedback */
 }
 
 nav a {
@@ -65,54 +71,54 @@ nav .dropdown {
     z-index: 1;
 }
 
-nav .dropdown li {
-    float: none;
-    color: #fff;
-    padding: 10px;
-    cursor: default; /* Indicate non-clickable items */
-}
-
-nav .dropdown li:hover {
-    background-color: #444; /* Add hover effect if desired */
-}
-
 nav ul li:hover .dropdown {
     display: block;
 }
 
+nav .dropdown a {
+    color: #fff;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+}
+
+nav .dropdown a:hover {
+    background-color: #444;
+}
+
 main {
-    padding: 0; /* Remove any default padding */
-    margin-top: 100px; /* Add margin to avoid content being hidden under the fixed header */
+    padding: 0;
+    margin-top: 100px;
 }
 
 .landing {
     text-align: center;
-    padding: 0; /* Remove padding to ensure the image is flush against the header */
+    padding: 0;
 }
 
 .landing img {
-    width: 100%; /* Extend image to full width */
-    height: 60vh; /* Adjust height to fit within the viewport */
-    object-fit: cover; /* Ensure the image covers the area */
-    object-position: top center; /* Focuses on the upper part of the image */
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
+    object-position: top center;
     display: block;
 }
 
 .description {
     margin-top: 20px;
-    padding: 20px; /* Add padding around the description */
+    padding: 20px;
 }
 
 .description h1 {
     font-family: 'Roboto Slab', serif;
-    font-size: 3rem; /* Adjust size as needed */
+    font-size: 3rem;
     font-weight: 700;
     margin: 0;
 }
 
 .description p {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.25rem; /* Adjust size as needed */
+    font-size: 1.25rem;
     font-weight: 300;
     margin-top: 10px;
 }
@@ -143,12 +149,12 @@ footer {
 
 /* Page-specific styling */
 .page-content {
-    padding-top: 100px; /* Add top padding for content */
+    padding-top: 100px;
 }
 
 .section {
     display: flex;
-    align-items: flex-start; /* Align items at the top */
+    align-items: flex-start;
     margin-bottom: 20px;
 }
 
@@ -165,6 +171,6 @@ footer {
 
 .price {
     margin-top: 10px;
-    font-style: italic; /* Italicize prices */
-    font-weight: bold; /* Bold prices */
+    font-style: italic;
+    font-weight: bold;
 }
