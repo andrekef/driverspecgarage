@@ -5,6 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Packages - Driver Spec Garage</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Default styles for larger screens */
+        .section-content {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .text-container {
+            flex: 1;
+            color: #666;
+            margin-right: 20px;
+        }
+        .media-container {
+            flex: 1;
+            text-align: center;
+        }
+        .service-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #666;
+            margin-top: 0;
+        }
+        .text-container p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #666;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .text-container ul {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #666;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 1rem;
+            color: #666;
+            font-style: italic;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .service-img {
+            max-width: 100%;
+            height: auto;
+        }
+        .divider {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 20px 0;
+        }
+
+        /* Mobile styles (below 768px) */
+        @media (max-width: 768px) {
+            .section-content {
+                flex-direction: column;
+                margin: 10px 0;
+            }
+            .text-container {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            .media-container {
+                width: 100%;
+            }
+            .service-title {
+                font-size: 1.1rem; /* Slightly smaller for mobile */
+            }
+            .text-container p {
+                font-size: 1.0rem; /* Adjusted for mobile readability */
+            }
+            .text-container ul {
+                font-size: 0.9rem; /* Slightly smaller for better fit */
+            }
+            .price {
+                font-size: 0.9rem;
+            }
+            .service-img {
+                width: 100%;
+                height: auto;
+            }
+            .divider {
+                margin: 10px 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -32,9 +122,9 @@
         <div class="section">
             <div class="section-content">
                 <div class="text-container">
-                    <span class="service-title" style="font-size: 1.2rem; font-weight: bold;">Stage 1 - Maintenance Wash:</span>
-                    <p style="font-size: 1.2rem; font-weight: bold; margin-top: 10px;">Designed to remove contamination & protect with spray sealant. Includes:</p>
-                    <ul style="font-size: 1rem; line-height: 1.5;">
+                    <span class="service-title">Stage 1 - Maintenance Wash:</span>
+                    <p>Designed to remove contamination & protect with spray sealant. Includes:</p>
+                    <ul>
                         <li>Pre Foam</li>
                         <li>Agitation Wash</li>
                         <li>Spray Sealant or Wax</li>
@@ -42,9 +132,11 @@
                         <li>Light Vaccum and Panel Wipedown</li>
                         <li>Windows Degreased and Cleaned</li>
                     </ul>
-                    <p class="price" style="font-size: 1rem; font-style: italic; font-weight: bold;">$80.00 cars ~ $100.00 Van / SUV / Large Truck</p>
+                    <p class="price">$80.00 cars ~ $100.00 Van / SUV / Large Truck</p>
                 </div>
-                <img class="service-img" src="infinity.JPG" alt="Stage 1 Wash & Seal">
+                <div class="media-container">
+                    <img class="service-img" src="infinity.JPG" alt="Stage 1 Wash & Seal">
+                </div>
             </div>
         </div>
 
@@ -54,9 +146,9 @@
         <div class="section">
             <div class="section-content">
                 <div class="text-container">
-                    <span class="service-title" style="font-size: 1.2rem; font-weight: bold;">Stage 2 - Decon  Wash (Recommended for all first time clients):</span>
-                    <p style="font-size: 1.2rem; font-weight: bold; margin-top: 10px;"> Higher pH wash, chemical and mechanical decontamination & SiO2 Ceramic Sealant 2 Month Protection. Includes:</p>
-                    <ul style="font-size: 1rem; line-height: 1.5;">
+                    <span class="service-title">Stage 2 - Decon Wash (Recommended for all first time clients):</span>
+                    <p>Higher pH wash, chemical and mechanical decontamination & SiO2 Ceramic Sealant 2 Month Protection. Includes:</p>
+                    <ul>
                         <li>Engine Bay Detailed</li>
                         <li>Pre Wash W/ Active Foam</li>
                         <li>Agitation Wash</li>
@@ -67,16 +159,18 @@
                         <li>Interior Leather Conditioner</li>
                         <li>Windows Degreased and Cleaned</li>
                     </ul>
-                    <p class="price" style="font-size: 1rem; font-style: italic; font-weight: bold;">$120.00 cars ~ $140.00 Van / SUV / Large Truck</p>
+                    <p class="price">$120.00 cars ~ $140.00 Van / SUV / Large Truck</p>
                 </div>
-                <img class="service-img" src="530i_front.JPG" alt="Stage 2 Full Detail">
+                <div class="media-container">
+                    <img class="service-img" src="530i_front.JPG" alt="Stage 2 Full Detail">
+                </div>
             </div>
         </div>
     </main>
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2024 Driver Spec Garage&nbsp;&nbsp;|&nbsp;&nbsp;(929) 569-9420&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:info@driverspecgarage.com">info@driverspecgarage.com</a></p>
+            <p>© 2024 Driver Spec Garage  |  (929) 569-9420  |  <a href="mailto:info@driverspecgarage.com">info@driverspecgarage.com</a></p>
         </div>
     </footer>
 </body>
