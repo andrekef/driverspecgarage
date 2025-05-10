@@ -5,6 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paint Correction - Driver Spec Garage</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Default styles for larger screens */
+        .section-content {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .text-container {
+            flex: 1;
+            color: #666;
+            margin-right: 20px;
+        }
+        .media-container {
+            flex: 1;
+            text-align: center;
+        }
+        .service-title {
+            font-weight: bold;
+            color: #666;
+            font-size: 1.25rem;
+            margin-top: 0;
+        }
+        .text-container p {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 1rem;
+            color: #666;
+            font-style: italic;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .service-img {
+            max-width: 100%;
+            height: auto;
+        }
+        .divider {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 20px 0;
+        }
+
+        /* Mobile styles (below 768px) */
+        @media (max-width: 768px) {
+            .section-content {
+                flex-direction: column;
+                margin: 10px 0;
+            }
+            .text-container {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            .media-container {
+                width: 100%;
+            }
+            .service-title {
+                font-size: 1.1rem; /* Slightly smaller for mobile */
+            }
+            .text-container p {
+                font-size: 0.9rem; /* Slightly smaller for better fit */
+            }
+            .price {
+                font-size: 0.9rem;
+            }
+            .service-img {
+                width: 100%;
+                height: auto;
+            }
+            .divider {
+                margin: 10px 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -27,33 +106,37 @@
         </nav>
     </header>
     
-<main class="page-content">
-    <div class="section">
-        <div class="section-content">
-            <div class="text-container">
-                <span class="service-title">Single Stage:</span> Our 1 step “paint enhancement” and exfoliating polish process is designed to bring your vehicle's finish back to life. By safely removing ~50% of any paint defects, this single-stage polish will enhance your vehicle's finish & provide the depth and clarity to color you have been looking for.
-                <p class="price" style="font-size: 1rem; font-style: italic; font-weight: bold;">$300 (car) - $400 (truck/suv)</p>
+    <main class="page-content">
+        <div class="section">
+            <div class="section-content">
+                <div class="text-container">
+                    <span class="service-title">Single Stage:</span> Our 1 step “paint enhancement” and exfoliating polish process is designed to bring your vehicle's finish back to life. By safely removing ~50% of any paint defects, this single-stage polish will enhance your vehicle's finish & provide the depth and clarity to color you have been looking for.
+                    <p class="price">$300 (car) - $400 (truck/suv)</p>
+                </div>
+                <div class="media-container">
+                    <img class="service-img" src="r35_wheels_landscape.JPG" alt="Paint Correction 1">
+                </div>
             </div>
-            <img class="service-img" src="r35_wheels_landscape.JPG" alt="Paint Correction 1">
         </div>
-    </div>
 
-    <hr class="divider"> <!-- Line divider -->
+        <hr class="divider"> <!-- Line divider -->
 
-    <div class="section">
-        <div class="section-content">
-            <div class="text-container">
-                <span class="service-title">Two Stage:</span> A 2-step paint correction process by machine polishing involves a cut/compound stage for defect & scratch removal, followed by a fine polish procedure to finesse the paintwork, adding depth and clarity to the vehicle's finish. Removes ~90% of defects in paint.
-                <p class="price" style="font-size: 1rem; font-style: italic; font-weight: bold;">$500 (car) - $600 (truck/suv)</p>
+        <div class="section">
+            <div class="section-content">
+                <div class="text-container">
+                    <span class="service-title">Two Stage:</span> A 2-step paint correction process by machine polishing involves a cut/compound stage for defect & scratch removal, followed by a fine polish procedure to finesse the paintwork, adding depth and clarity to the vehicle's finish. Removes ~90% of defects in paint.
+                    <p class="price">$500 (car) - $600 (truck/suv)</p>
+                </div>
+                <div class="media-container">
+                    <img class="service-img" src="paint_correction_landscape.png" alt="Paint Correction 2">
+                </div>
             </div>
-            <img class="service-img" src="paint_correction_landscape.png" alt="Paint Correction 2">
         </div>
-    </div>
-</main>
+    </main>
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2024 Driver Spec Garage&nbsp;&nbsp;|&nbsp;&nbsp;(929) 569-9420&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:info@driverspecgarage.com">info@driverspecgarage.com</a></p>
+            <p>© 2024 Driver Spec Garage  |  (929) 569-9420  |  <a href="mailto:info@driverspecgarage.com">info@driverspecgarage.com</a></p>
         </div>
     </footer>
 </body>
