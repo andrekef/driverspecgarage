@@ -60,6 +60,12 @@
             background: #ccc;
             margin: 20px 0;
         }
+        .addon {
+            font-size: 0.95em;
+            color: #666;
+            display: block;
+            margin-top: 4px;
+        }
 
         /* Mobile styles (below 768px) */
         @media (max-width: 768px) {
@@ -75,13 +81,13 @@
                 width: 100%;
             }
             .service-title {
-                font-size: 1.1rem; /* Slightly smaller for mobile */
+                font-size: 1.1rem;
             }
             .text-container p {
-                font-size: 1.0rem; /* Adjusted for mobile readability */
+                font-size: 1.0rem;
             }
             .text-container ul {
-                font-size: 0.9rem; /* Slightly smaller for better fit */
+                font-size: 0.9rem;
             }
             .price {
                 font-size: 0.9rem;
@@ -94,10 +100,13 @@
                 margin: 10px 0;
             }
             .addon {
-            font-size: 0.9em;
-            color: #666;
-            display: block;
-            margin-top: 4px;
+                font-size: 0.9em;
+                color: #666;
+                display: block;
+                margin-top: 4px;
+            }
+            h2 {
+                font-size: 1.3rem !important;
             }
         }
     </style>
@@ -124,11 +133,14 @@
     </header>
 
     <main class="page-content">
+        <h2 style="text-align: center; color: #666; margin: 30px 0 10px 0; font-size: 1.5rem;">Mobile Services</h2>
+        <p style="text-align: center; color: #888; margin-bottom: 30px; font-style: italic;">We come to you anywhere in NYC</p>
+        
         <!-- Stage 1 -->
         <div class="section">
             <div class="section-content">
                 <div class="text-container">
-                    <span class="service-title">Stage 1 - Maintenance Wash:</span>
+                    <span class="service-title">Stage 1 - Mobile Maintenance Wash:</span>
                     <p>Designed to remove contamination & protect with spray sealant. Includes:</p>
                     <ul>
                         <li>Pre Foam</li>
@@ -146,13 +158,13 @@
             </div>
         </div>
 
-        <hr class="divider"> <!-- Line divider -->
+        <hr class="divider">
 
         <!-- Stage 2 -->
         <div class="section">
             <div class="section-content">
                 <div class="text-container">
-                    <span class="service-title">Stage 2 - Decon Wash (Recommended for all first time clients):</span>
+                    <span class="service-title">Stage 2 - Mobile Decon Wash (Recommended for all first time clients):</span>
                     <p>A deep-clean reset for vehicles that have never been professionally detailed. Interior refresh and ceramic sealant protection (2–3 months).</p>
                     <ul>
                         <li>Engine bay detailed</li>
@@ -161,10 +173,10 @@
                         <li>Iron & tar removal plus clay bar treatment</li>
                         <li>SiO₂ ceramic spray sealant (3-4 months of protection)</li>
                         <li>No-sling tire shine & Exhaust Polish</li>
-                        <li>Vacuum, Panel Wipedown, Leather Conditioner and Glass Cleaning</li>
+                        <li>Thorough Vacuum, Panel Wipedown, Leather Conditioner and Glass Cleaning</li>
                     </ul>
                     <p class="price">
-                        $100.00 Cars ~ $120.00 Van / SUV / Large Truck <br>
+                        $130.00 Cars ~ $150.00 Van / SUV / Large Truck <br>
                     </p>
                 </div>
                 <div class="media-container">
@@ -172,21 +184,69 @@
                 </div>
             </div>
         </div>
+
+        <hr class="divider">
+
+        <!-- Flushing Location Services -->
+        <h2 style="text-align: center; color: #666; margin: 50px 0 10px 0; font-size: 1.5rem;">Flushing Location Services</h2>
+        <p style="text-align: center; color: #888; margin-bottom: 30px; font-style: italic;">Driveway service at our Flushing location - Premium results at unbeatable prices</p>
+
+        <!-- Flushing Maintenance Wash -->
+        <div class="section">
+            <div class="section-content">
+                <div class="text-container">
+                    <span class="service-title">Maintenance Wash (Flushing Location):</span>
+                    <p>Perfect for returning customers who want to keep their vehicle protected. Includes:</p>
+                    <ul>
+                        <li>Exterior Hand Wash</li>
+                        <li>Wheels & Tires Deep Clean</li>
+                        <li>SiO₂ Ceramic Spray Sealant (3-4 months protection)</li>
+                        <li>Windows Cleaned</li>
+                    </ul>
+                    <p class="price">
+                        $40.00 Exterior Only<br>
+                        <span class="addon">+$20.00 Interior Add-On: Vacuum, Panel Wipedown & Glass Cleaning</span>
+                    </p>
+                </div>
+                <div class="media-container">
+                    <img class="service-img" src="infinity.JPG" alt="Flushing Maintenance Wash">
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Flushing Decon Wash -->
+        <div class="section">
+            <div class="section-content">
+                <div class="text-container">
+                    <span class="service-title">Decon Wash (Flushing Location):</span>
+                    <p>A thorough decontamination and protection service. Includes:</p>
+                    <ul>
+                        <li>Pre-wash Foam & Two-Bucket Hand Wash</li>
+                        <li>Wheels, Tires & Wheel Wells Deep Clean</li>
+                        <li>Iron & Tar Removal</li>
+                        <li>Clay Bar Treatment</li>
+                        <li>SiO₂ Ceramic Spray Sealant (3-4 months protection)</li>
+                        <li>Tire Shine & Exhaust Polish</li>
+                        <li>Windows Cleaned</li>
+                    </ul>
+                    <p class="price">
+                        $80.00 Exterior Only<br>
+                        <span class="addon">+$40.00 Interior Add-On: Deep Vacuum, Carpet & Floor Mat Shampoo, Leather Conditioner, Panel Wipedown & Glass Cleaning</span>
+                    </p>
+                </div>
+                <div class="media-container">
+                    <img class="service-img" src="530i_front.JPG" alt="Flushing Decon Wash">
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
         <div class="footer-content">
-            <p>© 2025 Driver Spec Garage  |  646-484-8689  |  <a href="mailto:info@driverspecgarage.com">info@driverspecgarage.com</a></p>
+            <p>© 2025 Driver Spec Garage  |  646-484-8689  |  <a href="mailto:info@driverspecgarage.com">info@driverspecgarage.com</a></p>
         </div>
     </footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
