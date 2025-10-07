@@ -226,3 +226,62 @@ hr.divider {
     max-width: 40%;
     height: auto;
 }
+/* --- Social Media Buttons Section --- */
+.social-section {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.social-section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+/* Shared button style */
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    padding: 12px 25px;
+    color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+/* Instagram style */
+.instagram-btn {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+/* YouTube style */
+.youtube-btn {
+    background-color: #ff0000;
+}
+
+/* Hover effects */
+.social-btn:hover {
+    transform: scale(1.07);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Make them stack on mobile */
+@media (max-width: 600px) {
+    .social-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
