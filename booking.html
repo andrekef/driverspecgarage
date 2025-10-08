@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Now - Driver Spec Garage</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!-- Calendly Script -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <style>
+        .booking-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .booking-container h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .booking-container > p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .service-selector {
+            margin-bottom: 30px;
+        }
+        .service-selector label {
+            display: block;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .service-selector select {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        .service-selector select:hover {
+            border-color: #e74c3c;
+        }
+        .service-selector select:focus {
+            outline: none;
+            border-color: #e74c3c;
+        }
+        .service-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .service-info.active {
+            display: block;
+        }
+        .service-info h3 {
+            margin-top: 0;
+            color: #e74c3c;
+        }
+        .service-info p {
+            text-align: left;
+            margin: 10px 0;
+        }
+        .book-button {
+            width: 100%;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: 600;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .book-button:hover {
+            background: #c0392b;
+        }
+        .book-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .location-selector {
+            margin-bottom: 20px;
+        }
+        .location-selector label {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .location-options {
+            display: flex;
+            gap: 15px;
+        }
+        .location-option {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .location-option:hover {
+            border-color: #e74c3c;
+        }
+        .location-option.selected {
+            border-color: #e74c3c;
+            background: #fee;
+        }
+        .location-option input[type="radio"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="driverspecgarage_new_logo.JPG" alt="Driver Spec Garage Logo"></a>
+        </div>
+        <nav>
+            <ul>
+                <li class="non-clickable">
+                    <a href="#" onclick="toggleDropdown(event)">Services</a>
+                    <ul class="dropdown" id="servicesDropdown">
+                        <li><a href="paint-correction.html">Paint Correction</a></li>
+                        <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
+                        <li><a href="interior-steaming.html">Interior Steaming</a></li>
+                        <li><a href="packages.html">Packages</a></li>
+                    </ul>
+                </li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="booking.html">Book Now</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="booking-container">
+            <h1>Book Your Detailing Service</h1>
+            <p>Select your service and choose a convenient time</p>
+
+            <!-- Service Selector -->
+            <div class="service-selector">
+                <label for="service-select">Choose Your Service:</label>
+                <select id="service-select" onchange="updateServiceInfo()">
+                    <option value="">-- Select a Service --</option>
+                    <optgroup label="Flushing Location Services">
+                        <option value="flushing-maintenance" data-price="40" data-price-suv="50" data-duration="45 mins" data-location="flushing">Maintenance Wash - $40-50</option>
+                        <option value="flushing-decon" data-price="80" data-price-suv="90" data-duration="1.5 hours" data-location="flushing">Decon Wash - $80-90</option>
+                    </optgroup>
+                    <optgroup label="Mobile Services">
+                        <option value="mobile-express" data-price="70" data-price-suv="80" data-duration="1.5 hours" data-location="mobile">Mobile Express Wash - $70-80</option>
+                        <option value="mobile-detail" data-price="140" data-price-suv="160" data-duration="3-4 hours" data-location="mobile">Mobile Full Detail - $140-160</option>
+                    </optgroup>
+                    <optgroup label="Premium Services">
+                        <option value="paint-correction" data-price="500" data-price-suv="600" data-duration="6-8 hours" data-location="both">Paint Correction (2-Step) - $500-600</option>
+                        <option value="ceramic" data-price="1200" data-price-suv="1400" data-duration="2 days" data-location="both">Ceramic Coating - $1,200+</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <!-- Vehicle Size Selector -->
+            <div class="location-selector">
+                <label>Vehicle Size:</label>
+                <div class="location-options">
+                    <div class="location-option" onclick="selectVehicleSize('car')">
+                        <input type="radio" name="vehicle" value="car" id="vehicle-car">
+                        <div>
+                            <strong>Car / Sedan / Coupe</strong>
+                        </div>
+                    </div>
+                    <div class="location-option" onclick="selectVehicleSize('suv')">
+                        <input type="radio" name="vehicle" value="suv" id="vehicle-suv">
+                        <div>
+                            <strong>Van / SUV / Truck</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Info Display -->
+            <div class="service-info" id="service-info">
+                <h3 id="info-title">Service Details</h3>
+                <p><strong>Duration:</strong> <span id="info-duration"></span></p>
+                <p><strong>Price:</strong> <span id="info-price"></span></p>
+                <p id="info-description"></p>
+            </div>
+
+            <!-- Book Now Button -->
+            <button class="book-button" id="book-button" onclick="openCalendly()" disabled>
+                Select a Service to Continue
+            </button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2024 Driver Spec Garage | 646-484-8689 | <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+        let selectedService = '';
+        let selectedVehicleSize = 'car';
+
+        function toggleDropdown(event) {
+            event.preventDefault();
+            var dropdown = document.getElementById('servicesDropdown');
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+        }
+
+        document.addEventListener('click', function(event) {
+            var isClickInside = document.querySelector('.non-clickable').contains(event.target);
+            if (!isClickInside) {
+                document.getElementById('servicesDropdown').style.display = 'none';
+            }
+        });
+
+        function selectVehicleSize(size) {
+            selectedVehicleSize = size;
+            document.querySelectorAll('.location-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            document.getElementById('vehicle-' + size).checked = true;
+            updateServiceInfo();
+        }
+
+        function updateServiceInfo() {
+            const select = document.getElementById('service-select');
+            const selectedOption = select.options[select.selectedIndex];
+            const serviceInfo = document.getElementById('service-info');
+            const bookButton = document.getElementById('book-button');
+            
+            if (select.value === '') {
+                serviceInfo.classList.remove('active');
+                bookButton.disabled = true;
+                bookButton.textContent = 'Select a Service to Continue';
+                return;
+            }
+
+            selectedService = select.value;
+            const carPrice = parseFloat(selectedOption.dataset.price);
+            const suvPrice = parseFloat(selectedOption.dataset.priceSuv);
+            const duration = selectedOption.dataset.duration;
+            const serviceLocation = selectedOption.dataset.location;
+            
+            // Calculate price based on vehicle size
+            let finalPrice = selectedVehicleSize === 'car' ? carPrice : suvPrice;
+            let priceText = selectedVehicleSize === 'car' ? 
+                `$${carPrice}` : 
+                `$${suvPrice}`;
+            
+            if (carPrice === suvPrice) {
+                priceText = `$${carPrice}+`;
+            } else {
+                priceText = `$${carPrice} (Car) / $${suvPrice} (SUV/Truck)`;
+            }
+
+            // Service descriptions
+            const descriptions = {
+                'flushing-maintenance': 'Perfect for returning customers. Exterior hand wash, wheels & tires deep clean, SiO₂ ceramic spray sealant (3-4 months), windows cleaned. Interior add-on: +$20',
+                'flushing-decon': 'Thorough decontamination service. Pre-wash foam, two-bucket wash, iron & tar removal, clay bar, ceramic sealant, tire shine, exhaust polish. Interior add-on: +$40',
+                'mobile-express': 'Mobile service - we come to you! Pre foam, agitation wash, spray sealant or wax, wheels/tires deep clean, light vacuum, panel wipedown, windows cleaned.',
+                'mobile-detail': 'Complete mobile detail - a deep-clean reset. Engine bay, full decontamination, iron/tar removal, clay bar, ceramic sealant (2-3 months), thorough vacuum, leather conditioner, glass cleaning.',
+                'paint-correction': 'Two-step paint correction by machine polishing. Cut/compound stage for defect removal, followed by fine polish. Removes ~90% of paint defects, swirls, and scratches.',
+                'ceramic': 'Professional ceramic coating with paint correction included. Long-term protection (2-3+ years). Requires 2 days for proper application and curing.'
+            };
+
+            // Update info display
+            document.getElementById('info-title').textContent = selectedOption.text.split(' - ')[0];
+            document.getElementById('info-duration').textContent = duration;
+            document.getElementById('info-price').textContent = priceText;
+            document.getElementById('info-description').textContent = descriptions[selectedService];
+
+            serviceInfo.classList.add('active');
+            bookButton.disabled = false;
+            bookButton.textContent = 'Book Now - Schedule Your Appointment';
+        }
+
+        function openCalendly() {
+            if (!selectedService) {
+                alert('Please select a service first');
+                return;
+            }
+
+            // Build Calendly URL with pre-filled information
+            const calendlyUrl = `https://calendly.com/andrekef?a1=${selectedService}&a2=${selectedVehicleSize}`;
+            
+            // Open Calendly popup
+            Calendly.initPopupWidget({
+                url: calendlyUrl
+            });
+            
+            return false;
+        }
+
+        // Set default vehicle size
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.location-option').classList.add('selected');
+            document.getElementById('vehicle-car').checked = true;
+        });
+    </script>
+</body>
+</html>
