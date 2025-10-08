@@ -5,6 +5,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Driver Spec Garage</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 40px;
+        }
+
+        .contact-container h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+        }
+
+        .contact-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .contact-card h3 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .contact-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .contact-card a {
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .contact-card a:hover {
+            color: #c0392b;
+            text-decoration: underline;
+        }
+
+        .book-highlight {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(231, 76, 60, 0.3);
+        }
+
+        .book-highlight h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .book-highlight p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            opacity: 0.95;
+        }
+
+        .book-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #e74c3c;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .book-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                padding: 20px;
+            }
+
+            .contact-container h2 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-card {
+                padding: 25px;
+            }
+
+            .contact-card .icon {
+                font-size: 2rem;
+            }
+
+            .contact-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .book-highlight {
+                padding: 30px 20px;
+            }
+
+            .book-highlight h3 {
+                font-size: 1.5rem;
+            }
+
+            .book-highlight p {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -21,41 +168,58 @@
                     </ul>
                 </li>
                 <li><a href="shop.html">Shop</a></li>
+                <li><a href="booking.html">Book Now</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
-
     <main class="page-content">
-        <section class="contact-info" style="font-size: 1rem; line-height: 1.5;">
-            <h2 style="font-size: 1.5rem; font-weight: bold;">Contact Us</h2>
-            <div class="contact-item" style="margin: 1rem 0;">
-                <strong style="display: block; font-size: 1.2rem; font-weight: bold;">All Services By Appointment Only.</strong>
-                <p style="margin: 0.5rem 0;">Everyday<br>6am to 6pm</p>
-                <a href="mailto:driverspecgarage@gmail.com" style="color: #0000EE; text-decoration: underline;">Book Appointment</a>
-            </div>
-            <div class="contact-item" style="margin: 1rem 0;">
-                <strong style="display: block; font-size: 1.2rem; font-weight: bold;">General Inquiries</strong>
-                <p style="margin: 0.5rem 0;"><a href="mailto:driverspecgarage@gmail.com" style="color: #0000EE; text-decoration: underline;">driverspecgarage@gmail.com</a></p>
-            </div>
-            <div class="contact-item" style="margin: 1rem 0;">
-                <strong style="display: block; font-size: 1.2rem; font-weight: bold;">Phone</strong>
-                <p style="margin: 0.5rem 0;">Call / Text<br>646-484-8689/p>
-            </div>
-            <div class="contact-item" style="margin: 1rem 0;">
-                <strong style="display: block; font-size: 1.2rem; font-weight: bold;">Instagram</strong>
-                <p style="margin: 0.5rem 0;"><a href="https://www.instagram.com/driverspecgarage/" style="color: #0000EE; text-decoration: underline;">@driverspecgarage</a></p>
-            </div>
-        </section>
-    </main>
+        <div class="contact-container">
+            <h2>Get In Touch</h2>
 
+            <!-- Book Appointment Highlight -->
+            <div class="book-highlight">
+                <h3>Ready to book?</h3>
+                <p>All services by appointment only • Everyday 6am - 6pm</p>
+                <a href="booking.html" class="book-button">Book Your Appointment</a>
+            </div>
+
+            <!-- Contact Cards -->
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <span class="icon">📧</span>
+                    <h3>Email Us</h3>
+                    <p>General inquiries and questions</p>
+                    <p><a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
+                </div>
+
+                <div class="contact-card">
+                    <span class="icon">📱</span>
+                    <h3>Call or Text</h3>
+                    <p>Quick questions? Give us a call</p>
+                    <p><a href="tel:6464848689">646-484-8689</a></p>
+                </div>
+
+                <div class="contact-card">
+                    <span class="icon">📸</span>
+                    <h3>Instagram</h3>
+                    <p>Follow our work and see results</p>
+                    <p><a href="https://www.instagram.com/driverspecgarage/" target="_blank">@driverspecgarage</a></p>
+                </div>
+
+                <div class="contact-card">
+                    <span class="icon">📍</span>
+                    <h3>Flushing Location</h3>
+                    <p>Driveway service available</p>
+                    <p>Address provided after booking</p>
+                </div>
+            </div>
+        </div>
+    </main>
     <footer>
         <div class="footer-content">
-            <p>&copy; 2024 Driver Spec Garage&nbsp;&nbsp;|&nbsp;&nbsp;646-484-8689&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
+            <p>&copy; 2025 Driver Spec Garage  |  646-484-8689  |  <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
         </div>
     </footer>
 </body>
 </html>
-
-
-
