@@ -167,16 +167,17 @@
                 <select id="service-select" onchange="updateServiceInfo()">
                     <option value="">-- Select a Service --</option>
                     <optgroup label="Flushing Location Services">
-                        <option value="flushing-maintenance" data-price="40" data-price-suv="50" data-duration="45 mins" data-location="flushing">Maintenance Wash - $40-50</option>
-                        <option value="flushing-decon" data-price="80" data-price-suv="90" data-duration="1.5 hours" data-location="flushing">Decon Wash - $80-90</option>
+                        <option value="flushing-wash-wax" data-price="50" data-price-suv="60" data-duration="30-40 mins" data-location="flushing">Wash & Wax - $50-60</option>
+                        <option value="flushing-maintenance" data-price="70" data-price-suv="80" data-duration="45-60 mins" data-location="flushing">Stage 1 Detail (Maintenance Wash) - $70-80</option>
+                        <option value="flushing-decon" data-price="120" data-price-suv="140" data-duration="1.5-2 hours" data-location="flushing">Stage 2 Detail (Decon Wash) - $120-140</option>
                     </optgroup>
                     <optgroup label="Mobile Services">
-                        <option value="mobile-express" data-price="70" data-price-suv="80" data-duration="1.5 hours" data-location="mobile">Mobile Express Wash - $70-80</option>
-                        <option value="mobile-detail" data-price="140" data-price-suv="160" data-duration="3-4 hours" data-location="mobile">Mobile Full Detail - $140-160</option>
+                        <option value="mobile-express" data-price="90" data-price-suv="110" data-duration="1.5 hours" data-location="mobile">Stage 1 Mobile (Maintenance Wash) - $90-110</option>
+                        <option value="mobile-detail" data-price="200" data-price-suv="230" data-duration="3-4 hours" data-location="mobile">Stage 2 Mobile (Full Detail) - $200-230</option>
                     </optgroup>
                     <optgroup label="Premium Services">
                         <option value="paint-correction" data-price="500" data-price-suv="600" data-duration="6-8 hours" data-location="both">Paint Correction (2-Step) - $500-600</option>
-                        <option value="ceramic" data-price="1200" data-price-suv="1400" data-duration="2 days" data-location="both">Ceramic Coating - $1,200+</option>
+                        <option value="ceramic" data-price="800" data-price-suv="1000" data-duration="2 days" data-location="both">Ceramic Coating - $800-1,000</option>
                     </optgroup>
                 </select>
             </div>
@@ -281,10 +282,11 @@
 
             // Service descriptions
             const descriptions = {
-                'flushing-maintenance': 'Perfect for returning customers. Exterior hand wash, wheels & tires deep clean, SiO₂ ceramic spray sealant (3-4 months), windows cleaned. Interior add-on: +$20',
-                'flushing-decon': 'Thorough decontamination service. Pre-wash foam, two-bucket wash, iron & tar removal, clay bar, ceramic sealant, tire shine, exhaust polish. Interior add-on: +$40',
-                'mobile-express': 'Mobile service - we come to you! Pre foam, agitation wash, spray sealant or wax, wheels/tires deep clean, light vacuum, panel wipedown, windows cleaned.',
-                'mobile-detail': 'Complete mobile detail - a deep-clean reset. Engine bay, full decontamination, iron/tar removal, clay bar, ceramic sealant (2-3 months), thorough vacuum, leather conditioner, glass cleaning.',
+                'flushing-wash-wax': 'Quick exterior refresh. Pre-foam, hand wash, spray wax, wheels/tires cleaned, windows. Exterior only, no interior.',
+                'flushing-maintenance': 'Stage 1 Detail: Pre-foam, hand wash, ceramic sealant (3-4 months), wheels/tires deep clean, engine bay cleaned, door jambs, exhaust polish, tire shine, windows, plus quick vacuum & panel wipedown.',
+                'flushing-decon': 'Stage 2 Detail: Complete decontamination with iron/tar removal, clay bar, ceramic sealant, wheels/tires/wheel wells, detailed engine bay, door jambs, exhaust polish. Includes deep vacuum, carpet/floor mat shampoo, leather conditioning, panel wipedown.',
+                'mobile-express': 'Stage 1 Mobile: We come to you! Pre-foam, agitation wash, engine bay detailed, spray sealant or wax, wheels/tires deep clean, light vacuum & panel wipedown, windows cleaned.',
+                'mobile-detail': 'Stage 2 Mobile: Complete deep-clean reset. Engine bay detailed, pre-wash foam, hand wash wheels/tires/wheel wells, door jambs, iron/tar removal, clay bar, ceramic sealant (3-4 months), tire shine, exhaust polish, thorough vacuum, carpet shampoo, leather seat deep clean/steam/condition, glass cleaning.',
                 'paint-correction': 'Two-step paint correction by machine polishing. Cut/compound stage for defect removal, followed by fine polish. Removes ~90% of paint defects, swirls, and scratches.',
                 'ceramic': 'Professional ceramic coating with paint correction included. Long-term protection (2-3+ years). Requires 2 days for proper application and curing.'
             };
