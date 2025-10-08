@@ -160,14 +160,17 @@
         </div>
         <nav>
             <ul>
-                <li class="non-clickable">Services
-                    <ul class="dropdown">
+                <li class="non-clickable">
+                    <a href="#" onclick="toggleDropdown(event)">Services</a>
+                    <ul class="dropdown" id="servicesDropdown">
                         <li><a href="paint-correction.html">Paint Correction</a></li>
                         <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
+                        <li><a href="interior-steaming.html">Interior Steaming</a></li>
                         <li><a href="packages.html">Packages</a></li>
                     </ul>
                 </li>
                 <li><a href="shop.html">Shop</a></li>
+                <li><a href="booking.html">Book Now</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -220,6 +223,20 @@
             <p>&copy; 2025 Driver Spec Garage  |  646-484-8689  |  <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
         </div>
     </footer>
+
+    <script>
+        function toggleDropdown(event) {
+            event.preventDefault();
+            var dropdown = document.getElementById('servicesDropdown');
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+        }
+
+        document.addEventListener('click', function(event) {
+            var isClickInside = document.querySelector('.non-clickable').contains(event.target);
+            if (!isClickInside) {
+                document.getElementById('servicesDropdown').style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
-
