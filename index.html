@@ -10,6 +10,35 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: #e74c3c;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 5px;
+            margin: 25px 0 15px 0;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        .cta-container {
+            margin: 30px 0;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -28,18 +57,23 @@
                     </ul>
                 </li>
                 <li><a href="shop.html">Shop</a></li>
+                <li><a href="booking.html">Book Now</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
-
    <main>
     <section class="landing">
         <img src="me_detailing.png" alt="Your Car">
         <div class="description">
             <h1>Welcome to Driver Spec Garage</h1>
             <p>Mobile automotive detailing. Aspiring factory reset results.</p>
-
+            
+            <!-- 🔥 Request Appointment Button -->
+            <div class="cta-container">
+                <a href="booking.html" class="cta-button">Request Appointment</a>
+            </div>
+            
             <!-- 🔥 Social Media Buttons Section -->
             <div class="social-section">
                 <h2>Follow My Work</h2>
@@ -55,20 +89,17 @@
         </div>
     </section>
 </main>
-
     <footer>
         <div class="footer-content">
-            <p>© 2024 Driver Spec Garage  |  646-484-8689  |  <a href="mailto:andrekef@gmail.com">driverspecgarage@gmail.com</a></p>
+            <p>© 2024 Driver Spec Garage  |  646-484-8689  |  <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
         </div>
     </footer>
-
     <script>
         function toggleDropdown(event) {
             event.preventDefault(); // Prevent default anchor click behavior
             var dropdown = document.getElementById('servicesDropdown');
             dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
         }
-
         // Optional: Close dropdown if clicking outside
         document.addEventListener('click', function(event) {
             var isClickInside = document.querySelector('.non-clickable').contains(event.target);
