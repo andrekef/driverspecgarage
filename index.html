@@ -22,7 +22,7 @@
             font-size: 18px;
             font-weight: 700;
             border-radius: 5px;
-            margin: 25px 0 15px 0;
+            margin: 25px 5px 15px 5px;
             transition: all 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -37,6 +37,96 @@
 
         .cta-container {
             margin: 30px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            margin: 50px auto;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .service-types {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .service-type {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .service-type .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .service-type h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .service-type p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 16px;
+                margin: 10px 5px;
+            }
+            .cta-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .how-it-works h2 {
+                font-size: 1.6rem;
+                margin-bottom: 30px;
+            }
+            .service-types {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .service-type {
+                padding: 30px 20px;
+            }
+            .service-type .icon {
+                font-size: 2.5rem;
+            }
+            .service-type h3 {
+                font-size: 1.2rem;
+            }
+            .service-type p {
+                font-size: 0.95rem;
+            }
         }
     </style>
 </head>
@@ -73,6 +163,23 @@
             <div class="cta-container">
                 <a href="packages.html" class="cta-button" style="background: #3498db; margin-right: 15px;">View Packages</a>
                 <a href="booking.html" class="cta-button">Request Appointment</a>
+            </div>
+
+            <!-- 🔥 How It Works Section -->
+            <div class="how-it-works">
+                <h2>How It Works</h2>
+                <div class="service-types">
+                    <div class="service-type">
+                        <div class="icon">📍</div>
+                        <h3>Flushing Location</h3>
+                        <p>Drive to us. Have our quick homemade italian espresso or drop-off. We'll text when ready.</p>
+                    </div>
+                    <div class="service-type">
+                        <div class="icon">🚗</div>
+                        <h3>Mobile Service</h3>
+                        <p>We come to you anywhere in NYC. You relax while we work.</p>
+                    </div>
+                </div>
             </div>
             
             <!-- 🔥 Social Media Buttons Section -->
