@@ -228,14 +228,31 @@
 
         function toggleDropdown(event) {
             event.preventDefault();
+            event.stopPropagation();
             var dropdown = document.getElementById('servicesDropdown');
-            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+            } else {
+                dropdown.style.display = 'block';
+            }
         }
 
         document.addEventListener('click', function(event) {
-            var isClickInside = document.querySelector('.non-clickable').contains(event.target);
-            if (!isClickInside) {
-                document.getElementById('servicesDropdown').style.display = 'none';
+            var dropdown = document.getElementById('servicesDropdown');
+            var isClickInside = document.querySelector('.non-clickable') && document.querySelector('.non-clickable').contains(event.target);
+            
+            if (!isClickInside && dropdown) {
+                dropdown.style.display = 'none';
+            }
+        });
+
+        // Add touch event for mobile
+        document.addEventListener('touchstart', function(event) {
+            var dropdown = document.getElementById('servicesDropdown');
+            var isClickInside = document.querySelector('.non-clickable') && document.querySelector('.non-clickable').contains(event.target);
+            
+            if (!isClickInside && dropdown) {
+                dropdown.style.display = 'none';
             }
         });
 
