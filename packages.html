@@ -201,9 +201,9 @@
     </header>
 
     <main class="page-content">
-        <!-- Top Book Button -->
+        <!-- Top Button -->
         <div style="text-align: center; margin: 30px 0 40px 0;">
-            <a href="booking.html" class="book-button" style="font-size: 18px; padding: 15px 40px;">Book An Appointment</a>
+            <a href="booking.html" class="book-button" style="font-size: 18px; padding: 15px 40px;">Schedule a Detail</a>
         </div>
 
         <h2 style="text-align: center; color: #666; margin: 30px 0 10px 0; font-size: 1.5rem;">Mobile Services</h2>
@@ -226,7 +226,6 @@
                         <li>Windows Cleaned</li>
                     </ul>
                     <p class="price">$90 Cars ~ $110 Van / SUV / Large Truck</p>
-                    <a href="booking.html" class="book-button">Book This Service</a>
                 </div>
                 <div class="media-container">
                     <img class="service-img" src="infinity.JPG" alt="Stage 1 Wash & Seal">
@@ -255,7 +254,6 @@
                     <p class="price">
                         $200 Cars ~ $230 Van / SUV / Large Truck
                     </p>
-                    <a href="booking.html" class="book-button">Book This Service</a>
                 </div>
                 <div class="media-container">
                     <img class="service-img" src="530i_front.JPG" alt="Stage 2 Full Detail">
@@ -284,7 +282,6 @@
                         <li>Windows Cleaned</li>
                     </ul>
                     <p class="price">$50 Cars ~ $60 Van / SUV / Large Truck</p>
-                    <a href="booking.html" class="book-button">Book This Service</a>
                 </div>
             </div>
         </div>
@@ -311,7 +308,6 @@
                         <li><strong>Quick Vacuum & Panel Wipedown</strong></li>
                     </ul>
                     <p class="price">$70 Cars ~ $80 Van / SUV / Large Truck</p>
-                    <a href="booking.html" class="book-button">Book This Service</a>
                 </div>
                 <div class="media-container">
                     <img class="service-img" src="IMG_4561.PNG" alt="Stage 1 Maintenance Wash">
@@ -346,22 +342,13 @@
                         <li><strong>Panel Wipedown & Glass Cleaning</strong></li>
                     </ul>
                     <p class="price">$120 Cars ~ $140 Van / SUV / Large Truck</p>
-                    <a href="booking.html" class="book-button">Book This Service</a>
                 </div>
                 <div class="media-container">
                     <img class="service-img" src="718_porsche.png" alt="Stage 2 Decon Wash">
                 </div>
             </div>
         </div>
-
-        <!-- Bottom padding for sticky bar -->
-        <div style="height: 80px;"></div>
     </main>
-
-    <!-- Sticky Book Now Bar -->
-    <div class="sticky-book-bar" id="stickyBookBar">
-        <a href="booking.html">Book Your Appointment Now</a>
-    </div>
 
     <footer>
         <div class="footer-content">
@@ -380,16 +367,6 @@
             var isClickInside = document.querySelector('.non-clickable').contains(event.target);
             if (!isClickInside) {
                 document.getElementById('servicesDropdown').style.display = 'none';
-            }
-        });
-
-        // Show sticky book bar when user scrolls down
-        window.addEventListener('scroll', function() {
-            var stickyBar = document.getElementById('stickyBookBar');
-            if (window.scrollY > 300) {
-                stickyBar.classList.add('show');
-            } else {
-                stickyBar.classList.remove('show');
             }
         });
     </script>
