@@ -66,7 +66,6 @@
             display: block;
             margin-top: 4px;
         }
-
         /* Book Button Styles */
         .book-button {
             display: inline-block;
@@ -83,49 +82,11 @@
             letter-spacing: 0.5px;
             box-shadow: 0 3px 10px rgba(231, 76, 60, 0.3);
         }
-
         .book-button:hover {
             background: #c0392b;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
         }
-
-        /* Sticky Book Now Bar */
-        .sticky-book-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #000;
-            padding: 15px 20px;
-            text-align: center;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-            display: none;
-        }
-
-        .sticky-book-bar.show {
-            display: block;
-        }
-
-        .sticky-book-bar a {
-            display: inline-block;
-            padding: 12px 40px;
-            background: #e74c3c;
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 700;
-            border-radius: 5px;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .sticky-book-bar a:hover {
-            background: #c0392b;
-        }
-
         /* Mobile styles (below 768px) */
         @media (max-width: 768px) {
             .section-content {
@@ -171,10 +132,6 @@
                 padding: 10px 25px;
                 font-size: 14px;
             }
-            .sticky-book-bar a {
-                padding: 10px 30px;
-                font-size: 14px;
-            }
         }
     </style>
 </head>
@@ -199,13 +156,11 @@
             </ul>
         </nav>
     </header>
-
     <main class="page-content">
         <!-- Top Button -->
         <div style="text-align: center; margin: 30px 0 40px 0;">
             <a href="booking.html" class="book-button" style="font-size: 18px; padding: 15px 40px;">Schedule a Detail</a>
         </div>
-
         <h2 style="text-align: center; color: #666; margin: 30px 0 10px 0; font-size: 1.5rem;">Mobile Services</h2>
         <p style="text-align: center; color: #888; margin-bottom: 15px; font-style: italic;">We come to you anywhere in NYC</p>
         
@@ -225,16 +180,14 @@
                         <li>Light Vacuum and Panel Wipedown</li>
                         <li>Windows Cleaned</li>
                     </ul>
-                    <p class="price">$90 Cars ~ $110 Van / SUV / Large Truck</p>
+                    <p class="price">$100 Cars ~ $120 Van / SUV / Large Truck</p>
                 </div>
                 <div class="media-container">
                     <img class="service-img" src="infinity.JPG" alt="Stage 1 Wash & Seal">
                 </div>
             </div>
         </div>
-
         <hr class="divider">
-
         <!-- Stage 2 Mobile -->
         <div class="section">
             <div class="section-content">
@@ -260,13 +213,10 @@
                 </div>
             </div>
         </div>
-
         <hr class="divider">
-
         <!-- Flushing Location Services -->
         <h2 style="text-align: center; color: #666; margin: 50px 0 10px 0; font-size: 1.5rem;">Flushing Location Services</h2>
         <p style="text-align: center; color: #888; margin-bottom: 15px; font-style: italic;">Driveway service at our Flushing location</p>
-
         <!-- Wash & Wax -->
         <div class="section">
             <div class="section-content">
@@ -281,13 +231,11 @@
                         <li>Wheels & Tires Cleaned and Protected by Hand</li>
                         <li>Windows Cleaned</li>
                     </ul>
-                  <p class="price">$60 Cars / Van / SUV / Large Truck <br><span class="addon">Returning customers: $50</span></p>
+                  <p class="price">$50 All Vehicles<br><span class="addon">Returning customers: $40</span></p>
                 </div>
             </div>
         </div>
-
         <hr class="divider">
-
         <!-- Stage 1 - Maintenance Wash -->
         <div class="section">
             <div class="section-content">
@@ -299,77 +247,3 @@
                         <li>Pre-Foam</li>
                         <li>Hand Wash</li>
                         <li><strong>SiO₂ Ceramic Spray Sealant (3-4 months protection)</strong></li>
-                        <li>Wheels & Tires Deep Clean</li>
-                        <li><strong>Engine Bay Cleaned</strong></li>
-                        <li>Door Jambs Cleaned</li>
-                        <li><strong>Exhaust Tips Polished</strong></li>
-                        <li>Tire Shine</li>
-                        <li>Windows Cleaned</li>
-                        <li><strong>Quick Vacuum & Panel Wipedown</strong></li>
-                    </ul>
-                    <p class="price">$90 Cars ~ $100 Van / SUV / Large Truck</p>
-                </div>
-                <div class="media-container">
-                    <img class="service-img" src="IMG_4561.PNG" alt="Stage 1 Maintenance Wash">
-                </div>
-            </div>
-        </div>
-
-        <hr class="divider">
-
-        <!-- Stage 2 - Decon Wash -->
-        <div class="section">
-            <div class="section-content">
-                <div class="text-container">
-                    <span class="service-title">Stage 2 Detail - Decon Wash (Flushing Location):</span>
-                    <p>A thorough decontamination and complete interior refresh. Recommended for first-time clients.</p>
-                    <p><em>Duration: 2-3 hours</em></p>
-                    <ul>
-                        <li>Pre-Foam</li>
-                        <li>Hand Wash</li>
-                        <li>SiO₂ Ceramic Spray Sealant (3-4 months protection)</li>
-                        <li><strong>Iron & Tar Removal</strong></li>
-                        <li><strong>Clay Bar Treatment</strong></li>
-                        <li>Wheels, Tires & <strong>Wheel Wells</strong> Deep Clean</li>
-                        <li>Engine Bay <strong>Detailed</strong></li>
-                        <li>Door Jambs Cleaned</li>
-                        <li>Exhaust Tips Polished</li>
-                        <li>Tire Shine</li>
-                        <li>Windows Cleaned</li>
-                        <li><strong>Deep Vacuum</strong></li>
-                        <li><strong>Carpet & Floor Mat Shampoo</strong></li>
-                        <li><strong>3-4 month Leather Conditioner</strong></li>
-                        <li><strong>Panel Wipedown & Glass Cleaning</strong></li>
-                    </ul>
-                    <p class="price">$150 Cars ~ $170 Van / SUV / Large Truck</p>
-                </div>
-                <div class="media-container">
-                    <img class="service-img" src="718_porsche.png" alt="Stage 2 Decon Wash">
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <p>© 2025 Driver Spec Garage  |  646-484-8689  |  <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
-        </div>
-    </footer>
-
-    <script>
-        function toggleDropdown(event) {
-            event.preventDefault();
-            var dropdown = document.getElementById('servicesDropdown');
-            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
-        }
-
-        document.addEventListener('click', function(event) {
-            var isClickInside = document.querySelector('.non-clickable').contains(event.target);
-            if (!isClickInside) {
-                document.getElementById('servicesDropdown').style.display = 'none';
-            }
-        });
-    </script>
-</body>
-</html>
-
