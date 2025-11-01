@@ -175,54 +175,88 @@
                 margin: 10px 5px;
             }
             
-            /* Reorder elements on mobile */
+            /* Make landing section relative for positioning */
             .landing {
+                position: relative;
                 display: flex;
                 flex-direction: column;
             }
             
-            /* Title first */
-            .landing .description h1 {
-                order: -3;
-                margin-bottom: 10px;
-            }
-            
-            /* Subtitle second */
-            .landing .description > p:first-of-type {
-                order: -2;
-                margin-bottom: 15px;
-            }
-            
-            /* Buttons third */
-            .landing .cta-container {
+            /* Image at the top */
+            .landing > img:first-child {
                 order: -1;
-                margin: 10px 0 20px 0;
+                margin: 0;
+                width: 100%;
+                height: auto;
+                min-height: 400px;
+                object-fit: cover;
+            }
+            
+            /* Overlay title and subtitle on image */
+            .landing .description h1 {
+                position: absolute;
+                top: 30%;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 10;
+                color: white;
+                text-align: center;
+                margin: 0 20px;
+                text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+                font-size: 1.8rem;
+                width: calc(100% - 40px);
+            }
+            
+            .landing .description > p:first-of-type {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 10;
+                color: white;
+                text-align: center;
+                margin: 0 20px;
+                text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+                font-size: 1.1rem;
+                width: calc(100% - 40px);
+            }
+            
+            /* Add a dark overlay to image for better text readability */
+            .landing > img:first-child::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.3);
+                z-index: 5;
+            }
+            
+            /* Buttons below the image */
+            .landing .cta-container {
+                order: 0;
+                margin: 20px 0;
                 flex-direction: column;
                 align-items: center;
-            }
-            
-            /* Image fourth - THIS IS THE KEY CHANGE */
-            .landing > img:first-child {
-                order: 10;
-                margin: 20px auto;
             }
             
             .landing .description {
                 display: flex;
                 flex-direction: column;
-                order: 0;
+                order: 1;
             }
             
             .landing .how-it-works {
-                order: 20;
+                order: 2;
             }
             
             .landing .gallery-section {
-                order: 30;
+                order: 3;
             }
             
             .landing .social-section {
-                order: 40;
+                order: 4;
             }
             
             .how-it-works h2 {
