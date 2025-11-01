@@ -186,8 +186,8 @@
             <div class="location-selector">
                 <label>Vehicle Size:</label>
                 <div class="location-options">
-                    <div class="location-option" onclick="selectVehicleSize('car')">
-                        <input type="radio" name="vehicle" value="car" id="vehicle-car">
+                    <div class="location-option selected" onclick="selectVehicleSize('car')">
+                        <input type="radio" name="vehicle" value="car" id="vehicle-car" checked>
                         <div>
                             <strong>Car / Sedan / Coupe</strong>
                         </div>
@@ -226,6 +226,61 @@
         let selectedService = '';
         let selectedVehicleSize = 'car';
 
+        const serviceData = {
+            'flushing-wash-wax': {
+                name: 'Wash & Wax',
+                carPrice: 50,
+                suvPrice: 60,
+                duration: '30-40 mins'
+            },
+            'flushing-maintenance': {
+                name: 'Stage 1 Detail (Maintenance Wash)',
+                carPrice: 70,
+                suvPrice: 80,
+                duration: '45-60 mins'
+            },
+            'flushing-decon': {
+                name: 'Stage 2 Detail (Decon Wash)',
+                carPrice: 120,
+                suvPrice: 140,
+                duration: '1.5-2 hours'
+            },
+            'mobile-express': {
+                name: 'Stage 1 Mobile (Maintenance Wash)',
+                carPrice: 90,
+                suvPrice: 110,
+                duration: '1.5 hours'
+            },
+            'mobile-detail': {
+                name: 'Stage 2 Mobile (Full Detail)',
+                carPrice: 200,
+                suvPrice: 230,
+                duration: '3-4 hours'
+            },
+            'paint-correction': {
+                name: 'Paint Correction (2-Step)',
+                carPrice: 500,
+                suvPrice: 600,
+                duration: '6-8 hours'
+            },
+            'ceramic': {
+                name: 'Ceramic Coating',
+                carPrice: 800,
+                suvPrice: 1000,
+                duration: '2 days'
+            }
+        };
+
+        const descriptions = {
+            'flushing-wash-wax': 'Quick exterior refresh. Pre-foam, hand wash, spray wax, wheels/tires cleaned, windows. Exterior only, no interior.',
+            'flushing-maintenance': 'Stage 1 Detail: Pre-foam, hand wash, ceramic sealant (3-4 months), wheels/tires deep clean, engine bay cleaned, door jambs, exhaust polish, tire shine, windows, plus quick vacuum & panel wipedown.',
+            'flushing-decon': 'Stage 2 Detail: Complete decontamination with iron/tar removal, clay bar, ceramic sealant, wheels/tires/wheel wells, detailed engine bay, door jambs, exhaust polish. Includes deep vacuum, carpet/floor mat shampoo, leather conditioning, panel wipedown.',
+            'mobile-express': 'Stage 1 Mobile: We come to you! Pre-foam, agitation wash, engine bay detailed, spray sealant or wax, wheels/tires deep clean, light vacuum & panel wipedown, windows cleaned.',
+            'mobile-detail': 'Stage 2 Mobile: Complete deep-clean reset. Engine bay detailed, pre-wash foam, hand wash wheels/tires/wheel wells, door jambs, iron/tar removal, clay bar, ceramic sealant (3-4 months), tire shine, exhaust polish, thorough vacuum, carpet shampoo, leather seat deep clean/steam/condition, glass cleaning.',
+            'paint-correction': 'Two-step paint correction by machine polishing. Cut/compound stage for defect removal, followed by fine polish. Removes ~90% of paint defects, swirls, and scratches.',
+            'ceramic': 'Professional ceramic coating with paint correction included. Long-term protection (2-3+ years). Requires 2 days for proper application and curing.'
+        };
+
         function toggleDropdown(event) {
             event.preventDefault();
             event.stopPropagation();
@@ -246,7 +301,6 @@
             }
         });
 
-        // Add touch event for mobile
         document.addEventListener('touchstart', function(event) {
             var dropdown = document.getElementById('servicesDropdown');
             var isClickInside = document.querySelector('.non-clickable') && document.querySelector('.non-clickable').contains(event.target);
@@ -280,36 +334,17 @@
             }
 
             selectedService = select.value;
-            const carPrice = parseFloat(selectedOption.dataset.price);
-            const suvPrice = parseFloat(selectedOption.dataset.priceSuv);
-            const duration = selectedOption.dataset.duration;
-            const serviceLocation = selectedOption.dataset.location;
+            const service = serviceData[selectedService];
+            const carPrice = service.carPrice;
+            const suvPrice = service.suvPrice;
+            const duration = service.duration;
             
-            // Calculate price based on vehicle size
-            let finalPrice = selectedVehicleSize === 'car' ? carPrice : suvPrice;
-            let priceText = selectedVehicleSize === 'car' ? 
-                `$${carPrice}` : 
-                `$${suvPrice}`;
-            
-            if (carPrice === suvPrice) {
-                priceText = `$${carPrice}+`;
-            } else {
-                priceText = `$${carPrice} (Car) / $${suvPrice} (SUV/Truck)`;
-            }
-
-            // Service descriptions
-            const descriptions = {
-                'flushing-wash-wax': 'Quick exterior refresh. Pre-foam, hand wash, spray wax, wheels/tires cleaned, windows. Exterior only, no interior.',
-                'flushing-maintenance': 'Stage 1 Detail: Pre-foam, hand wash, ceramic sealant (3-4 months), wheels/tires deep clean, engine bay cleaned, door jambs, exhaust polish, tire shine, windows, plus quick vacuum & panel wipedown.',
-                'flushing-decon': 'Stage 2 Detail: Complete decontamination with iron/tar removal, clay bar, ceramic sealant, wheels/tires/wheel wells, detailed engine bay, door jambs, exhaust polish. Includes deep vacuum, carpet/floor mat shampoo, leather conditioning, panel wipedown.',
-                'mobile-express': 'Stage 1 Mobile: We come to you! Pre-foam, agitation wash, engine bay detailed, spray sealant or wax, wheels/tires deep clean, light vacuum & panel wipedown, windows cleaned.',
-                'mobile-detail': 'Stage 2 Mobile: Complete deep-clean reset. Engine bay detailed, pre-wash foam, hand wash wheels/tires/wheel wells, door jambs, iron/tar removal, clay bar, ceramic sealant (3-4 months), tire shine, exhaust polish, thorough vacuum, carpet shampoo, leather seat deep clean/steam/condition, glass cleaning.',
-                'paint-correction': 'Two-step paint correction by machine polishing. Cut/compound stage for defect removal, followed by fine polish. Removes ~90% of paint defects, swirls, and scratches.',
-                'ceramic': 'Professional ceramic coating with paint correction included. Long-term protection (2-3+ years). Requires 2 days for proper application and curing.'
-            };
+            let priceText = carPrice === suvPrice ? 
+                `$${carPrice}+` : 
+                `$${carPrice} (Car) / $${suvPrice} (SUV/Truck)`;
 
             // Update info display
-            document.getElementById('info-title').textContent = selectedOption.text.split(' - ')[0];
+            document.getElementById('info-title').textContent = service.name;
             document.getElementById('info-duration').textContent = duration;
             document.getElementById('info-price').textContent = priceText;
             document.getElementById('info-description').textContent = descriptions[selectedService];
@@ -325,22 +360,35 @@
                 return;
             }
 
-            // Build Calendly URL with pre-filled information
-            const calendlyUrl = `https://calendly.com/andrekef?a1=${selectedService}&a2=${selectedVehicleSize}`;
+            const service = serviceData[selectedService];
+            const vehicleType = selectedVehicleSize === 'car' ? 'Car/Sedan/Coupe' : 'Van/SUV/Truck';
+            const vehicleCode = selectedVehicleSize === 'car' ? 'car' : 'suv';
+            const price = selectedVehicleSize === 'car' ? service.carPrice : service.suvPrice;
             
-            // Open Calendly popup
+            // Create service code for easy reference (e.g., "mobile-express-car")
+            const serviceCode = `${selectedService}-${vehicleCode}`;
+            
+            // Create full service string with price
+            const fullServiceString = `${service.name} - $${price} (${vehicleType})`;
+            
+            // Get service description
+            const serviceDescription = descriptions[selectedService];
+            
+            // Open Calendly popup with all pre-filled data
             Calendly.initPopupWidget({
-                url: calendlyUrl
+                url: 'https://calendly.com/andrekef',
+                prefill: {
+                    customAnswers: {
+                        a1: fullServiceString,      // "Stage 1 Mobile - $90 (Car/Sedan/Coupe)"
+                        a2: vehicleType,             // "Car/Sedan/Coupe"
+                        a3: serviceCode,             // "mobile-express-car"
+                        a4: serviceDescription       // Full description of service
+                    }
+                }
             });
             
             return false;
         }
-
-        // Set default vehicle size
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelector('.location-option').classList.add('selected');
-            document.getElementById('vehicle-car').checked = true;
-        });
     </script>
 </body>
 </html>
