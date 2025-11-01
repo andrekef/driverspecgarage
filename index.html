@@ -175,88 +175,81 @@
                 margin: 10px 5px;
             }
             
-            /* Make landing section relative for positioning */
+            /* Mobile hero section with overlay text */
             .landing {
                 position: relative;
-                display: flex;
-                flex-direction: column;
+                padding: 0;
+                text-align: center;
             }
             
-            /* Image at the top */
+            /* Image styling for mobile */
             .landing > img:first-child {
-                order: -1;
-                margin: 0;
                 width: 100%;
-                height: auto;
-                min-height: 400px;
+                height: 400px;
                 object-fit: cover;
+                object-position: center;
+                display: block;
+                margin: 0;
             }
             
-            /* Overlay title and subtitle on image */
-            .landing .description h1 {
-                position: absolute;
-                top: 30%;
-                left: 50%;
-                transform: translateX(-50%);
-                z-index: 10;
-                color: white;
-                text-align: center;
-                margin: 0 20px;
-                text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-                font-size: 1.8rem;
-                width: calc(100% - 40px);
-            }
-            
-            .landing .description > p:first-of-type {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translateX(-50%);
-                z-index: 10;
-                color: white;
-                text-align: center;
-                margin: 0 20px;
-                text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
-                font-size: 1.1rem;
-                width: calc(100% - 40px);
-            }
-            
-            /* Add a dark overlay to image for better text readability */
-            .landing > img:first-child::after {
+            /* Dark overlay on image */
+            .landing::before {
                 content: '';
                 position: absolute;
                 top: 0;
                 left: 0;
                 right: 0;
-                bottom: 0;
-                background: rgba(0,0,0,0.3);
-                z-index: 5;
+                height: 400px;
+                background: rgba(0, 0, 0, 0.4);
+                z-index: 1;
+                pointer-events: none;
             }
             
-            /* Buttons below the image */
+            /* Position title over image */
+            .landing .description h1 {
+                position: absolute;
+                top: 120px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 2;
+                color: white;
+                text-align: center;
+                margin: 0;
+                padding: 0 20px;
+                text-shadow: 3px 3px 10px rgba(0,0,0,0.9);
+                font-size: 1.8rem;
+                width: calc(100% - 40px);
+            }
+            
+            /* Position subtitle over image */
+            .landing .description > p:first-of-type {
+                position: absolute;
+                top: 220px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 2;
+                color: white;
+                text-align: center;
+                margin: 0;
+                padding: 0 20px;
+                text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+                font-size: 1.1rem;
+                width: calc(100% - 40px);
+            }
+            
+            /* Description section */
+            .landing .description {
+                margin-top: 0;
+                padding: 20px;
+            }
+            
+            /* Buttons positioned below image */
             .landing .cta-container {
-                order: 0;
-                margin: 20px 0;
+                margin: 420px 0 20px 0;
                 flex-direction: column;
                 align-items: center;
-            }
-            
-            .landing .description {
-                display: flex;
-                flex-direction: column;
-                order: 1;
-            }
-            
-            .landing .how-it-works {
-                order: 2;
-            }
-            
-            .landing .gallery-section {
-                order: 3;
-            }
-            
-            .landing .social-section {
-                order: 4;
+                position: relative;
+                z-index: 3;
             }
             
             .how-it-works h2 {
