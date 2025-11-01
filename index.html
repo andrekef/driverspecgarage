@@ -175,50 +175,54 @@
                 margin: 10px 5px;
             }
             
-            /* Force buttons above image on mobile */
+            /* Reorder elements on mobile */
             .landing {
                 display: flex;
                 flex-direction: column;
             }
             
-            .landing > img {
-                order: 1;
-                margin: 20px auto;
-            }
-            
-            .landing .description {
-                order: 2;
-                display: flex;
-                flex-direction: column;
-            }
-            
+            /* Title first */
             .landing .description h1 {
-                order: -2;
+                order: -3;
                 margin-bottom: 10px;
             }
             
+            /* Subtitle second */
             .landing .description > p:first-of-type {
-                order: -1;
+                order: -2;
                 margin-bottom: 15px;
             }
             
+            /* Buttons third */
             .landing .cta-container {
-                order: 0;
+                order: -1;
                 margin: 10px 0 20px 0;
                 flex-direction: column;
                 align-items: center;
             }
             
+            /* Image fourth - THIS IS THE KEY CHANGE */
+            .landing > img:first-child {
+                order: 10;
+                margin: 20px auto;
+            }
+            
+            .landing .description {
+                display: flex;
+                flex-direction: column;
+                order: 0;
+            }
+            
             .landing .how-it-works {
-                order: 1;
+                order: 20;
             }
             
             .landing .gallery-section {
-                order: 2;
+                order: 30;
             }
             
             .landing .social-section {
-                order: 3;
+                order: 40;
             }
             
             .how-it-works h2 {
