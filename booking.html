@@ -167,17 +167,22 @@
                 <select id="service-select" onchange="updateServiceInfo()">
                     <option value="">-- Select a Service --</option>
                     <optgroup label="Flushing Location Services">
-                        <option value="flushing-wash-wax" data-price="50" data-price-suv="60" data-duration="30-40 mins" data-location="flushing">Wash & Wax - $50-60</option>
-                        <option value="flushing-maintenance" data-price="70" data-price-suv="80" data-duration="45-60 mins" data-location="flushing">Stage 1 Detail (Maintenance Wash) - $70-80</option>
-                        <option value="flushing-decon" data-price="120" data-price-suv="140" data-duration="1.5-2 hours" data-location="flushing">Stage 2 Detail (Decon Wash) - $120-140</option>
+                        <option value="flushing-wash-wax" data-price="60" data-price-suv="60" data-duration="45 mins" data-location="flushing">Wash & Wax - $60 ($50 returning)</option>
+                        <option value="flushing-maintenance" data-price="90" data-price-suv="100" data-duration="2 hrs" data-location="flushing">Stage 1 Detail (Maintenance Wash) - $90-100</option>
+                        <option value="flushing-decon" data-price="180" data-price-suv="200" data-duration="3-4 hours" data-location="flushing">Stage 2 Detail (Decon Wash) - $180-200</option>
                     </optgroup>
                     <optgroup label="Mobile Services">
-                        <option value="mobile-express" data-price="90" data-price-suv="110" data-duration="1.5 hours" data-location="mobile">Stage 1 Mobile (Maintenance Wash) - $90-110</option>
+                        <option value="mobile-express" data-price="100" data-price-suv="120" data-duration="2 hours" data-location="mobile">Stage 1 Mobile (Maintenance Wash) - $100-120</option>
                         <option value="mobile-detail" data-price="200" data-price-suv="230" data-duration="3-4 hours" data-location="mobile">Stage 2 Mobile (Full Detail) - $200-230</option>
                     </optgroup>
                     <optgroup label="Premium Services">
-                        <option value="paint-correction" data-price="500" data-price-suv="600" data-duration="6-8 hours" data-location="both">Paint Correction (2-Step) - $500-600</option>
-                        <option value="ceramic" data-price="800" data-price-suv="1000" data-duration="2 days" data-location="both">Ceramic Coating - $800-1,000</option>
+                        <option value="paint-correction" data-price="600" data-price-suv="600" data-duration="6-8 hours" data-location="both">Paint Correction (2-Step) - $600</option>
+                        <option value="ceramic" data-price="900" data-price-suv="900" data-duration="1 day" data-location="both">Ceramic Coating - $900</option>
+                    </optgroup>
+                    <optgroup label="Add-On Services">
+                        <option value="engine-bay" data-price="70" data-price-suv="70" data-duration="30-45 mins" data-location="both">Engine Bay Detail - $50 ($30 add-on)</option>
+                        <option value="headlight" data-price="80" data-price-suv="80" data-duration="45-60 mins" data-location="both">Headlight Restoration - $80 ($60 add-on)</option>
+                        <option value="interior-only" data-price="130" data-price-suv="150" data-duration="2 hours" data-location="both">Interior Only Detail - $130-150</option>
                     </optgroup>
                 </select>
             </div>
@@ -218,7 +223,7 @@
 
     <footer>
         <div class="footer-content">
-            <p>© 2024 Driver Spec Garage | 646-484-8689 | <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
+            <p>© 2025 Driver Spec Garage | 646-484-8689 | <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
         </div>
     </footer>
 
@@ -229,27 +234,27 @@
         const serviceData = {
             'flushing-wash-wax': {
                 name: 'Wash & Wax',
-                carPrice: 50,
+                carPrice: 60,
                 suvPrice: 60,
-                duration: '30-40 mins'
+                duration: '45 mins'
             },
             'flushing-maintenance': {
                 name: 'Stage 1 Detail (Maintenance Wash)',
-                carPrice: 70,
-                suvPrice: 80,
-                duration: '45-60 mins'
+                carPrice: 90,
+                suvPrice: 100,
+                duration: '2 hrs'
             },
             'flushing-decon': {
                 name: 'Stage 2 Detail (Decon Wash)',
-                carPrice: 120,
-                suvPrice: 140,
-                duration: '1.5-2 hours'
+                carPrice: 180,
+                suvPrice: 200,
+                duration: '3-4 hours'
             },
             'mobile-express': {
                 name: 'Stage 1 Mobile (Maintenance Wash)',
-                carPrice: 90,
-                suvPrice: 110,
-                duration: '1.5 hours'
+                carPrice: 100,
+                suvPrice: 120,
+                duration: '2 hours'
             },
             'mobile-detail': {
                 name: 'Stage 2 Mobile (Full Detail)',
@@ -259,26 +264,47 @@
             },
             'paint-correction': {
                 name: 'Paint Correction (2-Step)',
-                carPrice: 500,
+                carPrice: 600,
                 suvPrice: 600,
                 duration: '6-8 hours'
             },
             'ceramic': {
                 name: 'Ceramic Coating',
-                carPrice: 800,
-                suvPrice: 1000,
-                duration: '2 days'
+                carPrice: 900,
+                suvPrice: 900,
+                duration: '1 day'
+            },
+            'engine-bay': {
+                name: 'Engine Bay Detail',
+                carPrice: 70,
+                suvPrice: 70,
+                duration: '45 mins'
+            },
+            'headlight': {
+                name: 'Headlight Restoration',
+                carPrice: 80,
+                suvPrice: 80,
+                duration: '45-60 mins'
+            },
+            'interior-only': {
+                name: 'Interior Only Detail',
+                carPrice: 130,
+                suvPrice: 150,
+                duration: '2 hours'
             }
         };
 
         const descriptions = {
-            'flushing-wash-wax': 'Quick exterior refresh. Pre-foam, hand wash, spray wax, wheels/tires cleaned, windows. Exterior only, no interior.',
-            'flushing-maintenance': 'Stage 1 Detail: Pre-foam, hand wash, ceramic sealant (3-4 months), wheels/tires deep clean, engine bay cleaned, door jambs, exhaust polish, tire shine, windows, plus quick vacuum & panel wipedown.',
-            'flushing-decon': 'Stage 2 Detail: Complete decontamination with iron/tar removal, clay bar, ceramic sealant, wheels/tires/wheel wells, detailed engine bay, door jambs, exhaust polish. Includes deep vacuum, carpet/floor mat shampoo, leather conditioning, panel wipedown.',
-            'mobile-express': 'Stage 1 Mobile: We come to you! Pre-foam, agitation wash, engine bay detailed, spray sealant or wax, wheels/tires deep clean, light vacuum & panel wipedown, windows cleaned.',
-            'mobile-detail': 'Stage 2 Mobile: Complete deep-clean reset. Engine bay detailed, pre-wash foam, hand wash wheels/tires/wheel wells, door jambs, iron/tar removal, clay bar, ceramic sealant (3-4 months), tire shine, exhaust polish, thorough vacuum, carpet shampoo, leather seat deep clean/steam/condition, glass cleaning.',
-            'paint-correction': 'Two-step paint correction by machine polishing. Cut/compound stage for defect removal, followed by fine polish. Removes ~90% of paint defects, swirls, and scratches.',
-            'ceramic': 'Professional ceramic coating with paint correction included. Long-term protection (2-3+ years). Requires 2 days for proper application and curing.'
+            'flushing-wash-wax': 'Quick exterior refresh with protection. Pre-foam, hand wash, ceramic sealant application, wheels & tires cleaned and protected by hand, windows cleaned. Exterior only, no interior or engine bay. $50 for returning customers.',
+            'flushing-maintenance': 'Stage 1 Detail: Pre-foam, hand wash, SiO₂ ceramic spray sealant (3-4 months protection), wheels & tires deep clean, engine bay cleaned, door jambs cleaned, exhaust tips polished, tire shine, windows cleaned, plus quick vacuum & panel wipedown.',
+            'flushing-decon': 'Stage 2 Detail: Complete decontamination with iron & tar removal, clay bar treatment, SiO₂ ceramic sealant (3-4 months), wheels/tires/wheel wells deep clean, engine bay detailed, door jambs cleaned, exhaust polish, tire shine, windows cleaned. Interior: deep vacuum, carpet & floor mat shampoo, 3-4 month leather conditioner, panel wipedown & glass cleaning.',
+            'mobile-express': 'Stage 1 Mobile: We come to you anywhere in NYC! Pre-foam, agitation wash, engine bay detailed, spray sealant or wax, wheels/tires deep clean, light vacuum & panel wipedown, windows cleaned.',
+            'mobile-detail': 'Stage 2 Mobile: Complete deep-clean reset. Recommended for all first-time clients. Engine bay detailed, pre-wash foam & two-bucket hand wash, wheels/tires/wheel wells, door jambs and gas cap, iron & tar removal plus clay bar treatment, SiO₂ ceramic spray sealant (3-4 months protection), no-sling tire shine & exhaust polish. Interior: thorough vacuum, panel shampoo and wipedown, leather seat deep clean, steam and conditioner, glass cleaning.',
+            'paint-correction': 'Two-step paint correction by machine polishing. Cut/compound stage for defect removal, followed by fine polish. Removes ~90% of paint defects, swirls, and scratches. Single price for all vehicles.',
+            'ceramic': 'Professional ceramic coating with paint correction included. Long-term protection (2-3+ years). Requires 2 days for proper application and curing. Single price for all vehicles.',
+            'engine-bay': 'Complete engine compartment cleaning and dressing. Engine degreasing and cleaning, component detailing, plastic and rubber dressing, professional finish. $50 when added to any package.',
+            'headlight': 'Remove oxidation and restore clarity to foggy headlights. Wet sanding to remove oxidation, multi-stage polishing, UV protective ceramic application, dramatically improved visibility and appearance. $60 when added to any detail.',
+            'interior-only': 'Complete interior refresh without exterior work. Deep vacuum of all surfaces, carpet and floor mat shampooing, leather cleaning and conditioning, panel and trim cleaning and dressing, door jambs cleaned, interior glass cleaning. Perfect for those who wash exterior themselves.'
         };
 
         function toggleDropdown(event) {
@@ -340,7 +366,7 @@
             const duration = service.duration;
             
             let priceText = carPrice === suvPrice ? 
-                `$${carPrice}+` : 
+                `$${carPrice}` : 
                 `$${carPrice} (Car) / $${suvPrice} (SUV/Truck)`;
 
             // Update info display
@@ -379,7 +405,7 @@
                 url: 'https://calendly.com/andrekef',
                 prefill: {
                     customAnswers: {
-                        a1: fullServiceString,      // "Stage 1 Mobile - $90 (Car/Sedan/Coupe)"
+                        a1: fullServiceString,      // "Stage 1 Mobile - $100 (Car/Sedan/Coupe)"
                         a2: vehicleType,             // "Car/Sedan/Coupe"
                         a3: serviceCode,             // "mobile-express-car"
                         a4: serviceDescription       // Full description of service
