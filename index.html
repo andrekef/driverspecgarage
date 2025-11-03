@@ -14,315 +14,356 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .cta-button {
-    display: inline-block;
-    padding: 18px 45px;
-    background: #e74c3c;
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 700;
-    border-radius: 5px;
-    margin: 25px 5px 15px 5px;
-    transition: all 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
-}
-
-    .cta-button:hover {
-        background: #c0392b;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
-    }
+            display: inline-block;
+            padding: 18px 45px;
+            background: #e74c3c;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 5px;
+            margin: 25px 5px 15px 5px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
     
-    .cta-container {
-        margin: 30px 0;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-    }
-    
-    /* Desktop hero with overlay */
-    .landing {
-        position: relative;
-        padding: 0;
-        text-align: center;
-    }
-    
-    /* Dark overlay on image for both desktop and mobile */
-    .landing::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 60vh;
-        background: rgba(0, 0, 0, 0.4);
-        z-index: 1;
-        pointer-events: none;
-    }
-    
-    /* Position title over image - DESKTOP */
-    .landing .description h1 {
-        position: absolute;
-        top: 20vh;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 2;
-        color: white;
-        text-align: center;
-        margin: 0;
-        padding: 0 20px;
-        text-shadow: 3px 3px 10px rgba(0,0,0,0.9);
-        font-size: 3rem;
-        width: calc(100% - 40px);
-    }
-    
-    /* Position subtitle over image - DESKTOP */
-    .landing .description > p:first-of-type {
-        position: absolute;
-        top: 32vh;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 2;
-        color: white;
-        text-align: center;
-        margin: 0;
-        padding: 0 20px;
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
-        font-size: 1.25rem;
-        width: calc(100% - 40px);
-    }
-    
-    /* Position buttons over image - DESKTOP */
-    .landing .cta-container {
-        position: absolute;
-        top: 42vh;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 2;
-        width: 100%;
-    }
-    
-    /* Adjust description margin to account for absolute positioning */
-    .landing .description {
-        margin-top: 0;
-        padding: 20px;
-    }
-    
-    /* How It Works Section */
-    .how-it-works {
-        margin: 50px auto;
-        max-width: 900px;
-        padding: 0 20px;
-    }
-    
-    .how-it-works h2 {
-        text-align: center;
-        font-size: 2rem;
-        color: #333;
-        margin-bottom: 40px;
-        font-weight: 700;
-    }
-    
-    .service-types {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
-    }
-    
-    .service-type {
-        background: white;
-        padding: 40px 30px;
-        border-radius: 12px;
-        box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-        text-align: center;
-        transition: transform 0.3s, box-shadow 0.3s;
-    }
-    
-    .service-type:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-    }
-    
-    .service-type .icon {
-        font-size: 3rem;
-        margin-bottom: 20px;
-    }
-    
-    .service-type h3 {
-        font-size: 1.4rem;
-        color: #333;
-        margin-bottom: 15px;
-        font-weight: 700;
-    }
-    
-    .service-type p {
-        font-size: 1rem;
-        color: #666;
-        line-height: 1.6;
-        margin: 0;
-    }
-    
-    /* Gallery Section */
-    .gallery-section {
-        margin: 70px auto;
-        max-width: 1200px;
-        padding: 0 20px;
-    }
-    
-    .gallery-section h2 {
-        text-align: center;
-        font-size: 2rem;
-        color: #333;
-        margin-bottom: 10px;
-        font-weight: 700;
-    }
-    
-    .gallery-subtitle {
-        text-align: center;
-        font-size: 1.1rem;
-        color: #666;
-        margin-bottom: 40px;
-    }
-    
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        margin-bottom: 20px;
-    }
-    
-    .gallery-item {
-        position: relative;
-        overflow: hidden;
-        border-radius: 12px;
-        aspect-ratio: 1;
-        box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-        cursor: pointer;
-        transition: transform 0.3s;
-    }
-    
-    .gallery-item:hover {
-        transform: scale(1.05);
-    }
-    
-    .gallery-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    }
-    
-    .gallery-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-        padding: 20px;
-        transform: translateY(100%);
-        transition: transform 0.3s;
-    }
-    
-    .gallery-item:hover .gallery-overlay {
-        transform: translateY(0);
-    }
-    
-    .gallery-overlay span {
-        color: white;
-        font-weight: 600;
-        font-size: 1rem;
-    }
-    
-    /* MOBILE STYLES */
-    @media (max-width: 768px) {
-        .cta-button {
-            padding: 15px 30px;
-            font-size: 16px;
-            margin: 10px 5px;
+        .cta-button:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
         }
         
-        /* Mobile hero section with overlay text */
+        .cta-container {
+            margin: 30px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        /* Desktop hero with overlay */
         .landing {
             position: relative;
             padding: 0;
             text-align: center;
         }
         
-        /* Image styling for mobile */
-        .landing > img:first-child {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            object-position: center;
-            display: block;
-            margin: 0;
-        }
-        
-        /* Dark overlay on image for mobile */
+        /* Dark overlay on image for both desktop and mobile */
         .landing::before {
-            height: 400px;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60vh;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+            pointer-events: none;
         }
         
-        /* Position title over image - MOBILE */
+        /* Position title over image - DESKTOP */
         .landing .description h1 {
-            top: 120px;
-            font-size: 1.8rem;
+            position: absolute;
+            top: 20vh;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0 20px;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.9);
+            font-size: 3rem;
+            width: calc(100% - 40px);
         }
         
-        /* Position subtitle over image - MOBILE */
+        /* Position subtitle over image - DESKTOP */
         .landing .description > p:first-of-type {
-            top: 220px;
-            font-size: 1.1rem;
+            position: absolute;
+            top: 32vh;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+            font-size: 1.25rem;
+            width: calc(100% - 40px);
         }
         
-        /* Buttons positioned RIGHT BELOW image - MOBILE */
+        /* Position buttons over image - DESKTOP */
         .landing .cta-container {
-            position: relative;
-            top: auto;
-            left: auto;
-            transform: none;
-            margin: 20px 0;
-            flex-direction: column;
-            align-items: center;
+            position: absolute;
+            top: 42vh;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            width: 100%;
         }
         
-        /* Push How It Works down to appear after buttons */
-        .landing .how-it-works {
-            margin-top: 20px;
+        /* Adjust description margin to account for absolute positioning */
+        .landing .description {
+            margin-top: 0;
+            padding: 20px;
+        }
+        
+        /* How It Works Section */
+        .how-it-works {
+            margin: 50px auto;
+            max-width: 900px;
+            padding: 0 20px;
         }
         
         .how-it-works h2 {
-            font-size: 1.6rem;
-            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 40px;
+            font-weight: 700;
         }
+        
         .service-types {
-            grid-template-columns: 1fr;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
         }
+        
         .service-type {
-            padding: 30px 20px;
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
+        
+        .service-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
         .service-type .icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
+            margin-bottom: 20px;
         }
+        
         .service-type h3 {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 700;
         }
+        
         .service-type p {
-            font-size: 0.95rem;
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
         }
+        
+        /* Gallery Section */
+        .gallery-section {
+            margin: 70px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+        
         .gallery-section h2 {
-            font-size: 1.6rem;
+            text-align: center;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
+        
+        .gallery-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
         .gallery-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
         }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            aspect-ratio: 1;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-overlay span {
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        /* MOBILE STYLES */
+        @media (max-width: 768px) {
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 16px;
+                margin: 10px 5px;
+            }
+            
+            /* Mobile hero section with overlay text */
+            .landing {
+                position: relative;
+                padding: 0;
+                text-align: center;
+            }
+            
+            /* Image styling for mobile */
+            .landing > img:first-child {
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+                object-position: center;
+                display: block;
+                margin: 0;
+            }
+            
+            /* Dark overlay on image for mobile */
+            .landing::before {
+                height: 400px;
+            }
+            
+            /* Position title over image - MOBILE */
+            .landing .description h1 {
+                top: 120px;
+                font-size: 1.8rem;
+            }
+            
+            /* Position subtitle over image - MOBILE */
+            .landing .description > p:first-of-type {
+                top: 220px;
+                font-size: 1.1rem;
+            }
+            
+            /* Buttons positioned RIGHT BELOW image - MOBILE */
+            .landing .cta-container {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+                margin: 20px 0;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            /* Push How It Works down to appear after buttons */
+            .landing .how-it-works {
+                margin-top: 20px;
+            }
+            
+            /* 🔥 FIX SERVICES DROPDOWN ON MOBILE 🔥 */
+            header {
+                position: relative;
+                z-index: 1000;
+            }
+            
+            nav {
+                position: relative;
+                z-index: 1000;
+            }
+            
+            nav .dropdown {
+                background-color: rgba(0, 0, 0, 0.98) !important;
+                backdrop-filter: blur(10px);
+                min-width: 200px;
+                padding: 10px 0;
+                border-radius: 8px;
+                margin-top: 5px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            }
+            
+            nav .dropdown li {
+                margin: 0;
+            }
+            
+            nav .dropdown a {
+                padding: 15px 20px !important;
+                font-size: 16px !important;
+                color: white !important;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                display: block;
+            }
+            
+            nav .dropdown li:last-child a {
+                border-bottom: none;
+            }
+            
+            nav .dropdown a:hover {
+                background-color: rgba(231, 76, 60, 0.8) !important;
+            }
+            
+            .how-it-works h2 {
+                font-size: 1.6rem;
+                margin-bottom: 30px;
+            }
+            .service-types {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .service-type {
+                padding: 30px 20px;
+            }
+            .service-type .icon {
+                font-size: 2.5rem;
+            }
+            .service-type h3 {
+                font-size: 1.2rem;
+            }
+            .service-type p {
+                font-size: 0.95rem;
+            }
+            .gallery-section h2 {
+                font-size: 1.6rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
     }
-    </style>
+</style>
 </head>
 <body>
     <header>
