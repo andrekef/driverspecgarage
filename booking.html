@@ -168,21 +168,23 @@
                     <option value="">-- Select a Service --</option>
                     <optgroup label="Flushing Location Services">
                         <option value="flushing-wash-wax" data-price="60" data-price-suv="60" data-duration="45 mins" data-location="flushing">Wash & Wax - $60 ($50 returning)</option>
-                        <option value="flushing-maintenance" data-price="90" data-price-suv="100" data-duration="2 hrs" data-location="flushing">Stage 1 Detail (Maintenance Wash) - $90-100</option>
-                        <option value="flushing-decon" data-price="180" data-price-suv="200" data-duration="3-4 hours" data-location="flushing">Stage 2 Detail (Decon Wash) - $180-200</option>
+                        <option value="flushing-maintenance" data-price="90" data-price-suv="100" data-duration="1-1.5 hrs" data-location="flushing">Stage 1 Detail (Maintenance Wash) - $90-100</option>
+                        <option value="flushing-decon" data-price="180" data-price-suv="200" data-duration="2-3 hours" data-location="flushing">Stage 2 Detail (Decon Wash) - $180-200</option>
                     </optgroup>
                     <optgroup label="Mobile Services">
-                        <option value="mobile-express" data-price="100" data-price-suv="120" data-duration="2 hours" data-location="mobile">Stage 1 Mobile (Maintenance Wash) - $100-120</option>
-                        <option value="mobile-detail" data-price="200" data-price-suv="230" data-duration="3-4 hours" data-location="mobile">Stage 2 Mobile (Full Detail) - $200-230</option>
+                        <option value="mobile-express" data-price="100" data-price-suv="120" data-duration="1.5 hours" data-location="mobile">Stage 1 Mobile (Maintenance Wash) - $100-120</option>
+                        <option value="mobile-detail" data-price="200" data-price-suv="230" data-duration="2.5-3 hours" data-location="mobile">Stage 2 Mobile (Full Detail) - $200-230</option>
                     </optgroup>
                     <optgroup label="Premium Services">
-                        <option value="paint-correction" data-price="600" data-price-suv="600" data-duration="6-8 hours" data-location="both">Paint Correction (2-Step) - $600</option>
-                        <option value="ceramic" data-price="900" data-price-suv="900" data-duration="1 day" data-location="both">Ceramic Coating - $900</option>
+                        <option value="paint-correction-1step" data-price="400" data-price-suv="400" data-duration="4-5 hours" data-location="both">Paint Correction (1-Step) - $400</option>
+                        <option value="paint-correction-2step" data-price="600" data-price-suv="600" data-duration="6-8 hours" data-location="both">Paint Correction (2-Step) - $600</option>
+                        <option value="ceramic" data-price="700" data-price-suv="800" data-duration="1 day" data-location="both">Ceramic Coating - $700-800</option>
                     </optgroup>
                     <optgroup label="Add-On Services">
-                        <option value="engine-bay" data-price="70" data-price-suv="70" data-duration="30-45 mins" data-location="both">Engine Bay Detail - $50 ($30 add-on)</option>
+                        <option value="engine-bay" data-price="70" data-price-suv="70" data-duration="30-45 mins" data-location="both">Engine Bay Detail - $70 ($50 add-on)</option>
                         <option value="headlight" data-price="80" data-price-suv="80" data-duration="45-60 mins" data-location="both">Headlight Restoration - $80 ($60 add-on)</option>
-                        <option value="interior-only" data-price="130" data-price-suv="150" data-duration="2 hours" data-location="both">Interior Only Detail - $130-150</option>
+                        <option value="interior-steaming" data-price="100" data-price-suv="120" data-duration="1.5-2 hours" data-location="both">Interior Steaming - $100-120</option>
+                        <option value="interior-only" data-price="130" data-price-suv="150" data-duration="1.5-2 hours" data-location="both">Interior Only Detail - $130-150</option>
                     </optgroup>
                 </select>
             </div>
@@ -242,27 +244,33 @@
                 name: 'Stage 1 Detail (Maintenance Wash)',
                 carPrice: 90,
                 suvPrice: 100,
-                duration: '2 hrs'
+                duration: '1-1.5 hrs'
             },
             'flushing-decon': {
                 name: 'Stage 2 Detail (Decon Wash)',
                 carPrice: 180,
                 suvPrice: 200,
-                duration: '3-4 hours'
+                duration: '2-3 hours'
             },
             'mobile-express': {
                 name: 'Stage 1 Mobile (Maintenance Wash)',
                 carPrice: 100,
                 suvPrice: 120,
-                duration: '2 hours'
+                duration: '1.5 hours'
             },
             'mobile-detail': {
                 name: 'Stage 2 Mobile (Full Detail)',
                 carPrice: 200,
                 suvPrice: 230,
-                duration: '3-4 hours'
+                duration: '2.5-3 hours'
             },
-            'paint-correction': {
+            'paint-correction-1step': {
+                name: 'Paint Correction (1-Step)',
+                carPrice: 400,
+                suvPrice: 400,
+                duration: '4-5 hours'
+            },
+            'paint-correction-2step': {
                 name: 'Paint Correction (2-Step)',
                 carPrice: 600,
                 suvPrice: 600,
@@ -272,13 +280,13 @@
                 name: 'Ceramic Coating',
                 carPrice: 900,
                 suvPrice: 900,
-                duration: '1 day'
+                duration: '2 days'
             },
             'engine-bay': {
                 name: 'Engine Bay Detail',
                 carPrice: 70,
                 suvPrice: 70,
-                duration: '45 mins'
+                duration: '30-45 mins'
             },
             'headlight': {
                 name: 'Headlight Restoration',
@@ -286,11 +294,17 @@
                 suvPrice: 80,
                 duration: '45-60 mins'
             },
+            'interior-steaming': {
+                name: 'Interior Steaming',
+                carPrice: 100,
+                suvPrice: 120,
+                duration: '1.5-2 hours'
+            },
             'interior-only': {
                 name: 'Interior Only Detail',
                 carPrice: 130,
                 suvPrice: 150,
-                duration: '2 hours'
+                duration: '1.5-2 hours'
             }
         };
 
@@ -300,10 +314,12 @@
             'flushing-decon': 'Stage 2 Detail: Complete decontamination with iron & tar removal, clay bar treatment, SiO₂ ceramic sealant (3-4 months), wheels/tires/wheel wells deep clean, engine bay detailed, door jambs cleaned, exhaust polish, tire shine, windows cleaned. Interior: deep vacuum, carpet & floor mat shampoo, 3-4 month leather conditioner, panel wipedown & glass cleaning.',
             'mobile-express': 'Stage 1 Mobile: We come to you anywhere in NYC! Pre-foam, agitation wash, engine bay detailed, spray sealant or wax, wheels/tires deep clean, light vacuum & panel wipedown, windows cleaned.',
             'mobile-detail': 'Stage 2 Mobile: Complete deep-clean reset. Recommended for all first-time clients. Engine bay detailed, pre-wash foam & two-bucket hand wash, wheels/tires/wheel wells, door jambs and gas cap, iron & tar removal plus clay bar treatment, SiO₂ ceramic spray sealant (3-4 months protection), no-sling tire shine & exhaust polish. Interior: thorough vacuum, panel shampoo and wipedown, leather seat deep clean, steam and conditioner, glass cleaning.',
-            'paint-correction': 'Two-step paint correction by machine polishing. Cut/compound stage for defect removal, followed by fine polish. Removes ~90% of paint defects, swirls, and scratches. Single price for all vehicles.',
+            'paint-correction-1step': 'Single-step paint correction by machine polishing. Polish stage to remove light to moderate defects. Removes ~70-80% of paint defects, swirls, and light scratches. Great for newer vehicles or those with minor imperfections. Single price for all vehicles.',
+            'paint-correction-2step': 'Two-step paint correction by machine polishing. Cut/compound stage for defect removal, followed by fine polish. Removes ~90% of paint defects, swirls, and scratches. Best for heavily swirled or scratched paint. Single price for all vehicles.',
             'ceramic': 'Professional ceramic coating with paint correction included. Long-term protection (2-3+ years). Requires 2 days for proper application and curing. Single price for all vehicles.',
             'engine-bay': 'Complete engine compartment cleaning and dressing. Engine degreasing and cleaning, component detailing, plastic and rubber dressing, professional finish. $50 when added to any package.',
             'headlight': 'Remove oxidation and restore clarity to foggy headlights. Wet sanding to remove oxidation, multi-stage polishing, UV protective ceramic application, dramatically improved visibility and appearance. $60 when added to any detail.',
+            'interior-steaming': 'Deep interior steam cleaning and sanitization. High-temperature steam kills 99.9% of bacteria and germs, removes stains and odors from upholstery, carpets, and hard surfaces. Eco-friendly chemical-free cleaning. Perfect for allergen removal, pet odors, or thorough sanitization.',
             'interior-only': 'Complete interior refresh without exterior work. Deep vacuum of all surfaces, carpet and floor mat shampooing, leather cleaning and conditioning, panel and trim cleaning and dressing, door jambs cleaned, interior glass cleaning. Perfect for those who wash exterior themselves.'
         };
 
