@@ -13,6 +13,22 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Header and Nav z-index fix */
+        header {
+            position: relative;
+            z-index: 1000;
+        }
+        
+        nav {
+            position: relative;
+            z-index: 1000;
+        }
+        
+        nav .dropdown {
+            position: absolute;
+            z-index: 1001;
+        }
+        
         .cta-button {
             display: inline-block;
             padding: 18px 45px;
