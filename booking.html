@@ -131,6 +131,16 @@
         .location-option input[type="radio"] {
             display: none;
         }
+        .seasonal-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            margin-left: 5px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -155,17 +165,19 @@
             </ul>
         </nav>
     </header>
-
     <main>
         <div class="booking-container">
             <h1>Book Your Detailing Service</h1>
             <p>Select your service and choose a convenient time</p>
-
             <!-- Service Selector -->
             <div class="service-selector">
                 <label for="service-select">Choose Your Service:</label>
                 <select id="service-select" onchange="updateServiceInfo()">
                     <option value="">-- Select a Service --</option>
+                    <optgroup label="⭐ Winter Special - Limited Time">
+                        <option value="winter-resurrection-flushing" data-price="150" data-price-suv="170" data-duration="2-2.5 hrs" data-location="flushing">Winter Resurrection (Flushing) - $150-170</option>
+                        <option value="winter-resurrection-mobile" data-price="180" data-price-suv="200" data-duration="2-2.5 hrs" data-location="mobile">Winter Resurrection (Mobile) - $180-200</option>
+                    </optgroup>
                     <optgroup label="Flushing Location Services">
                         <option value="flushing-wash-wax" data-price="60" data-price-suv="60" data-duration="45 mins" data-location="flushing">Wash & Wax - $60 ($50 returning)</option>
                         <option value="flushing-maintenance" data-price="90" data-price-suv="100" data-duration="2 hrs" data-location="flushing">Stage 1 Detail (Maintenance Wash) - $90-100</option>
@@ -187,7 +199,6 @@
                     </optgroup>
                 </select>
             </div>
-
             <!-- Vehicle Size Selector -->
             <div class="location-selector">
                 <label>Vehicle Size:</label>
@@ -206,7 +217,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Service Info Display -->
             <div class="service-info" id="service-info">
                 <h3 id="info-title">Service Details</h3>
@@ -214,25 +224,33 @@
                 <p><strong>Price:</strong> <span id="info-price"></span></p>
                 <p id="info-description"></p>
             </div>
-
             <!-- Book Now Button -->
             <button class="book-button" id="book-button" onclick="openCalendly()" disabled>
                 Select a Service to Continue
             </button>
         </div>
     </main>
-
     <footer>
         <div class="footer-content">
             <p>© 2025 Driver Spec Garage | 646-484-8689 | <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
         </div>
     </footer>
-
     <script>
         let selectedService = '';
         let selectedVehicleSize = 'car';
-
         const serviceData = {
+            'winter-resurrection-flushing': {
+                name: 'Winter Resurrection (Flushing Location)',
+                carPrice: 150,
+                suvPrice: 170,
+                duration: '2-2.5 hrs'
+            },
+            'winter-resurrection-mobile': {
+                name: 'Winter Resurrection (Mobile)',
+                carPrice: 180,
+                suvPrice: 200,
+                duration: '2-2.5 hrs'
+            },
             'flushing-wash-wax': {
                 name: 'Wash & Wax',
                 carPrice: 60,
@@ -300,8 +318,9 @@
                 duration: '1.5-2 hours'
             }
         };
-
         const descriptions = {
+            'winter-resurrection-flushing': 'LIMITED TIME WINTER SERVICE - Chemical decontamination + machine wax with 10-20% paint correction. Removes water spots, mineral deposits, and road salt. EXTERIOR: Acid wash (dissolves water spots), iron decontamination, undercarriage acid foam & rinse (removes road salt), machine wax application (seals paint + light defect removal), hand wash wheels & tires, tire dressing, door jambs cleaned, windows inside & out. INTERIOR INCLUDED: Vacuum floors/seats/trunk, wipe down all surfaces, floor mats cleaned. Add full interior detail with shampoo & leather conditioning for +$80.',
+            'winter-resurrection-mobile': 'LIMITED TIME WINTER SERVICE (Mobile) - We come to you! Chemical decontamination + machine wax with 10-20% paint correction. Removes water spots, mineral deposits, and road salt. EXTERIOR: Acid wash (dissolves water spots), iron decontamination, undercarriage acid foam & rinse (removes road salt), machine wax application (seals paint + light defect removal), hand wash wheels & tires, tire dressing, door jambs cleaned, windows inside & out. INTERIOR INCLUDED: Vacuum floors/seats/trunk, wipe down all surfaces, floor mats cleaned. Add full interior detail with shampoo & leather conditioning for +$80.',
             'flushing-wash-wax': 'Quick exterior refresh with protection. Pre-foam, hand wash, ceramic sealant application, wheels & tires cleaned and protected by hand, windows cleaned. Exterior only, no interior or engine bay. $50 for returning customers.',
             'flushing-maintenance': 'Stage 1 Detail: Pre-foam, hand wash, SiO₂ ceramic spray sealant (3-4 months protection), wheels & tires deep clean, engine bay cleaned, door jambs cleaned, exhaust tips polished, tire shine, windows cleaned, plus quick vacuum & panel wipedown.',
             'flushing-decon': 'Stage 2 Detail: Complete decontamination with iron & tar removal, clay bar treatment, SiO₂ ceramic sealant (3-4 months), wheels/tires/wheel wells deep clean, engine bay detailed, door jambs cleaned, exhaust polish, tire shine, windows cleaned. Interior: deep vacuum, carpet & floor mat shampoo, 3-4 month leather conditioner, panel wipedown & glass cleaning.',
@@ -314,7 +333,6 @@
             'interior-steaming': 'Deep interior steam cleaning and sanitization. High-temperature steam kills 99.9% of bacteria and germs, removes stains and odors from upholstery, carpets, and hard surfaces. Eco-friendly chemical-free cleaning. Perfect for allergen removal, pet odors, or thorough sanitization.',
             'interior-only': 'Complete interior refresh without exterior work. Deep vacuum of all surfaces, carpet and floor mat shampooing, leather cleaning and conditioning, panel and trim cleaning and dressing, door jambs cleaned, interior glass cleaning. Perfect for those who wash exterior themselves.'
         };
-
         function toggleDropdown(event) {
             event.preventDefault();
             event.stopPropagation();
@@ -325,7 +343,6 @@
                 dropdown.style.display = 'block';
             }
         }
-
         document.addEventListener('click', function(event) {
             var dropdown = document.getElementById('servicesDropdown');
             var isClickInside = document.querySelector('.non-clickable') && document.querySelector('.non-clickable').contains(event.target);
@@ -334,7 +351,6 @@
                 dropdown.style.display = 'none';
             }
         });
-
         document.addEventListener('touchstart', function(event) {
             var dropdown = document.getElementById('servicesDropdown');
             var isClickInside = document.querySelector('.non-clickable') && document.querySelector('.non-clickable').contains(event.target);
@@ -343,7 +359,6 @@
                 dropdown.style.display = 'none';
             }
         });
-
         function selectVehicleSize(size) {
             selectedVehicleSize = size;
             document.querySelectorAll('.location-option').forEach(opt => {
@@ -353,7 +368,6 @@
             document.getElementById('vehicle-' + size).checked = true;
             updateServiceInfo();
         }
-
         function updateServiceInfo() {
             const select = document.getElementById('service-select');
             const selectedOption = select.options[select.selectedIndex];
@@ -366,7 +380,6 @@
                 bookButton.textContent = 'Select a Service to Continue';
                 return;
             }
-
             selectedService = select.value;
             const service = serviceData[selectedService];
             const carPrice = service.carPrice;
@@ -376,24 +389,20 @@
             let priceText = carPrice === suvPrice ? 
                 `$${carPrice}` : 
                 `$${carPrice} (Car) / $${suvPrice} (SUV/Truck)`;
-
             // Update info display
             document.getElementById('info-title').textContent = service.name;
             document.getElementById('info-duration').textContent = duration;
             document.getElementById('info-price').textContent = priceText;
             document.getElementById('info-description').textContent = descriptions[selectedService];
-
             serviceInfo.classList.add('active');
             bookButton.disabled = false;
             bookButton.textContent = 'Book Now - Schedule Your Appointment';
         }
-
         function openCalendly() {
             if (!selectedService) {
                 alert('Please select a service first');
                 return;
             }
-
             const service = serviceData[selectedService];
             const vehicleType = selectedVehicleSize === 'car' ? 'Car/Sedan/Coupe' : 'Van/SUV/Truck';
             const vehicleCode = selectedVehicleSize === 'car' ? 'car' : 'suv';
