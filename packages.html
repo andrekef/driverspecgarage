@@ -6,77 +6,23 @@
     <title>Packages - Driver Spec Garage</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Default styles for larger screens */
-        .section-content {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin: 20px 0;
+        /* General Styles */
+        .page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        .text-container {
-            flex: 1;
-            color: #666;
-            margin-right: 20px;
-        }
-        .media-container {
-            flex: 1;
-            text-align: center;
-        }
-        .service-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #666;
-            margin-top: 0;
-        }
-        .text-container p {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #666;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-        .text-container ul {
-            font-size: 1rem;
-            line-height: 1.5;
-            color: #666;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        .price {
-            font-size: 1rem;
-            color: #666;
-            font-style: italic;
-            font-weight: bold;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        .service-img {
-            max-width: 100%;
-            height: auto;
-        }
-        .divider {
-            border: 0;
-            height: 1px;
-            background: #ccc;
-            margin: 20px 0;
-        }
-        .addon {
-            font-size: 0.95em;
-            color: #666;
-            display: block;
-            margin-top: 4px;
-        }
-        /* Book Button Styles */
+        
+        /* Book Button */
         .book-button {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 15px 40px;
             background: #e74c3c;
             color: white;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
             border-radius: 5px;
-            margin-top: 15px;
             transition: all 0.3s;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -87,6 +33,123 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
         }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin: 50px 0 30px 0;
+        }
+        .section-header h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .section-header p {
+            color: #888;
+            font-style: italic;
+        }
+
+        /* Comparison Table */
+        .comparison-wrapper {
+            overflow-x: auto;
+            margin: 30px 0;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .comparison-table thead th {
+            background: #2c3e50;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .comparison-table thead th:first-child {
+            background: #1a252f;
+        }
+        .comparison-table tbody td:first-child {
+            text-align: left;
+            font-weight: 500;
+            color: #333;
+            background: #f8f9fa;
+        }
+        .comparison-table .feature-category {
+            background: #ecf0f1 !important;
+            font-weight: 700;
+            color: #2c3e50;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        .comparison-table .feature-category td {
+            background: #ecf0f1;
+        }
+        .comparison-table .check {
+            color: #27ae60;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        .comparison-table .dash {
+            color: #ccc;
+            font-size: 1.2rem;
+        }
+        .comparison-table .price-row td {
+            background: #f8f9fa;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #e74c3c;
+            border-top: 2px solid #2c3e50;
+        }
+        .comparison-table .price-row td:first-child {
+            color: #333;
+        }
+        .comparison-table .duration-row td {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+        .comparison-table .addon-note {
+            font-size: 0.85rem;
+            color: #666;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        /* Package Images */
+        .package-images {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0 40px 0;
+            gap: 20px;
+        }
+        .package-image {
+            flex: 1;
+            max-width: 250px;
+            text-align: center;
+        }
+        .package-image img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .package-image p {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
         /* Seasonal Banner */
         .seasonal-banner {
             background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
@@ -95,51 +158,98 @@
             text-align: center;
             font-size: 0.95rem;
             letter-spacing: 0.5px;
+            border-radius: 5px 5px 0 0;
         }
-        /* Mobile styles (below 768px) */
+
+        /* Standalone Service Cards */
+        .service-card {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin: 30px 0;
+        }
+        .service-card-content {
+            flex: 1;
+            padding: 30px;
+        }
+        .service-card-image {
+            flex: 0 0 350px;
+            background-size: cover;
+            background-position: center;
+        }
+        .service-card h3 {
+            color: #333;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        .service-card .description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .service-card .duration {
+            font-style: italic;
+            color: #888;
+            margin-bottom: 15px;
+        }
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+        .service-card ul li {
+            padding: 6px 0;
+            color: #555;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .service-card ul li:last-child {
+            border-bottom: none;
+        }
+        .service-card ul li::before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .service-card .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+        .service-card .addon {
+            display: block;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Mobile Styles */
         @media (max-width: 768px) {
-            .section-content {
+            .comparison-table th,
+            .comparison-table td {
+                padding: 10px 8px;
+                font-size: 0.85rem;
+            }
+            .comparison-table thead th {
+                font-size: 0.9rem;
+            }
+            .service-card {
                 flex-direction: column;
-                margin: 10px 0;
             }
-            .text-container {
-                margin-right: 0;
-                margin-bottom: 15px;
+            .service-card-image {
+                flex: 0 0 200px;
+                min-height: 200px;
             }
-            .media-container {
-                width: 100%;
+            .package-images {
+                flex-wrap: wrap;
             }
-            .service-title {
-                font-size: 1.1rem;
+            .package-image {
+                flex: 0 0 45%;
             }
-            .text-container p {
-                font-size: 1.0rem;
-            }
-            .text-container ul {
-                font-size: 0.9rem;
-            }
-            .price {
-                font-size: 0.9rem;
-            }
-            .service-img {
-                width: 100%;
-                height: auto;
-            }
-            .divider {
-                margin: 10px 0;
-            }
-            .addon {
-                font-size: 0.9em;
-                color: #666;
-                display: block;
-                margin-top: 4px;
-            }
-            h2 {
-                font-size: 1.3rem !important;
-            }
-            .book-button {
-                padding: 10px 25px;
-                font-size: 14px;
+            .section-header h2 {
+                font-size: 1.4rem;
             }
         }
     </style>
@@ -165,294 +275,476 @@
             </ul>
         </nav>
     </header>
+    
     <main class="page-content">
         <!-- Top Button -->
-        <div style="text-align: center; margin: 30px 0 40px 0;">
-            <a href="booking.html" class="book-button" style="font-size: 18px; padding: 15px 40px;">Schedule a Detail</a>
+        <div style="text-align: center; margin: 30px 0 20px 0;">
+            <a href="booking.html" class="book-button">Schedule a Detail</a>
         </div>
 
-        <!-- Winter Resurrection Section -->
+        <!-- MOBILE SERVICES TABLE -->
+        <div class="section-header">
+            <h2>Mobile Services</h2>
+            <p>We come to you anywhere in NYC</p>
+        </div>
+
+        <div class="comparison-wrapper">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Service Includes</th>
+                        <th>Wash & Wax</th>
+                        <th>Stage 1<br><small>Maintenance</small></th>
+                        <th>Stage 2<br><small>Full Detail</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Exterior -->
+                    <tr class="feature-category"><td colspan="4">Exterior</td></tr>
+                    <tr>
+                        <td>Pre-Foam & Hand Wash</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Wheels & Tires Hand Washed</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Wheel Wells Cleaned</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Iron & Tar Removal</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Clay Bar Treatment</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>SiO₂ Ceramic Sealant (1 month)</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="dash">—</span></td>
+                    </tr>
+                    <tr>
+                        <td>Graphene Ceramic Sealant (3-4 months)</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Tire Dressing</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Engine Bay Detailed</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Door Jambs & Gas Cap</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Exhaust Tips Polished</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Windows Inside & Out</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <!-- Interior -->
+                    <tr class="feature-category"><td colspan="4">Interior</td></tr>
+                    <tr>
+                        <td>Vacuum & Wipe Down</td>
+                        <td>+$20 add-on</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Console, Vents & Crevices</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Dashboard UV Protection</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Door Panels & Trim</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Headliner Cleaned</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Carpet & Mat Shampoo</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Leather Deep Clean & Conditioning</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Steam Sanitization</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <!-- Duration -->
+                    <tr class="duration-row">
+                        <td>Duration</td>
+                        <td>45 min</td>
+                        <td>1 - 1.5 hrs</td>
+                        <td>3 - 5 hrs</td>
+                    </tr>
+                    <!-- Price -->
+                    <tr class="price-row">
+                        <td>Cars</td>
+                        <td>$80<span class="addon-note">+$20 interior</span></td>
+                        <td>$140</td>
+                        <td>$250</td>
+                    </tr>
+                    <tr class="price-row">
+                        <td>SUV / Van / Truck</td>
+                        <td>$100<span class="addon-note">+$20 interior</span></td>
+                        <td>$160</td>
+                        <td>$280</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Package Images - Mobile -->
+        <div class="package-images">
+            <div class="package-image">
+                <img src="infinity.JPG" alt="Wash & Wax">
+                <p>Wash & Wax</p>
+            </div>
+            <div class="package-image">
+                <img src="IMG_4561.PNG" alt="Stage 1 Maintenance">
+                <p>Stage 1 Maintenance</p>
+            </div>
+            <div class="package-image">
+                <img src="530i_front.JPG" alt="Stage 2 Full Detail">
+                <p>Stage 2 Full Detail</p>
+            </div>
+        </div>
+
+        <!-- FLUSHING SERVICES TABLE -->
+        <div class="section-header">
+            <h2>Flushing Location Services</h2>
+            <p>Driveway service at our Flushing location — Same great service, lower price</p>
+        </div>
+
+        <div class="comparison-wrapper">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Service Includes</th>
+                        <th>Wash & Wax</th>
+                        <th>Stage 1<br><small>Maintenance</small></th>
+                        <th>Stage 2<br><small>Full Detail</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Exterior -->
+                    <tr class="feature-category"><td colspan="4">Exterior</td></tr>
+                    <tr>
+                        <td>Pre-Foam & Hand Wash</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Wheels & Tires Hand Washed</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Wheel Wells Cleaned</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Iron & Tar Removal</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Clay Bar Treatment</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>SiO₂ Ceramic Sealant (1 month)</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="dash">—</span></td>
+                    </tr>
+                    <tr>
+                        <td>Graphene Ceramic Sealant (3-4 months)</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Tire Dressing</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Engine Bay Detailed</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Door Jambs Cleaned</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Exhaust Tips Polished</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Windows Inside & Out</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <!-- Interior -->
+                    <tr class="feature-category"><td colspan="4">Interior</td></tr>
+                    <tr>
+                        <td>Vacuum & Wipe Down</td>
+                        <td>+$20 add-on</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Console, Vents & Crevices</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Dashboard UV Protection</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Door Panels & Trim</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Headliner Cleaned</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Carpet & Mat Shampoo</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Leather Deep Clean & Conditioning</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Steam Sanitization</td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <!-- Duration -->
+                    <tr class="duration-row">
+                        <td>Duration</td>
+                        <td>45 min</td>
+                        <td>1 - 1.5 hrs</td>
+                        <td>2 - 3 hrs</td>
+                    </tr>
+                    <!-- Price -->
+                    <tr class="price-row">
+                        <td>Cars</td>
+                        <td>$60<span class="addon-note">+$20 interior</span><span class="addon-note">Returning: $50</span></td>
+                        <td>$110</td>
+                        <td>$220</td>
+                    </tr>
+                    <tr class="price-row">
+                        <td>SUV / Van / Truck</td>
+                        <td>$70<span class="addon-note">+$20 interior</span><span class="addon-note">Returning: $60</span></td>
+                        <td>$130</td>
+                        <td>$250</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Package Images - Flushing -->
+        <div class="package-images">
+            <div class="package-image">
+                <img src="infinity.JPG" alt="Wash & Wax">
+                <p>Wash & Wax</p>
+            </div>
+            <div class="package-image">
+                <img src="IMG_4561.PNG" alt="Stage 1 Maintenance">
+                <p>Stage 1 Maintenance</p>
+            </div>
+            <div class="package-image">
+                <img src="718_porsche.png" alt="Stage 2 Full Detail">
+                <p>Stage 2 Full Detail</p>
+            </div>
+        </div>
+
+        <hr style="border: 0; height: 1px; background: #ddd; margin: 50px 0;">
+
+        <!-- WINTER RESURRECTION -->
         <div class="seasonal-banner">LIMITED TIME - WINTER SERVICE</div>
-        <h2 style="text-align: center; color: #666; margin: 20px 0 10px 0; font-size: 1.5rem;">Winter Resurrection</h2>
-        <p style="text-align: center; color: #888; margin-bottom: 15px; font-style: italic;">Chemical decontamination + machine wax with 10-20% paint correction. Removes water spots, mineral deposits, and road salt - not a full correction.</p>
-        
-        <div class="section">
-            <div class="section-content">
-                <div class="text-container">
-                    <span class="service-title">Winter Resurrection:</span>
-                    <p>Your paint probably doesn't need a $350+ correction. Most dull, spotty paint isn't scratched - it's contaminated from winter road salt, hard water, and mineral deposits. This service chemically removes that contamination and restores gloss with machine-applied wax.</p>
-                    <p><em>Duration: 3 - 3.5 hours</em></p>
-                    <p style="font-weight: bold; font-size: 1.1rem; margin-top: 15px;">EXTERIOR:</p>
-                    <ul>
-                        <li>Acid Wash (dissolves water spots and mineral deposits)</li>
-                        <li>Iron Decontamination (removes embedded brake dust and road fallout)</li>
-                        <li>Undercarriage Acid Foam & Rinse (removes road salt and grime from suspension and exposed components)</li>
-                        <li>Machine Wax Application (seals paint + light defect removal)</li>
-                        <li>Hand Wash Wheels and Tires</li>
-                        <li>No-Sling Tire Dressing</li>
-                        <li>Door Jambs Cleaned</li>
-                        <li>Windows Cleaned Inside and Out</li>
-                    </ul>
-                    <p style="font-weight: bold; font-size: 1.1rem; margin-top: 15px;">INTERIOR (INCLUDED):</p>
-                    <ul>
-                        <li>Vacuum Floors, Seats, and Trunk</li>
-                        <li>Wipe Down All Surfaces</li>
-                        <li>Floor Mats Cleaned</li>
-                    </ul>
-                    <p class="price">Flushing: $150 Cars ~ $170 SUV/Van/Truck<br>Mobile: $180 Cars ~ $200 SUV/Van/Truck<br><span class="addon">(+ $100 full interior detail with steaming, shampoo, and leather conditioning)</span></p>
-                </div>
-                <div class="media-container">
-                    <img class="service-img" src="IMG_7466.JPG" alt="Winter Resurrection">
-                </div>
+        <div class="service-card" style="border-radius: 0 0 10px 10px;">
+            <div class="service-card-content">
+                <h3>Winter Resurrection</h3>
+                <p class="description">Your paint probably doesn't need a $350+ correction. Most dull, spotty paint isn't scratched — it's contaminated from winter road salt, hard water, and mineral deposits. This service chemically removes that contamination and restores gloss with machine-applied wax.</p>
+                <p class="duration">Duration: 3 - 3.5 hours</p>
+                <p style="font-weight: 600; color: #333; margin-bottom: 10px;">Exterior:</p>
+                <ul>
+                    <li>Acid Wash (dissolves water spots and mineral deposits)</li>
+                    <li>Iron Decontamination (removes embedded brake dust and road fallout)</li>
+                    <li>Undercarriage Acid Foam & Rinse</li>
+                    <li>Machine Wax Application (seals paint + light defect removal)</li>
+                    <li>Hand Wash Wheels and Tires</li>
+                    <li>Tire Dressing, Door Jambs, Windows</li>
+                </ul>
+                <p style="font-weight: 600; color: #333; margin: 15px 0 10px 0;">Interior Included:</p>
+                <ul>
+                    <li>Vacuum Floors, Seats, and Trunk</li>
+                    <li>Wipe Down All Surfaces</li>
+                    <li>Floor Mats Cleaned</li>
+                </ul>
+                <p class="price">
+                    Flushing: $150 Cars ~ $170 SUV/Van/Truck<br>
+                    Mobile: $180 Cars ~ $200 SUV/Van/Truck
+                    <span class="addon">(+ $100 full interior detail with steaming, shampoo, and leather conditioning)</span>
+                </p>
             </div>
+            <div class="service-card-image" style="background-image: url('IMG_7466.JPG');"></div>
         </div>
-        <hr class="divider" style="margin-bottom: 50px;">
 
-        <h2 style="text-align: center; color: #666; margin: 30px 0 10px 0; font-size: 1.5rem;">Mobile Services</h2>
-        <p style="text-align: center; color: #888; margin-bottom: 15px; font-style: italic;">We come to you anywhere in NYC</p>
-        
-        <!-- Stage 1 Mobile -->
-        <div class="section">
-            <div class="section-content">
-                <div class="text-container">
-                    <span class="service-title">Stage 1 - Mobile Maintenance Wash (Mini Detail):</span>
-                    <p>Perfect for returning customers who want to keep their vehicle sealed and protected for about 1 month.</p>
-                    <p><em>Duration: 1-1.5 hours</em></p>
-                    <p style="font-weight: bold; font-size: 1.1rem; margin-top: 15px;">EXTERIOR:</p>
-                    <ul>
-                        <li>Pre Foam</li>
-                        <li>Two-Bucket Hand Wash</li>
-                        <li>Hand Wash Wheels and Tires</li>
-                        <li>SiO₂ Ceramic Spray Sealant (1-month protection - builds layers with each wash for enhanced gloss and easier maintenance)</li>
-                        <li>No-Sling Tire Dressing</li>
-                        <li>Engine Bay Detailed</li>
-                        <li>Door Jambs Cleaned</li>
-                        <li>Exhaust Tips Polished</li>
-                        <li>Windows Cleaned Inside and Out</li>
-                    </ul>
-                    <p style="font-weight: bold; font-size: 1.1rem; margin-top: 15px;">INTERIOR:</p>
-                    <ul>
-                        <li>Vacuum Floors, Seats, and Trunk</li>
-                        <li>Wipe Down Floor Mats</li>
-                        <li>Clean Console, Cup Holders, and Crevices</li>
-                        <li>Clean and UV Protect Dashboard</li>
-                        <li>Clean All Interior Trim and Plastics</li>
-                        <li>Clean and Condition Door Panels</li>
-                        <li>Clean Vents</li>
-                        <li>Wipe Down/Condition Leather Seats</li>
-                        <li>Clean Vehicle Headliner</li>
-                    </ul>
-                    <p class="price">$120 Cars ~ $140 Van / SUV / Large Truck</p>
-                </div>
-                <div class="media-container">
-                    <img class="service-img" src="infinity.JPG" alt="Stage 1 Wash & Seal">
-                </div>
-            </div>
+        <hr style="border: 0; height: 1px; background: #ddd; margin: 50px 0;">
+
+        <!-- INTERIOR DETAIL -->
+        <div class="section-header">
+            <h2>Interior Detail with Steaming</h2>
+            <p>Complete interior deep clean — standalone service</p>
         </div>
-        <hr class="divider">
-        <!-- Stage 2 Mobile -->
-        <div class="section">
-            <div class="section-content">
-                <div class="text-container">
-                    <span class="service-title">Stage 2 - Mobile Full Detail (Recommended for all first time clients):</span>
-                    <p>A deep-clean reset for vehicles that have never been professionally detailed. Complete interior refresh and premium graphene ceramic sealant protection.</p>
-                    <p><em>Duration: 3-5 hours, depending on vehicle condition.</em></p>
-                    <p style="font-weight: bold; font-size: 1.1rem; margin-top: 15px;">EXTERIOR:</p>
-                    <ul>
-                        <li>Pre-Wash Foam</li>
-                        <li>Two-Bucket Hand Wash</li>
-                        <li>Hand Wash Wheels, Tires, and Wheel Wells</li>
-                        <li>Iron & Tar Removal</li>
-                        <li>Clay Bar Treatment</li>
-                        <li>Graphene-Infused SiO₂ Ceramic Sealant (3-4 months protection - builds layers with each wash for enhanced gloss and easier maintenance)</li>
-                        <li>No-Sling Tire Dressing</li>
-                        <li>Engine Bay Cleaned and Protected</li>
-                        <li>Door Jambs and Gas Cap Cleaned</li>
-                        <li>Exhaust Tips Polished</li>
-                        <li>Windows Cleaned Inside and Out</li>
-                    </ul>
-                    <p style="font-weight: bold; font-size: 1.1rem; margin-top: 15px;">INTERIOR:</p>
-                    <ul>
-                        <li>Deep Vacuum of All Surfaces, Seats, and Trunk</li>
-                        <li>Carpet and Floor Mat Shampooing</li>
-                        <li>Leather Seat Deep Clean, Steam, and Conditioning</li>
-                        <li>Clean Console, Cup Holders, and All Crevices</li>
-                        <li>Clean and UV Protect Dashboard</li>
-                        <li>Clean All Interior Trim and Plastics</li>
-                        <li>Clean and Condition Door Panels and Pockets</li>
-                        <li>Clean Vents Thoroughly</li>
-                        <li>Clean Vehicle Headliner</li>
-                        <li>Panel Wipedown and Dressing</li>
-                    </ul>
-                    <p class="price">
-                        $250 Cars ~ $280 Van / SUV / Large Truck
-                    </p>
-                </div>
-                <div class="media-container">
-                    <img class="service-img" src="530i_front.JPG" alt="Stage 2 Full Detail">
-                </div>
+        <div class="service-card">
+            <div class="service-card-content">
+                <h3>Interior Detail with Steaming</h3>
+                <p class="description">Complete interior deep clean with steam sanitization. The only interior service you need. Perfect for families, pet owners, allergy sufferers, or anyone who wants a truly clean interior.</p>
+                <p class="duration">Duration: 2 - 2.5 hours</p>
+                <ul>
+                    <li>High-Temperature Steam Cleaning (kills 99.9% of bacteria)</li>
+                    <li>Deep Vacuum of All Surfaces</li>
+                    <li>Carpet and Floor Mat Shampooing</li>
+                    <li>Leather Deep Clean, Steam, and Conditioning</li>
+                    <li>Stain and Odor Removal from Upholstery</li>
+                    <li>Panel and Trim Cleaning and Dressing</li>
+                    <li>Deep Clean Vents and Hard-to-Reach Areas</li>
+                    <li>Door Jambs Cleaned</li>
+                    <li>Interior Glass Cleaning</li>
+                    <li>Headliner Cleaned</li>
+                </ul>
+                <p class="price">$180 Cars ~ $200 Van / SUV / Large Truck</p>
             </div>
+            <div class="service-card-image" style="background-image: url('interior_bentley.jpg');"></div>
         </div>
-        <hr class="divider">
-        <!-- Flushing Location Services -->
-        <h2 style="text-align: center; color: #666; margin: 50px 0 10px 0; font-size: 1.5rem;">Flushing Location Services</h2>
-        <p style="text-align: center; color: #888; margin-bottom: 15px; font-style: italic;">Driveway service at our Flushing location</p>
-        <!-- Wash & Wax -->
-        <div class="section">
-            <div class="section-content">
-                <div class="text-container">
-                    <span class="service-title">Wash & Wax (Flushing Location):</span>
-                    <p>Quick exterior refresh with protection.</p>
-                    <p><em>Duration: 45 mins</em></p>
-                    <ul>
-                        <li>Pre-Foam</li>
-                        <li>Hand Wash</li>
-                        <li>SiO₂ Ceramic Spray Sealant (1-month protection - builds layers with each wash for enhanced gloss and easier maintenance)</li>
-                        <li>Wheels & Tires Cleaned and Protected by Hand</li>
-                        <li>Windows Cleaned</li>
-                    </ul>
-                  <p class="price">$60 All Vehicles<br><span class="addon">Returning customers: $50</span></p>
-                </div>
+
+        <hr style="border: 0; height: 1px; background: #ddd; margin: 50px 0;">
+
+        <!-- ENGINE BAY -->
+        <div class="section-header">
+            <h2>Engine Bay Detail</h2>
+            <p>Standalone add-on service</p>
+        </div>
+        <div class="service-card">
+            <div class="service-card-content">
+                <h3>Engine Bay Detail</h3>
+                <p class="description">Complete engine compartment cleaning and dressing. Show-ready engine bay.</p>
+                <p class="duration">Duration: 30 - 45 mins</p>
+                <ul>
+                    <li>Engine degreasing and cleaning</li>
+                    <li>Component detailing</li>
+                    <li>Plastic and rubber dressing</li>
+                    <li>Professional finish</li>
+                </ul>
+                <p class="price">
+                    $50 All Vehicles
+                    <span class="addon">Can be added to any package for $30</span>
+                </p>
             </div>
+            <div class="service-card-image" style="background-image: url('s55.JPG');"></div>
         </div>
-        <hr class="divider">
-        <!-- Stage 1 - Maintenance Wash -->
-        <div class="section">
-            <div class="section-content">
-                <div class="text-container">
-                    <span class="service-title">Stage 1 Detail - Maintenance Wash (Flushing Location):</span>
-                    <p>Perfect for returning customers who want to keep their vehicle sealed and protected for about 1 month. </p>
-                    <p><em>Duration: 1-1.5 hrs</em></p>
-                    <p style="font-weight: bold; font-size: 1.1rem; margin-top: 15px;">EXTERIOR:</p>
-                    <ul>
-                        <li>Pre-Foam</li>
-                        <li>Two-Bucket Hand Wash</li>
-                        <li>Hand Wash Wheels and Tires</li>
-                        <li>SiO₂ Ceramic Spray Sealant</li>
-                        <li>No-Sling Tire Dressing</li>
-                        <li>Engine Bay Detailed</li>
-                        <li>Door Jambs Cleaned</li>
-                        <li>Exhaust Tips Polished</li>
-                        <li>Windows Cleaned Inside and Out</li>
-                    </ul>
-                    <p style="font-weight: bold; font-size: 1.1rem; margin-top: 15px;">INTERIOR:</p>
-                    <ul>
-                        <li>Vacuum Floors, Seats, and Trunk</li>
-                        <li>Wipe Down Floor Mats</li>
-                        <li>Clean Console, Cup Holders, and Crevices</li>
-                        <li>Clean and UV Protect Dashboard</li>
-                        <li>Clean All Interior Trim and Plastics</li>
-                        <li>Clean and Condition Door Panels</li>
-                        <li>Clean Vents</li>
-                        <li>Wipe Down/Condition Leather Seats</li>
-                        <li>Clean Vehicle Headliner</li>
-                    </ul>
-                    <p class="price">$90 Cars ~ $110 Van / SUV / Large Truck</p>
-                </div>
-                <div class="media-container">
-                    <img class="service-img" src="IMG_4561.PNG" alt="Stage 1 Maintenance Wash">
-                </div>
-            </div>
+
+        <!-- Bottom CTA -->
+        <div style="text-align: center; margin: 50px 0;">
+            <a href="booking.html" class="book-button">Schedule Your Detail</a>
         </div>
-        <hr class="divider">
-        <!-- Stage 2 - Decon Wash -->
-        <div class="section">
-            <div class="section-content">
-                <div class="text-container">
-                    <span class="service-title">Stage 2 Detail - Decon Wash (Flushing Location):</span>
-                    <p>A thorough decontamination and complete interior refresh with premium graphene ceramic sealant. 3-4 months of protection - builds layers with each wash for enhanced gloss and easier maintenance. Recommended for first-time clients.</p>
-                    <p><em>Duration: 2-3 hours</em></p>
-                    <p style="font-weight: bold; font-size: 1.1rem; margin-top: 15px;">EXTERIOR:</p>
-                    <ul>
-                        <li>Pre-Foam</li>
-                        <li>Two-Bucket Hand Wash</li>
-                        <li>Hand Wash Wheels, Tires, and Wheel Wells</li>
-                        <li>Iron & Tar Removal</li>
-                        <li>Clay Bar Treatment</li>
-                        <li>Graphene-Infused SiO₂ Ceramic Sealant</li>
-                        <li>No-Sling Tire Dressing</li>
-                        <li>Engine Bay Detailed</li>
-                        <li>Door Jambs Cleaned</li>
-                        <li>Exhaust Tips Polished</li>
-                        <li>Windows Cleaned Inside and Out</li>
-                    </ul>
-                    <p style="font-weight: bold; font-size: 1.1rem; margin-top: 15px;">INTERIOR:</p>
-                    <ul>
-                        <li>Deep Vacuum of All Surfaces, Seats, and Trunk</li>
-                        <li>Carpet and Floor Mat Shampooing</li>
-                        <li>Leather Cleaning and 3-4 Month Conditioning</li>
-                        <li>Clean Console, Cup Holders, and All Crevices</li>
-                        <li>Clean and UV Protect Dashboard</li>
-                        <li>Clean All Interior Trim and Plastics</li>
-                        <li>Clean and Condition Door Panels and Pockets</li>
-                        <li>Clean Vents Thoroughly</li>
-                        <li>Clean Vehicle Headliner</li>
-                        <li>Panel Wipedown and Dressing</li>
-                    </ul>
-                    <p class="price">$220 Cars ~ $250 Van / SUV / Large Truck</p>
-                </div>
-                <div class="media-container">
-                    <img class="service-img" src="718_porsche.png" alt="Stage 2 Decon Wash">
-                </div>
-            </div>
-        </div>
-        <hr class="divider">
-        <!-- Standalone Services Header -->
-        <h2 style="text-align: center; color: #666; margin: 50px 0 10px 0; font-size: 1.5rem;">Standalone Add-On Services</h2>
-        <p style="text-align: center; color: #888; margin-bottom: 15px; font-style: italic;">Available at both locations or as mobile add-ons</p>
-        <!-- Engine Bay Detail -->
-        <div class="section">
-            <div class="section-content">
-                <div class="text-container">
-                    <span class="service-title">Engine Bay Detail:</span>
-                    <p>Complete engine compartment cleaning and dressing.</p>
-                    <p><em>Duration: 30-45 mins</em></p>
-                    <ul>
-                        <li>Engine degreasing and cleaning</li>
-                        <li>Component detailing</li>
-                        <li>Plastic and rubber dressing</li>
-                        <li>Professional finish</li>
-                    </ul>
-                    <p class="price">$50 All Vehicles<br><span class="addon">Can be added to any package for $30</span></p>
-                </div>
-                <div class="media-container">
-                    <img class="service-img" src="s55.JPG" alt="Engine Bay Detail">
-                </div>
-            </div>
-        </div>
-        <hr class="divider">
-        <!-- Interior Detail with Steaming (Consolidated) -->
-        <div class="section">
-            <div class="section-content">
-                <div class="text-container">
-                    <span class="service-title">Interior Detail with Steaming:</span>
-                    <p>Complete interior deep clean with steam sanitization. The only interior service you need.</p>
-                    <p><em>Duration: 2 - 2.5 hours</em></p>
-                    <ul>
-                        <li>High-Temperature Steam Cleaning (kills 99.9% of bacteria and germs)</li>
-                        <li>Deep Vacuum of All Surfaces</li>
-                        <li>Carpet and Floor Mat Shampooing</li>
-                        <li>Leather Deep Clean, Steam, and Conditioning</li>
-                        <li>Stain and Odor Removal from Upholstery</li>
-                        <li>Panel and Trim Cleaning and Dressing</li>
-                        <li>Deep Clean Vents and Hard-to-Reach Areas</li>
-                        <li>Door Jambs Cleaned</li>
-                        <li>Interior Glass Cleaning</li>
-                        <li>Headliner Cleaned</li>
-                    </ul>
-                    <p class="price">$180 Cars ~ $200 Van / SUV / Large Truck<br><span class="addon">Ideal for families, pet owners, allergy sufferers, and anyone who wants a truly clean interior</span></p>
-                </div>
-                <div class="media-container">
-                    <img class="service-img" src="IMG_6063 2.jpg" alt="Interior Detail with Steaming">
-                </div>
-            </div>
-        </div>
+
     </main>
+    
     <footer>
         <div class="footer-content">
             <p>© 2025 Driver Spec Garage  |  646-484-8689  |  <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
         </div>
     </footer>
+    
     <script>
         function toggleDropdown(event) {
             event.preventDefault();
@@ -468,4 +760,3 @@
     </script>
 </body>
 </html>
-
