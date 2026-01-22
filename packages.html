@@ -111,12 +111,34 @@
         .comparison-table .price-row td {
             background: #f8f9fa;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: #e74c3c;
-            border-top: 2px solid #2c3e50;
         }
         .comparison-table .price-row td:first-child {
             color: #333;
+            font-weight: 600;
+        }
+        .comparison-table .price-header {
+            background: #2c3e50 !important;
+            color: white !important;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        .comparison-table .price-header td {
+            background: #2c3e50;
+            color: white;
+        }
+        .comparison-table .location-label {
+            background: #34495e !important;
+            color: white !important;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .comparison-table .location-label td:first-child {
+            background: #34495e;
+            color: white;
         }
         .comparison-table .duration-row td {
             font-size: 0.9rem;
@@ -124,10 +146,16 @@
             font-style: italic;
         }
         .comparison-table .addon-note {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #666;
             display: block;
-            margin-top: 4px;
+            margin-top: 3px;
+        }
+        .comparison-table .flushing-note {
+            font-size: 0.75rem;
+            color: #888;
+            display: block;
+            margin-top: 2px;
         }
         
         /* Package Images - Bigger */
@@ -139,12 +167,12 @@
         }
         .package-image {
             flex: 1;
-            max-width: 320px;
+            max-width: 350px;
             text-align: center;
         }
         .package-image img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
@@ -244,7 +272,11 @@
                 font-size: 0.85rem;
             }
             .comparison-table .sealant-text {
-                font-size: 0.75rem;
+                font-size: 0.7rem;
+            }
+            .comparison-table .addon-note,
+            .comparison-table .flushing-note {
+                font-size: 0.65rem;
             }
             .service-card {
                 flex-direction: column;
@@ -267,7 +299,7 @@
                 max-width: 100%;
             }
             .package-image img {
-                height: 180px;
+                height: 200px;
             }
             .section-header h2 {
                 font-size: 1.4rem;
@@ -303,10 +335,10 @@
             <a href="booking.html" class="book-button">Schedule a Detail</a>
         </div>
 
-        <!-- MOBILE SERVICES TABLE -->
+        <!-- MAIN SERVICES TABLE -->
         <div class="section-header">
-            <h2>Mobile Services</h2>
-            <p>We come to you anywhere in NYC</p>
+            <h2>Detailing Packages</h2>
+            <p>Mobile service anywhere in NYC or visit our Flushing location</p>
         </div>
 
         <div class="comparison-wrapper">
@@ -401,9 +433,12 @@
                         <td>Duration</td>
                         <td>45 min</td>
                         <td>1 - 1.5 hrs</td>
-                        <td>3 - 5 hrs</td>
+                        <td>2 - 5 hrs</td>
                     </tr>
-                    <!-- Price -->
+                    <!-- Pricing Section -->
+                    <tr class="price-header"><td colspan="4">Pricing</td></tr>
+                    <!-- Mobile Pricing -->
+                    <tr class="location-label"><td colspan="4">📍 Mobile — We come to you anywhere in NYC</td></tr>
                     <tr class="price-row">
                         <td>Cars</td>
                         <td>$80<span class="addon-note">+$20 interior</span></td>
@@ -416,11 +451,25 @@
                         <td>$160</td>
                         <td>$280</td>
                     </tr>
+                    <!-- Flushing Pricing -->
+                    <tr class="location-label"><td colspan="4">📍 Flushing Location — Same service, lower price</td></tr>
+                    <tr class="price-row">
+                        <td>Cars</td>
+                        <td>$60<span class="addon-note">+$20 interior</span><span class="flushing-note">Returning: $50</span></td>
+                        <td>$110</td>
+                        <td>$220</td>
+                    </tr>
+                    <tr class="price-row">
+                        <td>SUV / Van / Truck</td>
+                        <td>$70<span class="addon-note">+$20 interior</span><span class="flushing-note">Returning: $60</span></td>
+                        <td>$130</td>
+                        <td>$250</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- Package Images - Mobile -->
+        <!-- Package Images -->
         <div class="package-images">
             <div class="package-image">
                 <img src="infinity.JPG" alt="Wash & Wax">
@@ -432,139 +481,6 @@
             </div>
             <div class="package-image">
                 <img src="718_porsche.png" alt="Stage 2 Full Detail">
-                <p>Stage 2 Full Detail</p>
-            </div>
-        </div>
-
-        <!-- FLUSHING SERVICES TABLE -->
-        <div class="section-header">
-            <h2>Flushing Location Services</h2>
-            <p>Driveway service at our Flushing location — Same great service, lower price</p>
-        </div>
-
-        <div class="comparison-wrapper">
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Service Includes</th>
-                        <th>Wash & Wax</th>
-                        <th>Stage 1<br><small>Maintenance</small></th>
-                        <th>Stage 2<br><small>Full Detail</small></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Exterior -->
-                    <tr class="feature-category"><td colspan="4">Exterior</td></tr>
-                    <tr>
-                        <td>Pre-Foam & Hand Wash</td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Wheels, Tires & Wells + Dressing</td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Iron, Tar & Clay Bar Decon</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Paint Protection</td>
-                        <td><span class="sealant-text">Koch Chemie<br>Protector Wax</span></td>
-                        <td><span class="sealant-text">Ceramic Sealant<br>(1 month)</span></td>
-                        <td><span class="sealant-text">Graphene Ceramic<br>(3-4 months)</span></td>
-                    </tr>
-                    <tr>
-                        <td>Engine Bay Detailed</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Door Jambs, Gas Cap & Exhaust Tips</td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Windows Inside & Out</td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <!-- Interior -->
-                    <tr class="feature-category"><td colspan="4">Interior</td></tr>
-                    <tr>
-                        <td>Vacuum & Wipe Down</td>
-                        <td>+$20 add-on</td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Headliner, Console, Vents & Crevices</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Leather & Dashboard Protection</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Carpet & Mat Shampoo</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Steam Sanitization</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <!-- Duration -->
-                    <tr class="duration-row">
-                        <td>Duration</td>
-                        <td>45 min</td>
-                        <td>1 - 1.5 hrs</td>
-                        <td>2 - 3 hrs</td>
-                    </tr>
-                    <!-- Price -->
-                    <tr class="price-row">
-                        <td>Cars</td>
-                        <td>$60<span class="addon-note">+$20 interior</span><span class="addon-note">Returning: $50</span></td>
-                        <td>$110</td>
-                        <td>$220</td>
-                    </tr>
-                    <tr class="price-row">
-                        <td>SUV / Van / Truck</td>
-                        <td>$70<span class="addon-note">+$20 interior</span><span class="addon-note">Returning: $60</span></td>
-                        <td>$130</td>
-                        <td>$250</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Package Images - Flushing -->
-        <div class="package-images">
-            <div class="package-image">
-                <img src="IMG_4561.PNG" alt="Wash & Wax">
-                <p>Wash & Wax</p>
-            </div>
-            <div class="package-image">
-                <img src="s55.JPG" alt="Stage 1 Maintenance">
-                <p>Stage 1 Maintenance</p>
-            </div>
-            <div class="package-image">
-                <img src="IMG_7466.JPG" alt="Stage 2 Full Detail">
                 <p>Stage 2 Full Detail</p>
             </div>
         </div>
