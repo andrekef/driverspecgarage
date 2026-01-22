@@ -84,15 +84,16 @@
             background: #f8f9fa;
         }
         .comparison-table .feature-category {
-            background: #ecf0f1 !important;
+            background: #5a6a7a !important;
             font-weight: 700;
-            color: #2c3e50;
+            color: white !important;
             text-transform: uppercase;
             font-size: 0.85rem;
             letter-spacing: 1px;
         }
         .comparison-table .feature-category td {
-            background: #ecf0f1;
+            background: #5a6a7a;
+            color: white;
         }
         .comparison-table .check {
             color: #27ae60;
@@ -158,30 +159,23 @@
             margin-top: 2px;
         }
         
-        /* Package Images - Bigger */
+        /* Package Images - Bigger, No Titles */
         .package-images {
             display: flex;
             justify-content: space-around;
             margin: 30px 0 50px 0;
-            gap: 25px;
+            gap: 20px;
         }
         .package-image {
             flex: 1;
-            max-width: 350px;
-            text-align: center;
+            max-width: 380px;
         }
         .package-image img {
             width: 100%;
-            height: 220px;
+            height: 260px;
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        }
-        .package-image p {
-            margin-top: 10px;
-            font-size: 0.95rem;
-            color: #555;
-            font-weight: 500;
         }
 
         /* Seasonal Banner */
@@ -195,7 +189,7 @@
             border-radius: 10px 10px 0 0;
         }
 
-        /* Standalone Service Cards - Bigger Images */
+        /* Standalone Service Cards - Image on LEFT, Bigger */
         .service-card {
             display: flex;
             background: white;
@@ -203,16 +197,16 @@
             box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             overflow: hidden;
             margin: 30px 0;
-            min-height: 450px;
-        }
-        .service-card-content {
-            flex: 0 0 50%;
-            padding: 35px;
+            min-height: 500px;
         }
         .service-card-image {
-            flex: 0 0 50%;
+            flex: 0 0 55%;
             background-size: cover;
             background-position: center;
+        }
+        .service-card-content {
+            flex: 0 0 45%;
+            padding: 35px;
         }
         .service-card h3 {
             color: #333;
@@ -261,6 +255,17 @@
             margin-top: 8px;
         }
 
+        /* Engine Bay Card - Smaller */
+        .service-card-small {
+            min-height: 350px;
+        }
+        .service-card-small .service-card-image {
+            flex: 0 0 45%;
+        }
+        .service-card-small .service-card-content {
+            flex: 0 0 55%;
+        }
+
         /* Mobile Styles */
         @media (max-width: 768px) {
             .comparison-table th,
@@ -287,9 +292,15 @@
                 padding: 25px;
             }
             .service-card-image {
-                flex: 0 0 250px;
-                min-height: 250px;
-                order: -1;
+                flex: 0 0 280px;
+                min-height: 280px;
+            }
+            .service-card-small {
+                min-height: auto;
+            }
+            .service-card-small .service-card-image {
+                flex: 0 0 220px;
+                min-height: 220px;
             }
             .package-images {
                 flex-wrap: wrap;
@@ -299,7 +310,7 @@
                 max-width: 100%;
             }
             .package-image img {
-                height: 200px;
+                height: 220px;
             }
             .section-header h2 {
                 font-size: 1.4rem;
@@ -469,19 +480,16 @@
             </table>
         </div>
 
-        <!-- Package Images -->
+        <!-- Package Images - Bigger, No Titles -->
         <div class="package-images">
             <div class="package-image">
                 <img src="infinity.JPG" alt="Wash & Wax">
-                <p>Wash & Wax</p>
             </div>
             <div class="package-image">
                 <img src="530i_front.JPG" alt="Stage 1 Maintenance">
-                <p>Stage 1 Maintenance</p>
             </div>
             <div class="package-image">
                 <img src="718_porsche.png" alt="Stage 2 Full Detail">
-                <p>Stage 2 Full Detail</p>
             </div>
         </div>
 
@@ -490,6 +498,7 @@
         <!-- WINTER RESURRECTION -->
         <div class="seasonal-banner">LIMITED TIME - WINTER SERVICE</div>
         <div class="service-card" style="border-radius: 0 0 10px 10px;">
+            <div class="service-card-image" style="background-image: url('IMG_7466.JPG');"></div>
             <div class="service-card-content">
                 <h3>Winter Resurrection</h3>
                 <p class="description">Your paint probably doesn't need a $350+ correction. Most dull, spotty paint isn't scratched — it's contaminated from winter road salt, hard water, and mineral deposits. This service chemically removes that contamination and restores gloss with machine-applied wax.</p>
@@ -508,7 +517,6 @@
                     <span class="addon">(+ $100 full interior with steaming, shampoo & leather conditioning)</span>
                 </p>
             </div>
-            <div class="service-card-image" style="background-image: url('IMG_7466.JPG');"></div>
         </div>
 
         <hr style="border: 0; height: 1px; background: #ddd; margin: 50px 0;">
@@ -519,6 +527,7 @@
             <p>Complete interior deep clean — standalone service</p>
         </div>
         <div class="service-card">
+            <div class="service-card-image" style="background-image: url('interior_bentley.jpg');"></div>
             <div class="service-card-content">
                 <h3>Interior Detail with Steaming</h3>
                 <p class="description">Complete interior deep clean with steam sanitization. The only interior service you need. Perfect for families, pet owners, allergy sufferers, or anyone who wants a truly clean interior.</p>
@@ -534,7 +543,6 @@
                 </ul>
                 <p class="price">$180 Cars ~ $200 Van / SUV / Large Truck</p>
             </div>
-            <div class="service-card-image" style="background-image: url('interior_bentley.jpg');"></div>
         </div>
 
         <hr style="border: 0; height: 1px; background: #ddd; margin: 50px 0;">
@@ -544,7 +552,8 @@
             <h2>Engine Bay Detail</h2>
             <p>Standalone add-on service</p>
         </div>
-        <div class="service-card">
+        <div class="service-card service-card-small">
+            <div class="service-card-image" style="background-image: url('s55.JPG');"></div>
             <div class="service-card-content">
                 <h3>Engine Bay Detail</h3>
                 <p class="description">Complete engine compartment cleaning and dressing. Show-ready engine bay.</p>
@@ -560,7 +569,6 @@
                     <span class="addon">Can be added to any package for $30</span>
                 </p>
             </div>
-            <div class="service-card-image" style="background-image: url('s55.JPG');"></div>
         </div>
 
         <!-- Bottom CTA -->
