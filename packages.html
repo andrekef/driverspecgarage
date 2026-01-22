@@ -64,7 +64,7 @@
         }
         .comparison-table th,
         .comparison-table td {
-            padding: 15px 20px;
+            padding: 14px 18px;
             text-align: center;
             border-bottom: 1px solid #eee;
         }
@@ -103,6 +103,11 @@
             color: #ccc;
             font-size: 1.2rem;
         }
+        .comparison-table .sealant-text {
+            font-size: 0.85rem;
+            color: #555;
+            font-weight: 500;
+        }
         .comparison-table .price-row td {
             background: #f8f9fa;
             font-weight: 700;
@@ -119,49 +124,50 @@
             font-style: italic;
         }
         .comparison-table .addon-note {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #666;
             display: block;
-            margin-top: 5px;
+            margin-top: 4px;
         }
         
-        /* Package Images */
+        /* Package Images - Bigger */
         .package-images {
             display: flex;
             justify-content: space-around;
-            margin: 20px 0 40px 0;
-            gap: 20px;
+            margin: 30px 0 50px 0;
+            gap: 25px;
         }
         .package-image {
             flex: 1;
-            max-width: 250px;
+            max-width: 320px;
             text-align: center;
         }
         .package-image img {
             width: 100%;
-            height: 150px;
+            height: 200px;
             object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         }
         .package-image p {
-            margin-top: 8px;
-            font-size: 0.85rem;
-            color: #666;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: #555;
+            font-weight: 500;
         }
 
         /* Seasonal Banner */
         .seasonal-banner {
             background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             color: white;
-            padding: 8px 15px;
+            padding: 10px 15px;
             text-align: center;
-            font-size: 0.95rem;
+            font-size: 1rem;
             letter-spacing: 0.5px;
-            border-radius: 5px 5px 0 0;
+            border-radius: 10px 10px 0 0;
         }
 
-        /* Standalone Service Cards */
+        /* Standalone Service Cards - Bigger Images */
         .service-card {
             display: flex;
             background: white;
@@ -169,30 +175,32 @@
             box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             overflow: hidden;
             margin: 30px 0;
+            min-height: 450px;
         }
         .service-card-content {
-            flex: 1;
-            padding: 30px;
+            flex: 0 0 50%;
+            padding: 35px;
         }
         .service-card-image {
-            flex: 0 0 350px;
+            flex: 0 0 50%;
             background-size: cover;
             background-position: center;
         }
         .service-card h3 {
             color: #333;
-            font-size: 1.4rem;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
         }
         .service-card .description {
             color: #666;
-            margin-bottom: 15px;
-            line-height: 1.6;
+            margin-bottom: 18px;
+            line-height: 1.7;
+            font-size: 1rem;
         }
         .service-card .duration {
             font-style: italic;
             color: #888;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
         .service-card ul {
             list-style: none;
@@ -200,7 +208,7 @@
             margin: 0 0 20px 0;
         }
         .service-card ul li {
-            padding: 6px 0;
+            padding: 7px 0;
             color: #555;
             border-bottom: 1px solid #f0f0f0;
         }
@@ -214,7 +222,7 @@
             margin-right: 10px;
         }
         .service-card .price {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: #e74c3c;
         }
@@ -222,7 +230,7 @@
             display: block;
             font-size: 0.9rem;
             color: #666;
-            margin-top: 5px;
+            margin-top: 8px;
         }
 
         /* Mobile Styles */
@@ -230,23 +238,36 @@
             .comparison-table th,
             .comparison-table td {
                 padding: 10px 8px;
-                font-size: 0.85rem;
+                font-size: 0.8rem;
             }
             .comparison-table thead th {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+            }
+            .comparison-table .sealant-text {
+                font-size: 0.75rem;
             }
             .service-card {
                 flex-direction: column;
+                min-height: auto;
+            }
+            .service-card-content {
+                flex: 1;
+                padding: 25px;
             }
             .service-card-image {
-                flex: 0 0 200px;
-                min-height: 200px;
+                flex: 0 0 250px;
+                min-height: 250px;
+                order: -1;
             }
             .package-images {
                 flex-wrap: wrap;
             }
             .package-image {
-                flex: 0 0 45%;
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            .package-image img {
+                height: 180px;
             }
             .section-header h2 {
                 font-size: 1.4rem;
@@ -308,46 +329,22 @@
                         <td><span class="check">✓</span></td>
                     </tr>
                     <tr>
-                        <td>Wheels & Tires Hand Washed</td>
+                        <td>Wheels, Tires & Wells + Dressing</td>
                         <td><span class="check">✓</span></td>
                         <td><span class="check">✓</span></td>
                         <td><span class="check">✓</span></td>
                     </tr>
                     <tr>
-                        <td>Wheel Wells Cleaned</td>
+                        <td>Iron, Tar & Clay Bar Decon</td>
                         <td><span class="dash">—</span></td>
                         <td><span class="dash">—</span></td>
                         <td><span class="check">✓</span></td>
                     </tr>
                     <tr>
-                        <td>Iron & Tar Removal</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Clay Bar Treatment</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>SiO₂ Ceramic Sealant (1 month)</td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="dash">—</span></td>
-                    </tr>
-                    <tr>
-                        <td>Graphene Ceramic Sealant (3-4 months)</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Tire Dressing</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
+                        <td>Paint Protection</td>
+                        <td><span class="sealant-text">Koch Chemie<br>Protector Wax</span></td>
+                        <td><span class="sealant-text">Ceramic Sealant<br>(1 month)</span></td>
+                        <td><span class="sealant-text">Graphene Ceramic<br>(3-4 months)</span></td>
                     </tr>
                     <tr>
                         <td>Engine Bay Detailed</td>
@@ -356,14 +353,8 @@
                         <td><span class="check">✓</span></td>
                     </tr>
                     <tr>
-                        <td>Door Jambs & Gas Cap</td>
-                        <td><span class="dash">—</span></td>
+                        <td>Door Jambs, Gas Cap & Exhaust Tips</td>
                         <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Exhaust Tips Polished</td>
-                        <td><span class="dash">—</span></td>
                         <td><span class="check">✓</span></td>
                         <td><span class="check">✓</span></td>
                     </tr>
@@ -382,37 +373,19 @@
                         <td><span class="check">✓</span></td>
                     </tr>
                     <tr>
-                        <td>Console, Vents & Crevices</td>
+                        <td>Headliner, Console, Vents & Crevices</td>
                         <td><span class="dash">—</span></td>
                         <td><span class="check">✓</span></td>
                         <td><span class="check">✓</span></td>
                     </tr>
                     <tr>
-                        <td>Dashboard UV Protection</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Door Panels & Trim</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Headliner Cleaned</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Carpet & Mat Shampoo</td>
+                        <td>Leather & Dashboard Protection</td>
                         <td><span class="dash">—</span></td>
                         <td><span class="dash">—</span></td>
                         <td><span class="check">✓</span></td>
                     </tr>
                     <tr>
-                        <td>Leather Deep Clean & Conditioning</td>
+                        <td>Carpet & Mat Shampoo</td>
                         <td><span class="dash">—</span></td>
                         <td><span class="dash">—</span></td>
                         <td><span class="check">✓</span></td>
@@ -454,11 +427,11 @@
                 <p>Wash & Wax</p>
             </div>
             <div class="package-image">
-                <img src="IMG_4561.PNG" alt="Stage 1 Maintenance">
+                <img src="530i_front.JPG" alt="Stage 1 Maintenance">
                 <p>Stage 1 Maintenance</p>
             </div>
             <div class="package-image">
-                <img src="530i_front.JPG" alt="Stage 2 Full Detail">
+                <img src="718_porsche.png" alt="Stage 2 Full Detail">
                 <p>Stage 2 Full Detail</p>
             </div>
         </div>
@@ -489,46 +462,22 @@
                         <td><span class="check">✓</span></td>
                     </tr>
                     <tr>
-                        <td>Wheels & Tires Hand Washed</td>
+                        <td>Wheels, Tires & Wells + Dressing</td>
                         <td><span class="check">✓</span></td>
                         <td><span class="check">✓</span></td>
                         <td><span class="check">✓</span></td>
                     </tr>
                     <tr>
-                        <td>Wheel Wells Cleaned</td>
+                        <td>Iron, Tar & Clay Bar Decon</td>
                         <td><span class="dash">—</span></td>
                         <td><span class="dash">—</span></td>
                         <td><span class="check">✓</span></td>
                     </tr>
                     <tr>
-                        <td>Iron & Tar Removal</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Clay Bar Treatment</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>SiO₂ Ceramic Sealant (1 month)</td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="dash">—</span></td>
-                    </tr>
-                    <tr>
-                        <td>Graphene Ceramic Sealant (3-4 months)</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Tire Dressing</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
+                        <td>Paint Protection</td>
+                        <td><span class="sealant-text">Koch Chemie<br>Protector Wax</span></td>
+                        <td><span class="sealant-text">Ceramic Sealant<br>(1 month)</span></td>
+                        <td><span class="sealant-text">Graphene Ceramic<br>(3-4 months)</span></td>
                     </tr>
                     <tr>
                         <td>Engine Bay Detailed</td>
@@ -537,14 +486,8 @@
                         <td><span class="check">✓</span></td>
                     </tr>
                     <tr>
-                        <td>Door Jambs Cleaned</td>
-                        <td><span class="dash">—</span></td>
+                        <td>Door Jambs, Gas Cap & Exhaust Tips</td>
                         <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Exhaust Tips Polished</td>
-                        <td><span class="dash">—</span></td>
                         <td><span class="check">✓</span></td>
                         <td><span class="check">✓</span></td>
                     </tr>
@@ -563,37 +506,19 @@
                         <td><span class="check">✓</span></td>
                     </tr>
                     <tr>
-                        <td>Console, Vents & Crevices</td>
+                        <td>Headliner, Console, Vents & Crevices</td>
                         <td><span class="dash">—</span></td>
                         <td><span class="check">✓</span></td>
                         <td><span class="check">✓</span></td>
                     </tr>
                     <tr>
-                        <td>Dashboard UV Protection</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Door Panels & Trim</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Headliner Cleaned</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Carpet & Mat Shampoo</td>
+                        <td>Leather & Dashboard Protection</td>
                         <td><span class="dash">—</span></td>
                         <td><span class="dash">—</span></td>
                         <td><span class="check">✓</span></td>
                     </tr>
                     <tr>
-                        <td>Leather Deep Clean & Conditioning</td>
+                        <td>Carpet & Mat Shampoo</td>
                         <td><span class="dash">—</span></td>
                         <td><span class="dash">—</span></td>
                         <td><span class="check">✓</span></td>
@@ -631,15 +556,15 @@
         <!-- Package Images - Flushing -->
         <div class="package-images">
             <div class="package-image">
-                <img src="infinity.JPG" alt="Wash & Wax">
+                <img src="IMG_4561.PNG" alt="Wash & Wax">
                 <p>Wash & Wax</p>
             </div>
             <div class="package-image">
-                <img src="IMG_4561.PNG" alt="Stage 1 Maintenance">
+                <img src="s55.JPG" alt="Stage 1 Maintenance">
                 <p>Stage 1 Maintenance</p>
             </div>
             <div class="package-image">
-                <img src="718_porsche.png" alt="Stage 2 Full Detail">
+                <img src="IMG_7466.JPG" alt="Stage 2 Full Detail">
                 <p>Stage 2 Full Detail</p>
             </div>
         </div>
@@ -653,25 +578,18 @@
                 <h3>Winter Resurrection</h3>
                 <p class="description">Your paint probably doesn't need a $350+ correction. Most dull, spotty paint isn't scratched — it's contaminated from winter road salt, hard water, and mineral deposits. This service chemically removes that contamination and restores gloss with machine-applied wax.</p>
                 <p class="duration">Duration: 3 - 3.5 hours</p>
-                <p style="font-weight: 600; color: #333; margin-bottom: 10px;">Exterior:</p>
                 <ul>
                     <li>Acid Wash (dissolves water spots and mineral deposits)</li>
-                    <li>Iron Decontamination (removes embedded brake dust and road fallout)</li>
+                    <li>Iron Decontamination (removes brake dust and road fallout)</li>
                     <li>Undercarriage Acid Foam & Rinse</li>
                     <li>Machine Wax Application (seals paint + light defect removal)</li>
-                    <li>Hand Wash Wheels and Tires</li>
-                    <li>Tire Dressing, Door Jambs, Windows</li>
-                </ul>
-                <p style="font-weight: 600; color: #333; margin: 15px 0 10px 0;">Interior Included:</p>
-                <ul>
-                    <li>Vacuum Floors, Seats, and Trunk</li>
-                    <li>Wipe Down All Surfaces</li>
-                    <li>Floor Mats Cleaned</li>
+                    <li>Wheels, Tires, Door Jambs & Windows</li>
+                    <li>Basic Interior: Vacuum & Wipe Down</li>
                 </ul>
                 <p class="price">
                     Flushing: $150 Cars ~ $170 SUV/Van/Truck<br>
                     Mobile: $180 Cars ~ $200 SUV/Van/Truck
-                    <span class="addon">(+ $100 full interior detail with steaming, shampoo, and leather conditioning)</span>
+                    <span class="addon">(+ $100 full interior with steaming, shampoo & leather conditioning)</span>
                 </p>
             </div>
             <div class="service-card-image" style="background-image: url('IMG_7466.JPG');"></div>
@@ -693,13 +611,10 @@
                     <li>High-Temperature Steam Cleaning (kills 99.9% of bacteria)</li>
                     <li>Deep Vacuum of All Surfaces</li>
                     <li>Carpet and Floor Mat Shampooing</li>
-                    <li>Leather Deep Clean, Steam, and Conditioning</li>
-                    <li>Stain and Odor Removal from Upholstery</li>
-                    <li>Panel and Trim Cleaning and Dressing</li>
-                    <li>Deep Clean Vents and Hard-to-Reach Areas</li>
-                    <li>Door Jambs Cleaned</li>
-                    <li>Interior Glass Cleaning</li>
-                    <li>Headliner Cleaned</li>
+                    <li>Leather Deep Clean, Steam & Conditioning</li>
+                    <li>Stain and Odor Removal</li>
+                    <li>All Panels, Trim, Vents & Headliner</li>
+                    <li>Door Jambs & Interior Glass</li>
                 </ul>
                 <p class="price">$180 Cars ~ $200 Van / SUV / Large Truck</p>
             </div>
