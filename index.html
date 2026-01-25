@@ -211,11 +211,10 @@
             margin-bottom: 50px;
         }
         
-        /* Masonry-style grid */
+        /* Clean uniform grid */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: 200px;
             gap: 15px;
         }
         
@@ -226,6 +225,7 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
+            aspect-ratio: 4/3;
         }
         
         .portfolio-item:hover {
@@ -237,22 +237,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             display: block;
             transition: transform 0.5s;
         }
         
         .portfolio-item:hover img {
             transform: scale(1.1);
-        }
-        
-        /* Make some items span 2 rows for visual interest */
-        .portfolio-item.tall {
-            grid-row: span 2;
-        }
-        
-        /* Make some items span 2 columns */
-        .portfolio-item.wide {
-            grid-column: span 2;
         }
         
         .portfolio-overlay {
@@ -490,14 +481,10 @@
             }
             .portfolio-grid {
                 grid-template-columns: repeat(2, 1fr);
-                grid-auto-rows: 150px;
                 gap: 10px;
             }
-            .portfolio-item.tall {
-                grid-row: span 2;
-            }
-            .portfolio-item.wide {
-                grid-column: span 1;
+            .portfolio-item {
+                aspect-ratio: 4/3;
             }
             .portfolio-cta a {
                 display: block;
@@ -563,7 +550,7 @@
                 <h2>Our Work</h2>
                 <p class="portfolio-subtitle">Every detail matters. See the results we deliver.</p>
                 <div class="portfolio-grid">
-                    <div class="portfolio-item tall">
+                    <div class="portfolio-item">
                         <img src="f82.JPG" alt="BMW F82 M4">
                         <div class="portfolio-overlay">
                             <span>BMW M4</span>
@@ -584,7 +571,7 @@
                             <small>Decon Wash</small>
                         </div>
                     </div>
-                    <div class="portfolio-item tall">
+                    <div class="portfolio-item">
                         <img src="polish_winter.JPG" alt="Winter Polish">
                         <div class="portfolio-overlay">
                             <span>Winter Resurrection</span>
@@ -619,13 +606,6 @@
                             <small>Maintenance Wash</small>
                         </div>
                     </div>
-                    <div class="portfolio-item tall">
-                        <img src="f80.JPG" alt="BMW F80 M3">
-                        <div class="portfolio-overlay">
-                            <span>BMW M3</span>
-                            <small>Ceramic Coating</small>
-                        </div>
-                    </div>
                     <div class="portfolio-item">
                         <img src="juke_nismo.JPG" alt="Nissan Juke Nismo">
                         <div class="portfolio-overlay">
@@ -645,6 +625,13 @@
                         <div class="portfolio-overlay">
                             <span>Porsche 718 GTS</span>
                             <small>Decon Wash</small>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="f80.JPG" alt="BMW F80 M3">
+                        <div class="portfolio-overlay">
+                            <span>BMW M3</span>
+                            <small>Ceramic Coating</small>
                         </div>
                     </div>
                 </div>
