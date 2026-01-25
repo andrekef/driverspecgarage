@@ -84,30 +84,22 @@
             background: #f8f9fa;
         }
         /* Exterior Divider - Red */
-        .comparison-table .exterior-category {
-            background: #e74c3c !important;
-            font-weight: 700;
+        .comparison-table .exterior-category td {
+            background: #c0392b !important;
             color: white !important;
+            font-weight: 700;
             text-transform: uppercase;
             font-size: 0.9rem;
             letter-spacing: 1.5px;
-        }
-        .comparison-table .exterior-category td {
-            background: #e74c3c;
-            color: white;
         }
         /* Interior Divider - Teal */
-        .comparison-table .interior-category {
+        .comparison-table .interior-category td {
             background: #16a085 !important;
-            font-weight: 700;
             color: white !important;
+            font-weight: 700;
             text-transform: uppercase;
             font-size: 0.9rem;
             letter-spacing: 1.5px;
-        }
-        .comparison-table .interior-category td {
-            background: #16a085;
-            color: white;
         }
         .comparison-table .check {
             color: #27ae60;
@@ -124,7 +116,7 @@
             font-weight: 500;
         }
         .comparison-table .price-row td {
-            background: #f8f9fa;
+            background: #f8f9fa !important;
             font-weight: 700;
             font-size: 1.05rem;
             color: #e74c3c;
@@ -133,27 +125,14 @@
             color: #333;
             font-weight: 600;
         }
-        /* Pricing header with service titles */
-        .comparison-table .price-header td {
-            background: #2c3e50;
-            color: white;
+        /* Blue header rows - Pricing, Mobile, Flushing */
+        .comparison-table .blue-header td {
+            background: #2c3e50 !important;
+            color: white !important;
             font-weight: 700;
             font-size: 0.95rem;
         }
-        .comparison-table .price-header td:first-child {
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.85rem;
-        }
-        /* Location sub-header */
-        .comparison-table .location-label td {
-            background: #34495e;
-            color: white;
-            font-weight: 600;
-            font-size: 0.9rem;
-            padding: 10px 18px;
-        }
-        .comparison-table .location-label td:first-child {
+        .comparison-table .blue-header td:first-child {
             text-align: left;
         }
         .comparison-table .duration-row td {
@@ -294,8 +273,7 @@
             .comparison-table .sealant-text {
                 font-size: 0.7rem;
             }
-            .comparison-table .price-header td,
-            .comparison-table .location-label td {
+            .comparison-table .blue-header td {
                 font-size: 0.75rem;
             }
             .comparison-table .addon-note,
@@ -383,7 +361,9 @@
                 </thead>
                 <tbody>
                     <!-- Exterior -->
-                    <tr class="exterior-category"><td colspan="4">Exterior</td></tr>
+                    <tr class="exterior-category">
+                        <td colspan="4">Exterior</td>
+                    </tr>
                     <tr>
                         <td>Pre-Foam & Hand Wash</td>
                         <td><span class="check">✓</span></td>
@@ -427,7 +407,9 @@
                         <td><span class="check">✓</span></td>
                     </tr>
                     <!-- Interior -->
-                    <tr class="interior-category"><td colspan="4">Interior</td></tr>
+                    <tr class="interior-category">
+                        <td colspan="4">Interior</td>
+                    </tr>
                     <tr>
                         <td>Vacuum & Wipe Down</td>
                         <td>+$20 add-on</td>
@@ -465,15 +447,17 @@
                         <td>1 - 1.5 hrs</td>
                         <td>2 - 5 hrs</td>
                     </tr>
-                    <!-- Pricing Section - Blue header with service titles -->
-                    <tr class="price-header">
-                        <td>Pricing</td>
+                    <!-- Pricing Header with Service Titles -->
+                    <tr class="blue-header">
+                        <td>PRICING</td>
                         <td>Wash & Wax</td>
                         <td>Stage 1</td>
                         <td>Stage 2</td>
                     </tr>
-                    <!-- Mobile Pricing -->
-                    <tr class="location-label"><td colspan="4">📍 Mobile — We come to you anywhere in NYC</td></tr>
+                    <!-- Mobile Header -->
+                    <tr class="blue-header">
+                        <td colspan="4">📍 Mobile — We come to you anywhere in NYC</td>
+                    </tr>
                     <tr class="price-row">
                         <td>Cars</td>
                         <td>$80<span class="addon-note">+$20 interior</span></td>
@@ -486,8 +470,10 @@
                         <td>$160</td>
                         <td>$280</td>
                     </tr>
-                    <!-- Flushing Pricing -->
-                    <tr class="location-label"><td colspan="4">📍 Flushing — Same service, lower price</td></tr>
+                    <!-- Flushing Header -->
+                    <tr class="blue-header">
+                        <td colspan="4">📍 Flushing — Same service, lower price</td>
+                    </tr>
                     <tr class="price-row">
                         <td>Cars</td>
                         <td>$60<span class="addon-note">+$20 interior</span><span class="flushing-note">Returning: $50</span></td>
