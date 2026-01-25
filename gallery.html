@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Driver Spec Garage</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .page-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .gallery-item-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.5), transparent);
+            padding: 60px 20px 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-item-info {
+            transform: translateY(0);
+        }
+        
+        .gallery-item-info h3 {
+            color: white;
+            font-size: 1.2rem;
+            margin: 0 0 5px 0;
+        }
+        
+        .gallery-item-info p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .gallery-item-info .service-tag {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+        
+        /* CTA Section */
+        .gallery-cta {
+            text-align: center;
+            margin-top: 60px;
+            padding: 50px 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        
+        .gallery-cta h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .gallery-cta p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+        
+        .gallery-cta .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        
+        .gallery-cta .btn-primary {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .gallery-cta .btn-primary:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+        
+        .gallery-cta .btn-secondary {
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .gallery-cta .btn-secondary:hover {
+            background: #1a252f;
+            transform: translateY(-2px);
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .lightbox-close:hover {
+            transform: scale(1.2);
+        }
+        
+        .lightbox-info {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+        }
+        
+        .lightbox-info h3 {
+            font-size: 1.5rem;
+            margin: 0 0 5px 0;
+        }
+        
+        .lightbox-info p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            margin: 0;
+        }
+        
+        /* Mobile */
+        @media (max-width: 992px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .gallery-item-info {
+                transform: translateY(0);
+                background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+                padding: 40px 15px 15px;
+            }
+            
+            .gallery-cta .btn {
+                display: block;
+                margin: 10px auto;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="driverspecgarage_new_logo.JPG" alt="Driver Spec Garage Logo"></a>
+        </div>
+        <nav>
+            <ul>
+                <li class="non-clickable">
+                    <a href="#" onclick="toggleDropdown(event)">Services</a>
+                    <ul class="dropdown" id="servicesDropdown">
+                        <li><a href="paint-correction.html">Paint Correction</a></li>
+                        <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
+                        <li><a href="interior-steaming.html">Interior Steaming</a></li>
+                        <li><a href="packages.html">Packages</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="page-content">
+        <div class="page-header">
+            <h1>Our Work</h1>
+            <p>Every vehicle deserves attention to detail. Here's a look at some of our recent projects across NYC.</p>
+        </div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('f82.JPG', 'BMW F82 M4', 'Full Detail + Ceramic Coating')">
+                <img src="f82.JPG" alt="BMW F82 M4">
+                <div class="gallery-item-info">
+                    <h3>BMW M4</h3>
+                    <p>Competition Package</p>
+                    <span class="service-tag">Full Detail + Coating</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" onclick="openLightbox('f80.JPG', 'BMW F80 M3', 'Ceramic Coating')">
+                <img src="f80.JPG" alt="BMW F80 M3">
+                <div class="gallery-item-info">
+                    <h3>BMW M3</h3>
+                    <p>F80 Generation</p>
+                    <span class="service-tag">Ceramic Coating</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" onclick="openLightbox('m5comp.JPG', 'BMW M5 Competition', 'Paint Correction')">
+                <img src="m5comp.JPG" alt="BMW M5 Competition">
+                <div class="gallery-item-info">
+                    <h3>BMW M5 Competition</h3>
+                    <p>F90 Generation</p>
+                    <span class="service-tag">Paint Correction</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" onclick="openLightbox('m8.JPG', 'BMW M8', 'Stage 2 Full Detail')">
+                <img src="m8.JPG" alt="BMW M8">
+                <div class="gallery-item-info">
+                    <h3>BMW M8</h3>
+                    <p>Gran Coupe</p>
+                    <span class="service-tag">Stage 2 Detail</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" onclick="openLightbox('x5.JPG', 'BMW X5', 'Maintenance Wash')">
+                <img src="x5.JPG" alt="BMW X5">
+                <div class="gallery-item-info">
+                    <h3>BMW X5</h3>
+                    <p>G05</p>
+                    <span class="service-tag">Maintenance Wash</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" onclick="openLightbox('718_porsche.png', 'Porsche 718 Cayman GTS', 'Decon Wash')">
+                <img src="718_porsche.png" alt="Porsche 718 Cayman GTS">
+                <div class="gallery-item-info">
+                    <h3>Porsche 718 GTS</h3>
+                    <p>Cayman</p>
+                    <span class="service-tag">Decon Wash</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" onclick="openLightbox('r32.JPG', 'Volkswagen R32', 'Decon Wash')">
+                <img src="r32.JPG" alt="Volkswagen R32">
+                <div class="gallery-item-info">
+                    <h3>VW R32</h3>
+                    <p>MK5</p>
+                    <span class="service-tag">Decon Wash</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" onclick="openLightbox('charger_lol.jpg', 'Dodge Charger', 'Full Detail')">
+                <img src="charger_lol.jpg" alt="Dodge Charger">
+                <div class="gallery-item-info">
+                    <h3>Dodge Charger</h3>
+                    <p>Scatpack</p>
+                    <span class="service-tag">Full Detail</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" onclick="openLightbox('polish_winter.JPG', 'Winter Resurrection', 'Machine Polish')">
+                <img src="polish_winter.JPG" alt="Winter Polish">
+                <div class="gallery-item-info">
+                    <h3>Winter Resurrection</h3>
+                    <p>Paint Revival</p>
+                    <span class="service-tag">Machine Polish</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" onclick="openLightbox('steam_jeep.JPG', 'Jeep Wrangler', 'Interior Steam Detail')">
+                <img src="steam_jeep.JPG" alt="Jeep Wrangler Interior">
+                <div class="gallery-item-info">
+                    <h3>Jeep Wrangler</h3>
+                    <p>Interior Refresh</p>
+                    <span class="service-tag">Steam Detail</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" onclick="openLightbox('juke_nismo.JPG', 'Nissan Juke Nismo', 'Full Detail')">
+                <img src="juke_nismo.JPG" alt="Nissan Juke Nismo">
+                <div class="gallery-item-info">
+                    <h3>Nissan Juke Nismo</h3>
+                    <p>RS Edition</p>
+                    <span class="service-tag">Full Detail</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" onclick="openLightbox('n_line.JPG', 'Hyundai Elantra N Line', 'Wash & Wax')">
+                <img src="n_line.JPG" alt="Hyundai N Line">
+                <div class="gallery-item-info">
+                    <h3>Hyundai Elantra</h3>
+                    <p>N Line</p>
+                    <span class="service-tag">Wash & Wax</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="gallery-cta">
+            <h2>Ready for Your Car's Transformation?</h2>
+            <p>Book your detail today and experience the Driver Spec difference.</p>
+            <a href="booking.html" class="btn btn-primary">Book Appointment</a>
+            <a href="packages.html" class="btn btn-secondary">View Packages</a>
+        </div>
+    </main>
+    
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+        <div class="lightbox-info">
+            <h3 id="lightbox-title"></h3>
+            <p id="lightbox-service"></p>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 Driver Spec Garage  |  646-484-8689  |  <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        function toggleDropdown(event) {
+            event.preventDefault();
+            var dropdown = document.getElementById('servicesDropdown');
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+        }
+        
+        document.addEventListener('click', function(event) {
+            var isClickInside = document.querySelector('.non-clickable').contains(event.target);
+            if (!isClickInside) {
+                document.getElementById('servicesDropdown').style.display = 'none';
+            }
+        });
+        
+        function openLightbox(src, title, service) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-title').textContent = title;
+            document.getElementById('lightbox-service').textContent = service;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
