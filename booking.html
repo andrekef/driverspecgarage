@@ -387,8 +387,8 @@
             const duration = service.duration;
             
             let priceText = carPrice === suvPrice ? 
-                `$${carPrice}` : 
-                `$${carPrice} (Car) / $${suvPrice} (SUV/Truck)`;
+                '$' + carPrice : 
+                '$' + carPrice + ' (Car) / $' + suvPrice + ' (SUV/Truck)';
             // Update info display
             document.getElementById('info-title').textContent = service.name;
             document.getElementById('info-duration').textContent = duration;
@@ -409,23 +409,24 @@
             const price = selectedVehicleSize === 'car' ? service.carPrice : service.suvPrice;
             
             // Create service code for easy reference (e.g., "mobile-express-car")
-            const serviceCode = `${selectedService}-${vehicleCode}`;
+            const serviceCode = selectedService + '-' + vehicleCode;
             
             // Create full service string with price
-            const fullServiceString = `${service.name} - $${price} (${vehicleType})`;
+            const fullServiceString = service.name + ' - $' + price + ' (' + vehicleType + ')';
             
             // Get service description
             const serviceDescription = descriptions[selectedService];
             
             // Open Calendly popup with all pre-filled data
+            // a1 is now Phone Number field, so we start from a2
             Calendly.initPopupWidget({
                 url: 'https://calendly.com/andrekef',
                 prefill: {
                     customAnswers: {
-                        a1: fullServiceString,      // "Stage 1 Mobile - $100 (Car/Sedan/Coupe)"
-                        a2: vehicleType,             // "Car/Sedan/Coupe"
-                        a3: serviceCode,             // "mobile-express-car"
-                        a4: serviceDescription       // Full description of service
+                        a2: fullServiceString,      // "Stage 1 Mobile - $100 (Car/Sedan/Coupe)"
+                        a3: vehicleType,            // "Car/Sedan/Coupe"
+                        a4: serviceCode,            // "mobile-express-car"
+                        a5: serviceDescription      // Full description of service
                     }
                 }
             });
