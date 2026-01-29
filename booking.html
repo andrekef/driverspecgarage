@@ -10,9 +10,6 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <!-- Calendly Script -->
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
     <style>
         .booking-container {
             max-width: 800px;
@@ -417,19 +414,18 @@
             // Get service description
             const serviceDescription = descriptions[selectedService];
             
-            // Open Calendly popup with all pre-filled data
-            // a1 is now Phone Number field, so we start from a2
-            Calendly.initPopupWidget({
-                url: 'https://calendly.com/andrekef',
-                prefill: {
-                    customAnswers: {
-                        a2: fullServiceString,      // "Stage 1 Mobile - $100 (Car/Sedan/Coupe)"
-                        a3: vehicleType,            // "Car/Sedan/Coupe"
-                        a4: serviceCode,            // "mobile-express-car"
-                        a5: serviceDescription      // Full description of service
-                    }
-                }
+            // Build URL with prefilled data
+            const baseUrl = 'https://calendly.com/andrekef';
+            const params = new URLSearchParams({
+                a1: '+1',                       // Pre-fill US country code for phone
+                a2: fullServiceString,
+                a3: vehicleType,
+                a4: serviceCode,
+                a5: serviceDescription
             });
+            
+            // Redirect to Calendly page (avoids double cookie popup from widget)
+            window.open(baseUrl + '?' + params.toString(), '_blank');
             
             return false;
         }
