@@ -2,315 +2,323 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Packages - Driver Spec Garage</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* General Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         .page-content {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
+            padding-left: max(20px, env(safe-area-inset-left));
+            padding-right: max(20px, env(safe-area-inset-right));
         }
-        
-        /* Book Button */
-        .book-button {
+
+        /* Hero */
+        .packages-hero {
+            text-align: center;
+            padding: 40px 20px 20px;
+        }
+        .packages-hero h1 {
+            font-size: 2rem;
+            color: #222;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .packages-hero p {
+            color: #777;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+        .packages-hero .location-note {
             display: inline-block;
-            padding: 15px 40px;
+            background: #f0f0f0;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: 12px;
+        }
+        .packages-hero .location-note span {
+            font-weight: 600;
+        }
+
+        /* Service Cards */
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            margin: 28px 0;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+        .card-header {
+            padding: 22px 28px 18px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .card-header h2 {
+            font-size: 1.4rem;
+            color: #222;
+            margin-bottom: 6px;
+        }
+        .card-header .tagline {
+            color: #888;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .card-header .duration {
+            display: inline-block;
+            margin-top: 8px;
+            background: #f8f8f8;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        .card-body {
+            display: flex;
+            gap: 0;
+        }
+        .card-includes {
+            flex: 1;
+            padding: 20px 28px;
+            border-right: 1px solid #f0f0f0;
+        }
+        .card-includes h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #aaa;
+            margin-bottom: 12px;
+        }
+        .card-includes ul {
+            list-style: none;
+            padding: 0;
+        }
+        .card-includes li {
+            padding: 6px 0;
+            color: #444;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .card-includes li::before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .card-pricing {
+            flex: 0 0 240px;
+            padding: 20px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .price-location {
+            margin-bottom: 16px;
+        }
+        .price-location:last-of-type {
+            margin-bottom: 20px;
+        }
+        .price-location-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #999;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 3px 0;
+        }
+        .price-vehicle {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .price-amount {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+        .price-addon {
+            font-size: 0.78rem;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        .book-btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
             background: #e74c3c;
             color: white;
             text-decoration: none;
-            font-size: 18px;
             font-weight: 600;
-            border-radius: 5px;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 3px 10px rgba(231, 76, 60, 0.3);
+            font-size: 0.95rem;
+            border-radius: 8px;
+            transition: background 0.2s;
+            letter-spacing: 0.3px;
         }
-        .book-button:hover {
+        .book-btn:hover {
             background: #c0392b;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
         }
 
-        /* Section Headers */
-        .section-header {
-            text-align: center;
-            margin: 50px 0 30px 0;
-        }
-        .section-header h2 {
-            color: #333;
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-        .section-header p {
-            color: #888;
-            font-style: italic;
-        }
-
-        /* Comparison Table */
-        .comparison-wrapper {
-            overflow-x: auto;
-            margin: 30px 0;
-        }
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .comparison-table th,
-        .comparison-table td {
-            padding: 14px 18px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-        .comparison-table thead th {
+        /* Seasonal badge */
+        .seasonal-tag {
+            display: inline-block;
             background: #2c3e50;
             color: white;
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             font-weight: 600;
-            font-size: 1.1rem;
+            vertical-align: middle;
+            margin-left: 8px;
         }
-        .comparison-table thead th:first-child {
-            background: #1a252f;
+
+        /* Add-on strip */
+        .addon-strip {
+            background: #fafafa;
+            border-top: 1px solid #f0f0f0;
+            padding: 14px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
         }
-        .comparison-table tbody td:first-child {
-            text-align: left;
-            font-weight: 500;
-            color: #333;
-            background: #f8f9fa;
-        }
-        /* Exterior Divider - Red */
-        .comparison-table .exterior-category td {
-            background: #c0392b !important;
-            color: white !important;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1.5px;
-        }
-        /* Interior Divider - Teal */
-        .comparison-table .interior-category td {
-            background: #16a085 !important;
-            color: white !important;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1.5px;
-        }
-        .comparison-table .check {
-            color: #27ae60;
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-        .comparison-table .dash {
-            color: #ccc;
-            font-size: 1.2rem;
-        }
-        .comparison-table .sealant-text {
+        .addon-strip span {
             font-size: 0.85rem;
-            color: #555;
-            font-weight: 500;
+            color: #777;
         }
-        .comparison-table .price-row td {
-            background: #f8f9fa !important;
-            font-weight: 700;
-            font-size: 1.05rem;
+        .addon-strip .addon-price {
+            font-weight: 600;
             color: #e74c3c;
         }
-        .comparison-table .price-row td:first-child {
-            color: #333;
+
+        /* Divider */
+        .section-divider {
+            text-align: center;
+            margin: 45px 0 10px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ccc;
             font-weight: 600;
         }
-        /* Blue header rows - Pricing, Mobile, Flushing */
-        .comparison-table .blue-header td {
-            background: #2c3e50 !important;
-            color: white !important;
-            font-weight: 700;
-            font-size: 0.95rem;
-        }
-        .comparison-table .blue-header td:first-child {
-            text-align: left;
-        }
-        .comparison-table .duration-row td {
-            font-size: 0.9rem;
-            color: #666;
+
+        /* Returning customer note */
+        .returning-note {
+            font-size: 0.75rem;
+            color: #aaa;
             font-style: italic;
         }
-        .comparison-table .addon-note {
-            font-size: 0.75rem;
-            color: #666;
-            display: block;
-            margin-top: 3px;
-        }
-        .comparison-table .flushing-note {
-            font-size: 0.75rem;
-            color: #888;
-            display: block;
-            margin-top: 2px;
-        }
-        
-        /* Package Images - Bigger, No Titles */
-        .package-images {
-            display: flex;
-            justify-content: space-around;
-            margin: 30px 0 50px 0;
-            gap: 20px;
-        }
-        .package-image {
-            flex: 1;
-            max-width: 380px;
-        }
-        .package-image img {
-            width: 100%;
-            height: 260px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        }
 
-        /* Seasonal Banner */
-        .seasonal-banner {
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-            color: white;
-            padding: 10px 15px;
-            text-align: center;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            border-radius: 10px 10px 0 0;
-        }
-
-        /* Standalone Service Cards - Image on LEFT, Bigger */
-        .service-card {
-            display: flex;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
-            margin: 30px 0;
-            min-height: 500px;
-        }
-        .service-card-image {
-            flex: 0 0 55%;
-            background-size: cover;
-            background-position: center;
-        }
-        .service-card-content {
-            flex: 0 0 45%;
-            padding: 35px;
-        }
-        .service-card h3 {
-            color: #333;
-            font-size: 1.5rem;
-            margin-bottom: 12px;
-        }
-        .service-card .description {
-            color: #666;
-            margin-bottom: 18px;
-            line-height: 1.7;
-            font-size: 1rem;
-        }
-        .service-card .duration {
-            font-style: italic;
-            color: #888;
-            margin-bottom: 18px;
-        }
-        .service-card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 20px 0;
-        }
-        .service-card ul li {
-            padding: 7px 0;
-            color: #555;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        .service-card ul li:last-child {
-            border-bottom: none;
-        }
-        .service-card ul li::before {
-            content: "✓";
-            color: #27ae60;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        .service-card .price {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #e74c3c;
-        }
-        .service-card .addon {
-            display: block;
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 8px;
-        }
-
-        /* Engine Bay Card - Smaller */
-        .service-card-small {
-            min-height: 350px;
-        }
-        .service-card-small .service-card-image {
-            flex: 0 0 45%;
-        }
-        .service-card-small .service-card-content {
-            flex: 0 0 55%;
-        }
-
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            .comparison-table th,
-            .comparison-table td {
-                padding: 10px 8px;
+        /* Mobile */
+        @media (max-width: 700px) {
+            .page-content {
+                padding: 12px;
+            }
+            .packages-hero {
+                padding: 30px 12px 15px;
+            }
+            .packages-hero h1 {
+                font-size: 1.5rem;
+            }
+            .packages-hero .location-note {
                 font-size: 0.8rem;
+                padding: 8px 14px;
+                line-height: 1.5;
             }
-            .comparison-table thead th {
-                font-size: 0.85rem;
+            .card-body {
+                flex-direction: column;
             }
-            .comparison-table .sealant-text {
-                font-size: 0.7rem;
+            .card-includes {
+                border-right: none;
+                border-bottom: 1px solid #f0f0f0;
+                padding: 16px 20px;
             }
-            .comparison-table .blue-header td {
-                font-size: 0.75rem;
+            .card-pricing {
+                flex: 1;
+                padding: 16px 20px;
             }
-            .comparison-table .addon-note,
-            .comparison-table .flushing-note {
-                font-size: 0.65rem;
+            .card-header {
+                padding: 18px 20px 14px;
+            }
+            .card-header h2 {
+                font-size: 1.25rem;
+            }
+            .addon-strip {
+                padding: 12px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+            .book-btn {
+                padding: 14px;
+                font-size: 1rem;
+                /* larger touch target on mobile */
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             .service-card {
-                flex-direction: column;
-                min-height: auto;
+                margin: 20px 0;
+                border-radius: 10px;
             }
-            .service-card-content {
-                flex: 1;
-                padding: 25px;
+            .section-divider {
+                margin: 35px 0 8px;
             }
-            .service-card-image {
-                flex: 0 0 280px;
-                min-height: 280px;
+            .seasonal-tag {
+                display: block;
+                margin-left: 0;
+                margin-top: 6px;
+                width: fit-content;
             }
-            .service-card-small {
-                min-height: auto;
+        }
+
+        /* Tablet - prevent cramped pricing column */
+        @media (min-width: 701px) and (max-width: 850px) {
+            .card-pricing {
+                flex: 0 0 210px;
             }
-            .service-card-small .service-card-image {
-                flex: 0 0 220px;
-                min-height: 220px;
+            .price-amount {
+                font-size: 1rem;
             }
-            .package-images {
-                flex-wrap: wrap;
+        }
+
+        /* Prevent horizontal scroll on any screen */
+        html, body {
+            overflow-x: hidden;
+        }
+
+        /* Ensure images and tables don't break layout */
+        img, table {
+            max-width: 100%;
+        }
+
+        /* Better touch targets for all interactive elements on mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .book-btn {
+                min-height: 48px;
             }
-            .package-image {
-                flex: 0 0 100%;
-                max-width: 100%;
-            }
-            .package-image img {
-                height: 220px;
-            }
-            .section-header h2 {
-                font-size: 1.4rem;
+            nav a, .addon-strip a {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
             }
         }
     </style>
@@ -331,257 +339,246 @@
                         <li><a href="packages.html">Packages</a></li>
                     </ul>
                 </li>
-                                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="shop.html">Shop</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
-    
+
     <main class="page-content">
-        <!-- Top Button -->
-        <div style="text-align: center; margin: 30px 0 20px 0;">
-            <a href="booking.html" class="book-button">Schedule a Detail</a>
-        </div>
 
-        <!-- MAIN SERVICES TABLE -->
-        <div class="section-header">
-            <h2>Detailing Packages</h2>
-            <p>Mobile service anywhere in NYC or visit our Flushing location</p>
-        </div>
-
-        <div class="comparison-wrapper">
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Service Includes</th>
-                        <th>Wash & Wax</th>
-                        <th>Stage 1<br><small>Maintenance</small></th>
-                        <th>Stage 2<br><small>Full Detail</small></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Exterior -->
-                    <tr class="exterior-category">
-                        <td colspan="4">Exterior</td>
-                    </tr>
-                    <tr>
-                        <td>Pre-Foam & Hand Wash</td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Wheels, Tires & Wells + Dressing</td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Iron, Tar & Clay Bar Decon</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Paint Protection</td>
-                        <td><span class="sealant-text">Koch Chemie<br>Protector Wax</span></td>
-                        <td><span class="sealant-text">Ceramic Sealant<br>(1 month)</span></td>
-                        <td><span class="sealant-text">Graphene Ceramic<br>(3-4 months)</span></td>
-                    </tr>
-                    <tr>
-                        <td>Engine Bay Detailed</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Door Jambs, Gas Cap & Exhaust Tips</td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Windows Inside & Out</td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <!-- Interior -->
-                    <tr class="interior-category">
-                        <td colspan="4">Interior</td>
-                    </tr>
-                    <tr>
-                        <td>Vacuum & Wipe Down</td>
-                        <td>+$20 add-on</td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Headliner, Console, Vents & Crevices</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Leather & Dashboard Protection</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Carpet & Mat Shampoo</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Steam Sanitization</td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="dash">—</span></td>
-                        <td><span class="check">✓</span></td>
-                    </tr>
-                    <!-- Duration -->
-                    <tr class="duration-row">
-                        <td>Duration</td>
-                        <td>45 min</td>
-                        <td>1 - 1.5 hrs</td>
-                        <td>2 - 5 hrs</td>
-                    </tr>
-                    <!-- Pricing Header with Service Titles -->
-                    <tr class="blue-header">
-                        <td>PRICING</td>
-                        <td>Wash & Wax</td>
-                        <td>Stage 1</td>
-                        <td>Stage 2</td>
-                    </tr>
-                    <!-- Mobile Header -->
-                    <tr class="blue-header">
-                        <td colspan="4">📍 Mobile — We come to you anywhere in NYC</td>
-                    </tr>
-                    <tr class="price-row">
-                        <td>Cars</td>
-                        <td>$80<span class="addon-note">+$20 interior</span></td>
-                        <td>$140</td>
-                        <td>$250</td>
-                    </tr>
-                    <tr class="price-row">
-                        <td>SUV / Van / Truck</td>
-                        <td>$100<span class="addon-note">+$20 interior</span></td>
-                        <td>$160</td>
-                        <td>$280</td>
-                    </tr>
-                    <!-- Flushing Header -->
-                    <tr class="blue-header">
-                        <td colspan="4">📍 Flushing — Same service, lower price</td>
-                    </tr>
-                    <tr class="price-row">
-                        <td>Cars</td>
-                        <td>$60<span class="addon-note">+$20 interior</span><span class="flushing-note">Returning: $50</span></td>
-                        <td>$110</td>
-                        <td>$220</td>
-                    </tr>
-                    <tr class="price-row">
-                        <td>SUV / Van / Truck</td>
-                        <td>$70<span class="addon-note">+$20 interior</span><span class="flushing-note">Returning: $60</span></td>
-                        <td>$130</td>
-                        <td>$250</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <hr style="border: 0; height: 1px; background: #ddd; margin: 50px 0;">
-
-        <!-- WINTER RESURRECTION -->
-        <div class="seasonal-banner">LIMITED TIME - WINTER SERVICE</div>
-        <div class="service-card" style="border-radius: 0 0 10px 10px;">
-            <div class="service-card-image" style="background-image: url('IMG_7466.JPG');"></div>
-            <div class="service-card-content">
-                <h3>Winter Resurrection</h3>
-                <p class="description">Your paint probably doesn't need a $350+ correction. Most dull, spotty paint isn't scratched — it's contaminated from winter road salt, hard water, and mineral deposits. This service chemically removes that contamination and restores gloss with machine-applied wax.</p>
-                <p class="duration">Duration: 3 - 3.5 hours</p>
-                <ul>
-                    <li>Acid Wash (dissolves water spots and mineral deposits)</li>
-                    <li>Iron Decontamination (removes brake dust and road fallout)</li>
-                    <li>Undercarriage Acid Foam & Rinse</li>
-                    <li>Machine Wax Application (seals paint + light defect removal)</li>
-                    <li>Wheels, Tires, Door Jambs & Windows</li>
-                    <li>Basic Interior: Vacuum & Wipe Down</li>
-                </ul>
-                <p class="price">
-                    Flushing: $150 Cars ~ $170 SUV/Van/Truck<br>
-                    Mobile: $180 Cars ~ $200 SUV/Van/Truck
-                    <span class="addon">(+ $100 full interior with steaming, shampoo & leather conditioning)</span>
-                </p>
+        <div class="packages-hero">
+            <h1>Detailing Packages</h1>
+            <p>Pick a service. Book a time. We handle the rest.</p>
+            <div class="location-note">
+                <span>Mobile</span> anywhere in NYC&nbsp;&nbsp;|&nbsp;&nbsp;<span>Drop-off</span> at our Flushing location (save $20-30)
             </div>
         </div>
 
-        <hr style="border: 0; height: 1px; background: #ddd; margin: 50px 0;">
-
-        <!-- INTERIOR DETAIL -->
-        <div class="section-header">
-            <h2>Interior Detail with Steaming</h2>
-            <p>Complete interior deep clean — standalone service</p>
-        </div>
+        <!-- ======================== WASH & WAX ======================== -->
         <div class="service-card">
-            <div class="service-card-image" style="background-image: url('interior_bentley.jpg');"></div>
-            <div class="service-card-content">
-                <h3>Interior Detail with Steaming</h3>
-                <p class="description">Complete interior deep clean with steam sanitization. The only interior service you need. Perfect for families, pet owners, allergy sufferers, or anyone who wants a truly clean interior.</p>
-                <p class="duration">Duration: 2 - 2.5 hours</p>
-                <ul>
-                    <li>High-Temperature Steam Cleaning (kills 99.9% of bacteria)</li>
-                    <li>Deep Vacuum of All Surfaces</li>
-                    <li>Carpet and Floor Mat Shampooing</li>
-                    <li>Leather Deep Clean, Steam & Conditioning</li>
-                    <li>Stain and Odor Removal</li>
-                    <li>All Panels, Trim, Vents & Headliner</li>
-                    <li>Door Jambs & Interior Glass</li>
-                </ul>
-                <p class="price">$180 Cars ~ $200 Van / SUV / Large Truck</p>
+            <div class="card-header">
+                <h2>Wash & Wax</h2>
+                <p class="tagline">Quick exterior refresh. Hand wash, wax protection, wheels dressed, glass cleaned. In and out.</p>
+                <span class="duration">About 45 minutes</span>
+            </div>
+            <div class="card-body">
+                <div class="card-includes">
+                    <h3>What you get</h3>
+                    <ul>
+                        <li>Pre-foam and hand wash</li>
+                        <li>Wheels, tires and wheel wells + dressing</li>
+                        <li>Protector wax applied by hand</li>
+                        <li>Door jambs, gas cap and exhaust tips</li>
+                        <li>Windows inside and out</li>
+                    </ul>
+                </div>
+                <div class="card-pricing">
+                    <div class="price-location">
+                        <div class="price-location-label">Mobile (we come to you)</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$80</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$100</span></div>
+                    </div>
+                    <div class="price-location">
+                        <div class="price-location-label">Flushing drop-off</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$60</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$70</span></div>
+                        <div class="returning-note">Returning customers save $10</div>
+                    </div>
+                    <a href="booking.html" class="book-btn">Book Wash & Wax</a>
+                </div>
+            </div>
+            <div class="addon-strip">
+                <span>Add interior vacuum & wipe down</span>
+                <span class="addon-price">+ $20</span>
             </div>
         </div>
 
-        <hr style="border: 0; height: 1px; background: #ddd; margin: 50px 0;">
-
-        <!-- ENGINE BAY -->
-        <div class="section-header">
-            <h2>Engine Bay Detail</h2>
-            <p>Standalone add-on service</p>
-        </div>
-        <div class="service-card service-card-small">
-            <div class="service-card-image" style="background-image: url('s55.JPG');"></div>
-            <div class="service-card-content">
-                <h3>Engine Bay Detail</h3>
-                <p class="description">Complete engine compartment cleaning and dressing. Show-ready engine bay.</p>
-                <p class="duration">Duration: 30 - 45 mins</p>
-                <ul>
-                    <li>Engine degreasing and cleaning</li>
-                    <li>Component detailing</li>
-                    <li>Plastic and rubber dressing</li>
-                    <li>Professional finish</li>
-                </ul>
-                <p class="price">
-                    $50 All Vehicles
-                    <span class="addon">Can be added to any package for $30</span>
-                </p>
+        <!-- ======================== MAINTENANCE DETAIL ======================== -->
+        <div class="service-card">
+            <div class="card-header">
+                <h2>Maintenance Detail</h2>
+                <p class="tagline">The full refresh. Everything in the Wash & Wax plus interior cleaning, engine bay, and ceramic sealant protection that lasts about a month.</p>
+                <span class="duration">1 to 1.5 hours</span>
+            </div>
+            <div class="card-body">
+                <div class="card-includes">
+                    <h3>What you get</h3>
+                    <ul>
+                        <li>Everything in Wash & Wax</li>
+                        <li>Ceramic sealant protection (lasts ~1 month)</li>
+                        <li>Engine bay detailed</li>
+                        <li>Full interior vacuum and wipe down</li>
+                        <li>Headliner, console, vents and crevices cleaned</li>
+                    </ul>
+                </div>
+                <div class="card-pricing">
+                    <div class="price-location">
+                        <div class="price-location-label">Mobile (we come to you)</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$140</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$160</span></div>
+                    </div>
+                    <div class="price-location">
+                        <div class="price-location-label">Flushing drop-off</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$110</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$130</span></div>
+                    </div>
+                    <a href="booking.html" class="book-btn">Book Maintenance Detail</a>
+                </div>
             </div>
         </div>
 
-        <!-- Bottom CTA -->
-        <div style="text-align: center; margin: 50px 0;">
-            <a href="booking.html" class="book-button">Schedule Your Detail</a>
+        <!-- ======================== FULL DETAIL ======================== -->
+        <div class="service-card">
+            <div class="card-header">
+                <h2>Full Detail</h2>
+                <p class="tagline">The deep clean. Full decontamination, graphene ceramic protection that lasts 3 to 4 months, complete interior with shampooing, leather conditioning, and steam sanitization. This is the reset button for your car.</p>
+                <span class="duration">2 to 5 hours depending on condition</span>
+            </div>
+            <div class="card-body">
+                <div class="card-includes">
+                    <h3>What you get</h3>
+                    <ul>
+                        <li>Everything in Maintenance Detail</li>
+                        <li>Iron, tar and clay bar decontamination</li>
+                        <li>Graphene ceramic sealant (lasts 3-4 months)</li>
+                        <li>Leather deep clean and conditioning</li>
+                        <li>Carpet and floor mat shampooing</li>
+                        <li>Steam sanitization of all surfaces</li>
+                        <li>Dashboard and trim protection</li>
+                    </ul>
+                </div>
+                <div class="card-pricing">
+                    <div class="price-location">
+                        <div class="price-location-label">Mobile (we come to you)</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$250</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$280</span></div>
+                    </div>
+                    <div class="price-location">
+                        <div class="price-location-label">Flushing drop-off</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$220</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$250</span></div>
+                    </div>
+                    <a href="booking.html" class="book-btn">Book Full Detail</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================== SEASONAL ======================== -->
+        <div class="section-divider">Seasonal &amp; Standalone</div>
+
+        <!-- ======================== WINTER RESURRECTION ======================== -->
+        <div class="service-card">
+            <div class="card-header">
+                <h2>Winter Resurrection <span class="seasonal-tag">Limited Time</span></h2>
+                <p class="tagline">Your paint is not scratched. It is contaminated. Road salt, mineral deposits, and hard water buildup make paint look dull and spotty. This service chemically strips all of that and seals the paint with machine-applied wax. No correction needed.</p>
+                <span class="duration">3 to 3.5 hours</span>
+            </div>
+            <div class="card-body">
+                <div class="card-includes">
+                    <h3>What you get</h3>
+                    <ul>
+                        <li>Acid wash (dissolves water spots and mineral deposits)</li>
+                        <li>Iron decontamination (brake dust and road fallout)</li>
+                        <li>Undercarriage acid foam and rinse</li>
+                        <li>Machine wax application (seals paint + light defect removal)</li>
+                        <li>Wheels, tires, door jambs and windows</li>
+                        <li>Basic interior vacuum and wipe down</li>
+                    </ul>
+                </div>
+                <div class="card-pricing">
+                    <div class="price-location">
+                        <div class="price-location-label">Mobile (we come to you)</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$180</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$200</span></div>
+                    </div>
+                    <div class="price-location">
+                        <div class="price-location-label">Flushing drop-off</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$150</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$170</span></div>
+                    </div>
+                    <a href="booking.html" class="book-btn">Book Winter Resurrection</a>
+                </div>
+            </div>
+            <div class="addon-strip">
+                <span>Add full interior with steaming, shampoo and leather conditioning</span>
+                <span class="addon-price">+ $100</span>
+            </div>
+        </div>
+
+        <!-- ======================== INTERIOR DETAIL ======================== -->
+        <div class="service-card">
+            <div class="card-header">
+                <h2>Interior Detail with Steaming</h2>
+                <p class="tagline">Deep interior clean as a standalone service. Steam kills 99.9% of bacteria. Great for families, pet owners, or anyone who wants a truly clean interior without needing the exterior done.</p>
+                <span class="duration">2 to 2.5 hours</span>
+            </div>
+            <div class="card-body">
+                <div class="card-includes">
+                    <h3>What you get</h3>
+                    <ul>
+                        <li>High-temperature steam cleaning</li>
+                        <li>Deep vacuum of all surfaces</li>
+                        <li>Carpet and floor mat shampooing</li>
+                        <li>Leather deep clean, steam and conditioning</li>
+                        <li>Stain and odor removal</li>
+                        <li>All panels, trim, vents and headliner</li>
+                        <li>Door jambs and interior glass</li>
+                    </ul>
+                </div>
+                <div class="card-pricing">
+                    <div class="price-location">
+                        <div class="price-location-label">All locations</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$180</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$200</span></div>
+                    </div>
+                    <a href="booking.html" class="book-btn">Book Interior Detail</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================== ENGINE BAY ======================== -->
+        <div class="service-card">
+            <div class="card-header">
+                <h2>Engine Bay Detail</h2>
+                <p class="tagline">Complete engine compartment cleaning and dressing. Show-ready engine bay. Can be booked standalone or added to any service above for $30.</p>
+                <span class="duration">30 to 45 minutes</span>
+            </div>
+            <div class="card-body">
+                <div class="card-includes">
+                    <h3>What you get</h3>
+                    <ul>
+                        <li>Engine degreasing and cleaning</li>
+                        <li>Component detailing</li>
+                        <li>Plastic and rubber dressing</li>
+                        <li>Professional finish</li>
+                    </ul>
+                </div>
+                <div class="card-pricing">
+                    <div class="price-location">
+                        <div class="price-location-label">Standalone</div>
+                        <div class="price-row"><span class="price-vehicle">All vehicles</span><span class="price-amount">$50</span></div>
+                        <div class="price-addon">Add to any service above for $30</div>
+                    </div>
+                    <a href="booking.html" class="book-btn">Book Engine Bay</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom note -->
+        <div style="text-align: center; padding: 30px 0 10px; color: #aaa; font-size: 0.85rem;">
+            Not sure what you need? Call or text us at <a href="tel:6464848689" style="color: #888; text-decoration: underline;">646-484-8689</a> and we will figure it out together.
         </div>
 
     </main>
-    
+
     <footer>
         <div class="footer-content">
-            <p>© 2025 Driver Spec Garage  |  646-484-8689  |  <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
+            <p>&copy; 2025 Driver Spec Garage &nbsp;|&nbsp; 646-484-8689 &nbsp;|&nbsp; <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
         </div>
     </footer>
-    
+
     <script>
         function toggleDropdown(event) {
             event.preventDefault();
