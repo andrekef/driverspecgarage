@@ -2,19 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Book Now - Driver Spec Garage</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Favicon -->
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <style>
         .booking-container {
             max-width: 800px;
             margin: 50px auto;
             padding: 40px;
+            padding-left: max(40px, env(safe-area-inset-left));
+            padding-right: max(40px, env(safe-area-inset-right));
             background: white;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -29,17 +28,65 @@
             color: #666;
             margin-bottom: 30px;
         }
-        .service-selector {
+
+        /* Step indicators */
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
             margin-bottom: 30px;
         }
-        .service-selector label {
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: #ccc;
+        }
+        .step.active {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+        .step.done {
+            color: #27ae60;
+        }
+        .step-num {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: #eee;
+            color: #999;
+        }
+        .step.active .step-num {
+            background: #e74c3c;
+            color: white;
+        }
+        .step.done .step-num {
+            background: #27ae60;
+            color: white;
+        }
+        .step-arrow {
+            color: #ddd;
+            font-size: 0.7rem;
+        }
+
+        /* Selectors */
+        .selector-group {
+            margin-bottom: 24px;
+        }
+        .selector-group label {
             display: block;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             margin-bottom: 10px;
             color: #333;
         }
-        .service-selector select {
+        .selector-group select {
             width: 100%;
             padding: 15px;
             font-size: 16px;
@@ -48,32 +95,86 @@
             background: white;
             cursor: pointer;
             transition: border-color 0.3s;
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
         }
-        .service-selector select:hover {
-            border-color: #e74c3c;
+        .selector-group select:hover { border-color: #e74c3c; }
+        .selector-group select:focus { outline: none; border-color: #e74c3c; }
+
+        /* Toggle buttons (vehicle size + location) */
+        .toggle-options {
+            display: flex;
+            gap: 12px;
         }
-        .service-selector select:focus {
-            outline: none;
-            border-color: #e74c3c;
-        }
-        .service-info {
-            background: #f8f9fa;
-            padding: 20px;
+        .toggle-option {
+            flex: 1;
+            padding: 14px;
+            border: 2px solid #ddd;
             border-radius: 5px;
-            margin-bottom: 20px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .toggle-option:hover { border-color: #e74c3c; }
+        .toggle-option.selected {
+            border-color: #e74c3c;
+            background: #fef2f2;
+        }
+        .toggle-option strong {
+            display: block;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .toggle-option .toggle-sub {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        /* Summary card */
+        .summary-card {
+            background: #f8f9fa;
+            padding: 20px 24px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            border-left: 4px solid #e74c3c;
             display: none;
         }
-        .service-info.active {
-            display: block;
+        .summary-card.active { display: block; }
+        .summary-card h3 {
+            margin: 0 0 12px 0;
+            color: #333;
+            font-size: 1.1rem;
         }
-        .service-info h3 {
-            margin-top: 0;
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 0.9rem;
+        }
+        .summary-row .label { color: #777; }
+        .summary-row .value { color: #333; font-weight: 500; }
+        .summary-row .value.price {
             color: #e74c3c;
+            font-weight: 700;
+            font-size: 1.1rem;
         }
-        .service-info p {
-            text-align: left;
-            margin: 10px 0;
+        .summary-desc {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #eee;
+            font-size: 0.85rem;
+            color: #777;
+            line-height: 1.6;
         }
+
+        /* Book button */
         .book-button {
             width: 100%;
             padding: 18px;
@@ -84,59 +185,62 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.2s;
             text-transform: uppercase;
             letter-spacing: 1px;
+            min-height: 56px;
         }
-        .book-button:hover {
-            background: #c0392b;
-        }
+        .book-button:hover { background: #c0392b; }
         .book-button:disabled {
             background: #ccc;
             cursor: not-allowed;
         }
-        .location-selector {
-            margin-bottom: 20px;
-        }
-        .location-selector label {
-            display: block;
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        .location-options {
-            display: flex;
-            gap: 15px;
-        }
-        .location-option {
-            flex: 1;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            transition: all 0.3s;
-        }
-        .location-option:hover {
-            border-color: #e74c3c;
-        }
-        .location-option.selected {
-            border-color: #e74c3c;
-            background: #fee;
-        }
-        .location-option input[type="radio"] {
-            display: none;
-        }
+
         .seasonal-badge {
             display: inline-block;
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            background: #2c3e50;
             color: white;
-            padding: 3px 8px;
+            padding: 2px 7px;
             border-radius: 3px;
-            font-size: 11px;
-            margin-left: 5px;
-            font-weight: bold;
+            font-size: 10px;
+            margin-left: 4px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            vertical-align: middle;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .booking-container {
+                margin: 20px auto;
+                padding: 24px 16px;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .toggle-options {
+                gap: 8px;
+            }
+            .toggle-option {
+                padding: 12px 8px;
+                font-size: 0.85rem;
+            }
+            .toggle-option strong {
+                font-size: 0.85rem;
+            }
+            .steps {
+                gap: 4px;
+                font-size: 0.75rem;
+            }
+            .book-button {
+                font-size: 16px;
+                min-height: 52px;
+            }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            .toggle-option, .book-button {
+                min-height: 48px;
+            }
         }
     </style>
 </head>
@@ -156,279 +260,319 @@
                         <li><a href="packages.html">Packages</a></li>
                     </ul>
                 </li>
+                <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="shop.html">Shop</a></li>
                 <li><a href="booking.html">Book Now</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
+
     <main>
         <div class="booking-container">
-            <h1>Book Your Detailing Service</h1>
-            <p>Select your service and choose a convenient time</p>
-            <!-- Service Selector -->
-            <div class="service-selector">
-                <label for="service-select">Choose Your Service:</label>
-                <select id="service-select" onchange="updateServiceInfo()">
+            <h1>Book Your Detail</h1>
+            <p>Pick your service, vehicle, and location. We handle the rest.</p>
+
+            <!-- Steps -->
+            <div class="steps">
+                <div class="step active" id="step1"><span class="step-num">1</span> Service</div>
+                <span class="step-arrow">&#9654;</span>
+                <div class="step" id="step2"><span class="step-num">2</span> Vehicle</div>
+                <span class="step-arrow">&#9654;</span>
+                <div class="step" id="step3"><span class="step-num">3</span> Location</div>
+                <span class="step-arrow">&#9654;</span>
+                <div class="step" id="step4"><span class="step-num">4</span> Book</div>
+            </div>
+
+            <!-- 1. Service -->
+            <div class="selector-group">
+                <label for="service-select">1. What do you need?</label>
+                <select id="service-select" onchange="onServiceChange()">
                     <option value="">-- Select a Service --</option>
-                    <optgroup label="⭐ Winter Special - Limited Time">
-                        <option value="winter-resurrection-flushing" data-price="150" data-price-suv="170" data-duration="2-2.5 hrs" data-location="flushing">Winter Resurrection (Flushing) - $150-170</option>
-                        <option value="winter-resurrection-mobile" data-price="180" data-price-suv="200" data-duration="2-2.5 hrs" data-location="mobile">Winter Resurrection (Mobile) - $180-200</option>
+                    <optgroup label="Detailing Packages">
+                        <option value="wash-wax">Wash & Wax</option>
+                        <option value="maintenance">Maintenance Detail</option>
+                        <option value="full-detail">Full Detail</option>
                     </optgroup>
-                    <optgroup label="Flushing Location Services">
-                        <option value="flushing-wash-wax" data-price="60" data-price-suv="60" data-duration="45 mins" data-location="flushing">Wash & Wax - $60 ($50 returning)</option>
-                        <option value="flushing-maintenance" data-price="90" data-price-suv="100" data-duration="2 hrs" data-location="flushing">Stage 1 Detail (Maintenance Wash) - $90-100</option>
-                        <option value="flushing-decon" data-price="180" data-price-suv="200" data-duration="3-4 hours" data-location="flushing">Stage 2 Detail (Decon Wash) - $180-200</option>
+                    <optgroup label="Seasonal">
+                        <option value="winter-resurrection">Winter Resurrection &#9733;</option>
                     </optgroup>
-                    <optgroup label="Mobile Services">
-                        <option value="mobile-express" data-price="100" data-price-suv="120" data-duration="2 hours" data-location="mobile">Stage 1 Mobile (Maintenance Wash) - $100-120</option>
-                        <option value="mobile-detail" data-price="200" data-price-suv="230" data-duration="3-4 hours" data-location="mobile">Stage 2 Mobile (Full Detail) - $200-230</option>
+                    <optgroup label="Standalone Services">
+                        <option value="interior-detail">Interior Detail with Steaming</option>
+                        <option value="engine-bay">Engine Bay Detail</option>
                     </optgroup>
                     <optgroup label="Premium Services">
-                        <option value="paint-correction-1step" data-price="400" data-price-suv="400" data-duration="4-5 hours" data-location="both">Paint Correction (1-Step) - $400</option>
-                        <option value="paint-correction-2step" data-price="600" data-price-suv="600" data-duration="6-8 hours" data-location="both">Paint Correction (2-Step) - $600</option>
-                        <option value="ceramic" data-price="700" data-price-suv="800" data-duration="1 day" data-location="both">Ceramic Coating - $700-800</option>
-                    </optgroup>
-                    <optgroup label="Add-On Services">
-                        <option value="engine-bay" data-price="70" data-price-suv="70" data-duration="30-45 mins" data-location="both">Engine Bay Detail - $70 ($50 add-on)</option>
-                        <option value="interior-steaming" data-price="100" data-price-suv="120" data-duration="1.5-2 hours" data-location="both">Interior Steaming - $100-120</option>
-                        <option value="interior-only" data-price="130" data-price-suv="150" data-duration="1.5-2 hours" data-location="both">Interior Only Detail - $130-150</option>
+                        <option value="paint-correction-1step">Paint Correction (1-Step)</option>
+                        <option value="paint-correction-2step">Paint Correction (2-Step)</option>
+                        <option value="ceramic-coating">Ceramic Coating</option>
                     </optgroup>
                 </select>
             </div>
-            <!-- Vehicle Size Selector -->
-            <div class="location-selector">
-                <label>Vehicle Size:</label>
-                <div class="location-options">
-                    <div class="location-option selected" onclick="selectVehicleSize('car')">
-                        <input type="radio" name="vehicle" value="car" id="vehicle-car" checked>
-                        <div>
-                            <strong>Car / Sedan / Coupe</strong>
-                        </div>
+
+            <!-- 2. Vehicle Size -->
+            <div class="selector-group">
+                <label>2. Vehicle size</label>
+                <div class="toggle-options">
+                    <div class="toggle-option selected" onclick="selectVehicle('car')" id="btn-car">
+                        <strong>Car / Sedan / Coupe</strong>
                     </div>
-                    <div class="location-option" onclick="selectVehicleSize('suv')">
-                        <input type="radio" name="vehicle" value="suv" id="vehicle-suv">
-                        <div>
-                            <strong>Van / SUV / Truck</strong>
-                        </div>
+                    <div class="toggle-option" onclick="selectVehicle('suv')" id="btn-suv">
+                        <strong>SUV / Van / Truck</strong>
                     </div>
                 </div>
             </div>
-            <!-- Service Info Display -->
-            <div class="service-info" id="service-info">
-                <h3 id="info-title">Service Details</h3>
-                <p><strong>Duration:</strong> <span id="info-duration"></span></p>
-                <p><strong>Price:</strong> <span id="info-price"></span></p>
-                <p id="info-description"></p>
+
+            <!-- 3. Location -->
+            <div class="selector-group">
+                <label>3. Where?</label>
+                <div class="toggle-options">
+                    <div class="toggle-option selected" onclick="selectLocation('mobile')" id="btn-mobile">
+                        <strong>Mobile</strong>
+                        <div class="toggle-sub">We come to you</div>
+                    </div>
+                    <div class="toggle-option" onclick="selectLocation('flushing')" id="btn-flushing">
+                        <strong>Flushing</strong>
+                        <div class="toggle-sub">Drop off and save</div>
+                    </div>
+                </div>
             </div>
-            <!-- Book Now Button -->
+
+            <!-- Summary -->
+            <div class="summary-card" id="summary">
+                <h3 id="summary-title"></h3>
+                <div class="summary-row">
+                    <span class="label">Vehicle</span>
+                    <span class="value" id="summary-vehicle"></span>
+                </div>
+                <div class="summary-row">
+                    <span class="label">Location</span>
+                    <span class="value" id="summary-location"></span>
+                </div>
+                <div class="summary-row">
+                    <span class="label">Duration</span>
+                    <span class="value" id="summary-duration"></span>
+                </div>
+                <div class="summary-row">
+                    <span class="label">Price</span>
+                    <span class="value price" id="summary-price"></span>
+                </div>
+                <div class="summary-desc" id="summary-desc"></div>
+            </div>
+
+            <!-- Book -->
             <button class="book-button" id="book-button" onclick="openCalendly()" disabled>
                 Select a Service to Continue
             </button>
         </div>
     </main>
+
     <footer>
         <div class="footer-content">
-            <p>© 2025 Driver Spec Garage | 646-484-8689 | <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
+            <p>&copy; 2025 Driver Spec Garage &nbsp;|&nbsp; 646-484-8689 &nbsp;|&nbsp; <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
         </div>
     </footer>
+
     <script>
-        let selectedService = '';
-        let selectedVehicleSize = 'car';
-        const serviceData = {
-            'winter-resurrection-flushing': {
-                name: 'Winter Resurrection (Flushing Location)',
-                carPrice: 150,
-                suvPrice: 170,
-                duration: '2-2.5 hrs'
-            },
-            'winter-resurrection-mobile': {
-                name: 'Winter Resurrection (Mobile)',
-                carPrice: 180,
-                suvPrice: 200,
-                duration: '2-2.5 hrs'
-            },
-            'flushing-wash-wax': {
+        // ========== DATA ==========
+        // Pricing: [mobile-car, mobile-suv, flushing-car, flushing-suv]
+        const services = {
+            'wash-wax': {
                 name: 'Wash & Wax',
-                carPrice: 60,
-                suvPrice: 60,
-                duration: '45 mins'
+                prices: { 'mobile-car': 80, 'mobile-suv': 100, 'flushing-car': 60, 'flushing-suv': 70 },
+                duration: 'About 45 minutes',
+                desc: 'Quick exterior refresh. Pre-foam hand wash, protector wax, wheels and tires dressed, door jambs, gas cap, exhaust tips, windows inside and out. Add interior vacuum and wipe down for +$20.',
+                addon: '+$20 interior vacuum and wipe down'
             },
-            'flushing-maintenance': {
-                name: 'Stage 1 Detail (Maintenance Wash)',
-                carPrice: 90,
-                suvPrice: 100,
-                duration: '1-1.5 hrs'
+            'maintenance': {
+                name: 'Maintenance Detail',
+                prices: { 'mobile-car': 140, 'mobile-suv': 160, 'flushing-car': 110, 'flushing-suv': 130 },
+                duration: '1 to 1.5 hours',
+                desc: 'Full refresh. Everything in Wash & Wax plus ceramic sealant (lasts about 1 month), engine bay detailed, full interior vacuum and wipe down, headliner, console, vents and crevices cleaned.'
             },
-            'flushing-decon': {
-                name: 'Stage 2 Detail (Decon Wash)',
-                carPrice: 180,
-                suvPrice: 200,
-                duration: '2-3 hours'
+            'full-detail': {
+                name: 'Full Detail',
+                prices: { 'mobile-car': 250, 'mobile-suv': 280, 'flushing-car': 220, 'flushing-suv': 250 },
+                duration: '2 to 5 hours',
+                desc: 'The deep clean reset. Everything in Maintenance Detail plus iron, tar and clay bar decontamination, graphene ceramic sealant (3-4 months), leather deep clean and conditioning, carpet and mat shampooing, steam sanitization, dashboard and trim protection.'
             },
-            'mobile-express': {
-                name: 'Stage 1 Mobile (Maintenance Wash)',
-                carPrice: 100,
-                suvPrice: 120,
-                duration: '1.5 hours'
+            'winter-resurrection': {
+                name: 'Winter Resurrection',
+                prices: { 'mobile-car': 180, 'mobile-suv': 200, 'flushing-car': 150, 'flushing-suv': 170 },
+                duration: '3 to 3.5 hours',
+                desc: 'Limited time winter service. Your paint is not scratched, it is contaminated. Acid wash to dissolve water spots and mineral deposits, iron decontamination, undercarriage acid foam and rinse, machine wax application, wheels and tires, door jambs and windows, basic interior vacuum and wipe down. Add full interior with steaming, shampoo and leather conditioning for +$100.',
+                addon: '+$100 full interior with steaming, shampoo and leather conditioning'
             },
-            'mobile-detail': {
-                name: 'Stage 2 Mobile (Full Detail)',
-                carPrice: 200,
-                suvPrice: 230,
-                duration: '2.5-3 hours'
-            },
-            'paint-correction-1step': {
-                name: 'Paint Correction (1-Step)',
-                carPrice: 400,
-                suvPrice: 400,
-                duration: '4-5 hours'
-            },
-            'paint-correction-2step': {
-                name: 'Paint Correction (2-Step)',
-                carPrice: 600,
-                suvPrice: 600,
-                duration: '6-8 hours'
-            },
-            'ceramic': {
-                name: 'Ceramic Coating',
-                carPrice: 900,
-                suvPrice: 900,
-                duration: '2 days'
+            'interior-detail': {
+                name: 'Interior Detail with Steaming',
+                prices: { 'mobile-car': 180, 'mobile-suv': 200, 'flushing-car': 180, 'flushing-suv': 200 },
+                duration: '2 to 2.5 hours',
+                desc: 'Standalone deep interior clean. High-temperature steam cleaning (kills 99.9% of bacteria), deep vacuum, carpet and mat shampooing, leather deep clean and conditioning, stain and odor removal, all panels, trim, vents and headliner, door jambs and interior glass.',
+                samePrice: true
             },
             'engine-bay': {
                 name: 'Engine Bay Detail',
-                carPrice: 70,
-                suvPrice: 70,
-                duration: '30-45 mins'
+                prices: { 'mobile-car': 50, 'mobile-suv': 50, 'flushing-car': 50, 'flushing-suv': 50 },
+                duration: '30 to 45 minutes',
+                desc: 'Complete engine compartment cleaning and dressing. Engine degreasing, component detailing, plastic and rubber dressing. Can be added to any package for $30 instead of $50 standalone.',
+                samePrice: true
             },
-            'interior-steaming': {
-                name: 'Interior Steaming',
-                carPrice: 100,
-                suvPrice: 120,
-                duration: '1.5-2 hours'
+            'paint-correction-1step': {
+                name: 'Paint Correction (1-Step)',
+                prices: { 'mobile-car': 400, 'mobile-suv': 400, 'flushing-car': 400, 'flushing-suv': 400 },
+                duration: '4 to 5 hours',
+                desc: 'Single-step machine polish. Removes about 70-80% of swirls, light scratches and paint defects. Great for newer vehicles or minor imperfections. Same price for all vehicles.',
+                samePrice: true
             },
-            'interior-only': {
-                name: 'Interior Only Detail',
-                carPrice: 130,
-                suvPrice: 150,
-                duration: '1.5-2 hours'
+            'paint-correction-2step': {
+                name: 'Paint Correction (2-Step)',
+                prices: { 'mobile-car': 600, 'mobile-suv': 600, 'flushing-car': 600, 'flushing-suv': 600 },
+                duration: '6 to 8 hours',
+                desc: 'Two-step correction. Compound stage for defect removal, then fine polish for clarity. Removes about 90% of swirls, scratches and defects. Best for heavily swirled or neglected paint. Same price for all vehicles.',
+                samePrice: true
+            },
+            'ceramic-coating': {
+                name: 'Ceramic Coating',
+                prices: { 'mobile-car': 900, 'mobile-suv': 900, 'flushing-car': 900, 'flushing-suv': 900 },
+                duration: '1 to 2 days',
+                desc: 'Professional ceramic coating with paint correction included. Long-term protection (2-3+ years). Requires proper application and curing time. Same price for all vehicles.',
+                samePrice: true
             }
         };
-        const descriptions = {
-            'winter-resurrection-flushing': 'LIMITED TIME WINTER SERVICE - Chemical decontamination + machine wax with 10-20% paint correction. Removes water spots, mineral deposits, and road salt. EXTERIOR: Acid wash (dissolves water spots), iron decontamination, undercarriage acid foam & rinse (removes road salt), machine wax application (seals paint + light defect removal), hand wash wheels & tires, tire dressing, door jambs cleaned, windows inside & out. INTERIOR INCLUDED: Vacuum floors/seats/trunk, wipe down all surfaces, floor mats cleaned. Add full interior detail with shampoo & leather conditioning for +$80.',
-            'winter-resurrection-mobile': 'LIMITED TIME WINTER SERVICE (Mobile) - We come to you! Chemical decontamination + machine wax with 10-20% paint correction. Removes water spots, mineral deposits, and road salt. EXTERIOR: Acid wash (dissolves water spots), iron decontamination, undercarriage acid foam & rinse (removes road salt), machine wax application (seals paint + light defect removal), hand wash wheels & tires, tire dressing, door jambs cleaned, windows inside & out. INTERIOR INCLUDED: Vacuum floors/seats/trunk, wipe down all surfaces, floor mats cleaned. Add full interior detail with shampoo & leather conditioning for +$80.',
-            'flushing-wash-wax': 'Quick exterior refresh with protection. Pre-foam, hand wash, ceramic sealant application, wheels & tires cleaned and protected by hand, windows cleaned. Exterior only, no interior or engine bay. $50 for returning customers.',
-            'flushing-maintenance': 'Stage 1 Detail: Pre-foam, hand wash, SiO₂ ceramic spray sealant (3-4 months protection), wheels & tires deep clean, engine bay cleaned, door jambs cleaned, exhaust tips polished, tire shine, windows cleaned, plus quick vacuum & panel wipedown.',
-            'flushing-decon': 'Stage 2 Detail: Complete decontamination with iron & tar removal, clay bar treatment, SiO₂ ceramic sealant (3-4 months), wheels/tires/wheel wells deep clean, engine bay detailed, door jambs cleaned, exhaust polish, tire shine, windows cleaned. Interior: deep vacuum, carpet & floor mat shampoo, 3-4 month leather conditioner, panel wipedown & glass cleaning.',
-            'mobile-express': 'Stage 1 Mobile: We come to you anywhere in NYC! Pre-foam, agitation wash, engine bay detailed, spray sealant or wax, wheels/tires deep clean, light vacuum & panel wipedown, windows cleaned.',
-            'mobile-detail': 'Stage 2 Mobile: Complete deep-clean reset. Recommended for all first-time clients. Engine bay detailed, pre-wash foam & two-bucket hand wash, wheels/tires/wheel wells, door jambs and gas cap, iron & tar removal plus clay bar treatment, SiO₂ ceramic spray sealant (3-4 months protection), no-sling tire shine & exhaust polish. Interior: thorough vacuum, panel shampoo and wipedown, leather seat deep clean, steam and conditioner, glass cleaning.',
-            'paint-correction-1step': 'Single-step paint correction by machine polishing. Polish stage to remove light to moderate defects. Removes ~70-80% of paint defects, swirls, and light scratches. Great for newer vehicles or those with minor imperfections. Single price for all vehicles.',
-            'paint-correction-2step': 'Two-step paint correction by machine polishing. Cut/compound stage for defect removal, followed by fine polish. Removes ~90% of paint defects, swirls, and scratches. Best for heavily swirled or scratched paint. Single price for all vehicles.',
-            'ceramic': 'Professional ceramic coating with paint correction included. Long-term protection (2-3+ years). Requires 2 days for proper application and curing. Single price for all vehicles.',
-            'engine-bay': 'Complete engine compartment cleaning and dressing. Engine degreasing and cleaning, component detailing, plastic and rubber dressing, professional finish. $50 when added to any package.',
-            'interior-steaming': 'Deep interior steam cleaning and sanitization. High-temperature steam kills 99.9% of bacteria and germs, removes stains and odors from upholstery, carpets, and hard surfaces. Eco-friendly chemical-free cleaning. Perfect for allergen removal, pet odors, or thorough sanitization.',
-            'interior-only': 'Complete interior refresh without exterior work. Deep vacuum of all surfaces, carpet and floor mat shampooing, leather cleaning and conditioning, panel and trim cleaning and dressing, door jambs cleaned, interior glass cleaning. Perfect for those who wash exterior themselves.'
-        };
-        function toggleDropdown(event) {
-            event.preventDefault();
-            event.stopPropagation();
-            var dropdown = document.getElementById('servicesDropdown');
-            if (dropdown.style.display === 'block') {
-                dropdown.style.display = 'none';
-            } else {
-                dropdown.style.display = 'block';
-            }
+
+        let selectedService = '';
+        let selectedVehicle = 'car';
+        let selectedLocation = 'mobile';
+
+        // ========== UI FUNCTIONS ==========
+        function selectVehicle(size) {
+            selectedVehicle = size;
+            document.getElementById('btn-car').classList.toggle('selected', size === 'car');
+            document.getElementById('btn-suv').classList.toggle('selected', size === 'suv');
+            updateSummary();
         }
-        document.addEventListener('click', function(event) {
-            var dropdown = document.getElementById('servicesDropdown');
-            var isClickInside = document.querySelector('.non-clickable') && document.querySelector('.non-clickable').contains(event.target);
-            
-            if (!isClickInside && dropdown) {
-                dropdown.style.display = 'none';
-            }
-        });
-        document.addEventListener('touchstart', function(event) {
-            var dropdown = document.getElementById('servicesDropdown');
-            var isClickInside = document.querySelector('.non-clickable') && document.querySelector('.non-clickable').contains(event.target);
-            
-            if (!isClickInside && dropdown) {
-                dropdown.style.display = 'none';
-            }
-        });
-        function selectVehicleSize(size) {
-            selectedVehicleSize = size;
-            document.querySelectorAll('.location-option').forEach(opt => {
-                opt.classList.remove('selected');
-            });
-            event.currentTarget.classList.add('selected');
-            document.getElementById('vehicle-' + size).checked = true;
-            updateServiceInfo();
+
+        function selectLocation(loc) {
+            selectedLocation = loc;
+            document.getElementById('btn-mobile').classList.toggle('selected', loc === 'mobile');
+            document.getElementById('btn-flushing').classList.toggle('selected', loc === 'flushing');
+            updateSummary();
         }
-        function updateServiceInfo() {
-            const select = document.getElementById('service-select');
-            const selectedOption = select.options[select.selectedIndex];
-            const serviceInfo = document.getElementById('service-info');
-            const bookButton = document.getElementById('book-button');
-            
-            if (select.value === '') {
-                serviceInfo.classList.remove('active');
-                bookButton.disabled = true;
-                bookButton.textContent = 'Select a Service to Continue';
+
+        function onServiceChange() {
+            selectedService = document.getElementById('service-select').value;
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const summary = document.getElementById('summary');
+            const btn = document.getElementById('book-button');
+
+            // Update step indicators
+            const hasService = selectedService !== '';
+            document.getElementById('step1').className = hasService ? 'step done' : 'step active';
+            document.getElementById('step2').className = hasService ? 'step done' : 'step';
+            document.getElementById('step3').className = hasService ? 'step done' : 'step';
+            document.getElementById('step4').className = hasService ? 'step active' : 'step';
+
+            if (!hasService) {
+                summary.classList.remove('active');
+                btn.disabled = true;
+                btn.textContent = 'Select a Service to Continue';
                 return;
             }
-            selectedService = select.value;
-            const service = serviceData[selectedService];
-            const carPrice = service.carPrice;
-            const suvPrice = service.suvPrice;
-            const duration = service.duration;
-            
-            let priceText = carPrice === suvPrice ? 
-                '$' + carPrice : 
-                '$' + carPrice + ' (Car) / $' + suvPrice + ' (SUV/Truck)';
-            // Update info display
-            document.getElementById('info-title').textContent = service.name;
-            document.getElementById('info-duration').textContent = duration;
-            document.getElementById('info-price').textContent = priceText;
-            document.getElementById('info-description').textContent = descriptions[selectedService];
-            serviceInfo.classList.add('active');
-            bookButton.disabled = false;
-            bookButton.textContent = 'Book Now - Schedule Your Appointment';
+
+            const svc = services[selectedService];
+            const priceKey = selectedLocation + '-' + selectedVehicle;
+            const price = svc.prices[priceKey];
+
+            document.getElementById('summary-title').textContent = svc.name;
+            document.getElementById('summary-vehicle').textContent = selectedVehicle === 'car' ? 'Car / Sedan / Coupe' : 'SUV / Van / Truck';
+            document.getElementById('summary-location').textContent = selectedLocation === 'mobile' ? 'Mobile (we come to you)' : 'Flushing drop-off';
+            document.getElementById('summary-duration').textContent = svc.duration;
+            document.getElementById('summary-price').textContent = '$' + price;
+
+            let descText = svc.desc;
+            if (svc.addon) {
+                descText += '\n\nAdd-on available: ' + svc.addon;
+            }
+            document.getElementById('summary-desc').textContent = descText;
+
+            summary.classList.add('active');
+            btn.disabled = false;
+            btn.textContent = 'Book Now - $' + price;
         }
+
         function openCalendly() {
             if (!selectedService) {
                 alert('Please select a service first');
                 return;
             }
-            const service = serviceData[selectedService];
-            const vehicleType = selectedVehicleSize === 'car' ? 'Car/Sedan/Coupe' : 'Van/SUV/Truck';
-            const vehicleCode = selectedVehicleSize === 'car' ? 'car' : 'suv';
-            const price = selectedVehicleSize === 'car' ? service.carPrice : service.suvPrice;
-            
-            // Create service code for easy reference (e.g., "mobile-express-car")
-            const serviceCode = selectedService + '-' + vehicleCode;
-            
-            // Create full service string with price
-            const fullServiceString = service.name + ' - $' + price + ' (' + vehicleType + ')';
-            
-            // Get service description
-            const serviceDescription = descriptions[selectedService];
-            
-            // Build URL with prefilled data
-            const baseUrl = 'https://calendly.com/andrekef';
+            const svc = services[selectedService];
+            const priceKey = selectedLocation + '-' + selectedVehicle;
+            const price = svc.prices[priceKey];
+            const vehicleType = selectedVehicle === 'car' ? 'Car/Sedan/Coupe' : 'Van/SUV/Truck';
+            const locationLabel = selectedLocation === 'mobile' ? 'Mobile' : 'Flushing';
+            const fullServiceString = svc.name + ' (' + locationLabel + ') - $' + price + ' (' + vehicleType + ')';
+            const serviceCode = selectedService + '-' + selectedLocation + '-' + selectedVehicle;
+
             const params = new URLSearchParams({
-                a1: '+1',                       // Pre-fill US country code for phone
+                a1: '+1',
                 a2: fullServiceString,
                 a3: vehicleType,
-                a4: serviceCode,
-                a5: serviceDescription
+                a4: serviceCode
             });
-            
-            // Redirect to Calendly page (avoids double cookie popup from widget)
-            window.open(baseUrl + '?' + params.toString(), '_blank');
-            
-            return false;
+
+            window.open('https://calendly.com/andrekef?' + params.toString(), '_blank');
         }
+
+        // ========== AUTO-FILL FROM URL PARAMS ==========
+        function autoFillFromURL() {
+            const params = new URLSearchParams(window.location.search);
+
+            const svc = params.get('service');
+            if (svc && services[svc]) {
+                document.getElementById('service-select').value = svc;
+                selectedService = svc;
+            }
+
+            const veh = params.get('vehicle');
+            if (veh === 'car' || veh === 'suv') {
+                selectVehicle(veh);
+            }
+
+            const loc = params.get('location');
+            if (loc === 'mobile' || loc === 'flushing') {
+                selectLocation(loc);
+            }
+
+            if (svc) {
+                updateSummary();
+                // Scroll to summary on mobile
+                setTimeout(function() {
+                    var el = document.getElementById('summary');
+                    if (el && window.innerWidth < 700) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 300);
+            }
+        }
+
+        // ========== NAV ==========
+        function toggleDropdown(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            var dropdown = document.getElementById('servicesDropdown');
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+        }
+        document.addEventListener('click', function(event) {
+            var isClickInside = document.querySelector('.non-clickable') && document.querySelector('.non-clickable').contains(event.target);
+            if (!isClickInside) {
+                document.getElementById('servicesDropdown').style.display = 'none';
+            }
+        });
+
+        // ========== INIT ==========
+        window.addEventListener('DOMContentLoaded', autoFillFromURL);
     </script>
 </body>
 </html>
