@@ -222,6 +222,8 @@ nav .dropdown a:hover {
 
 /* Mobile Nav Toggle */
 .nav-toggle {
+    width: 50px;     
+    height: 50px;
     display: none;
     flex-direction: column;
     justify-content: center;
