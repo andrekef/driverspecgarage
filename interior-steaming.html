@@ -2,135 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Interior Steaming - Driver Spec Garage</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Default styles for larger screens */
-        .section-content {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin: 20px 0;
-        }
-        .text-container {
-            flex: 1;
-            color: #666;
-            margin-right: 20px;
-        }
-        .media-container {
-            flex: 1;
-            text-align: center;
-        }
-        .service-title {
-            font-weight: bold;
-            color: #666;
-            font-size: 1.25rem;
-            margin-top: 0;
-        }
-        .text-container p {
-            font-size: 1rem;
-            color: #666;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        .price {
-            font-size: 1rem;
-            color: #666;
-            font-style: italic;
-            font-weight: bold;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        .service-video {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Mobile styles (below 768px) */
-        @media (max-width: 768px) {
-            .section-content {
-                flex-direction: column;
-                margin: 10px 0;
-            }
-            .text-container {
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-            .media-container {
-                width: 100%;
-            }
-            .service-title {
-                font-size: 1.1rem; /* Slightly smaller for mobile */
-            }
-            .text-container p {
-                font-size: 0.9rem; /* Slightly smaller for better fit */
-            }
-            .price {
-                font-size: 0.9rem;
-            }
-            .service-video {
-                width: 100%;
-                height: auto;
-            }
-        }
-    </style>
+    <link rel="icon" href="favicon.png" type="image/png">
 </head>
 <body>
     <header>
         <div class="logo">
-            <a href="index.html"><img src="driverspecgarage_new_logo.JPG" alt="Driver Spec Garage Logo"></a>
+            <a href="index.html"><img src="driverspecgarage_new_logo.JPG" alt="Driver Spec Garage"></a>
         </div>
-        <nav>
+        <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="mainNav">
             <ul>
-                <li class="non-clickable">Services
-                    <ul class="dropdown">
+                <li class="non-clickable">
+                    <span onclick="toggleDropdown(event)">Services</span>
+                    <ul class="dropdown" id="servicesDropdown">
                         <li><a href="paint-correction.html">Paint Correction</a></li>
                         <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
                         <li><a href="interior-steaming.html">Interior Steaming</a></li>
                         <li><a href="packages.html">Packages</a></li>
                     </ul>
                 </li>
+                <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="shop.html">Shop</a></li>
+                <li><a href="booking.html" class="nav-cta">Book Now</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="page-content">
-        <div class="section">
-            <div class="section-content">
-                <div class="text-container">
-                    <span class="service-title">Interior Steaming:</span>
-                    <p>
-                        <strong><em>Looking to refresh and sanitize your vehicle’s interior?</em></strong> Our Interior Steaming service uses a McCulloch steamer to deep-clean and disinfect your car’s interior. This eco-friendly method targets vents, upholstery, and other surfaces, effectively removing dirt, light stains, and odors without relying on harsh chemicals.
-                    </p>
-                    <p>
-                        <strong><em>How do we make your interior shine?</em></strong> We start by vacuuming loose debris to prepare the surfaces. Then, using the McCulloch steamer, we apply high-temperature steam to clean and disinfect areas like air vents, seats, and carpets. The steam lifts light stains and sanitizes surfaces, leaving your interior fresh and revitalized. We finish with a wipe-down to ensure a clean, polished look.
-                    </p>
-                    <p>
-                        <strong><em>Why choose our steaming service?</em></strong> This service is perfect for maintaining a clean and healthy cabin environment. The steam cleaning process eliminates bacteria and allergens in vents and upholstery, improving air quality and comfort. It’s a quick, effective way to restore your vehicle’s interior, keeping it looking and smelling great.
-                    </p>
-                    <p class="price">
-                        $50 (vent cleanup and mildew removal from vents) - $200 (entire interior decontamination, deep vacuum of carpets, seat belts, and seats, no extraction)
-                    </p>
-                </div>
-                <div class="media-container">
-                    <video class="service-video" autoplay muted controls>
-                        <source src="steamer.MP4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <!-- Optional image fallback if video fails to load -->
-                    <!-- <img class="service-img interior-steaming-img" src="interior_steaming.jpg" alt="Interior Steaming Image"> -->
+        <h1 class="section-title">Interior Steaming</h1>
+        <p class="section-subtitle">Deep clean and sanitize your vehicle's interior with high-temperature steam.</p>
+
+        <div class="service-content">
+            <div class="service-text">
+                <h2>Professional Steam Cleaning</h2>
+                <p><strong>Looking to refresh and sanitize your vehicle's interior?</strong> Our Interior Steaming service uses a McCulloch steamer to deep-clean and disinfect your car's interior. This eco-friendly method targets vents, upholstery, and other surfaces, effectively removing dirt, light stains, and odors without relying on harsh chemicals.</p>
+                
+                <h3 style="margin-top: var(--space-xl); margin-bottom: var(--space-sm); font-size: var(--font-size-lg);">How We Do It</h3>
+                <p>We start by vacuuming loose debris to prepare the surfaces. Then, using the McCulloch steamer, we apply high-temperature steam to clean and disinfect areas like air vents, seats, and carpets. The steam lifts light stains and sanitizes surfaces, leaving your interior fresh and revitalized. We finish with a wipe-down to ensure a clean, polished look.</p>
+
+                <h3 style="margin-top: var(--space-xl); margin-bottom: var(--space-sm); font-size: var(--font-size-lg);">Why Choose Steam?</h3>
+                <p>This service is perfect for maintaining a clean and healthy cabin environment. The steam cleaning process kills 99.9% of bacteria and eliminates allergens in vents and upholstery, improving air quality and comfort. It's a quick, effective way to restore your vehicle's interior, keeping it looking and smelling great.</p>
+                
+                <p class="price">$180 (Car) - $200 (SUV/Van/Truck)</p>
+                <div style="margin-top: var(--space-lg);">
+                    <a href="booking.html?service=interior-detail" class="btn btn-primary">Book Interior Steaming</a>
                 </div>
             </div>
+            <div class="service-media">
+                <video autoplay muted loop playsinline>
+                    <source src="steamer.MP4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-3xl); padding: var(--space-xl); background: var(--color-bg-subtle); border-radius: var(--border-radius-lg);">
+            <h3 style="margin-bottom: var(--space-md);">Steam cleaning is included in our Full Detail package</h3>
+            <p style="color: var(--color-text-muted); margin-bottom: var(--space-lg);">Get the complete treatment for your vehicle inside and out.</p>
+            <a href="packages.html" class="btn btn-dark">View All Packages</a>
         </div>
     </main>
 
     <footer>
         <div class="footer-content">
-            <p>© 2024 Driver Spec Garage  |  646-484-8689  |  <a href="mailto:andrekef@gmail.com">andrekef@gmail.com</a></p>
+            <p>&copy; 2025 Driver Spec Garage &nbsp;|&nbsp; <a href="tel:6464848689">646-484-8689</a> &nbsp;|&nbsp; <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
         </div>
     </footer>
+
+    <script>
+        function toggleNav() {
+            document.getElementById('mainNav').classList.toggle('open');
+            document.body.style.overflow = document.getElementById('mainNav').classList.contains('open') ? 'hidden' : '';
+        }
+        function toggleDropdown(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.getElementById('servicesDropdown').classList.toggle('show');
+        }
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.non-clickable')) {
+                document.getElementById('servicesDropdown').classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html>
