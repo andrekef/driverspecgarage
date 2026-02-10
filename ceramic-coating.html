@@ -2,159 +2,107 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Ceramic Coating - Driver Spec Garage</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Default styles for larger screens */
-        .section-content {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin: 20px 0;
-        }
-        .text-container {
-            flex: 1;
-            color: #666;
-            margin-right: 20px;
-        }
-        .media-container {
-            flex: 1;
-            text-align: center;
-        }
-        .service-title {
-            font-weight: bold;
-            color: #666;
-            font-size: 1.25rem;
-            margin-top: 0;
-        }
-        .text-container p {
-            font-size: 1rem;
-            color: #666;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        .price {
-            font-size: 1rem;
-            color: #666;
-            font-style: italic;
-            font-weight: bold;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        .service-img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Mobile styles (below 768px) */
-        @media (max-width: 768px) {
-            .section-content {
-                flex-direction: column;
-                margin: 10px 0;
-            }
-            .text-container {
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-            .media-container {
-                width: 100%;
-            }
-            .service-title {
-                font-size: 1.1rem; /* Slightly smaller for mobile */
-            }
-            .text-container p {
-                font-size: 0.9rem; /* Slightly smaller for better fit */
-            }
-            .price {
-                font-size: 0.9rem;
-            }
-            .service-img {
-                width: 100%;
-                height: auto;
-            }
-        }
-    </style>
+    <link rel="icon" href="favicon.png" type="image/png">
 </head>
 <body>
     <header>
         <div class="logo">
-            <a href="index.html"><img src="driverspecgarage_new_logo.JPG" alt="Driver Spec Garage Logo"></a>
+            <a href="index.html"><img src="driverspecgarage_new_logo.JPG" alt="Driver Spec Garage"></a>
         </div>
-        <nav>
+        <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="mainNav">
             <ul>
-                <li class="non-clickable">Services
-                    <ul class="dropdown">
+                <li class="non-clickable">
+                    <span onclick="toggleDropdown(event)">Services</span>
+                    <ul class="dropdown" id="servicesDropdown">
                         <li><a href="paint-correction.html">Paint Correction</a></li>
                         <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
                         <li><a href="interior-steaming.html">Interior Steaming</a></li>
                         <li><a href="packages.html">Packages</a></li>
                     </ul>
                 </li>
+                <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="shop.html">Shop</a></li>
+                <li><a href="booking.html" class="nav-cta">Book Now</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
-    <main class="page-content">
-    <div class="section">
-        <div class="section-content">
-            <div class="text-container">
-                <span class="service-title">Ceramic Coating:</span>
-                <p>
-                    <strong><em>Protect your vehicle with a glossy, hydrophobic finish.</em></strong> Our Ceramic Coating service includes a thorough decontamination wash and a 1-Step Paint Correction to remove minor imperfections and swirls.
-                </p>
-                <p>
-                    We apply <strong>Gtechniq Crystal Serum Light (CSL)</strong> as a base layer, which provides strong, long-lasting protection against UV rays, chemical etching, and scratches. On top, we apply two layers of <strong>EXO v5</strong>, which adds extra hydrophobic properties, water-beading, and gloss for easier maintenance.
-                </p>
-                <p>
-                    With proper care and maintenance washes, this coating can last <strong>3–5 years</strong>, keeping your paint glossy and protected.
-                </p>
-                <p>
-                    <strong>Cure Instructions:</strong> 12 hours to set, avoid rain or washing for 4–7 days.
-                </p>
-                <p class="price">$700 (car) - $800 (truck/SUV)</p>
-            </div>
-            <div class="media-container">
-                <img class="service-img ceramic-coating-img" src="csl_application.jpg" alt="Ceramic Coating Image">
-            </div>
-        </div>
-    </div>
 
-    <hr>
-        
-   <div class="section">
-    <div class="section-content">
-        <div class="text-container">
-            <span class="service-title">Wheel Coating:</span>
-            <ul>
-                <li>Includes full exterior decon wash ($100 value)</li>
-                <li>Deep clean & iron removal on wheels</li>
-                <li>Long-lasting ceramic protection applied</li>
-                <li>Enhances gloss & makes future cleaning easier</li>
-            </ul>
-            <p class="price">$150 (set of 4 wheels)</p>
+    <main class="page-content">
+        <h1 class="section-title">Ceramic Coating</h1>
+        <p class="section-subtitle">Long-lasting protection with a brilliant, hydrophobic finish.</p>
+
+        <div class="service-content">
+            <div class="service-text">
+                <h2>Professional Ceramic Coating</h2>
+                <p><strong>Protect your vehicle with a glossy, hydrophobic finish.</strong> Our Ceramic Coating service includes a thorough decontamination wash and a 1-Step Paint Correction to remove minor imperfections and swirls.</p>
+                <p>We apply <strong>Gtechniq Crystal Serum Light (CSL)</strong> as a base layer, which provides strong, long-lasting protection against UV rays, chemical etching, and scratches. On top, we apply two layers of <strong>EXO v5</strong>, which adds extra hydrophobic properties, water-beading, and gloss for easier maintenance.</p>
+                <p>With proper care and maintenance washes, this coating can last <strong>3–5 years</strong>, keeping your paint glossy and protected.</p>
+                <p><strong>Cure Instructions:</strong> 12 hours to set, avoid rain or washing for 4–7 days.</p>
+                <p class="price">$900 (all vehicles)</p>
+                <div style="margin-top: var(--space-lg);">
+                    <a href="booking.html?service=ceramic-coating" class="btn btn-primary">Book Ceramic Coating</a>
+                </div>
+            </div>
+            <div class="service-media">
+                <img src="csl_application.jpg" alt="Ceramic Coating Application">
+            </div>
         </div>
-        <div class="media-container">
-            <img class="service-img" src="c5_wheel_coating.jpg" alt="Wheel Coating Service">
+
+        <hr class="service-divider">
+
+        <div class="service-content">
+            <div class="service-text">
+                <h2>Wheel Coating</h2>
+                <p>Give your wheels lasting protection with our ceramic wheel coating service.</p>
+                <ul>
+                    <li>Includes full exterior decon wash ($100 value)</li>
+                    <li>Deep clean & iron removal on wheels</li>
+                    <li>Long-lasting ceramic protection applied</li>
+                    <li>Enhances gloss & makes future cleaning easier</li>
+                </ul>
+                <p class="price">$150 (set of 4 wheels)</p>
+                <div style="margin-top: var(--space-lg);">
+                    <a href="contact.html" class="btn btn-primary">Inquire About Wheel Coating</a>
+                </div>
+            </div>
+            <div class="service-media">
+                <img src="c5_wheel_coating.jpg" alt="Wheel Coating Service">
+            </div>
         </div>
-    </div>
-</div>
-</main>
+
+        <div style="text-align: center; margin-top: var(--space-3xl); padding: var(--space-xl); background: var(--color-bg-subtle); border-radius: var(--border-radius-lg);">
+            <p style="color: var(--color-text-muted);">Questions about coating options? <a href="contact.html" style="color: var(--color-primary); font-weight: 600;">Contact us</a> for personalized recommendations.</p>
+        </div>
+    </main>
+
     <footer>
         <div class="footer-content">
-            <p>© 2025 Driver Spec Garage  |  646-484-8689  |  <a href="mailto:info@driverspecgarage.com">info@driverspecgarage.com</a></p>
+            <p>&copy; 2025 Driver Spec Garage &nbsp;|&nbsp; <a href="tel:6464848689">646-484-8689</a> &nbsp;|&nbsp; <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
         </div>
     </footer>
+
+    <script>
+        function toggleNav() {
+            document.getElementById('mainNav').classList.toggle('open');
+            document.body.style.overflow = document.getElementById('mainNav').classList.contains('open') ? 'hidden' : '';
+        }
+        function toggleDropdown(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.getElementById('servicesDropdown').classList.toggle('show');
+        }
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.non-clickable')) {
+                document.getElementById('servicesDropdown').classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
