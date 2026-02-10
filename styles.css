@@ -147,7 +147,7 @@ header {
 }
 
 .logo img {
-    height: 180px;
+    height: 80px;
     width: auto;
 }
 
@@ -1343,7 +1343,7 @@ footer {
     }
 
     .logo img {
-        height: 140px;
+        height: 40px;
     }
 
     /* Mobile Navigation */
