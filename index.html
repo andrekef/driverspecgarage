@@ -2,507 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driver Spec Garage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Driver Spec Garage - Mobile Auto Detailing NYC</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Favicon -->
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* Header and Nav z-index fix */
-        header {
-            position: relative;
-            z-index: 1000;
-        }
-        
-        nav {
-            position: relative;
-            z-index: 1000;
-        }
-        
-        nav .dropdown {
-            position: absolute;
-            z-index: 1001;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 18px 45px;
-            background: #e74c3c;
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 700;
-            border-radius: 5px;
-            margin: 25px 5px 15px 5px;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
-        }
-    
-        .cta-button:hover {
-            background: #c0392b;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
-        }
-        
-        .cta-container {
-            margin: 30px 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        /* Desktop hero with overlay */
-        .landing {
-            position: center;
-            padding: 0;
-            text-align: center;
-        }
-        
-        .landing > img:first-child {
-            width: 100%;
-            height: 95vh;
-            object-fit: cover;
-            object-position: center 50%;
-            display: block;
-        }
-        
-        /* Dark overlay on image for both desktop and mobile */
-        .landing::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 95vh;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 1;
-            pointer-events: none;
-        }
-        
-        /* Position title over image - DESKTOP */
-        .landing .description h1 {
-            position: absolute;
-            top: 20vh;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            color: white;
-            text-align: center;
-            margin: 0;
-            padding: 0 20px;
-            text-shadow: 3px 3px 10px rgba(0,0,0,0.9);
-            font-size: 3rem;
-            width: calc(100% - 40px);
-        }
-        
-        /* Position subtitle over image - DESKTOP */
-        .landing .description > p:first-of-type {
-            position: absolute;
-            top: 32vh;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            color: white;
-            text-align: center;
-            margin: 0;
-            padding: 0 20px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
-            font-size: 1.25rem;
-            width: calc(100% - 40px);
-        }
-        
-        /* Position buttons over image - DESKTOP */
-        .landing .cta-container {
-            position: absolute;
-            top: 42vh;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            width: 100%;
-        }
-        
-        /* Adjust description margin to account for absolute positioning */
-        .landing .description {
-            margin-top: 0;
-            padding: 20px;
-        }
-        
-        /* How It Works Section */
-        .how-it-works {
-            margin: 50px auto;
-            max-width: 900px;
-            padding: 0 20px;
-        }
-        
-        .how-it-works h2 {
-            text-align: center;
-            font-size: 2rem;
-            color: #333;
-            margin-bottom: 40px;
-            font-weight: 700;
-        }
-        
-        .service-types {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-        
-        .service-type {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 12px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .service-type:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-        }
-        
-        .service-type .icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
-        .service-type h3 {
-            font-size: 1.4rem;
-            color: #333;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-        
-        .service-type p {
-            font-size: 1rem;
-            color: #666;
-            line-height: 1.6;
-            margin: 0;
-        }
-        
-        /* ========== PORTFOLIO SECTION ========== */
-        .portfolio-section {
-            margin: 70px auto;
-            max-width: 1400px;
-            padding: 0 20px;
-        }
-        
-        .portfolio-section h2 {
-            text-align: center;
-            font-size: 2.2rem;
-            color: #333;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        
-        .portfolio-subtitle {
-            text-align: center;
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 50px;
-        }
-        
-        /* Clean uniform grid */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
-        
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            aspect-ratio: 4/3;
-        }
-        
-        .portfolio-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-        }
-        
-        .portfolio-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: block;
-            transition: transform 0.5s;
-        }
-        
-        .portfolio-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .portfolio-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-            padding: 25px 20px 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-        
-        .portfolio-item:hover .portfolio-overlay {
-            transform: translateY(0);
-        }
-        
-        .portfolio-overlay span {
-            color: white;
-            font-weight: 600;
-            font-size: 1rem;
-        }
-        
-        .portfolio-overlay small {
-            display: block;
-            color: rgba(255,255,255,0.7);
-            font-size: 0.85rem;
-            margin-top: 5px;
-        }
-        
-        .portfolio-cta {
-            text-align: center;
-            margin-top: 40px;
-        }
-        
-        .portfolio-cta a {
-            display: inline-block;
-            padding: 14px 35px;
-            background: #e74c3c;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: all 0.3s;
-            margin: 0 10px;
-        }
-        
-        .portfolio-cta a:hover {
-            background: #c0392b;
-            transform: translateY(-2px);
-        }
-        
-        .portfolio-cta a.secondary {
-            background: #2c3e50;
-        }
-        
-        .portfolio-cta a.secondary:hover {
-            background: #1a252f;
-        }
-        
-        /* Social Section */
-        .social-section {
-            margin: 50px auto;
-            text-align: center;
-        }
-        
-        .social-section h2 {
-            font-size: 1.8rem;
-            color: #333;
-            margin-bottom: 25px;
-        }
-        
-        .social-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .social-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 30px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-        
-        .instagram-btn {
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            color: white;
-        }
-        
-        .instagram-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(225, 48, 108, 0.4);
-        }
-        
-        .youtube-btn {
-            background: #FF0000;
-            color: white;
-        }
-        
-        .youtube-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
-        }
-        
-        /* MOBILE STYLES */
-        @media (max-width: 768px) {
-            .cta-button {
-                padding: 15px 30px;
-                font-size: 16px;
-                margin: 10px 5px;
-            }
-            
-            /* Mobile hero section with overlay text */
-            .landing {
-                position: relative;
-                padding: 0;
-                text-align: center;
-            }
-            
-            /* Image styling for mobile */
-            .landing > img:first-child {
-                width: 100%;
-                height: 400px;
-                object-fit: cover;
-                object-position: center 65%;
-                display: block;
-                margin: 0;
-            }
-            
-            /* Dark overlay on image for mobile */
-            .landing::before {
-                height: 400px;
-            }
-            
-            /* Position title over image - MOBILE */
-            .landing .description h1 {
-                top: 120px;
-                font-size: 1.8rem;
-            }
-            
-            /* Position subtitle over image - MOBILE */
-            .landing .description > p:first-of-type {
-                top: 220px;
-                font-size: 1.1rem;
-            }
-            
-            /* Buttons positioned RIGHT BELOW image - MOBILE */
-            .landing .cta-container {
-                position: relative;
-                top: auto;
-                left: auto;
-                transform: none;
-                margin: 20px 0;
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            /* Push How It Works down to appear after buttons */
-            .landing .how-it-works {
-                margin-top: 20px;
-            }
-            
-            /* 🔥 FIX SERVICES DROPDOWN ON MOBILE 🔥 */
-            header {
-                position: relative;
-                z-index: 1000;
-            }
-            
-            nav {
-                position: relative;
-                z-index: 1000;
-            }
-            
-            nav .dropdown {
-                background-color: rgba(0, 0, 0, 0.98) !important;
-                backdrop-filter: blur(10px);
-                min-width: 200px;
-                padding: 10px 0;
-                border-radius: 8px;
-                margin-top: 5px;
-                box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-            }
-            
-            nav .dropdown li {
-                margin: 0;
-            }
-            
-            nav .dropdown a {
-                padding: 15px 20px !important;
-                font-size: 16px !important;
-                color: white !important;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-                display: block;
-            }
-            
-            nav .dropdown li:last-child a {
-                border-bottom: none;
-            }
-            
-            nav .dropdown a:hover {
-                background-color: rgba(231, 76, 60, 0.8) !important;
-            }
-            
-            .how-it-works h2 {
-                font-size: 1.6rem;
-                margin-bottom: 30px;
-            }
-            .service-types {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            .service-type {
-                padding: 30px 20px;
-            }
-            .service-type .icon {
-                font-size: 2.5rem;
-            }
-            .service-type h3 {
-                font-size: 1.2rem;
-            }
-            .service-type p {
-                font-size: 0.95rem;
-            }
-            
-            /* Portfolio mobile */
-            .portfolio-section h2 {
-                font-size: 1.6rem;
-            }
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-            .portfolio-item {
-                aspect-ratio: 4/3;
-            }
-            .portfolio-cta a {
-                display: block;
-                margin: 10px auto;
-                max-width: 250px;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
         <div class="logo">
-            <a href="index.html"><img src="driverspecgarage_new_logo.JPG" alt="Driver Spec Garage Logo"></a>
+            <a href="index.html"><img src="driverspecgarage_new_logo.JPG" alt="Driver Spec Garage"></a>
         </div>
-        <nav>
+        <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="mainNav">
             <ul>
                 <li class="non-clickable">
-                    <a href="#" onclick="toggleDropdown(event)">Services</a>
+                    <span onclick="toggleDropdown(event)">Services</span>
                     <ul class="dropdown" id="servicesDropdown">
                         <li><a href="paint-correction.html">Paint Correction</a></li>
                         <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
@@ -510,140 +28,141 @@
                         <li><a href="packages.html">Packages</a></li>
                     </ul>
                 </li>
-                                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="shop.html">Shop</a></li>
+                <li><a href="booking.html" class="nav-cta">Book Now</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
-   <main>
-    <section class="landing">
-        <img src="bentley_background.jpg" alt="Your Car">
-        <div class="description">
-            <h1>Welcome to Driver Spec Garage</h1>
-            <p>Mobile automotive detailing. Aspiring factory reset results.</p>
-            
-            <!-- CTA Buttons -->
-            <div class="cta-container">
-                <a href="packages.html" class="cta-button" style="background: #000; margin-right: 15px;">View Packages</a>
-                <a href="booking.html" class="cta-button" style="background: #000; margin-right: 15px;">Request Appointment</a>
-            </div>
 
-            <!-- How It Works Section -->
-            <div class="how-it-works">
-                <h2>How It Works</h2>
-                <div class="service-types">
-                    <div class="service-type">
-                        <div class="icon">📍</div>
-                        <h3>Flushing Location</h3>
-                        <p>Drive to us. Have an espresso on us while waiting or drop-off. We'll text when ready.</p>
-                    </div>
-                    <div class="service-type">
-                        <div class="icon">🚗</div>
-                        <h3>Mobile Service</h3>
-                        <p>We come to you anywhere in NYC. Off-street parking, driveway or garage is all we need. You relax while we work.</p>
-                    </div>
+    <main>
+        <section class="hero">
+            <div class="hero-bg">
+                <img src="bentley_background.jpg" alt="Luxury car detailing">
+            </div>
+            <div class="hero-content">
+                <h1>Welcome to Driver Spec Garage</h1>
+                <p>Mobile automotive detailing. Aspiring factory reset results.</p>
+                <div class="hero-buttons">
+                    <a href="packages.html" class="btn btn-white">View Packages</a>
+                    <a href="booking.html" class="btn btn-primary">Book Appointment</a>
                 </div>
             </div>
+        </section>
 
-            <!-- Portfolio Section -->
-            <div class="portfolio-section">
-                <h2>Our Work</h2>
-                <p class="portfolio-subtitle">Every detail matters. See the results we deliver.</p>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <img src="f82.JPG" alt="BMW F82 M4">
-                        <div class="portfolio-overlay">
-                            <span>BMW M4</span>
-                            <small>Full Detail + Ceramic Coating</small>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="m5comp.JPG" alt="BMW M5 Competition">
-                        <div class="portfolio-overlay">
-                            <span>BMW M5 Comp</span>
-                            <small>Paint Correction</small>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="r32.JPG" alt="VW R32">
-                        <div class="portfolio-overlay">
-                            <span>VW R32</span>
-                            <small>Decon Wash</small>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="polish_winter.JPG" alt="Winter Polish">
-                        <div class="portfolio-overlay">
-                            <span>Winter Resurrection</span>
-                            <small>Machine Polish</small>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="charger_lol.jpg" alt="Dodge Charger">
-                        <div class="portfolio-overlay">
-                            <span>Dodge Charger</span>
-                            <small>Full Detail</small>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="steam_jeep.JPG" alt="Jeep Interior Steam">
-                        <div class="portfolio-overlay">
-                            <span>Jeep Wrangler</span>
-                            <small>Interior Steam Detail</small>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="m8.JPG" alt="BMW M8">
-                        <div class="portfolio-overlay">
-                            <span>BMW M8</span>
-                            <small>Stage 2 Detail</small>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="x5.JPG" alt="BMW X5">
-                        <div class="portfolio-overlay">
-                            <span>BMW X5</span>
-                            <small>Maintenance Wash</small>
-                        </div>
-                    </div>
+        <section class="section how-it-works">
+            <h2 class="section-title">How It Works</h2>
+            <div class="service-types">
+                <div class="service-type">
+                    <span class="icon">📍</span>
+                    <h3>Flushing Location</h3>
+                    <p>Drive to us. Have an espresso on us while waiting or drop-off. We'll text when ready.</p>
                 </div>
-                <div class="portfolio-cta">
-                    <a href="gallery.html" class="secondary">View Full Gallery</a>
-                    <a href="booking.html">Book Your Detail</a>
+                <div class="service-type">
+                    <span class="icon">🚗</span>
+                    <h3>Mobile Service</h3>
+                    <p>We come to you anywhere in NYC. Off-street parking, driveway or garage is all we need.</p>
                 </div>
             </div>
-            
-            <!-- Social Media Section -->
-            <div class="social-section">
-                <h2>Follow My Work</h2>
-                <div class="social-buttons">
-                    <a href="https://www.instagram.com/driverspecgarage/" target="_blank" class="social-btn instagram-btn">
-                        <i class="fab fa-instagram"></i> Instagram
-                    </a>
-                    <a href="https://www.youtube.com/@YOUR_YOUTUBE_CHANNEL" target="_blank" class="social-btn youtube-btn">
-                        <i class="fab fa-youtube"></i> YouTube
-                    </a>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Our Work</h2>
+            <p class="section-subtitle">Every detail matters. See the results we deliver.</p>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="f82.JPG" alt="BMW M4">
+                    <div class="portfolio-overlay">
+                        <span>BMW M4</span>
+                        <small>Full Detail + Ceramic Coating</small>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="m5comp.JPG" alt="BMW M5 Competition">
+                    <div class="portfolio-overlay">
+                        <span>BMW M5 Comp</span>
+                        <small>Paint Correction</small>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="r32.JPG" alt="GTR R32">
+                    <div class="portfolio-overlay">
+                        <span>GTR R32</span>
+                        <small>Decon Wash</small>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="polish_winter.JPG" alt="Winter Polish">
+                    <div class="portfolio-overlay">
+                        <span>Winter Resurrection</span>
+                        <small>Machine Polish</small>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="charger_lol.jpg" alt="Dodge Charger">
+                    <div class="portfolio-overlay">
+                        <span>Dodge Charger</span>
+                        <small>Full Detail</small>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="steam_jeep.JPG" alt="Jeep Interior">
+                    <div class="portfolio-overlay">
+                        <span>Jeep Wrangler</span>
+                        <small>Steam Detail</small>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="m8.JPG" alt="BMW M8">
+                    <div class="portfolio-overlay">
+                        <span>BMW M8</span>
+                        <small>Stage 2 Detail</small>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="x5.JPG" alt="BMW X5">
+                    <div class="portfolio-overlay">
+                        <span>BMW X5</span>
+                        <small>Maintenance Wash</small>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-</main>
+            <div class="portfolio-cta">
+                <a href="gallery.html" class="secondary">View Full Gallery</a>
+                <a href="booking.html">Book Your Detail</a>
+            </div>
+        </section>
+
+        <section class="social-section">
+            <h2>Follow Our Work</h2>
+            <div class="social-buttons">
+                <a href="https://www.instagram.com/driverspecgarage/" target="_blank" rel="noopener" class="social-btn instagram-btn">
+                    <i class="fab fa-instagram"></i> @driverspecgarage
+                </a>
+            </div>
+        </section>
+    </main>
+
     <footer>
         <div class="footer-content">
-            <p>© 2025 Driver Spec Garage  |  646-484-8689  |  <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
+            <p>&copy; 2025 Driver Spec Garage &nbsp;|&nbsp; <a href="tel:6464848689">646-484-8689</a> &nbsp;|&nbsp; <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
         </div>
     </footer>
+
     <script>
-        function toggleDropdown(event) {
-            event.preventDefault();
-            var dropdown = document.getElementById('servicesDropdown');
-            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+        function toggleNav() {
+            document.getElementById('mainNav').classList.toggle('open');
+            document.body.style.overflow = document.getElementById('mainNav').classList.contains('open') ? 'hidden' : '';
         }
-        document.addEventListener('click', function(event) {
-            var isClickInside = document.querySelector('.non-clickable').contains(event.target);
-            if (!isClickInside) {
-                document.getElementById('servicesDropdown').style.display = 'none';
+        function toggleDropdown(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.getElementById('servicesDropdown').classList.toggle('show');
+        }
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.non-clickable')) {
+                document.getElementById('servicesDropdown').classList.remove('show');
             }
         });
     </script>
