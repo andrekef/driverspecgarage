@@ -130,14 +130,17 @@ log.info('\n🔘 CTA BUTTONS');
 
 // TEST: Image references exist
 log.info('\n🖼️ IMAGE REFERENCES');
-const index = readFile('index.html');
-if (index) {
-  const imgs = index.match(/src="([^"]+\.(jpg|jpeg|png|gif|JPG|PNG))"/g) || [];
-  imgs.slice(0, 5).forEach(img => {
-    const file = img.match(/src="([^"]+)"/)[1];
-    fs.existsSync(path.join(ROOT, file)) ? log.pass(file) : log.warn(`Missing image: ${file}`);
+PAGES.forEach(page => {
+  const content = readFile(page);
+  if (!content) return;
+  
+  const imgs = content.match(/src="([^"]+\.(jpg|jpeg|png|gif|webp|JPG|PNG|JPEG))"/gi) || [];
+  imgs.forEach(img => {
+    const file = img.match(/src="([^"]+)"/i)[1];
+    if (file.startsWith('http')) return; // skip external URLs
+    fs.existsSync(path.join(ROOT, file)) ? log.pass(`${page}: ${file}`) : log.fail(`${page}: MISSING ${file}`);
   });
-}
+});
 
 // SUMMARY
 console.log('\n' + '='.repeat(40));
