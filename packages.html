@@ -3,363 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Packages - Driver Spec Garage</title>
+    <title>Driver Spec Garage - Mobile Auto Detailing NYC</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        /* Navigation toggle button (hamburger) */
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 10px;
-            z-index: 1001;
-        }
-        .nav-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background: white;
-            margin: 4px 0;
-            transition: 0.3s;
-            border-radius: 3px;
-        }
-
-        .page-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            padding-left: max(20px, env(safe-area-inset-left));
-            padding-right: max(20px, env(safe-area-inset-right));
-        }
-
-        /* Hero */
-        .packages-hero {
-            text-align: center;
-            padding: 40px 20px 20px;
-        }
-        .packages-hero h1 {
-            font-size: 2rem;
-            color: #222;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-        .packages-hero p {
-            color: #777;
-            font-size: 1rem;
-            margin-bottom: 6px;
-        }
-        .packages-hero .location-note {
-            display: inline-block;
-            background: #f0f0f0;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: #555;
-            margin-top: 12px;
-        }
-        .packages-hero .location-note span {
-            font-weight: 600;
-        }
-
-        /* Service Cards */
-        .service-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-            margin: 28px 0;
-            overflow: hidden;
-            border: 1px solid #eee;
-        }
-        .card-header {
-            padding: 22px 28px 18px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        .card-header h2 {
-            font-size: 1.4rem;
-            color: #222;
-            margin-bottom: 6px;
-        }
-        .card-header .tagline {
-            color: #888;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-        .card-header .duration {
-            display: inline-block;
-            margin-top: 8px;
-            background: #f8f8f8;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            color: #777;
-        }
-
-        .card-body {
-            display: flex;
-            gap: 0;
-        }
-        .card-includes {
-            flex: 1;
-            padding: 20px 28px;
-            border-right: 1px solid #f0f0f0;
-        }
-        .card-includes h3 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #aaa;
-            margin-bottom: 12px;
-        }
-        .card-includes ul {
-            list-style: none;
-            padding: 0;
-        }
-        .card-includes li {
-            padding: 6px 0;
-            color: #444;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-        .card-includes li::before {
-            content: "✓";
-            color: #27ae60;
-            font-weight: 700;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        .card-pricing {
-            flex: 0 0 220px;
-            padding: 20px 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        /* Compact price block */
-        .price-block {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .price-line {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
-        .price-label {
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #aaa;
-            font-weight: 600;
-        }
-        .price-range {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #e74c3c;
-        }
-        .price-note {
-            font-size: 0.72rem;
-            color: #bbb;
-        }
-
-        .book-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 12px;
-            background: #e74c3c;
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            border-radius: 8px;
-            transition: background 0.2s;
-            letter-spacing: 0.3px;
-            min-height: 44px;
-        }
-        .book-btn:hover {
-            background: #c0392b;
-        }
-
-        /* Seasonal badge */
-        .seasonal-tag {
-            display: inline-block;
-            background: #2c3e50;
-            color: white;
-            font-size: 0.7rem;
-            padding: 3px 10px;
-            border-radius: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            vertical-align: middle;
-            margin-left: 8px;
-        }
-
-        /* Add-on strip */
-        .addon-strip {
-            background: #fafafa;
-            border-top: 1px solid #f0f0f0;
-            padding: 14px 28px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .addon-strip span {
-            font-size: 0.85rem;
-            color: #777;
-        }
-        .addon-strip .addon-price {
-            font-weight: 600;
-            color: #e74c3c;
-        }
-
-        /* Divider */
-        .section-divider {
-            text-align: center;
-            margin: 45px 0 10px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #ccc;
-            font-weight: 600;
-        }
-
-        .returning-note {
-            font-size: 0.72rem;
-            color: #bbb;
-            font-style: italic;
-        }
-
-        /* Mobile */
-        @media (max-width: 700px) {
-            /* Show hamburger, hide desktop nav */
-            .nav-toggle {
-                display: block;
-            }
-            
-            header nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 75%;
-                max-width: 300px;
-                height: 100vh;
-                background: rgba(0, 0, 0, 0.98);
-                transition: right 0.3s ease;
-                z-index: 1000;
-                padding-top: 80px;
-            }
-            
-            header nav.open {
-                right: 0;
-            }
-            
-            header nav ul {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 20px;
-            }
-            
-            header nav ul li {
-                width: 100%;
-                margin: 0;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-            }
-            
-            header nav ul li a,
-            header nav ul li span {
-                padding: 15px 10px;
-                display: block;
-                font-size: 1.1rem;
-                color: white;
-                cursor: pointer;
-            }
-            
-            header nav .dropdown {
-                position: static;
-                background: rgba(255,255,255,0.05);
-                display: none;
-                min-width: 100%;
-                margin-top: 0;
-            }
-            
-            header nav .dropdown.show {
-                display: block;
-            }
-            
-            header nav .dropdown li {
-                border-bottom: 1px solid rgba(255,255,255,0.05);
-            }
-            
-            header nav .dropdown a {
-                padding-left: 30px;
-                font-size: 1rem;
-            }
-
-            .page-content { padding: 12px; }
-            .packages-hero { padding: 30px 12px 15px; }
-            .packages-hero h1 { font-size: 1.5rem; }
-            .packages-hero .location-note {
-                font-size: 0.8rem;
-                padding: 8px 14px;
-                line-height: 1.5;
-            }
-            .card-body { flex-direction: column; }
-            .card-includes {
-                border-right: none;
-                border-bottom: 1px solid #f0f0f0;
-                padding: 16px 20px;
-            }
-            .card-pricing {
-                flex: 1;
-                padding: 16px 20px;
-            }
-            .card-header { padding: 18px 20px 14px; }
-            .card-header h2 { font-size: 1.25rem; }
-            .addon-strip {
-                padding: 12px 20px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 4px;
-            }
-            .service-card { margin: 20px 0; border-radius: 10px; }
-            .section-divider { margin: 35px 0 8px; }
-            .seasonal-tag {
-                display: block;
-                margin-left: 0;
-                margin-top: 6px;
-                width: fit-content;
-            }
-        }
-
-        @media (min-width: 701px) and (max-width: 850px) {
-            .card-pricing { flex: 0 0 190px; }
-        }
-
-        html, body { overflow-x: hidden; }
-        img, table { max-width: 100%; }
-
-        @media (hover: none) and (pointer: coarse) {
-            .book-btn { min-height: 48px; }
-        }
-    </style>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
         <div class="logo">
-            <a href="index.html"><img src="driverspecgarage_new_logo.JPG" alt="Driver Spec Garage Logo"></a>
+            <a href="index.html"><img src="driverspecgarage_new_logo.JPG" alt="Driver Spec Garage"></a>
         </div>
         <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">
             <span></span><span></span><span></span>
@@ -383,264 +36,133 @@
         </nav>
     </header>
 
-    <main class="page-content">
-
-        <div class="packages-hero">
-            <h1>Detailing Packages</h1>
-            <p>Pick a service. Book a time. We handle the rest.</p>
-            <div class="location-note">
-                <span>Mobile</span> anywhere in NYC&nbsp;&nbsp;|&nbsp;&nbsp;<span>Drop-off</span> at our Flushing location (save $20–30)
+    <main>
+        <section class="hero">
+            <div class="hero-bg">
+                <img src="bentley_background.jpg" alt="Luxury car detailing">
             </div>
-        </div>
-
-        <!-- ======================== WASH & WAX ======================== -->
-        <div class="service-card">
-            <div class="card-header">
-                <h2>Wash & Wax</h2>
-                <p class="tagline">Quick exterior refresh with interior vacuum and wipe down included. Hand wash, wax protection, wheels dressed, glass cleaned.</p>
-                <span class="duration">About 45 minutes</span>
-            </div>
-            <div class="card-body">
-                <div class="card-includes">
-                    <h3>What you get</h3>
-                    <ul>
-                        <li>Pre-foam and hand wash</li>
-                        <li>Wheels, tires and wheel wells + dressing</li>
-                        <li>Protector wax applied by hand</li>
-                        <li>Door jambs, gas cap and exhaust tips</li>
-                        <li>Windows inside and out</li>
-                        <li>Interior vacuum and wipe down</li>
-                    </ul>
+            <div class="hero-content">
+                <h1>Welcome to Driver Spec Garage</h1>
+                <p>Mobile automotive detailing. Aspiring factory reset results.</p>
+                <div class="hero-buttons">
+                    <a href="packages.html" class="btn btn-white">View Packages</a>
+                    <a href="booking.html" class="btn btn-primary">Book Appointment</a>
                 </div>
-                <div class="card-pricing">
-                    <div class="price-block">
-                        <div class="price-line">
-                            <span class="price-label">Mobile</span>
-                            <span class="price-range">$80–$100</span>
-                        </div>
-                        <div class="price-line">
-                            <span class="price-label">Flushing</span>
-                            <span class="price-range">$50–$60</span>
-                        </div>
-                        <div class="returning-note">Returning customers save $10 at Flushing</div>
+            </div>
+        </section>
+
+        <section class="section how-it-works">
+            <h2 class="section-title">How It Works</h2>
+            <div class="service-types">
+                <div class="service-type">
+                    <span class="icon">📍</span>
+                    <h3>Flushing Location</h3>
+                    <p>Drive to us. Have an espresso on us while waiting or drop-off. We'll text when ready.</p>
+                </div>
+                <div class="service-type">
+                    <span class="icon">🚗</span>
+                    <h3>Mobile Service</h3>
+                    <p>We come to you anywhere in NYC. Off-street parking, driveway or garage is all we need.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Our Work</h2>
+            <p class="section-subtitle">Every detail matters. See the results we deliver.</p>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="f82.JPG" alt="BMW M4">
+                    <div class="portfolio-overlay">
+                        <span>BMW M4</span>
+                        <small>Full Detail + Ceramic Coating</small>
                     </div>
-                    <a href="booking.html?service=wash-wax" class="book-btn">Book Wash & Wax</a>
                 </div>
-            </div>
-        </div>
-
-        <!-- ======================== MAINTENANCE DETAIL ======================== -->
-        <div class="service-card">
-            <div class="card-header">
-                <h2>Maintenance Detail</h2>
-                <p class="tagline">The full refresh. Everything in Wash & Wax plus ceramic sealant protection that lasts about a month, engine bay, and deep interior clean.</p>
-                <span class="duration">1 to 1.5 hours</span>
-            </div>
-            <div class="card-body">
-                <div class="card-includes">
-                    <h3>What you get</h3>
-                    <ul>
-                        <li>Everything in Wash & Wax</li>
-                        <li>Ceramic sealant protection (lasts ~1 month)</li>
-                        <li>Engine bay detailed</li>
-                        <li>Full interior vacuum and wipe down</li>
-                        <li>Headliner, console, vents and crevices cleaned</li>
-                    </ul>
-                </div>
-                <div class="card-pricing">
-                    <div class="price-block">
-                        <div class="price-line">
-                            <span class="price-label">Mobile</span>
-                            <span class="price-range">$140–$160</span>
-                        </div>
-                        <div class="price-line">
-                            <span class="price-label">Flushing</span>
-                            <span class="price-range">$110–$130</span>
-                        </div>
+                <div class="portfolio-item">
+                    <img src="m5comp.JPG" alt="BMW M5 Competition">
+                    <div class="portfolio-overlay">
+                        <span>BMW M5 Comp</span>
+                        <small>Paint Correction</small>
                     </div>
-                    <a href="booking.html?service=maintenance" class="book-btn">Book Maintenance Detail</a>
                 </div>
-            </div>
-        </div>
-
-        <!-- ======================== FULL DETAIL ======================== -->
-        <div class="service-card">
-            <div class="card-header">
-                <h2>Full Detail</h2>
-                <p class="tagline">The deep clean. Full decontamination, graphene ceramic protection that lasts 3–4 months, shampooing, leather conditioning, and steam sanitization. This is the reset button.</p>
-                <span class="duration">2 to 5 hours depending on condition</span>
-            </div>
-            <div class="card-body">
-                <div class="card-includes">
-                    <h3>What you get</h3>
-                    <ul>
-                        <li>Everything in Maintenance Detail</li>
-                        <li>Iron, tar and clay bar decontamination</li>
-                        <li>Graphene ceramic sealant (lasts 3–4 months)</li>
-                        <li>Leather deep clean and conditioning</li>
-                        <li>Carpet and floor mat shampooing</li>
-                        <li>Steam sanitization of all surfaces</li>
-                        <li>Dashboard and trim protection</li>
-                    </ul>
-                </div>
-                <div class="card-pricing">
-                    <div class="price-block">
-                        <div class="price-line">
-                            <span class="price-label">Mobile</span>
-                            <span class="price-range">$250–$280</span>
-                        </div>
-                        <div class="price-line">
-                            <span class="price-label">Flushing</span>
-                            <span class="price-range">$220–$250</span>
-                        </div>
+                <div class="portfolio-item">
+                    <img src="r32.JPG" alt="GTR R32">
+                    <div class="portfolio-overlay">
+                        <span>GTR R32</span>
+                        <small>Decon Wash</small>
                     </div>
-                    <a href="booking.html?service=full-detail" class="book-btn">Book Full Detail</a>
                 </div>
-            </div>
-        </div>
-
-        <!-- ======================== SEASONAL ======================== -->
-        <div class="section-divider">Seasonal &amp; Standalone</div>
-
-        <!-- ======================== WINTER RESURRECTION ======================== -->
-        <div class="service-card">
-            <div class="card-header">
-                <h2>Winter Resurrection <span class="seasonal-tag">Limited Time</span></h2>
-                <p class="tagline">Your paint is not scratched. It is contaminated. Road salt, mineral deposits, and hard water buildup make paint look dull and spotty. This service chemically strips all of that and seals the paint with machine-applied wax.</p>
-                <span class="duration">3 to 3.5 hours</span>
-            </div>
-            <div class="card-body">
-                <div class="card-includes">
-                    <h3>What you get</h3>
-                    <ul>
-                        <li>Acid wash (dissolves water spots and mineral deposits)</li>
-                        <li>Iron decontamination (brake dust and road fallout)</li>
-                        <li>Undercarriage acid foam and rinse</li>
-                        <li>Machine wax application (seals paint + light defect removal)</li>
-                        <li>Wheels, tires, door jambs and windows</li>
-                        <li>Basic interior vacuum and wipe down</li>
-                    </ul>
-                </div>
-                <div class="card-pricing">
-                    <div class="price-block">
-                        <div class="price-line">
-                            <span class="price-label">Mobile</span>
-                            <span class="price-range">$180–$200</span>
-                        </div>
-                        <div class="price-line">
-                            <span class="price-label">Flushing</span>
-                            <span class="price-range">$150–$170</span>
-                        </div>
+                <div class="portfolio-item">
+                    <img src="polish_winter.JPG" alt="Winter Polish">
+                    <div class="portfolio-overlay">
+                        <span>Winter Resurrection</span>
+                        <small>Machine Polish</small>
                     </div>
-                    <a href="booking.html?service=winter-resurrection" class="book-btn">Book Winter Resurrection</a>
                 </div>
-            </div>
-            <div class="addon-strip">
-                <span>Add full interior with steaming, shampoo and leather conditioning</span>
-                <span class="addon-price">+ $100</span>
-            </div>
-        </div>
-
-        <!-- ======================== INTERIOR DETAIL ======================== -->
-        <div class="service-card">
-            <div class="card-header">
-                <h2>Interior Detail with Steaming</h2>
-                <p class="tagline">Deep interior clean as a standalone service. Steam kills 99.9% of bacteria. Great for families, pet owners, or anyone who wants a truly clean interior.</p>
-                <span class="duration">2 to 2.5 hours</span>
-            </div>
-            <div class="card-body">
-                <div class="card-includes">
-                    <h3>What you get</h3>
-                    <ul>
-                        <li>High-temperature steam cleaning</li>
-                        <li>Deep vacuum of all surfaces</li>
-                        <li>Carpet and floor mat shampooing</li>
-                        <li>Leather deep clean, steam and conditioning</li>
-                        <li>Stain and odor removal</li>
-                        <li>All panels, trim, vents and headliner</li>
-                        <li>Door jambs and interior glass</li>
-                    </ul>
-                </div>
-                <div class="card-pricing">
-                    <div class="price-block">
-                        <div class="price-line">
-                            <span class="price-label">All locations</span>
-                            <span class="price-range">$180–$200</span>
-                        </div>
+                <div class="portfolio-item">
+                    <img src="images/charger_lol.jpg" alt="Dodge Charger">
+                    <div class="portfolio-overlay">
+                        <span>Dodge Charger</span>
+                        <small>Full Detail</small>
                     </div>
-                    <a href="booking.html?service=interior-detail" class="book-btn">Book Interior Detail</a>
                 </div>
-            </div>
-        </div>
-
-        <!-- ======================== ENGINE BAY ======================== -->
-        <div class="service-card">
-            <div class="card-header">
-                <h2>Engine Bay Detail</h2>
-                <p class="tagline">Complete engine compartment cleaning and dressing. Show-ready engine bay. Can be booked standalone or added to any service above for $30.</p>
-                <span class="duration">30 to 45 minutes</span>
-            </div>
-            <div class="card-body">
-                <div class="card-includes">
-                    <h3>What you get</h3>
-                    <ul>
-                        <li>Engine degreasing and cleaning</li>
-                        <li>Component detailing</li>
-                        <li>Plastic and rubber dressing</li>
-                        <li>Professional finish</li>
-                    </ul>
-                </div>
-                <div class="card-pricing">
-                    <div class="price-block">
-                        <div class="price-line">
-                            <span class="price-label">Standalone</span>
-                            <span class="price-range">$50</span>
-                        </div>
-                        <div class="price-note">Add to any service above for $30</div>
+                <div class="portfolio-item">
+                    <img src="steam_jeep.JPG" alt="Jeep Interior">
+                    <div class="portfolio-overlay">
+                        <span>Jeep Wrangler</span>
+                        <small>Steam Detail</small>
                     </div>
-                    <a href="booking.html?service=engine-bay" class="book-btn">Book Engine Bay</a>
+                </div>
+                <div class="portfolio-item">
+                    <img src="m8.JPG" alt="BMW M8">
+                    <div class="portfolio-overlay">
+                        <span>BMW M8</span>
+                        <small>Stage 2 Detail</small>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="x5.JPG" alt="BMW X5">
+                    <div class="portfolio-overlay">
+                        <span>BMW X5</span>
+                        <small>Maintenance Wash</small>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="portfolio-cta">
+                <a href="gallery.html" class="secondary">View Full Gallery</a>
+                <a href="booking.html">Book Your Detail</a>
+            </div>
+        </section>
 
-        <div style="text-align: center; padding: 30px 0 10px; color: #aaa; font-size: 0.85rem;">
-            Not sure what you need? Call or text at <a href="tel:6464848689" style="color: #888; text-decoration: underline;">646-484-8689</a> and we will figure it out together.
-        </div>
-
+        <section class="social-section">
+            <h2>Follow Our Work</h2>
+            <div class="social-buttons">
+                <a href="https://www.instagram.com/driverspecgarage/" target="_blank" rel="noopener" class="social-btn instagram-btn">
+                    <i class="fab fa-instagram"></i> @driverspecgarage
+                </a>
+            </div>
+        </section>
     </main>
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2025 Driver Spec Garage &nbsp;|&nbsp; 646-484-8689 &nbsp;|&nbsp; <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
+            <p>&copy; 2025 Driver Spec Garage &nbsp;|&nbsp; <a href="tel:6464848689">646-484-8689</a> &nbsp;|&nbsp; <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
         </div>
     </footer>
 
     <script>
         function toggleNav() {
-            const nav = document.getElementById('mainNav');
-            nav.classList.toggle('open');
-            document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+            document.getElementById('mainNav').classList.toggle('open');
+            document.body.style.overflow = document.getElementById('mainNav').classList.contains('open') ? 'hidden' : '';
         }
-
         function toggleDropdown(e) {
             e.preventDefault();
             e.stopPropagation();
             document.getElementById('servicesDropdown').classList.toggle('show');
         }
-
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.non-clickable')) {
                 document.getElementById('servicesDropdown').classList.remove('show');
-            }
-        });
-
-        // Close mobile nav when clicking outside
-        document.addEventListener('click', function(e) {
-            const nav = document.getElementById('mainNav');
-            const toggle = document.querySelector('.nav-toggle');
-            if (!nav.contains(e.target) && !toggle.contains(e.target) && nav.classList.contains('open')) {
-                nav.classList.remove('open');
-                document.body.style.overflow = '';
             }
         });
     </script>
