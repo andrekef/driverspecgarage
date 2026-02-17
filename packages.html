@@ -8,27 +8,22 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Navigation toggle button (hamburger) - matches global styles.css */
+        /* Navigation toggle - EXACT copy from global styles.css */
         .nav-toggle {
             display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            z-index: 1001;
-            position: relative;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            padding: var(--space-sm, 0.5rem);
+            min-height: 44px;
+            min-width: 44px;
         }
         .nav-toggle span {
-            display: block;
-            width: 28px;
-            height: 3px;
-            background: white;
-            margin: 5px 0;
-            transition: all 0.3s ease;
+            width: 22px;
+            height: 2px;
+            background: #fff;
             border-radius: 2px;
-        }
-        .nav-toggle:hover span {
-            background: #e74c3c;
+            transition: all 0.25s ease;
         }
         
         /* Desktop nav styling */
@@ -259,67 +254,54 @@
             font-style: italic;
         }
 
-        /* Mobile - matches index.html breakpoint and behavior */
+        /* Mobile - EXACT match to global styles.css */
         @media (max-width: 768px) {
             /* Show hamburger */
             .nav-toggle {
-                display: block;
+                display: flex;
             }
             
-            /* Mobile navigation panel */
+            /* Mobile navigation - matches global styles */
             header nav {
                 position: fixed;
-                top: 0;
-                right: -100%;
-                width: 280px;
-                max-width: 85%;
-                height: 100vh;
-                background: rgba(0, 0, 0, 0.98);
-                backdrop-filter: blur(10px);
-                transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                z-index: 1000;
-                padding-top: 80px;
+                top: 60px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: #000;
+                padding: 1rem;
+                transform: translateX(100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.25s ease;
                 overflow-y: auto;
-                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
             }
             
             header nav.open {
-                right: 0;
+                transform: translateX(0);
+                opacity: 1;
+                visibility: visible;
             }
             
             header nav ul {
                 flex-direction: column;
-                align-items: stretch;
-                padding: 0;
+                gap: 0;
             }
             
-            header nav ul li {
-                width: 100%;
-                margin: 0;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-            
-            header nav ul li a,
-            header nav ul li span {
-                padding: 18px 24px;
-                display: block;
-                font-size: 1.05rem;
-                color: white;
-                cursor: pointer;
-                transition: background 0.2s;
-            }
-            
-            header nav ul li a:hover,
-            header nav ul li span:hover {
-                background: rgba(231, 76, 60, 0.15);
+            header nav ul li > a,
+            header nav ul li.non-clickable > span {
+                padding: 1rem;
+                font-size: 1rem;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                justify-content: flex-start;
             }
             
             header nav .dropdown {
                 position: static;
-                background: rgba(255, 255, 255, 0.05);
                 display: none;
-                width: 100%;
+                background: rgba(255,255,255,0.05);
                 margin: 0;
+                border-radius: 0;
                 box-shadow: none;
             }
             
@@ -327,13 +309,8 @@
                 display: block;
             }
             
-            header nav .dropdown li {
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            }
-            
             header nav .dropdown a {
-                padding-left: 40px;
-                font-size: 0.95rem;
+                padding-left: 2rem;
             }
 
             .page-content { padding: 12px; }
