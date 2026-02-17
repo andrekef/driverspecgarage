@@ -8,19 +8,21 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Hamburger menu styles */
-        .hamburger {
+        /* Navigation toggle button (hamburger) */
+        .nav-toggle {
             display: none;
-            flex-direction: column;
+            background: none;
+            border: none;
             cursor: pointer;
             padding: 10px;
             z-index: 1001;
         }
-        .hamburger span {
+        .nav-toggle span {
+            display: block;
             width: 25px;
             height: 3px;
             background: white;
-            margin: 3px 0;
+            margin: 4px 0;
             transition: 0.3s;
             border-radius: 3px;
         }
@@ -243,15 +245,16 @@
         /* Mobile */
         @media (max-width: 700px) {
             /* Show hamburger, hide desktop nav */
-            .hamburger {
-                display: flex;
+            .nav-toggle {
+                display: block;
             }
             
             header nav {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 70%;
+                width: 75%;
+                max-width: 300px;
                 height: 100vh;
                 background: rgba(0, 0, 0, 0.98);
                 transition: right 0.3s ease;
@@ -259,7 +262,7 @@
                 padding-top: 80px;
             }
             
-            header nav.active {
+            header nav.open {
                 right: 0;
             }
             
@@ -275,10 +278,13 @@
                 border-bottom: 1px solid rgba(255,255,255,0.1);
             }
             
-            header nav ul li a {
+            header nav ul li a,
+            header nav ul li span {
                 padding: 15px 10px;
                 display: block;
                 font-size: 1.1rem;
+                color: white;
+                cursor: pointer;
             }
             
             header nav .dropdown {
@@ -355,15 +361,13 @@
         <div class="logo">
             <a href="index.html"><img src="driverspecgarage_new_logo.JPG" alt="Driver Spec Garage Logo"></a>
         </div>
-        <div class="hamburger" onclick="toggleMobileMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+        <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
         <nav id="mainNav">
             <ul>
                 <li class="non-clickable">
-                    <a href="#" onclick="toggleDropdown(event)">Services</a>
+                    <span onclick="toggleDropdown(event)">Services</span>
                     <ul class="dropdown" id="servicesDropdown">
                         <li><a href="paint-correction.html">Paint Correction</a></li>
                         <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
@@ -373,6 +377,7 @@
                 </li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="shop.html">Shop</a></li>
+                <li><a href="booking.html" class="nav-cta">Book Now</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -611,41 +616,31 @@
     </footer>
 
     <script>
-        function toggleMobileMenu() {
+        function toggleNav() {
             const nav = document.getElementById('mainNav');
-            nav.classList.toggle('active');
+            nav.classList.toggle('open');
+            document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
         }
 
-        function toggleDropdown(event) {
-            event.preventDefault();
-            event.stopPropagation();
-            const dropdown = document.getElementById('servicesDropdown');
-            
-            // On mobile, toggle show class
-            if (window.innerWidth <= 700) {
-                dropdown.classList.toggle('show');
-            } else {
-                // Desktop behavior
-                dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
-            }
+        function toggleDropdown(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.getElementById('servicesDropdown').classList.toggle('show');
         }
 
-        document.addEventListener('click', function(event) {
-            const isClickInside = document.querySelector('.non-clickable') && document.querySelector('.non-clickable').contains(event.target);
-            if (!isClickInside && window.innerWidth > 700) {
-                const dropdown = document.getElementById('servicesDropdown');
-                if (dropdown) {
-                    dropdown.style.display = 'none';
-                }
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.non-clickable')) {
+                document.getElementById('servicesDropdown').classList.remove('show');
             }
         });
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', function(e) {
             const nav = document.getElementById('mainNav');
-            const hamburger = document.querySelector('.hamburger');
-            if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
-                nav.classList.remove('active');
+            const toggle = document.querySelector('.nav-toggle');
+            if (!nav.contains(e.target) && !toggle.contains(e.target) && nav.classList.contains('open')) {
+                nav.classList.remove('open');
+                document.body.style.overflow = '';
             }
         });
     </script>
