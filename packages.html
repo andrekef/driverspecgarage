@@ -8,37 +8,6 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Navigation toggle - EXACT copy from global styles.css */
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            padding: var(--space-sm, 0.5rem);
-            min-height: 44px;
-            min-width: 44px;
-        }
-        .nav-toggle span {
-            width: 22px;
-            height: 2px;
-            background: #fff;
-            border-radius: 2px;
-            transition: all 0.25s ease;
-        }
-        
-        /* Desktop nav styling */
-        header {
-            position: relative;
-            z-index: 100;
-        }
-        header nav ul {
-            display: flex;
-            align-items: center;
-        }
-        header nav ul li {
-            position: relative;
-        }
-
         .page-content {
             max-width: 900px;
             margin: 0 auto;
@@ -75,137 +44,91 @@
         .packages-hero .location-note span {
             font-weight: 600;
         }
+        /* Mobile minimum callout */
+        .mobile-min-note {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #fff8f0;
+            border: 1px solid #f5c48a;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            color: #b45309;
+            margin-top: 10px;
+            font-weight: 500;
+        }
 
         /* Service Cards */
         .service-card {
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-            margin: 28px 0;
+            border-radius: 14px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            margin: 32px 0;
             overflow: hidden;
-            border: 1px solid #eee;
+            border: 1px solid #e8e8e8;
+            transition: box-shadow 0.25s;
         }
+        .service-card:hover {
+            box-shadow: 0 8px 36px rgba(0,0,0,0.11);
+        }
+        /* Colored left accent per tier */
+        .service-card.tier-base   { border-left: 4px solid #b0b8c1; }
+        .service-card.tier-mid    { border-left: 4px solid #e74c3c; }
+        .service-card.tier-top    { border-left: 4px solid #2c3e50; }
+        .service-card.tier-season { border-left: 4px solid #f39c12; }
+        .service-card.tier-addon  { border-left: 4px solid #7f8c8d; }
+
         .card-header {
-            padding: 22px 28px 18px;
+            padding: 24px 28px 18px;
             border-bottom: 1px solid #f0f0f0;
         }
         .card-header h2 {
-            font-size: 1.4rem;
-            color: #222;
+            font-size: 1.45rem;
+            color: #1a1a1a;
             margin-bottom: 6px;
+            letter-spacing: -0.2px;
         }
         .card-header .tagline {
             color: #888;
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 0.93rem;
+            line-height: 1.6;
+            max-width: 520px;
         }
-        .card-header .duration {
-            display: inline-block;
-            margin-top: 8px;
-            background: #f8f8f8;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            color: #777;
-        }
-
-        .card-body {
-            display: flex;
-            gap: 0;
-        }
-        .card-includes {
-            flex: 1;
-            padding: 20px 28px;
-            border-right: 1px solid #f0f0f0;
-        }
-        .card-includes h3 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #aaa;
-            margin-bottom: 12px;
-        }
-        .card-includes ul {
-            list-style: none;
-            padding: 0;
-        }
-        .card-includes li {
-            padding: 6px 0;
-            color: #444;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-        .card-includes li::before {
-            content: "✓";
-            color: #27ae60;
-            font-weight: 700;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        .card-pricing {
-            flex: 0 0 220px;
-            padding: 20px 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        /* Compact price block */
-        .price-block {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .price-line {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
-        .price-label {
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #aaa;
-            font-weight: 600;
-        }
-        .price-range {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #e74c3c;
-        }
-        .price-note {
-            font-size: 0.72rem;
-            color: #bbb;
-        }
-
-        .book-btn {
+        .card-header .meta-row {
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 12px;
-            background: #e74c3c;
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            border-radius: 8px;
-            transition: background 0.2s;
-            letter-spacing: 0.3px;
-            min-height: 44px;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap;
         }
-        .book-btn:hover {
-            background: #c0392b;
-        }
+        .card-header .duration {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #f4f4f4;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            color: #666
 
-        /* Seasonal badge */
+        /* Seasonal / location badge */
         .seasonal-tag {
             display: inline-block;
             background: #2c3e50;
+            color: white;
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+        .location-tag {
+            display: inline-block;
+            background: #27ae60;
             color: white;
             font-size: 0.7rem;
             padding: 3px 10px;
@@ -248,80 +171,32 @@
             font-weight: 600;
         }
 
+        /* Returning customer note */
         .returning-note {
-            font-size: 0.72rem;
-            color: #bbb;
+            font-size: 0.75rem;
+            color: #aaa;
             font-style: italic;
         }
 
-        /* Mobile - EXACT match to global styles.css */
-        @media (max-width: 768px) {
-            /* Show hamburger */
-            .nav-toggle {
-                display: flex;
+        /* Mobile */
+        @media (max-width: 700px) {
+            .page-content {
+                padding: 12px;
             }
-            
-            /* Mobile navigation - matches global styles */
-            header nav {
-                position: fixed;
-                top: 60px;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: #000;
-                padding: 1rem;
-                transform: translateX(100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.25s ease;
-                overflow-y: auto;
+            .packages-hero {
+                padding: 30px 12px 15px;
             }
-            
-            header nav.open {
-                transform: translateX(0);
-                opacity: 1;
-                visibility: visible;
+            .packages-hero h1 {
+                font-size: 1.5rem;
             }
-            
-            header nav ul {
-                flex-direction: column;
-                gap: 0;
-            }
-            
-            header nav ul li > a,
-            header nav ul li.non-clickable > span {
-                padding: 1rem;
-                font-size: 1rem;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-                justify-content: flex-start;
-            }
-            
-            header nav .dropdown {
-                position: static;
-                display: none;
-                background: rgba(255,255,255,0.05);
-                margin: 0;
-                border-radius: 0;
-                box-shadow: none;
-            }
-            
-            header nav .dropdown.show {
-                display: block;
-            }
-            
-            header nav .dropdown a {
-                padding-left: 2rem;
-            }
-
-            .page-content { padding: 12px; }
-            .packages-hero { padding: 30px 12px 15px; }
-            .packages-hero h1 { font-size: 1.5rem; }
             .packages-hero .location-note {
                 font-size: 0.8rem;
                 padding: 8px 14px;
                 line-height: 1.5;
             }
-            .card-body { flex-direction: column; }
+            .card-body {
+                flex-direction: column;
+            }
             .card-includes {
                 border-right: none;
                 border-bottom: 1px solid #f0f0f0;
@@ -331,17 +206,34 @@
                 flex: 1;
                 padding: 16px 20px;
             }
-            .card-header { padding: 18px 20px 14px; }
-            .card-header h2 { font-size: 1.25rem; }
+            .card-header {
+                padding: 18px 20px 14px;
+            }
+            .card-header h2 {
+                font-size: 1.25rem;
+            }
             .addon-strip {
                 padding: 12px 20px;
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 4px;
             }
-            .service-card { margin: 20px 0; border-radius: 10px; }
-            .section-divider { margin: 35px 0 8px; }
-            .seasonal-tag {
+            .book-btn {
+                padding: 14px;
+                font-size: 1rem;
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .service-card {
+                margin: 20px 0;
+                border-radius: 10px;
+            }
+            .section-divider {
+                margin: 35px 0 8px;
+            }
+            .seasonal-tag, .location-tag {
                 display: block;
                 margin-left: 0;
                 margin-top: 6px;
@@ -350,7 +242,12 @@
         }
 
         @media (min-width: 701px) and (max-width: 850px) {
-            .card-pricing { flex: 0 0 190px; }
+            .card-pricing {
+                flex: 0 0 210px;
+            }
+            .price-amount {
+                font-size: 1rem;
+            }
         }
 
         html, body { overflow-x: hidden; }
@@ -358,6 +255,11 @@
 
         @media (hover: none) and (pointer: coarse) {
             .book-btn { min-height: 48px; }
+            nav a, .addon-strip a {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -366,13 +268,10 @@
         <div class="logo">
             <a href="index.html"><img src="driverspecgarage_new_logo.JPG" alt="Driver Spec Garage Logo"></a>
         </div>
-        <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">
-            <span></span><span></span><span></span>
-        </button>
-        <nav id="mainNav">
+        <nav>
             <ul>
                 <li class="non-clickable">
-                    <span onclick="toggleDropdown(event)">Services</span>
+                    <a href="#" onclick="toggleDropdown(event)">Services</a>
                     <ul class="dropdown" id="servicesDropdown">
                         <li><a href="paint-correction.html">Paint Correction</a></li>
                         <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
@@ -382,7 +281,7 @@
                 </li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="shop.html">Shop</a></li>
-                <li><a href="booking.html" class="nav-cta">Book Now</a></li>
+                <li><a href="booking.html">Book Now</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -396,13 +295,17 @@
             <div class="location-note">
                 <span>Mobile</span> anywhere in NYC&nbsp;&nbsp;|&nbsp;&nbsp;<span>Drop-off</span> at our Flushing location (save $20–30)
             </div>
+            <br>
+            <div class="mobile-min-note">
+                🚗 Mobile minimum: Maintenance Detail — basic washes at Flushing only
+            </div>
         </div>
 
         <!-- ======================== WASH & WAX ======================== -->
         <div class="service-card">
             <div class="card-header">
-                <h2>Wash & Wax</h2>
-                <p class="tagline">Quick exterior refresh with interior vacuum and wipe down included. Hand wash, wax protection, wheels dressed, glass cleaned.</p>
+                <h2>Wash & Wax <span class="location-tag">Flushing Only</span></h2>
+                <p class="tagline">Quick exterior refresh. Hand wash, wax protection, wheels dressed, glass cleaned. In and out.</p>
                 <span class="duration">About 45 minutes</span>
             </div>
             <div class="card-body">
@@ -414,23 +317,21 @@
                         <li>Protector wax applied by hand</li>
                         <li>Door jambs, gas cap and exhaust tips</li>
                         <li>Windows inside and out</li>
-                        <li>Interior vacuum and wipe down</li>
                     </ul>
                 </div>
                 <div class="card-pricing">
-                    <div class="price-block">
-                        <div class="price-line">
-                            <span class="price-label">Mobile</span>
-                            <span class="price-range">$80–$100</span>
-                        </div>
-                        <div class="price-line">
-                            <span class="price-label">Flushing</span>
-                            <span class="price-range">$50–$60</span>
-                        </div>
-                        <div class="returning-note">Returning customers save $10 at Flushing</div>
+                    <div class="price-location">
+                        <div class="price-location-label">Flushing drop-off only</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$60</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$70</span></div>
+                        <div class="returning-note">Returning customers save $10</div>
                     </div>
-                    <a href="booking.html?service=wash-wax" class="book-btn">Book Wash & Wax</a>
+                    <a href="booking.html?service=wash-wax&location=flushing" class="book-btn">Book Wash & Wax</a>
                 </div>
+            </div>
+            <div class="addon-strip">
+                <span>Add interior vacuum & wipe down</span>
+                <span class="addon-price">+ $20</span>
             </div>
         </div>
 
@@ -438,7 +339,7 @@
         <div class="service-card">
             <div class="card-header">
                 <h2>Maintenance Detail</h2>
-                <p class="tagline">The full refresh. Everything in Wash & Wax plus ceramic sealant protection that lasts about a month, engine bay, and deep interior clean.</p>
+                <p class="tagline">The full refresh. Everything in Wash & Wax plus interior cleaning, engine bay, and ceramic sealant protection that lasts about a month.</p>
                 <span class="duration">1 to 1.5 hours</span>
             </div>
             <div class="card-body">
@@ -453,15 +354,15 @@
                     </ul>
                 </div>
                 <div class="card-pricing">
-                    <div class="price-block">
-                        <div class="price-line">
-                            <span class="price-label">Mobile</span>
-                            <span class="price-range">$140–$160</span>
-                        </div>
-                        <div class="price-line">
-                            <span class="price-label">Flushing</span>
-                            <span class="price-range">$110–$130</span>
-                        </div>
+                    <div class="price-location">
+                        <div class="price-location-label">Mobile (we come to you)</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$120</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$140</span></div>
+                    </div>
+                    <div class="price-location">
+                        <div class="price-location-label">Flushing drop-off</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$110</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$130</span></div>
                     </div>
                     <a href="booking.html?service=maintenance" class="book-btn">Book Maintenance Detail</a>
                 </div>
@@ -472,7 +373,7 @@
         <div class="service-card">
             <div class="card-header">
                 <h2>Full Detail</h2>
-                <p class="tagline">The deep clean. Full decontamination, graphene ceramic protection that lasts 3–4 months, shampooing, leather conditioning, and steam sanitization. This is the reset button.</p>
+                <p class="tagline">The deep clean. Full decontamination, graphene ceramic protection that lasts 3 to 4 months, complete interior with shampooing, leather conditioning, and steam sanitization. This is the reset button for your car.</p>
                 <span class="duration">2 to 5 hours depending on condition</span>
             </div>
             <div class="card-body">
@@ -489,15 +390,15 @@
                     </ul>
                 </div>
                 <div class="card-pricing">
-                    <div class="price-block">
-                        <div class="price-line">
-                            <span class="price-label">Mobile</span>
-                            <span class="price-range">$250–$280</span>
-                        </div>
-                        <div class="price-line">
-                            <span class="price-label">Flushing</span>
-                            <span class="price-range">$220–$250</span>
-                        </div>
+                    <div class="price-location">
+                        <div class="price-location-label">Mobile (we come to you)</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$250</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$280</span></div>
+                    </div>
+                    <div class="price-location">
+                        <div class="price-location-label">Flushing drop-off</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$220</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$250</span></div>
                     </div>
                     <a href="booking.html?service=full-detail" class="book-btn">Book Full Detail</a>
                 </div>
@@ -511,7 +412,7 @@
         <div class="service-card">
             <div class="card-header">
                 <h2>Winter Resurrection <span class="seasonal-tag">Limited Time</span></h2>
-                <p class="tagline">Your paint is not scratched. It is contaminated. Road salt, mineral deposits, and hard water buildup make paint look dull and spotty. This service chemically strips all of that and seals the paint with machine-applied wax.</p>
+                <p class="tagline">Your paint is not scratched. It is contaminated. Road salt, mineral deposits, and hard water buildup make paint look dull and spotty. This service chemically strips all of that and seals the paint with machine-applied wax. No correction needed.</p>
                 <span class="duration">3 to 3.5 hours</span>
             </div>
             <div class="card-body">
@@ -527,15 +428,15 @@
                     </ul>
                 </div>
                 <div class="card-pricing">
-                    <div class="price-block">
-                        <div class="price-line">
-                            <span class="price-label">Mobile</span>
-                            <span class="price-range">$180–$200</span>
-                        </div>
-                        <div class="price-line">
-                            <span class="price-label">Flushing</span>
-                            <span class="price-range">$150–$170</span>
-                        </div>
+                    <div class="price-location">
+                        <div class="price-location-label">Mobile (we come to you)</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$180</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$200</span></div>
+                    </div>
+                    <div class="price-location">
+                        <div class="price-location-label">Flushing drop-off</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$150</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$170</span></div>
                     </div>
                     <a href="booking.html?service=winter-resurrection" class="book-btn">Book Winter Resurrection</a>
                 </div>
@@ -550,7 +451,7 @@
         <div class="service-card">
             <div class="card-header">
                 <h2>Interior Detail with Steaming</h2>
-                <p class="tagline">Deep interior clean as a standalone service. Steam kills 99.9% of bacteria. Great for families, pet owners, or anyone who wants a truly clean interior.</p>
+                <p class="tagline">Deep interior clean as a standalone service. Steam kills 99.9% of bacteria. Great for families, pet owners, or anyone who wants a truly clean interior without needing the exterior done.</p>
                 <span class="duration">2 to 2.5 hours</span>
             </div>
             <div class="card-body">
@@ -567,11 +468,10 @@
                     </ul>
                 </div>
                 <div class="card-pricing">
-                    <div class="price-block">
-                        <div class="price-line">
-                            <span class="price-label">All locations</span>
-                            <span class="price-range">$180–$200</span>
-                        </div>
+                    <div class="price-location">
+                        <div class="price-location-label">All locations</div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$180</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$200</span></div>
                     </div>
                     <a href="booking.html?service=interior-detail" class="book-btn">Book Interior Detail</a>
                 </div>
@@ -596,12 +496,10 @@
                     </ul>
                 </div>
                 <div class="card-pricing">
-                    <div class="price-block">
-                        <div class="price-line">
-                            <span class="price-label">Standalone</span>
-                            <span class="price-range">$50</span>
-                        </div>
-                        <div class="price-note">Add to any service above for $30</div>
+                    <div class="price-location">
+                        <div class="price-location-label">Standalone</div>
+                        <div class="price-row"><span class="price-vehicle">All vehicles</span><span class="price-amount">$50</span></div>
+                        <div class="price-addon">Add to any service above for $30</div>
                     </div>
                     <a href="booking.html?service=engine-bay" class="book-btn">Book Engine Bay</a>
                 </div>
@@ -609,59 +507,29 @@
         </div>
 
         <div style="text-align: center; padding: 30px 0 10px; color: #aaa; font-size: 0.85rem;">
-            Not sure what you need? Call or text at <a href="tel:6464848689" style="color: #888; text-decoration: underline;">646-484-8689</a> and we will figure it out together.
+            Not sure what you need? Call or text us at <a href="tel:6464848689" style="color: #888; text-decoration: underline;">646-484-8689</a> and we will figure it out together.
         </div>
 
     </main>
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2025 Driver Spec Garage &nbsp;|&nbsp; 646-484-8689 &nbsp;|&nbsp; <a href="/cdn-cgi/l/email-protection#6a0e18031c0f18191a0f090d0b180b0d0f2a0d070b030644090507"><span class="__cf_email__" data-cfemail="6501170c13001716150006020417040200250208040c094b060a08">[email&#160;protected]</span></a></p>
+            <p>&copy; 2025 Driver Spec Garage &nbsp;|&nbsp; 646-484-8689 &nbsp;|&nbsp; <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        function toggleNav() {
-            const nav = document.getElementById('mainNav');
-            nav.classList.toggle('open');
-            document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+    <script>
+        function toggleDropdown(event) {
+            event.preventDefault();
+            var dropdown = document.getElementById('servicesDropdown');
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
         }
-
-        function toggleDropdown(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            document.getElementById('servicesDropdown').classList.toggle('show');
-        }
-
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.non-clickable')) {
-                document.getElementById('servicesDropdown').classList.remove('show');
+        document.addEventListener('click', function(event) {
+            var isClickInside = document.querySelector('.non-clickable').contains(event.target);
+            if (!isClickInside) {
+                document.getElementById('servicesDropdown').style.display = 'none';
             }
-        });
-
-        // Close mobile nav when clicking outside
-        document.addEventListener('click', function(e) {
-            const nav = document.getElementById('mainNav');
-            const toggle = document.querySelector('.nav-toggle');
-               if (nav && toggle && !nav.contains(e.target) && !toggle.contains(e.target)) {
-                if (nav.classList.contains('open')) {
-                    nav.classList.remove('open');
-                    document.body.style.overflow = '';
-                }
-            }
-        });
-
-        // Close nav when clicking a link (mobile)
-        document.querySelectorAll('#mainNav a').forEach(link => {
-            link.addEventListener('click', function() {
-                const nav = document.getElementById('mainNav');
-                if (window.innerWidth <= 768 && nav.classList.contains('open')) {
-                    nav.classList.remove('open');
-                    document.body.style.overflow = '';
-                }
-            });
         });
     </script>
 </body>
 </html>
-
