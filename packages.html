@@ -110,7 +110,103 @@
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.78rem;
-            color: #666
+            color: #666;
+        }
+
+        .card-body {
+            display: flex;
+            gap: 0;
+        }
+        .card-includes {
+            flex: 1;
+            padding: 20px 28px;
+            border-right: 1px solid #f0f0f0;
+        }
+        .card-includes h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #aaa;
+            margin-bottom: 12px;
+        }
+        .card-includes ul {
+            list-style: none;
+            padding: 0;
+        }
+        .card-includes li {
+            padding: 6px 0;
+            color: #444;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .card-includes li::before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .card-pricing {
+            flex: 0 0 240px;
+            padding: 20px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .price-location {
+            margin-bottom: 16px;
+        }
+        .price-location:last-of-type {
+            margin-bottom: 20px;
+        }
+        .price-location-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #999;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 3px 0;
+        }
+        .price-vehicle {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .price-amount {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+        .price-addon {
+            font-size: 0.78rem;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        .book-btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background: #e74c3c;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            transition: background 0.2s;
+            letter-spacing: 0.3px;
+        }
+        .book-btn:hover {
+            background: #c0392b;
+        }
 
         /* Seasonal / location badge */
         .seasonal-tag {
@@ -339,7 +435,7 @@
         <div class="service-card">
             <div class="card-header">
                 <h2>Maintenance Detail</h2>
-                <p class="tagline">The full refresh. Everything in Wash & Wax plus interior cleaning, engine bay, and ceramic sealant protection that lasts about a month.</p>
+                <p class="tagline">The full refresh. Everything in Wash & Wax plus interior cleaning, engine bay, undercarriage wash, and ceramic sealant protection that lasts about a month.</p>
                 <span class="duration">1 to 1.5 hours</span>
             </div>
             <div class="card-body">
@@ -348,6 +444,7 @@
                     <ul>
                         <li>Everything in Wash & Wax</li>
                         <li>Ceramic sealant protection (lasts ~1 month)</li>
+                        <li>Undercarriage wash</li>
                         <li>Engine bay detailed</li>
                         <li>Full interior vacuum and wipe down</li>
                         <li>Headliner, console, vents and crevices cleaned</li>
@@ -373,7 +470,7 @@
         <div class="service-card">
             <div class="card-header">
                 <h2>Full Detail</h2>
-                <p class="tagline">The deep clean. Full decontamination, graphene ceramic protection that lasts 3 to 4 months, complete interior with shampooing, leather conditioning, and steam sanitization. This is the reset button for your car.</p>
+                <p class="tagline">The deep clean. Full decontamination, undercarriage wash, graphene ceramic protection that lasts 3 to 4 months, complete interior with shampooing, leather conditioning, and steam sanitization. This is the reset button for your car.</p>
                 <span class="duration">2 to 5 hours depending on condition</span>
             </div>
             <div class="card-body">
@@ -382,6 +479,7 @@
                     <ul>
                         <li>Everything in Maintenance Detail</li>
                         <li>Iron, tar and clay bar decontamination</li>
+                        <li>Undercarriage wash</li>
                         <li>Graphene ceramic sealant (lasts 3–4 months)</li>
                         <li>Leather deep clean and conditioning</li>
                         <li>Carpet and floor mat shampooing</li>
