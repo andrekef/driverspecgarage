@@ -44,7 +44,6 @@
         .packages-hero .location-note span {
             font-weight: 600;
         }
-        /* Mobile minimum callout */
         .mobile-min-note {
             display: inline-flex;
             align-items: center;
@@ -72,7 +71,6 @@
         .service-card:hover {
             box-shadow: 0 8px 36px rgba(0,0,0,0.11);
         }
-        /* Colored left accent per tier */
         .service-card.tier-base   { border-left: 4px solid #b0b8c1; }
         .service-card.tier-mid    { border-left: 4px solid #e74c3c; }
         .service-card.tier-top    { border-left: 4px solid #2c3e50; }
@@ -95,13 +93,6 @@
             line-height: 1.6;
             max-width: 520px;
         }
-        .card-header .meta-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-            flex-wrap: wrap;
-        }
         .card-header .duration {
             display: inline-flex;
             align-items: center;
@@ -111,6 +102,7 @@
             border-radius: 20px;
             font-size: 0.78rem;
             color: #666;
+            margin-top: 10px;
         }
 
         .card-body {
@@ -208,7 +200,6 @@
             background: #c0392b;
         }
 
-        /* Seasonal / location badge */
         .seasonal-tag {
             display: inline-block;
             background: #2c3e50;
@@ -236,7 +227,6 @@
             margin-left: 8px;
         }
 
-        /* Add-on strip */
         .addon-strip {
             background: #fafafa;
             border-top: 1px solid #f0f0f0;
@@ -256,7 +246,6 @@
             color: #e74c3c;
         }
 
-        /* Divider */
         .section-divider {
             text-align: center;
             margin: 45px 0 10px;
@@ -267,83 +256,32 @@
             font-weight: 600;
         }
 
-        /* Returning customer note */
         .returning-note {
             font-size: 0.75rem;
             color: #aaa;
             font-style: italic;
         }
 
-        /* Mobile */
         @media (max-width: 700px) {
-            .page-content {
-                padding: 12px;
-            }
-            .packages-hero {
-                padding: 30px 12px 15px;
-            }
-            .packages-hero h1 {
-                font-size: 1.5rem;
-            }
-            .packages-hero .location-note {
-                font-size: 0.8rem;
-                padding: 8px 14px;
-                line-height: 1.5;
-            }
-            .card-body {
-                flex-direction: column;
-            }
-            .card-includes {
-                border-right: none;
-                border-bottom: 1px solid #f0f0f0;
-                padding: 16px 20px;
-            }
-            .card-pricing {
-                flex: 1;
-                padding: 16px 20px;
-            }
-            .card-header {
-                padding: 18px 20px 14px;
-            }
-            .card-header h2 {
-                font-size: 1.25rem;
-            }
-            .addon-strip {
-                padding: 12px 20px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 4px;
-            }
-            .book-btn {
-                padding: 14px;
-                font-size: 1rem;
-                min-height: 48px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .service-card {
-                margin: 20px 0;
-                border-radius: 10px;
-            }
-            .section-divider {
-                margin: 35px 0 8px;
-            }
-            .seasonal-tag, .location-tag {
-                display: block;
-                margin-left: 0;
-                margin-top: 6px;
-                width: fit-content;
-            }
+            .page-content { padding: 12px; }
+            .packages-hero { padding: 30px 12px 15px; }
+            .packages-hero h1 { font-size: 1.5rem; }
+            .packages-hero .location-note { font-size: 0.8rem; padding: 8px 14px; line-height: 1.5; }
+            .card-body { flex-direction: column; }
+            .card-includes { border-right: none; border-bottom: 1px solid #f0f0f0; padding: 16px 20px; }
+            .card-pricing { flex: 1; padding: 16px 20px; }
+            .card-header { padding: 18px 20px 14px; }
+            .card-header h2 { font-size: 1.25rem; }
+            .addon-strip { padding: 12px 20px; flex-direction: column; align-items: flex-start; gap: 4px; }
+            .book-btn { padding: 14px; font-size: 1rem; min-height: 48px; display: flex; align-items: center; justify-content: center; }
+            .service-card { margin: 20px 0; border-radius: 10px; }
+            .section-divider { margin: 35px 0 8px; }
+            .seasonal-tag, .location-tag { display: block; margin-left: 0; margin-top: 6px; width: fit-content; }
         }
 
         @media (min-width: 701px) and (max-width: 850px) {
-            .card-pricing {
-                flex: 0 0 210px;
-            }
-            .price-amount {
-                font-size: 1rem;
-            }
+            .card-pricing { flex: 0 0 210px; }
+            .price-amount { font-size: 1rem; }
         }
 
         html, body { overflow-x: hidden; }
@@ -351,11 +289,7 @@
 
         @media (hover: none) and (pointer: coarse) {
             .book-btn { min-height: 48px; }
-            nav a, .addon-strip a {
-                min-height: 44px;
-                display: flex;
-                align-items: center;
-            }
+            nav a, .addon-strip a { min-height: 44px; display: flex; align-items: center; }
         }
     </style>
 </head>
@@ -387,21 +321,21 @@
 
         <div class="packages-hero">
             <h1>Detailing Packages</h1>
-            <p>Pick a service. Book a time. We handle the rest.</p>
+            <p>Premium detailing for drivers who expect more.</p>
             <div class="location-note">
-                <span>Mobile</span> anywhere in NYC&nbsp;&nbsp;|&nbsp;&nbsp;<span>Drop-off</span> at our Flushing location (save $20–30)
+                <span>Mobile</span> anywhere in NYC&nbsp;&nbsp;|&nbsp;&nbsp;<span>Drop-off</span> in Flushing
             </div>
             <br>
             <div class="mobile-min-note">
-                🚗 Mobile minimum: Maintenance Detail — basic washes at Flushing only
+                🚗 Mobile minimum: Maintenance Detail
             </div>
         </div>
 
-        <!-- ======================== WASH & WAX ======================== -->
-        <div class="service-card">
+        <!-- WASH & WAX -->
+        <div class="service-card tier-base">
             <div class="card-header">
                 <h2>Wash & Wax <span class="location-tag">Flushing Only</span></h2>
-                <p class="tagline">Quick exterior refresh. Hand wash, wax protection, wheels dressed, glass cleaned. In and out.</p>
+                <p class="tagline">Quick exterior refresh. Hand wash, wax protection, wheels dressed, glass cleaned.</p>
                 <span class="duration">About 45 minutes</span>
             </div>
             <div class="card-body">
@@ -431,11 +365,11 @@
             </div>
         </div>
 
-        <!-- ======================== MAINTENANCE DETAIL ======================== -->
-        <div class="service-card">
+        <!-- MAINTENANCE DETAIL -->
+        <div class="service-card tier-mid">
             <div class="card-header">
                 <h2>Maintenance Detail</h2>
-                <p class="tagline">The full refresh. Everything in Wash & Wax plus interior cleaning, engine bay, undercarriage wash, and ceramic sealant protection that lasts about a month.</p>
+                <p class="tagline">Complete refresh for well-maintained vehicles. Ceramic sealant, engine bay, undercarriage wash, and full interior. The standard for clients who keep their cars right.</p>
                 <span class="duration">1.5 to 2 hours</span>
             </div>
             <div class="card-body">
@@ -443,19 +377,19 @@
                     <h3>What you get</h3>
                     <ul>
                         <li>Everything in Wash & Wax</li>
-                        <li>Ceramic sealant protection (lasts ~1 month)</li>
+                        <li>Ceramic sealant protection (~1 month)</li>
                         <li>Undercarriage wash</li>
                         <li>Exhaust tips polished</li>
                         <li>Engine bay detailed</li>
                         <li>Full interior vacuum and wipe down</li>
-                        <li>Headliner, console, vents and crevices cleaned</li>
+                        <li>Headliner, console, vents and crevices</li>
                     </ul>
                 </div>
                 <div class="card-pricing">
                     <div class="price-location">
                         <div class="price-location-label">Mobile (we come to you)</div>
-                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$120</span></div>
-                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$140</span></div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$140</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$160</span></div>
                     </div>
                     <div class="price-location">
                         <div class="price-location-label">Flushing drop-off</div>
@@ -467,12 +401,12 @@
             </div>
         </div>
 
-        <!-- ======================== FULL DETAIL ======================== -->
-        <div class="service-card">
+        <!-- FULL DETAIL -->
+        <div class="service-card tier-top">
             <div class="card-header">
                 <h2>Full Detail</h2>
-                <p class="tagline">The deep clean. Full chemical and mechanical decontamination, undercarriage wash, genuine graphene ceramic protection that lasts 3 to 4 months, complete interior with shampooing, leather conditioning, and steam sanitization. This is the reset button for your car.</p>
-                <span class="duration">3 to 5 hours depending on condition</span>
+                <p class="tagline">The complete reset. Chemical and mechanical decontamination, undercarriage wash, graphene ceramic protection (3–4 months), deep interior with shampooing, leather conditioning, and steam sanitization.</p>
+                <span class="duration">3 to 4 hours</span>
             </div>
             <div class="card-body">
                 <div class="card-includes">
@@ -481,76 +415,75 @@
                         <li>Everything in Maintenance Detail</li>
                         <li>Iron, tar and clay bar decontamination</li>
                         <li>Undercarriage wash</li>
-                        <li>Graphene ceramic sealant (lasts 3–4 months)</li>
+                        <li>Graphene ceramic sealant (3–4 months)</li>
                         <li>Leather deep clean and conditioning</li>
                         <li>Carpet and floor mat shampooing</li>
-                        <li>Steam sanitization of all surfaces</li>
+                        <li>Steam sanitization</li>
                         <li>Dashboard and trim protection</li>
                     </ul>
                 </div>
                 <div class="card-pricing">
                     <div class="price-location">
                         <div class="price-location-label">Mobile (we come to you)</div>
-                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$250</span></div>
-                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$280</span></div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$300</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$350</span></div>
                     </div>
                     <div class="price-location">
                         <div class="price-location-label">Flushing drop-off</div>
-                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$220</span></div>
-                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$250</span></div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$250</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$300</span></div>
                     </div>
                     <a href="booking.html?service=full-detail" class="book-btn">Book Full Detail</a>
                 </div>
             </div>
         </div>
 
-        <!-- ======================== SEASONAL ======================== -->
         <div class="section-divider">Seasonal &amp; Standalone</div>
 
-        <!-- ======================== WINTER RESURRECTION ======================== -->
-        <div class="service-card">
+        <!-- WINTER RESURRECTION -->
+        <div class="service-card tier-season">
             <div class="card-header">
                 <h2>Winter Resurrection <span class="seasonal-tag">Limited Time</span></h2>
-                <p class="tagline">Your paint is not scratched. It is contaminated. Road salt, mineral deposits, and hard water buildup make paint look dull and spotty. This service chemically strips all of that and seals the paint with machine-applied wax. No correction needed.</p>
+                <p class="tagline">Your paint isn't scratched — it's contaminated. Road salt, mineral deposits, and hard water buildup stripped chemically, sealed with machine-applied wax.</p>
                 <span class="duration">3 to 3.5 hours</span>
             </div>
             <div class="card-body">
                 <div class="card-includes">
                     <h3>What you get</h3>
                     <ul>
-                        <li>Acid wash (dissolves water spots and mineral deposits)</li>
-                        <li>Iron decontamination (brake dust and road fallout)</li>
+                        <li>Acid wash (water spots, mineral deposits)</li>
+                        <li>Iron decontamination</li>
                         <li>Undercarriage acid foam and rinse</li>
-                        <li>Machine wax application (seals paint + light defect removal)</li>
-                        <li>Wheels, tires, door jambs and windows</li>
+                        <li>Machine wax application</li>
+                        <li>Wheels, tires, door jambs, windows</li>
                         <li>Basic interior vacuum and wipe down</li>
                     </ul>
                 </div>
                 <div class="card-pricing">
                     <div class="price-location">
                         <div class="price-location-label">Mobile (we come to you)</div>
-                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$180</span></div>
-                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$200</span></div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$200</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$230</span></div>
                     </div>
                     <div class="price-location">
                         <div class="price-location-label">Flushing drop-off</div>
-                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$150</span></div>
-                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$170</span></div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$160</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$190</span></div>
                     </div>
                     <a href="booking.html?service=winter-resurrection" class="book-btn">Book Winter Resurrection</a>
                 </div>
             </div>
             <div class="addon-strip">
-                <span>Add full interior with steaming, shampoo and leather conditioning</span>
+                <span>Add full interior with steaming, shampoo, leather conditioning</span>
                 <span class="addon-price">+ $100</span>
             </div>
         </div>
 
-        <!-- ======================== INTERIOR DETAIL ======================== -->
-        <div class="service-card">
+        <!-- INTERIOR DETAIL -->
+        <div class="service-card tier-addon">
             <div class="card-header">
                 <h2>Interior Detail with Steaming</h2>
-                <p class="tagline">Deep interior clean as a standalone service. Steam kills 99.9% of bacteria. Great for families, pet owners, or anyone who wants a truly clean interior without needing the exterior done.</p>
+                <p class="tagline">Deep interior clean. Steam kills 99.9% of bacteria. For families, pet owners, or anyone who wants a truly sanitized cabin.</p>
                 <span class="duration">2 to 2.5 hours</span>
             </div>
             <div class="card-body">
@@ -560,28 +493,28 @@
                         <li>High-temperature steam cleaning</li>
                         <li>Deep vacuum of all surfaces</li>
                         <li>Carpet and floor mat shampooing</li>
-                        <li>Leather deep clean, steam and conditioning</li>
+                        <li>Leather deep clean and conditioning</li>
                         <li>Stain and odor removal</li>
-                        <li>All panels, trim, vents and headliner</li>
+                        <li>All panels, trim, vents, headliner</li>
                         <li>Door jambs and interior glass</li>
                     </ul>
                 </div>
                 <div class="card-pricing">
                     <div class="price-location">
                         <div class="price-location-label">All locations</div>
-                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$180</span></div>
-                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$200</span></div>
+                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$200</span></div>
+                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$230</span></div>
                     </div>
                     <a href="booking.html?service=interior-detail" class="book-btn">Book Interior Detail</a>
                 </div>
             </div>
         </div>
 
-        <!-- ======================== ENGINE BAY ======================== -->
-        <div class="service-card">
+        <!-- ENGINE BAY -->
+        <div class="service-card tier-addon">
             <div class="card-header">
                 <h2>Engine Bay Detail</h2>
-                <p class="tagline">Complete engine compartment cleaning and dressing. Show-ready engine bay. Can be booked standalone or added to any service above for $30.</p>
+                <p class="tagline">Show-ready engine compartment. Full degrease, component detailing, dressed finish.</p>
                 <span class="duration">30 to 45 minutes</span>
             </div>
             <div class="card-body">
@@ -597,8 +530,8 @@
                 <div class="card-pricing">
                     <div class="price-location">
                         <div class="price-location-label">Standalone</div>
-                        <div class="price-row"><span class="price-vehicle">All vehicles</span><span class="price-amount">$50</span></div>
-                        <div class="price-addon">Add to any service above for $30</div>
+                        <div class="price-row"><span class="price-vehicle">All vehicles</span><span class="price-amount">$60</span></div>
+                        <div class="price-addon">Add to any service for $40</div>
                     </div>
                     <a href="booking.html?service=engine-bay" class="book-btn">Book Engine Bay</a>
                 </div>
@@ -606,7 +539,7 @@
         </div>
 
         <div style="text-align: center; padding: 30px 0 10px; color: #aaa; font-size: 0.85rem;">
-            Not sure what you need? Call or text us at <a href="tel:6464848689" style="color: #888; text-decoration: underline;">646-484-8689</a> and we will figure it out together.
+            Questions? Call or text <a href="tel:6464848689" style="color: #888; text-decoration: underline;">646-484-8689</a>
         </div>
 
     </main>
@@ -632,4 +565,3 @@
     </script>
 </body>
 </html>
-
