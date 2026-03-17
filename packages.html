@@ -6,7 +6,24 @@
     <title>Packages - Driver Spec Garage</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        :root {
+            --color-primary: #e74c3c;
+            --color-primary-dark: #c0392b;
+            --color-dark: #2c3e50;
+            --color-success: #27ae60;
+            --color-warning: #f39c12;
+            --color-gray: #7f8c8d;
+            --color-light-gray: #f0f0f0;
+            --color-text: #333;
+            --color-text-muted: #777;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { overflow-x: hidden; }
+        img, table { max-width: 100%; }
 
         .page-content {
             max-width: 900px;
@@ -28,15 +45,15 @@
             font-weight: 700;
         }
         .packages-hero p {
-            color: #777;
+            color: var(--color-text-muted);
             font-size: 1rem;
             margin-bottom: 6px;
         }
         .packages-hero .location-note {
             display: inline-block;
-            background: #f0f0f0;
+            background: var(--color-light-gray);
             padding: 8px 18px;
-            border-radius: 20px;
+            border-radius: var(--radius-lg);
             font-size: 0.85rem;
             color: #555;
             margin-top: 12px;
@@ -51,7 +68,7 @@
             background: #fff8f0;
             border: 1px solid #f5c48a;
             padding: 8px 16px;
-            border-radius: 20px;
+            border-radius: var(--radius-lg);
             font-size: 0.82rem;
             color: #b45309;
             margin-top: 10px;
@@ -61,7 +78,7 @@
         /* Service Cards */
         .service-card {
             background: white;
-            border-radius: 14px;
+            border-radius: var(--radius-md);
             box-shadow: 0 4px 24px rgba(0,0,0,0.07);
             margin: 32px 0;
             overflow: hidden;
@@ -72,14 +89,13 @@
             box-shadow: 0 8px 36px rgba(0,0,0,0.11);
         }
         .service-card.tier-base   { border-left: 4px solid #b0b8c1; }
-        .service-card.tier-mid    { border-left: 4px solid #e74c3c; }
-        .service-card.tier-top    { border-left: 4px solid #2c3e50; }
-        .service-card.tier-season { border-left: 4px solid #f39c12; }
-        .service-card.tier-addon  { border-left: 4px solid #7f8c8d; }
+        .service-card.tier-mid    { border-left: 4px solid var(--color-primary); }
+        .service-card.tier-top    { border-left: 4px solid var(--color-dark); }
+        .service-card.tier-season { border-left: 4px solid var(--color-warning); }
 
         .card-header {
             padding: 24px 28px 18px;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--color-light-gray);
         }
         .card-header h2 {
             font-size: 1.45rem;
@@ -99,20 +115,18 @@
             gap: 4px;
             background: #f4f4f4;
             padding: 4px 12px;
-            border-radius: 20px;
+            border-radius: var(--radius-lg);
             font-size: 0.78rem;
             color: #666;
             margin-top: 10px;
         }
 
-        .card-body {
-            display: flex;
-            gap: 0;
-        }
+        .card-body { display: flex; gap: 0; }
+
         .card-includes {
             flex: 1;
             padding: 20px 28px;
-            border-right: 1px solid #f0f0f0;
+            border-right: 1px solid var(--color-light-gray);
         }
         .card-includes h3 {
             font-size: 0.75rem;
@@ -121,10 +135,7 @@
             color: #aaa;
             margin-bottom: 12px;
         }
-        .card-includes ul {
-            list-style: none;
-            padding: 0;
-        }
+        .card-includes ul { list-style: none; padding: 0; }
         .card-includes li {
             padding: 6px 0;
             color: #444;
@@ -135,7 +146,7 @@
         }
         .card-includes li::before {
             content: "✓";
-            color: #27ae60;
+            color: var(--color-success);
             font-weight: 700;
             flex-shrink: 0;
             margin-top: 1px;
@@ -148,12 +159,8 @@
             flex-direction: column;
             justify-content: center;
         }
-        .price-location {
-            margin-bottom: 16px;
-        }
-        .price-location:last-of-type {
-            margin-bottom: 20px;
-        }
+        .price-location { margin-bottom: 16px; }
+        .price-location:last-of-type { margin-bottom: 20px; }
         .price-location-label {
             font-size: 0.7rem;
             text-transform: uppercase;
@@ -168,42 +175,32 @@
             align-items: center;
             padding: 3px 0;
         }
-        .price-vehicle {
-            font-size: 0.85rem;
-            color: #666;
-        }
-        .price-amount {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #e74c3c;
-        }
-        .price-addon {
-            font-size: 0.78rem;
-            color: #999;
-            margin-top: 2px;
+        .price-vehicle { font-size: 0.85rem; color: #666; }
+        .price-amount { font-size: 1.1rem; font-weight: 700; color: var(--color-primary); }
+
+        .returning-note {
+            font-size: 0.75rem;
+            color: #aaa;
+            font-style: italic;
         }
 
         .book-btn {
             display: block;
             text-align: center;
             padding: 12px;
-            background: #e74c3c;
+            background: var(--color-primary);
             color: white;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             transition: background 0.2s;
             letter-spacing: 0.3px;
         }
-        .book-btn:hover {
-            background: #c0392b;
-        }
+        .book-btn:hover { background: var(--color-primary-dark); }
 
-        .seasonal-tag {
+        .seasonal-tag, .location-tag {
             display: inline-block;
-            background: #2c3e50;
-            color: white;
             font-size: 0.7rem;
             padding: 3px 10px;
             border-radius: 10px;
@@ -212,24 +209,14 @@
             font-weight: 600;
             vertical-align: middle;
             margin-left: 8px;
-        }
-        .location-tag {
-            display: inline-block;
-            background: #27ae60;
             color: white;
-            font-size: 0.7rem;
-            padding: 3px 10px;
-            border-radius: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            vertical-align: middle;
-            margin-left: 8px;
         }
+        .seasonal-tag { background: var(--color-dark); }
+        .location-tag { background: var(--color-success); }
 
         .addon-strip {
             background: #fafafa;
-            border-top: 1px solid #f0f0f0;
+            border-top: 1px solid var(--color-light-gray);
             padding: 14px 28px;
             display: flex;
             align-items: center;
@@ -237,14 +224,8 @@
             flex-wrap: wrap;
             gap: 8px;
         }
-        .addon-strip span {
-            font-size: 0.85rem;
-            color: #777;
-        }
-        .addon-strip .addon-price {
-            font-weight: 600;
-            color: #e74c3c;
-        }
+        .addon-strip span { font-size: 0.85rem; color: var(--color-text-muted); }
+        .addon-strip .addon-price { font-weight: 600; color: var(--color-primary); }
 
         .section-divider {
             text-align: center;
@@ -256,19 +237,22 @@
             font-weight: 600;
         }
 
-        .returning-note {
-            font-size: 0.75rem;
+        .bottom-note {
+            text-align: center;
+            padding: 30px 0 10px;
             color: #aaa;
-            font-style: italic;
+            font-size: 0.85rem;
         }
+        .bottom-note a { color: #888; text-decoration: underline; }
 
+        /* Mobile */
         @media (max-width: 700px) {
             .page-content { padding: 12px; }
             .packages-hero { padding: 30px 12px 15px; }
             .packages-hero h1 { font-size: 1.5rem; }
             .packages-hero .location-note { font-size: 0.8rem; padding: 8px 14px; line-height: 1.5; }
             .card-body { flex-direction: column; }
-            .card-includes { border-right: none; border-bottom: 1px solid #f0f0f0; padding: 16px 20px; }
+            .card-includes { border-right: none; border-bottom: 1px solid var(--color-light-gray); padding: 16px 20px; }
             .card-pricing { flex: 1; padding: 16px 20px; }
             .card-header { padding: 18px 20px 14px; }
             .card-header h2 { font-size: 1.25rem; }
@@ -283,9 +267,6 @@
             .card-pricing { flex: 0 0 210px; }
             .price-amount { font-size: 1rem; }
         }
-
-        html, body { overflow-x: hidden; }
-        img, table { max-width: 100%; }
 
         @media (hover: none) and (pointer: coarse) {
             .book-btn { min-height: 48px; }
@@ -305,7 +286,6 @@
                     <ul class="dropdown" id="servicesDropdown">
                         <li><a href="paint-correction.html">Paint Correction</a></li>
                         <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
-                        <li><a href="interior-steaming.html">Interior Steaming</a></li>
                         <li><a href="packages.html">Packages</a></li>
                     </ul>
                 </li>
@@ -318,7 +298,6 @@
     </header>
 
     <main class="page-content">
-
         <div class="packages-hero">
             <h1>Detailing Packages</h1>
             <p>Premium detailing for drivers who expect more.</p>
@@ -343,7 +322,7 @@
                     <h3>What you get</h3>
                     <ul>
                         <li>Pre-foam and hand wash</li>
-                        <li>Wheels, tires and wheel wells + dressing</li>
+                        <li>Wheels, tires and wheel wells dressed</li>
                         <li>Protector wax applied by hand</li>
                         <li>Door jambs, gas cap and exhaust tips</li>
                         <li>Windows inside and out</li>
@@ -369,8 +348,8 @@
         <div class="service-card tier-mid">
             <div class="card-header">
                 <h2>Maintenance Detail</h2>
-                <p class="tagline">Complete refresh for well-maintained vehicles. Ceramic sealant, engine bay, undercarriage wash, and full interior. The standard for clients who keep their cars right.</p>
-                <span class="duration">1.5 to 2 hours</span>
+                <p class="tagline">For clients who keep their cars right. Quick turnaround, ceramic protection, clean interior. The standard for rotation customers.</p>
+                <span class="duration">1 to 1.5 hours</span>
             </div>
             <div class="card-body">
                 <div class="card-includes">
@@ -379,8 +358,6 @@
                         <li>Everything in Wash & Wax</li>
                         <li>Ceramic sealant protection (~1 month)</li>
                         <li>Undercarriage wash</li>
-                        <li>Exhaust tips polished</li>
-                        <li>Engine bay detailed</li>
                         <li>Full interior vacuum and wipe down</li>
                         <li>Headliner, console, vents and crevices</li>
                     </ul>
@@ -405,7 +382,7 @@
         <div class="service-card tier-top">
             <div class="card-header">
                 <h2>Full Detail</h2>
-                <p class="tagline">The complete reset. Chemical and mechanical decontamination, undercarriage wash, graphene ceramic protection (3–4 months), deep interior with shampooing, leather conditioning, and steam sanitization.</p>
+                <p class="tagline">The complete reset. Full decontamination, graphene ceramic protection, deep interior with shampooing, leather conditioning, steam sanitization, and engine bay. For first-time clients or quarterly resets.</p>
                 <span class="duration">3 to 4 hours</span>
             </div>
             <div class="card-body">
@@ -414,8 +391,8 @@
                     <ul>
                         <li>Everything in Maintenance Detail</li>
                         <li>Iron, tar and clay bar decontamination</li>
-                        <li>Undercarriage wash</li>
                         <li>Graphene ceramic sealant (3–4 months)</li>
+                        <li>Engine bay detailed</li>
                         <li>Leather deep clean and conditioning</li>
                         <li>Carpet and floor mat shampooing</li>
                         <li>Steam sanitization</li>
@@ -438,7 +415,7 @@
             </div>
         </div>
 
-        <div class="section-divider">Seasonal &amp; Standalone</div>
+        <div class="section-divider">Seasonal</div>
 
         <!-- WINTER RESURRECTION -->
         <div class="service-card tier-season">
@@ -479,69 +456,9 @@
             </div>
         </div>
 
-        <!-- INTERIOR DETAIL -->
-        <div class="service-card tier-addon">
-            <div class="card-header">
-                <h2>Interior Detail with Steaming</h2>
-                <p class="tagline">Deep interior clean. Steam kills 99.9% of bacteria. For families, pet owners, or anyone who wants a truly sanitized cabin.</p>
-                <span class="duration">2 to 2.5 hours</span>
-            </div>
-            <div class="card-body">
-                <div class="card-includes">
-                    <h3>What you get</h3>
-                    <ul>
-                        <li>High-temperature steam cleaning</li>
-                        <li>Deep vacuum of all surfaces</li>
-                        <li>Carpet and floor mat shampooing</li>
-                        <li>Leather deep clean and conditioning</li>
-                        <li>Stain and odor removal</li>
-                        <li>All panels, trim, vents, headliner</li>
-                        <li>Door jambs and interior glass</li>
-                    </ul>
-                </div>
-                <div class="card-pricing">
-                    <div class="price-location">
-                        <div class="price-location-label">All locations</div>
-                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$200</span></div>
-                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$230</span></div>
-                    </div>
-                    <a href="booking.html?service=interior-detail" class="book-btn">Book Interior Detail</a>
-                </div>
-            </div>
+        <div class="bottom-note">
+            Questions? Call or text <a href="tel:6464848689">646-484-8689</a>
         </div>
-
-        <!-- ENGINE BAY -->
-        <div class="service-card tier-addon">
-            <div class="card-header">
-                <h2>Engine Bay Detail</h2>
-                <p class="tagline">Show-ready engine compartment. Full degrease, component detailing, dressed finish.</p>
-                <span class="duration">30 to 45 minutes</span>
-            </div>
-            <div class="card-body">
-                <div class="card-includes">
-                    <h3>What you get</h3>
-                    <ul>
-                        <li>Engine degreasing and cleaning</li>
-                        <li>Component detailing</li>
-                        <li>Plastic and rubber dressing</li>
-                        <li>Professional finish</li>
-                    </ul>
-                </div>
-                <div class="card-pricing">
-                    <div class="price-location">
-                        <div class="price-location-label">Standalone</div>
-                        <div class="price-row"><span class="price-vehicle">All vehicles</span><span class="price-amount">$60</span></div>
-                        <div class="price-addon">Add to any service for $40</div>
-                    </div>
-                    <a href="booking.html?service=engine-bay" class="book-btn">Book Engine Bay</a>
-                </div>
-            </div>
-        </div>
-
-        <div style="text-align: center; padding: 30px 0 10px; color: #aaa; font-size: 0.85rem;">
-            Questions? Call or text <a href="tel:6464848689" style="color: #888; text-decoration: underline;">646-484-8689</a>
-        </div>
-
     </main>
 
     <footer>
