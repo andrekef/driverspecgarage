@@ -6,7 +6,6 @@
     <title>Book Now - Driver Spec Garage</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <style>
         :root {
             --color-primary: #e74c3c;
@@ -16,7 +15,6 @@
             --color-text: #333;
             --color-text-muted: #666;
             --color-border: #ddd;
-            --color-bg-light: #f8f9fa;
             --radius-sm: 5px;
             --radius-md: 8px;
         }
@@ -113,7 +111,6 @@
             transition: all 0.2s;
             font-size: 0.95rem;
             user-select: none;
-            -webkit-tap-highlight-color: transparent;
         }
         .toggle-option:hover:not(.disabled) { border-color: var(--color-primary); }
         .toggle-option.selected { border-color: var(--color-primary); background: #fef2f2; }
@@ -136,7 +133,7 @@
 
         /* Summary card */
         .summary-card {
-            background: var(--color-bg-light);
+            background: #f8f9fa;
             padding: 20px 24px;
             border-radius: var(--radius-md);
             margin-bottom: 24px;
@@ -177,19 +174,6 @@
         }
         .book-button:hover { background: var(--color-primary-dark); }
         .book-button:disabled { background: #ccc; cursor: not-allowed; }
-
-        .seasonal-badge {
-            display: inline-block;
-            background: #2c3e50;
-            color: white;
-            padding: 2px 7px;
-            border-radius: 3px;
-            font-size: 10px;
-            margin-left: 4px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            vertical-align: middle;
-        }
 
         /* Mobile */
         @media (max-width: 600px) {
@@ -254,7 +238,7 @@
                         <option value="full-detail">Full Detail</option>
                     </optgroup>
                     <optgroup label="Seasonal">
-                        <option value="winter-resurrection">Winter Resurrection &#9733;</option>
+                        <option value="winter-resurrection">Winter Resurrection</option>
                     </optgroup>
                     <optgroup label="Premium Services">
                         <option value="paint-correction-1step">Paint Correction (1-Step)</option>
@@ -327,54 +311,58 @@
     </footer>
 
     <script>
-        // Service data - single source of truth
+        // Simplified pricing: just car/suv, no location variants
         const services = {
             'wash-wax': {
                 name: 'Wash & Wax',
-                prices: { 'flushing-car': 60, 'flushing-suv': 70 },
+                car: 60,
+                suv: 70,
                 duration: 'About 45 minutes',
                 desc: 'Quick exterior refresh. Pre-foam hand wash, protector wax, wheels and tires dressed, door jambs, gas cap, exhaust tips, windows inside and out.',
                 flushingOnly: true
             },
             'maintenance': {
                 name: 'Maintenance Detail',
-                prices: { 'mobile-car': 140, 'mobile-suv': 160, 'flushing-car': 110, 'flushing-suv': 130 },
+                car: 140,
+                suv: 160,
                 duration: '1 to 1.5 hours',
                 desc: 'For clients who keep their cars right. Ceramic sealant (~1 month), undercarriage wash, full interior vacuum and wipe down.'
             },
             'full-detail': {
                 name: 'Full Detail',
-                prices: { 'mobile-car': 300, 'mobile-suv': 350, 'flushing-car': 250, 'flushing-suv': 300 },
+                car: 300,
+                suv: 350,
                 duration: '3 to 4 hours',
                 desc: 'The complete reset. Iron, tar and clay bar decon, undercarriage wash, graphene ceramic sealant (3–4 months), engine bay, deep interior with shampooing, leather conditioning, and steam sanitization.'
             },
             'winter-resurrection': {
                 name: 'Winter Resurrection',
-                prices: { 'mobile-car': 200, 'mobile-suv': 230, 'flushing-car': 160, 'flushing-suv': 190 },
+                car: 200,
+                suv: 230,
                 duration: '3 to 3.5 hours',
                 desc: 'Acid wash to dissolve water spots and mineral deposits, iron decon, undercarriage acid foam and rinse, machine wax application, wheels and tires, door jambs and windows, basic interior.',
                 addon: '+$100 full interior with steaming, shampoo and leather conditioning'
             },
             'paint-correction-1step': {
                 name: 'Paint Correction (1-Step)',
-                prices: { 'mobile-car': 400, 'mobile-suv': 400, 'flushing-car': 400, 'flushing-suv': 400 },
+                car: 400,
+                suv: 400,
                 duration: '4 to 5 hours',
-                desc: 'Single-step machine polish. Removes ~70-80% of swirls, light scratches and paint defects.',
-                samePrice: true
+                desc: 'Single-step machine polish. Removes ~70-80% of swirls, light scratches and paint defects.'
             },
             'paint-correction-2step': {
                 name: 'Paint Correction (2-Step)',
-                prices: { 'mobile-car': 600, 'mobile-suv': 600, 'flushing-car': 600, 'flushing-suv': 600 },
+                car: 600,
+                suv: 600,
                 duration: '6 to 8 hours',
-                desc: 'Two-step correction. Compound stage for defect removal, then fine polish. Removes ~90% of defects.',
-                samePrice: true
+                desc: 'Two-step correction. Compound stage for defect removal, then fine polish. Removes ~90% of defects.'
             },
             'ceramic-coating': {
                 name: 'Ceramic Coating',
-                prices: { 'mobile-car': 900, 'mobile-suv': 900, 'flushing-car': 900, 'flushing-suv': 900 },
+                car: 900,
+                suv: 900,
                 duration: '1 to 2 days',
-                desc: 'Professional ceramic coating with paint correction included. Long-term protection (2-3+ years).',
-                samePrice: true
+                desc: 'Professional ceramic coating with paint correction included. Long-term protection (2-3+ years).'
             }
         };
 
@@ -435,8 +423,7 @@
             }
 
             const svc = services[selectedService];
-            const priceKey = selectedLocation + '-' + selectedVehicle;
-            const price = svc.prices[priceKey];
+            const price = selectedVehicle === 'car' ? svc.car : svc.suv;
 
             document.getElementById('summary-title').textContent = svc.name;
             document.getElementById('summary-vehicle').textContent = selectedVehicle === 'car' ? 'Car / Sedan / Coupe' : 'SUV / Van / Truck';
@@ -456,18 +443,16 @@
         function openCalendly() {
             if (!selectedService) { alert('Please select a service first'); return; }
             const svc = services[selectedService];
-            const priceKey = selectedLocation + '-' + selectedVehicle;
-            const price = svc.prices[priceKey];
+            const price = selectedVehicle === 'car' ? svc.car : svc.suv;
             const vehicleType = selectedVehicle === 'car' ? 'Car/Sedan/Coupe' : 'Van/SUV/Truck';
             const locationLabel = selectedLocation === 'mobile' ? 'Mobile' : 'Flushing';
             const fullServiceString = svc.name + ' (' + locationLabel + ') - $' + price + ' (' + vehicleType + ')';
-            const serviceCode = selectedService + '-' + selectedLocation + '-' + selectedVehicle;
 
             const params = new URLSearchParams({
                 a1: '+1',
                 a2: fullServiceString,
                 a3: vehicleType,
-                a4: serviceCode
+                a4: selectedService + '-' + selectedVehicle
             });
             window.open('https://calendly.com/andrekef?' + params.toString(), '_blank');
         }
@@ -489,18 +474,12 @@
             const veh = params.get('vehicle');
             if (veh === 'car' || veh === 'suv') selectVehicle(veh);
             const loc = params.get('location');
-            if (loc === 'mobile' || loc === 'flushing') {
-                if (!selectedService || !services[selectedService].flushingOnly || loc === 'flushing') {
-                    selectLocation(loc);
-                }
-            }
+            if (loc === 'flushing') selectLocation('flushing');
             if (svc) {
                 updateSummary();
                 setTimeout(function() {
                     var el = document.getElementById('summary');
-                    if (el && window.innerWidth < 700) {
-                        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
+                    if (el && window.innerWidth < 700) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }, 300);
             }
         }
@@ -513,9 +492,7 @@
         }
         document.addEventListener('click', function(event) {
             var isClickInside = document.querySelector('.non-clickable') && document.querySelector('.non-clickable').contains(event.target);
-            if (!isClickInside) {
-                document.getElementById('servicesDropdown').style.display = 'none';
-            }
+            if (!isClickInside) document.getElementById('servicesDropdown').style.display = 'none';
         });
 
         window.addEventListener('DOMContentLoaded', autoFillFromURL);
