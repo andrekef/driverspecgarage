@@ -12,9 +12,7 @@
             --color-dark: #2c3e50;
             --color-success: #27ae60;
             --color-warning: #f39c12;
-            --color-gray: #7f8c8d;
             --color-light-gray: #f0f0f0;
-            --color-text: #333;
             --color-text-muted: #777;
             --radius-sm: 8px;
             --radius-md: 14px;
@@ -23,7 +21,6 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { overflow-x: hidden; }
-        img, table { max-width: 100%; }
 
         .page-content {
             max-width: 900px;
@@ -58,22 +55,6 @@
             color: #555;
             margin-top: 12px;
         }
-        .packages-hero .location-note span {
-            font-weight: 600;
-        }
-        .mobile-min-note {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #fff8f0;
-            border: 1px solid #f5c48a;
-            padding: 8px 16px;
-            border-radius: var(--radius-lg);
-            font-size: 0.82rem;
-            color: #b45309;
-            margin-top: 10px;
-            font-weight: 500;
-        }
 
         /* Service Cards */
         .service-card {
@@ -85,9 +66,7 @@
             border: 1px solid #e8e8e8;
             transition: box-shadow 0.25s;
         }
-        .service-card:hover {
-            box-shadow: 0 8px 36px rgba(0,0,0,0.11);
-        }
+        .service-card:hover { box-shadow: 0 8px 36px rgba(0,0,0,0.11); }
         .service-card.tier-base   { border-left: 4px solid #b0b8c1; }
         .service-card.tier-mid    { border-left: 4px solid var(--color-primary); }
         .service-card.tier-top    { border-left: 4px solid var(--color-dark); }
@@ -101,18 +80,14 @@
             font-size: 1.45rem;
             color: #1a1a1a;
             margin-bottom: 6px;
-            letter-spacing: -0.2px;
         }
         .card-header .tagline {
             color: #888;
             font-size: 0.93rem;
             line-height: 1.6;
-            max-width: 520px;
         }
         .card-header .duration {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
+            display: inline-block;
             background: #f4f4f4;
             padding: 4px 12px;
             border-radius: var(--radius-lg);
@@ -121,7 +96,7 @@
             margin-top: 10px;
         }
 
-        .card-body { display: flex; gap: 0; }
+        .card-body { display: flex; }
 
         .card-includes {
             flex: 1;
@@ -148,41 +123,23 @@
             content: "✓";
             color: var(--color-success);
             font-weight: 700;
-            flex-shrink: 0;
-            margin-top: 1px;
         }
 
         .card-pricing {
-            flex: 0 0 240px;
+            flex: 0 0 180px;
             padding: 20px 28px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
-        .price-location { margin-bottom: 16px; }
-        .price-location:last-of-type { margin-bottom: 20px; }
-        .price-location-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            color: #999;
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
         .price-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 3px 0;
+            padding: 6px 0;
         }
-        .price-vehicle { font-size: 0.85rem; color: #666; }
-        .price-amount { font-size: 1.1rem; font-weight: 700; color: var(--color-primary); }
-
-        .returning-note {
-            font-size: 0.75rem;
-            color: #aaa;
-            font-style: italic;
-        }
+        .price-vehicle { font-size: 0.9rem; color: #666; }
+        .price-amount { font-size: 1.2rem; font-weight: 700; color: var(--color-primary); }
 
         .book-btn {
             display: block;
@@ -195,7 +152,7 @@
             font-size: 0.95rem;
             border-radius: var(--radius-sm);
             transition: background 0.2s;
-            letter-spacing: 0.3px;
+            margin-top: 16px;
         }
         .book-btn:hover { background: var(--color-primary-dark); }
 
@@ -207,7 +164,6 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
-            vertical-align: middle;
             margin-left: 8px;
             color: white;
         }
@@ -237,9 +193,20 @@
             font-weight: 600;
         }
 
+        .flushing-perk {
+            text-align: center;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            margin-top: 32px;
+            font-size: 0.9rem;
+            color: #166534;
+        }
+
         .bottom-note {
             text-align: center;
-            padding: 30px 0 10px;
+            padding: 20px 0 10px;
             color: #aaa;
             font-size: 0.85rem;
         }
@@ -250,7 +217,6 @@
             .page-content { padding: 12px; }
             .packages-hero { padding: 30px 12px 15px; }
             .packages-hero h1 { font-size: 1.5rem; }
-            .packages-hero .location-note { font-size: 0.8rem; padding: 8px 14px; line-height: 1.5; }
             .card-body { flex-direction: column; }
             .card-includes { border-right: none; border-bottom: 1px solid var(--color-light-gray); padding: 16px 20px; }
             .card-pricing { flex: 1; padding: 16px 20px; }
@@ -258,19 +224,8 @@
             .card-header h2 { font-size: 1.25rem; }
             .addon-strip { padding: 12px 20px; flex-direction: column; align-items: flex-start; gap: 4px; }
             .book-btn { padding: 14px; font-size: 1rem; min-height: 48px; display: flex; align-items: center; justify-content: center; }
-            .service-card { margin: 20px 0; border-radius: 10px; }
-            .section-divider { margin: 35px 0 8px; }
+            .service-card { margin: 20px 0; }
             .seasonal-tag, .location-tag { display: block; margin-left: 0; margin-top: 6px; width: fit-content; }
-        }
-
-        @media (min-width: 701px) and (max-width: 850px) {
-            .card-pricing { flex: 0 0 210px; }
-            .price-amount { font-size: 1rem; }
-        }
-
-        @media (hover: none) and (pointer: coarse) {
-            .book-btn { min-height: 48px; }
-            nav a, .addon-strip a { min-height: 44px; display: flex; align-items: center; }
         }
     </style>
 </head>
@@ -300,13 +255,9 @@
     <main class="page-content">
         <div class="packages-hero">
             <h1>Detailing Packages</h1>
-            <p>Premium detailing for drivers who expect more.</p>
+            <p>Mobile detailing anywhere in NYC. Premium results, no shortcuts.</p>
             <div class="location-note">
-                <span>Mobile</span> anywhere in NYC&nbsp;&nbsp;|&nbsp;&nbsp;<span>Drop-off</span> in Flushing
-            </div>
-            <br>
-            <div class="mobile-min-note">
-                🚗 Mobile minimum: Maintenance Detail
+                🚗 We come to you&nbsp;&nbsp;|&nbsp;&nbsp;📍 Flushing drop-off available
             </div>
         </div>
 
@@ -329,13 +280,9 @@
                     </ul>
                 </div>
                 <div class="card-pricing">
-                    <div class="price-location">
-                        <div class="price-location-label">Flushing drop-off only</div>
-                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$60</span></div>
-                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$70</span></div>
-                        <div class="returning-note">Returning customers save $10</div>
-                    </div>
-                    <a href="booking.html?service=wash-wax&location=flushing" class="book-btn">Book Wash & Wax</a>
+                    <div class="price-row"><span class="price-vehicle">Car</span><span class="price-amount">$60</span></div>
+                    <div class="price-row"><span class="price-vehicle">SUV / Truck</span><span class="price-amount">$70</span></div>
+                    <a href="booking.html?service=wash-wax" class="book-btn">Book Wash & Wax</a>
                 </div>
             </div>
             <div class="addon-strip">
@@ -363,17 +310,9 @@
                     </ul>
                 </div>
                 <div class="card-pricing">
-                    <div class="price-location">
-                        <div class="price-location-label">Mobile (we come to you)</div>
-                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$140</span></div>
-                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$160</span></div>
-                    </div>
-                    <div class="price-location">
-                        <div class="price-location-label">Flushing drop-off</div>
-                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$110</span></div>
-                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$130</span></div>
-                    </div>
-                    <a href="booking.html?service=maintenance" class="book-btn">Book Maintenance Detail</a>
+                    <div class="price-row"><span class="price-vehicle">Car</span><span class="price-amount">$140</span></div>
+                    <div class="price-row"><span class="price-vehicle">SUV / Truck</span><span class="price-amount">$160</span></div>
+                    <a href="booking.html?service=maintenance" class="book-btn">Book Maintenance</a>
                 </div>
             </div>
         </div>
@@ -400,16 +339,8 @@
                     </ul>
                 </div>
                 <div class="card-pricing">
-                    <div class="price-location">
-                        <div class="price-location-label">Mobile (we come to you)</div>
-                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$300</span></div>
-                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$350</span></div>
-                    </div>
-                    <div class="price-location">
-                        <div class="price-location-label">Flushing drop-off</div>
-                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$250</span></div>
-                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$300</span></div>
-                    </div>
+                    <div class="price-row"><span class="price-vehicle">Car</span><span class="price-amount">$300</span></div>
+                    <div class="price-row"><span class="price-vehicle">SUV / Truck</span><span class="price-amount">$350</span></div>
                     <a href="booking.html?service=full-detail" class="book-btn">Book Full Detail</a>
                 </div>
             </div>
@@ -437,16 +368,8 @@
                     </ul>
                 </div>
                 <div class="card-pricing">
-                    <div class="price-location">
-                        <div class="price-location-label">Mobile (we come to you)</div>
-                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$200</span></div>
-                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$230</span></div>
-                    </div>
-                    <div class="price-location">
-                        <div class="price-location-label">Flushing drop-off</div>
-                        <div class="price-row"><span class="price-vehicle">Car / Sedan / Coupe</span><span class="price-amount">$160</span></div>
-                        <div class="price-row"><span class="price-vehicle">SUV / Van / Truck</span><span class="price-amount">$190</span></div>
-                    </div>
+                    <div class="price-row"><span class="price-vehicle">Car</span><span class="price-amount">$200</span></div>
+                    <div class="price-row"><span class="price-vehicle">SUV / Truck</span><span class="price-amount">$230</span></div>
                     <a href="booking.html?service=winter-resurrection" class="book-btn">Book Winter Resurrection</a>
                 </div>
             </div>
@@ -454,6 +377,10 @@
                 <span>Add full interior with steaming, shampoo, leather conditioning</span>
                 <span class="addon-price">+ $100</span>
             </div>
+        </div>
+
+        <div class="flushing-perk">
+            📍 Drop off at our Flushing location and save $30-$50.
         </div>
 
         <div class="bottom-note">
