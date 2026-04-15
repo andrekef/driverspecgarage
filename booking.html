@@ -6,19 +6,8 @@
     <title>Book Now - Driver Spec Garage</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <style>
-        :root {
-            --color-primary: #e74c3c;
-            --color-primary-dark: #c0392b;
-            --color-success: #27ae60;
-            --color-warning: #b45309;
-            --color-text: #333;
-            --color-text-muted: #666;
-            --color-border: #ddd;
-            --radius-sm: 5px;
-            --radius-md: 8px;
-        }
-
         .booking-container {
             max-width: 800px;
             margin: 50px auto;
@@ -26,21 +15,20 @@
             padding-left: max(40px, env(safe-area-inset-left));
             padding-right: max(40px, env(safe-area-inset-right));
             background: white;
-            border-radius: var(--radius-md);
+            border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .booking-container h1 {
             text-align: center;
-            color: var(--color-text);
+            color: #333;
             margin-bottom: 10px;
         }
         .booking-container > p {
             text-align: center;
-            color: var(--color-text-muted);
+            color: #666;
             margin-bottom: 30px;
         }
 
-        /* Steps */
         .steps {
             display: flex;
             justify-content: center;
@@ -54,8 +42,8 @@
             font-size: 0.85rem;
             color: #ccc;
         }
-        .step.active { color: var(--color-primary); font-weight: 600; }
-        .step.done { color: var(--color-success); }
+        .step.active { color: #e74c3c; font-weight: 600; }
+        .step.done { color: #27ae60; }
         .step-num {
             width: 24px;
             height: 24px;
@@ -68,25 +56,34 @@
             background: #eee;
             color: #999;
         }
-        .step.active .step-num { background: var(--color-primary); color: white; }
-        .step.done .step-num { background: var(--color-success); color: white; }
+        .step.active .step-num { background: #e74c3c; color: white; }
+        .step.done .step-num { background: #27ae60; color: white; }
         .step-arrow { color: #ddd; font-size: 0.7rem; }
 
-        /* Selectors */
+        /* Profile widget separator */
+        .profile-section-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #bbb;
+            margin-bottom: 8px;
+        }
+
         .selector-group { margin-bottom: 24px; }
         .selector-group label {
             display: block;
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 10px;
-            color: var(--color-text);
+            color: #333;
         }
         .selector-group select {
             width: 100%;
             padding: 15px;
             font-size: 16px;
-            border: 2px solid var(--color-border);
-            border-radius: var(--radius-sm);
+            border: 2px solid #ddd;
+            border-radius: 5px;
             background: white;
             cursor: pointer;
             transition: border-color 0.3s;
@@ -96,29 +93,28 @@
             background-repeat: no-repeat;
             background-position: right 15px center;
         }
-        .selector-group select:hover { border-color: var(--color-primary); }
-        .selector-group select:focus { outline: none; border-color: var(--color-primary); }
+        .selector-group select:hover { border-color: #e74c3c; }
+        .selector-group select:focus { outline: none; border-color: #e74c3c; }
 
-        /* Toggle buttons */
         .toggle-options { display: flex; gap: 12px; }
         .toggle-option {
             flex: 1;
             padding: 14px;
-            border: 2px solid var(--color-border);
-            border-radius: var(--radius-sm);
+            border: 2px solid #ddd;
+            border-radius: 5px;
             cursor: pointer;
             text-align: center;
             transition: all 0.2s;
             font-size: 0.95rem;
             user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
-        .toggle-option:hover:not(.disabled) { border-color: var(--color-primary); }
-        .toggle-option.selected { border-color: var(--color-primary); background: #fef2f2; }
+        .toggle-option:hover:not(.disabled) { border-color: #e74c3c; }
+        .toggle-option.selected { border-color: #e74c3c; background: #fef2f2; }
         .toggle-option.disabled { opacity: 0.4; cursor: not-allowed; background: #f5f5f5; }
-        .toggle-option strong { display: block; font-size: 0.95rem; color: var(--color-text); }
+        .toggle-option strong { display: block; font-size: 0.95rem; color: #333; }
         .toggle-option .toggle-sub { font-size: 0.8rem; color: #999; margin-top: 2px; }
 
-        /* Location notice */
         .location-notice {
             background: #fff8f0;
             border: 1px solid #f5c48a;
@@ -126,26 +122,25 @@
             padding: 10px 14px;
             margin-top: 10px;
             font-size: 0.85rem;
-            color: var(--color-warning);
+            color: #b45309;
             display: none;
         }
         .location-notice.active { display: block; }
 
-        /* Summary card */
         .summary-card {
             background: #f8f9fa;
             padding: 20px 24px;
-            border-radius: var(--radius-md);
+            border-radius: 8px;
             margin-bottom: 24px;
-            border-left: 4px solid var(--color-primary);
+            border-left: 4px solid #e74c3c;
             display: none;
         }
         .summary-card.active { display: block; }
-        .summary-card h3 { margin: 0 0 12px 0; color: var(--color-text); font-size: 1.1rem; }
+        .summary-card h3 { margin: 0 0 12px 0; color: #333; font-size: 1.1rem; }
         .summary-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 0.9rem; }
         .summary-row .label { color: #777; }
-        .summary-row .value { color: var(--color-text); font-weight: 500; }
-        .summary-row .value.price { color: var(--color-primary); font-weight: 700; font-size: 1.1rem; }
+        .summary-row .value { color: #333; font-weight: 500; }
+        .summary-row .value.price { color: #e74c3c; font-weight: 700; font-size: 1.1rem; }
         .summary-desc {
             margin-top: 12px;
             padding-top: 12px;
@@ -153,29 +148,44 @@
             font-size: 0.85rem;
             color: #777;
             line-height: 1.6;
-            white-space: pre-line;
+        }
+        /* Vehicle from saved profile shown in summary */
+        .summary-row .value.profile-car {
+            color: #555;
+            font-style: italic;
         }
 
-        /* Book button */
         .book-button {
             width: 100%;
             padding: 18px;
             font-size: 18px;
             font-weight: 600;
-            background: var(--color-primary);
+            background: #e74c3c;
             color: white;
             border: none;
-            border-radius: var(--radius-sm);
+            border-radius: 5px;
             cursor: pointer;
             transition: background 0.2s;
             text-transform: uppercase;
             letter-spacing: 1px;
             min-height: 56px;
         }
-        .book-button:hover { background: var(--color-primary-dark); }
+        .book-button:hover { background: #c0392b; }
         .book-button:disabled { background: #ccc; cursor: not-allowed; }
 
-        /* Mobile */
+        .seasonal-badge {
+            display: inline-block;
+            background: #2c3e50;
+            color: white;
+            padding: 2px 7px;
+            border-radius: 3px;
+            font-size: 10px;
+            margin-left: 4px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            vertical-align: middle;
+        }
+
         @media (max-width: 600px) {
             .booking-container { margin: 20px auto; padding: 24px 16px; border-radius: 0; box-shadow: none; }
             .toggle-options { gap: 8px; }
@@ -202,6 +212,7 @@
                     <ul class="dropdown" id="servicesDropdown">
                         <li><a href="paint-correction.html">Paint Correction</a></li>
                         <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
+                        <li><a href="interior-steaming.html">Interior Steaming</a></li>
                         <li><a href="packages.html">Packages</a></li>
                     </ul>
                 </li>
@@ -218,6 +229,7 @@
             <h1>Book Your Detail</h1>
             <p>Select your service, vehicle, and location.</p>
 
+            <!-- Steps -->
             <div class="steps">
                 <div class="step active" id="step1"><span class="step-num">1</span> Service</div>
                 <span class="step-arrow">&#9654;</span>
@@ -228,6 +240,11 @@
                 <div class="step" id="step4"><span class="step-num">4</span> Book</div>
             </div>
 
+            <!-- ── Customer Profile Widget ── -->
+            <p class="profile-section-label">Your Info</p>
+            <div id="profile-widget"></div>
+
+            <!-- 1. Service -->
             <div class="selector-group">
                 <label for="service-select">1. What do you need?</label>
                 <select id="service-select" onchange="onServiceChange()">
@@ -238,7 +255,11 @@
                         <option value="full-detail">Full Detail</option>
                     </optgroup>
                     <optgroup label="Seasonal">
-                        <option value="winter-resurrection">Winter Resurrection</option>
+                        <option value="winter-resurrection">Winter Resurrection &#9733;</option>
+                    </optgroup>
+                    <optgroup label="Standalone Services">
+                        <option value="interior-detail">Interior Detail with Steaming</option>
+                        <option value="engine-bay">Engine Bay Detail</option>
                     </optgroup>
                     <optgroup label="Premium Services">
                         <option value="paint-correction-1step">Paint Correction (1-Step)</option>
@@ -248,6 +269,7 @@
                 </select>
             </div>
 
+            <!-- 2. Vehicle Size -->
             <div class="selector-group">
                 <label>2. Vehicle size</label>
                 <div class="toggle-options">
@@ -260,6 +282,7 @@
                 </div>
             </div>
 
+            <!-- 3. Location -->
             <div class="selector-group">
                 <label>3. Where?</label>
                 <div class="toggle-options">
@@ -277,10 +300,19 @@
                 </div>
             </div>
 
+            <!-- Summary -->
             <div class="summary-card" id="summary">
                 <h3 id="summary-title"></h3>
+                <div class="summary-row" id="summary-customer-row" style="display:none;">
+                    <span class="label">Customer</span>
+                    <span class="value" id="summary-customer"></span>
+                </div>
+                <div class="summary-row" id="summary-car-row" style="display:none;">
+                    <span class="label">Vehicle (saved)</span>
+                    <span class="value profile-car" id="summary-car"></span>
+                </div>
                 <div class="summary-row">
-                    <span class="label">Vehicle</span>
+                    <span class="label">Vehicle size</span>
                     <span class="value" id="summary-vehicle"></span>
                 </div>
                 <div class="summary-row">
@@ -298,6 +330,7 @@
                 <div class="summary-desc" id="summary-desc"></div>
             </div>
 
+            <!-- Book -->
             <button class="book-button" id="book-button" onclick="openCalendly()" disabled>
                 Select a Service to Continue
             </button>
@@ -310,66 +343,80 @@
         </div>
     </footer>
 
+    <!-- Customer profile module must load before booking script -->
+    <script src="customer-profile.js"></script>
+
     <script>
-        // Simplified pricing: just car/suv, no location variants
+        // ========== SERVICE DATA ==========
         const services = {
             'wash-wax': {
                 name: 'Wash & Wax',
-                car: 60,
-                suv: 70,
+                prices: { 'flushing-car': 60, 'flushing-suv': 70 },
                 duration: 'About 45 minutes',
                 desc: 'Quick exterior refresh. Pre-foam hand wash, protector wax, wheels and tires dressed, door jambs, gas cap, exhaust tips, windows inside and out.',
                 flushingOnly: true
             },
             'maintenance': {
                 name: 'Maintenance Detail',
-                car: 140,
-                suv: 160,
-                duration: '1 to 1.5 hours',
-                desc: 'For clients who keep their cars right. Ceramic sealant (~1 month), undercarriage wash, full interior vacuum and wipe down.'
+                prices: { 'mobile-car': 140, 'mobile-suv': 160, 'flushing-car': 110, 'flushing-suv': 130 },
+                duration: '1.5 to 2 hours',
+                desc: 'Complete refresh. Ceramic sealant (~1 month), undercarriage wash, exhaust tips polished, engine bay detailed, full interior vacuum and wipe down.'
             },
             'full-detail': {
                 name: 'Full Detail',
-                car: 300,
-                suv: 350,
+                prices: { 'mobile-car': 300, 'mobile-suv': 350, 'flushing-car': 250, 'flushing-suv': 300 },
                 duration: '3 to 4 hours',
-                desc: 'The complete reset. Iron, tar and clay bar decon, undercarriage wash, graphene ceramic sealant (3–4 months), engine bay, deep interior with shampooing, leather conditioning, and steam sanitization.'
+                desc: 'The complete reset. Iron, tar and clay bar decon, undercarriage wash, graphene ceramic sealant (3-4 months), deep interior with shampooing, leather conditioning, and steam sanitization.'
             },
             'winter-resurrection': {
                 name: 'Winter Resurrection',
-                car: 200,
-                suv: 230,
+                prices: { 'mobile-car': 200, 'mobile-suv': 230, 'flushing-car': 160, 'flushing-suv': 190 },
                 duration: '3 to 3.5 hours',
                 desc: 'Acid wash to dissolve water spots and mineral deposits, iron decon, undercarriage acid foam and rinse, machine wax application, wheels and tires, door jambs and windows, basic interior.',
                 addon: '+$100 full interior with steaming, shampoo and leather conditioning'
             },
+            'interior-detail': {
+                name: 'Interior Detail with Steaming',
+                prices: { 'mobile-car': 200, 'mobile-suv': 230, 'flushing-car': 200, 'flushing-suv': 230 },
+                duration: '2 to 2.5 hours',
+                desc: 'Deep interior clean. High-temperature steam cleaning, deep vacuum, carpet and mat shampooing, leather deep clean and conditioning, stain and odor removal.',
+                samePrice: true
+            },
+            'engine-bay': {
+                name: 'Engine Bay Detail',
+                prices: { 'mobile-car': 60, 'mobile-suv': 60, 'flushing-car': 60, 'flushing-suv': 60 },
+                duration: '30 to 45 minutes',
+                desc: 'Engine degreasing, component detailing, plastic and rubber dressing. Add to any service for $40.',
+                samePrice: true
+            },
             'paint-correction-1step': {
                 name: 'Paint Correction (1-Step)',
-                car: 400,
-                suv: 400,
+                prices: { 'mobile-car': 400, 'mobile-suv': 400, 'flushing-car': 400, 'flushing-suv': 400 },
                 duration: '4 to 5 hours',
-                desc: 'Single-step machine polish. Removes ~70-80% of swirls, light scratches and paint defects.'
+                desc: 'Single-step machine polish. Removes ~70-80% of swirls, light scratches and paint defects.',
+                samePrice: true
             },
             'paint-correction-2step': {
                 name: 'Paint Correction (2-Step)',
-                car: 600,
-                suv: 600,
+                prices: { 'mobile-car': 600, 'mobile-suv': 600, 'flushing-car': 600, 'flushing-suv': 600 },
                 duration: '6 to 8 hours',
-                desc: 'Two-step correction. Compound stage for defect removal, then fine polish. Removes ~90% of defects.'
+                desc: 'Two-step correction. Compound stage for defect removal, then fine polish. Removes ~90% of defects.',
+                samePrice: true
             },
             'ceramic-coating': {
                 name: 'Ceramic Coating',
-                car: 900,
-                suv: 900,
+                prices: { 'mobile-car': 900, 'mobile-suv': 900, 'flushing-car': 900, 'flushing-suv': 900 },
                 duration: '1 to 2 days',
-                desc: 'Professional ceramic coating with paint correction included. Long-term protection (2-3+ years).'
+                desc: 'Professional ceramic coating with paint correction included. Long-term protection (2-3+ years).',
+                samePrice: true
             }
         };
 
-        let selectedService = '';
-        let selectedVehicle = 'car';
+        let selectedService  = '';
+        let selectedVehicle  = 'car';
         let selectedLocation = 'mobile';
 
+        // ========== VEHICLE / LOCATION SELECTORS ==========
         function selectVehicle(size) {
             selectedVehicle = size;
             document.getElementById('btn-car').classList.toggle('selected', size === 'car');
@@ -388,15 +435,14 @@
         function onServiceChange() {
             selectedService = document.getElementById('service-select').value;
             const svc = services[selectedService];
-            const mobileBtn = document.getElementById('btn-mobile');
-            const flushingBtn = document.getElementById('btn-flushing');
-            const locationNotice = document.getElementById('location-notice');
+            const mobileBtn       = document.getElementById('btn-mobile');
+            const locationNotice  = document.getElementById('location-notice');
 
             if (svc && svc.flushingOnly) {
                 selectedLocation = 'flushing';
                 mobileBtn.classList.remove('selected');
                 mobileBtn.classList.add('disabled');
-                flushingBtn.classList.add('selected');
+                document.getElementById('btn-flushing').classList.add('selected');
                 locationNotice.classList.add('active');
             } else {
                 mobileBtn.classList.remove('disabled');
@@ -405,14 +451,15 @@
             updateSummary();
         }
 
+        // ========== SUMMARY ==========
         function updateSummary() {
             const summary = document.getElementById('summary');
-            const btn = document.getElementById('book-button');
+            const btn     = document.getElementById('book-button');
             const hasService = selectedService !== '';
 
-            document.getElementById('step1').className = hasService ? 'step done' : 'step active';
-            document.getElementById('step2').className = hasService ? 'step done' : 'step';
-            document.getElementById('step3').className = hasService ? 'step done' : 'step';
+            document.getElementById('step1').className = hasService ? 'step done'   : 'step active';
+            document.getElementById('step2').className = hasService ? 'step done'   : 'step';
+            document.getElementById('step3').className = hasService ? 'step done'   : 'step';
             document.getElementById('step4').className = hasService ? 'step active' : 'step';
 
             if (!hasService) {
@@ -422,68 +469,117 @@
                 return;
             }
 
-            const svc = services[selectedService];
-            const price = selectedVehicle === 'car' ? svc.car : svc.suv;
+            const svc      = services[selectedService];
+            const priceKey = selectedLocation + '-' + selectedVehicle;
+            const price    = svc.prices[priceKey];
 
-            document.getElementById('summary-title').textContent = svc.name;
-            document.getElementById('summary-vehicle').textContent = selectedVehicle === 'car' ? 'Car / Sedan / Coupe' : 'SUV / Van / Truck';
+            document.getElementById('summary-title').textContent    = svc.name;
+            document.getElementById('summary-vehicle').textContent  = selectedVehicle === 'car' ? 'Car / Sedan / Coupe' : 'SUV / Van / Truck';
             document.getElementById('summary-location').textContent = selectedLocation === 'mobile' ? 'Mobile (we come to you)' : 'Flushing drop-off';
             document.getElementById('summary-duration').textContent = svc.duration;
-            document.getElementById('summary-price').textContent = '$' + price;
+            document.getElementById('summary-price').textContent    = '$' + price;
+
+            // ── Inject saved customer info into summary ──
+            const profile        = CustomerProfile.get();
+            const custRow        = document.getElementById('summary-customer-row');
+            const carRow         = document.getElementById('summary-car-row');
+            const custEl         = document.getElementById('summary-customer');
+            const carEl          = document.getElementById('summary-car');
+
+            if (profile && profile.firstName) {
+                custEl.textContent   = [profile.firstName, profile.lastName].filter(Boolean).join(' ');
+                custRow.style.display = '';
+            } else {
+                custRow.style.display = 'none';
+            }
+
+            if (profile && profile.car) {
+                carEl.textContent   = profile.car;
+                carRow.style.display = '';
+            } else {
+                carRow.style.display = 'none';
+            }
 
             let descText = svc.desc;
             if (svc.addon) descText += '\n\nAdd-on: ' + svc.addon;
             document.getElementById('summary-desc').textContent = descText;
 
             summary.classList.add('active');
-            btn.disabled = false;
-            btn.textContent = 'Book Now - $' + price;
+            btn.disabled    = false;
+            btn.textContent = 'Book Now — $' + price;
         }
 
+        // ========== CALENDLY ==========
         function openCalendly() {
             if (!selectedService) { alert('Please select a service first'); return; }
-            const svc = services[selectedService];
-            const price = selectedVehicle === 'car' ? svc.car : svc.suv;
-            const vehicleType = selectedVehicle === 'car' ? 'Car/Sedan/Coupe' : 'Van/SUV/Truck';
-            const locationLabel = selectedLocation === 'mobile' ? 'Mobile' : 'Flushing';
-            const fullServiceString = svc.name + ' (' + locationLabel + ') - $' + price + ' (' + vehicleType + ')';
 
-            const params = new URLSearchParams({
-                a1: '+1',
-                a2: fullServiceString,
+            const svc             = services[selectedService];
+            const priceKey        = selectedLocation + '-' + selectedVehicle;
+            const price           = svc.prices[priceKey];
+            const vehicleType     = selectedVehicle === 'car' ? 'Car/Sedan/Coupe' : 'Van/SUV/Truck';
+            const locationLabel   = selectedLocation === 'mobile' ? 'Mobile' : 'Flushing';
+
+            // Append saved vehicle model if available
+            const profile         = CustomerProfile.get();
+            const carSuffix       = (profile && profile.car) ? ` — ${profile.car}` : '';
+            const fullServiceStr  = `${svc.name} (${locationLabel}) — $${price} (${vehicleType})${carSuffix}`;
+            const serviceCode     = `${selectedService}-${selectedLocation}-${selectedVehicle}`;
+
+            // Base params — service details
+            const params = {
+                a2: fullServiceStr,
                 a3: vehicleType,
-                a4: selectedService + '-' + selectedVehicle
-            });
-            window.open('https://calendly.com/andrekef?' + params.toString(), '_blank');
+                a4: serviceCode
+            };
+
+            // Merge saved customer profile params (name, email, phone → a1)
+            // getCalendlyParams() returns {} if nothing saved — safe to spread
+            const profileParams = CustomerProfile.getCalendlyParams();
+            Object.assign(params, profileParams);
+
+            // Fallback phone prefix if no profile phone
+            if (!params.a1) params.a1 = '+1';
+
+            window.open('https://calendly.com/andrekef?' + new URLSearchParams(params).toString(), '_blank');
         }
 
+        // ========== URL AUTO-FILL ==========
         function autoFillFromURL() {
             const params = new URLSearchParams(window.location.search);
+
             const svc = params.get('service');
             if (svc && services[svc]) {
                 document.getElementById('service-select').value = svc;
                 selectedService = svc;
                 if (services[svc].flushingOnly) {
                     selectedLocation = 'flushing';
-                    document.getElementById('btn-mobile').classList.add('disabled');
+                    document.getElementById('btn-mobile').classList.add('disabled', 'non-selected');
                     document.getElementById('btn-mobile').classList.remove('selected');
                     document.getElementById('btn-flushing').classList.add('selected');
                     document.getElementById('location-notice').classList.add('active');
                 }
             }
+
             const veh = params.get('vehicle');
             if (veh === 'car' || veh === 'suv') selectVehicle(veh);
+
             const loc = params.get('location');
-            if (loc === 'flushing') selectLocation('flushing');
+            if (loc === 'mobile' || loc === 'flushing') {
+                if (!selectedService || !services[selectedService]?.flushingOnly || loc === 'flushing') {
+                    selectLocation(loc);
+                }
+            }
+
             if (svc) {
                 updateSummary();
-                setTimeout(function() {
-                    var el = document.getElementById('summary');
+                setTimeout(() => {
+                    const el = document.getElementById('summary');
                     if (el && window.innerWidth < 700) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }, 300);
             }
         }
 
+        // ========== NAV ==========
         function toggleDropdown(event) {
             event.preventDefault();
             event.stopPropagation();
@@ -495,7 +591,13 @@
             if (!isClickInside) document.getElementById('servicesDropdown').style.display = 'none';
         });
 
-        window.addEventListener('DOMContentLoaded', autoFillFromURL);
+        // ========== INIT ==========
+        window.addEventListener('DOMContentLoaded', () => {
+            // Render saved profile widget
+            CustomerProfile.render('profile-widget');
+            // Then auto-fill service from URL
+            autoFillFromURL();
+        });
     </script>
 </body>
 </html>
