@@ -19,31 +19,65 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .booking-container h1 { text-align: center; color: #333; margin-bottom: 10px; }
-        .booking-container > p { text-align: center; color: #666; margin-bottom: 30px; }
+        .booking-container > p  { text-align: center; color: #666; margin-bottom: 30px; }
 
-        .steps {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 30px;
-        }
-        .step { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: #ccc; }
+        /* Steps */
+        .steps { display: flex; justify-content: center; gap: 8px; margin-bottom: 30px; }
+        .step  { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: #ccc; }
         .step.active { color: #e74c3c; font-weight: 600; }
-        .step.done { color: #27ae60; }
+        .step.done   { color: #27ae60; }
         .step-num {
             width: 24px; height: 24px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-size: 0.75rem; font-weight: 700; background: #eee; color: #999;
         }
         .step.active .step-num { background: #e74c3c; color: white; }
-        .step.done .step-num { background: #27ae60; color: white; }
+        .step.done   .step-num { background: #27ae60; color: white; }
         .step-arrow { color: #ddd; font-size: 0.7rem; }
 
-        .profile-section-label {
-            font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1px; color: #bbb; margin-bottom: 8px;
+        /* Customer area */
+        .customer-area {
+            margin-bottom: 28px;
+        }
+        .customer-area-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #bbb;
+            margin-bottom: 8px;
         }
 
+        /* Operator picker (DSGCustomers) */
+        /* Styles are injected by customers.js itself */
+
+        /* "New customer" collapsible */
+        .new-customer-toggle {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            color: #aaa;
+            cursor: pointer;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            width: fit-content;
+        }
+        .new-customer-toggle:hover { color: #e74c3c; }
+        .new-customer-toggle .nct-arrow { font-size: 0.6rem; transition: transform 0.2s; }
+        .new-customer-toggle .nct-arrow.open { transform: rotate(90deg); }
+        .new-customer-panel {
+            display: none;
+            margin-top: 10px;
+            padding: 2px 0 0;
+        }
+        .new-customer-panel.open { display: block; }
+
+        /* Divider */
+        .section-divider { border: none; border-top: 1px solid #eee; margin: 0 0 24px; }
+
+        /* Service selector */
         .selector-group { margin-bottom: 24px; }
         .selector-group label {
             display: block; font-size: 16px; font-weight: 600;
@@ -60,6 +94,7 @@
         .selector-group select:hover { border-color: #e74c3c; }
         .selector-group select:focus { outline: none; border-color: #e74c3c; }
 
+        /* Toggle buttons */
         .toggle-options { display: flex; gap: 12px; }
         .toggle-option {
             flex: 1; padding: 14px; border: 2px solid #ddd; border-radius: 5px;
@@ -67,18 +102,19 @@
             font-size: 0.95rem; user-select: none; -webkit-tap-highlight-color: transparent;
         }
         .toggle-option:hover:not(.disabled) { border-color: #e74c3c; }
-        .toggle-option.selected { border-color: #e74c3c; background: #fef2f2; }
-        .toggle-option.disabled { opacity: 0.4; cursor: not-allowed; background: #f5f5f5; }
-        .toggle-option strong { display: block; font-size: 0.95rem; color: #333; }
+        .toggle-option.selected  { border-color: #e74c3c; background: #fef2f2; }
+        .toggle-option.disabled  { opacity: 0.4; cursor: not-allowed; background: #f5f5f5; }
+        .toggle-option strong    { display: block; font-size: 0.95rem; color: #333; }
         .toggle-option .toggle-sub { font-size: 0.8rem; color: #999; margin-top: 2px; }
 
         .location-notice {
-            background: #fff8f0; border: 1px solid #f5c48a;
-            border-radius: 6px; padding: 10px 14px; margin-top: 10px;
-            font-size: 0.85rem; color: #b45309; display: none;
+            background: #fff8f0; border: 1px solid #f5c48a; border-radius: 6px;
+            padding: 10px 14px; margin-top: 10px; font-size: 0.85rem;
+            color: #b45309; display: none;
         }
         .location-notice.active { display: block; }
 
+        /* Summary card */
         .summary-card {
             background: #f8f9fa; padding: 20px 24px; border-radius: 8px;
             margin-bottom: 24px; border-left: 4px solid #e74c3c; display: none;
@@ -95,25 +131,15 @@
             font-size: 0.85rem; color: #777; line-height: 1.6;
         }
 
+        /* Book button */
         .book-button {
             width: 100%; padding: 18px; font-size: 18px; font-weight: 600;
             background: #e74c3c; color: white; border: none; border-radius: 5px;
-            cursor: pointer; transition: background 0.2s;
-            text-transform: uppercase; letter-spacing: 1px; min-height: 56px;
+            cursor: pointer; transition: background 0.2s; text-transform: uppercase;
+            letter-spacing: 1px; min-height: 56px;
         }
-        .book-button:hover { background: #c0392b; }
+        .book-button:hover    { background: #c0392b; }
         .book-button:disabled { background: #ccc; cursor: not-allowed; }
-
-        .seasonal-badge {
-            display: inline-block; background: #2c3e50; color: white;
-            padding: 2px 7px; border-radius: 3px; font-size: 10px;
-            margin-left: 4px; font-weight: 700; letter-spacing: 0.5px; vertical-align: middle;
-        }
-
-        /* Section divider between customer picker and service selector */
-        .section-divider {
-            border: none; border-top: 1px solid #eee; margin: 0 0 24px;
-        }
 
         @media (max-width: 600px) {
             .booking-container { margin: 20px auto; padding: 24px 16px; border-radius: 0; box-shadow: none; }
@@ -168,13 +194,27 @@
                 <div class="step" id="step4"><span class="step-num">4</span> Book</div>
             </div>
 
-            <!-- ── Customer Picker (customers.js) ── -->
-            <p class="profile-section-label">Customer</p>
-            <div id="customer-picker-widget"></div>
+            <!-- ─────────────────────────────────────────────────────────────
+                 CUSTOMER AREA
+                 Top section: operator quick-select (DSGCustomers dropdown)
+                 Bottom section: collapsible self-serve profile (CustomerProfile)
+            ──────────────────────────────────────────────────────────────── -->
+            <div class="customer-area">
+                <!-- Double-click "Customer" label to reveal operator picker -->
+                <div class="customer-area-label" id="customer-area-label" ondblclick="revealOperatorPicker()" style="cursor:default; user-select:none; padding: 10px 0; margin-bottom: 0;">Customer</div>
 
-            <!-- ── Legacy profile widget (customer-profile.js) ── -->
-            <p class="profile-section-label">Your Saved Info</p>
-            <div id="profile-widget"></div>
+                <!-- Operator dropdown — hidden until double-click -->
+                <div id="customer-picker-widget" style="display:none;"></div>
+
+                <!-- "New customer?" toggle — reveals the CustomerProfile widget -->
+                <div class="new-customer-toggle" id="nct-toggle" onclick="toggleNewCustomer()">
+                    <span class="nct-arrow" id="nct-arrow">&#9654;</span>
+                    New customer? Save your info for next time
+                </div>
+                <div class="new-customer-panel" id="nct-panel">
+                    <div id="profile-widget"></div>
+                </div>
+            </div>
 
             <hr class="section-divider">
 
@@ -184,7 +224,7 @@
                 <select id="service-select" onchange="onServiceChange()">
                     <option value="">-- Select a Service --</option>
                     <optgroup label="Detailing Packages">
-                        <option value="wash-wax">Wash & Wax (Flushing only)</option>
+                        <option value="wash-wax">Wash &amp; Wax (Flushing only)</option>
                         <option value="maintenance">Maintenance Detail</option>
                         <option value="full-detail">Full Detail</option>
                     </optgroup>
@@ -242,7 +282,7 @@
                     <span class="value" id="summary-customer"></span>
                 </div>
                 <div class="summary-row" id="summary-car-row" style="display:none;">
-                    <span class="label">Vehicle (saved)</span>
+                    <span class="label">Vehicle (on file)</span>
                     <span class="value profile-car" id="summary-car"></span>
                 </div>
                 <div class="summary-row">
@@ -277,7 +317,12 @@
         </div>
     </footer>
 
-    <!-- Load customers.js FIRST, then customer-profile.js, then booking logic -->
+    <!--
+        Load order matters:
+        1. customers.js   — DSGCustomers operator picker
+        2. customer-profile.js — CustomerProfile self-serve widget
+        3. inline booking script
+    -->
     <script src="customers.js"></script>
     <script src="customer-profile.js"></script>
 
@@ -350,9 +395,18 @@
         let selectedService  = '';
         let selectedVehicle  = 'car';
         let selectedLocation = 'mobile';
-        let _pickedCustomer  = null; // set by DSGCustomers dropdown callback
+        let _pickedCustomer  = null; // set by DSGCustomers dropdown
 
-        // ========== VEHICLE / LOCATION SELECTORS ==========
+        // ========== NEW CUSTOMER PANEL TOGGLE ==========
+        function toggleNewCustomer() {
+            const panel  = document.getElementById('nct-panel');
+            const arrow  = document.getElementById('nct-arrow');
+            const isOpen = panel.classList.contains('open');
+            panel.classList.toggle('open', !isOpen);
+            arrow.classList.toggle('open', !isOpen);
+        }
+
+        // ========== VEHICLE / LOCATION ==========
         function selectVehicle(size) {
             selectedVehicle = size;
             document.getElementById('btn-car').classList.toggle('selected', size === 'car');
@@ -370,7 +424,7 @@
 
         function onServiceChange() {
             selectedService = document.getElementById('service-select').value;
-            const svc = services[selectedService];
+            const svc            = services[selectedService];
             const mobileBtn      = document.getElementById('btn-mobile');
             const locationNotice = document.getElementById('location-notice');
 
@@ -415,7 +469,7 @@
             document.getElementById('summary-duration').textContent = svc.duration;
             document.getElementById('summary-price').textContent    = '$' + price;
 
-            // Priority: DSGCustomers picker → fallback to CustomerProfile (saved profile widget)
+            // Priority: DSGCustomers picker > CustomerProfile saved info
             const custRow = document.getElementById('summary-customer-row');
             const carRow  = document.getElementById('summary-car-row');
             const custEl  = document.getElementById('summary-customer');
@@ -424,14 +478,9 @@
             if (_pickedCustomer && _pickedCustomer.name) {
                 custEl.textContent    = _pickedCustomer.name;
                 custRow.style.display = '';
-                if (_pickedCustomer.car) {
-                    carEl.textContent   = _pickedCustomer.car;
-                    carRow.style.display = '';
-                } else {
-                    carRow.style.display = 'none';
-                }
+                carEl.textContent     = _pickedCustomer.car || '';
+                carRow.style.display  = _pickedCustomer.car ? '' : 'none';
             } else {
-                // Fall back to saved profile
                 const profile = (typeof CustomerProfile !== 'undefined') ? CustomerProfile.get() : null;
                 if (profile && profile.firstName) {
                     custEl.textContent    = [profile.firstName, profile.lastName].filter(Boolean).join(' ');
@@ -439,12 +488,8 @@
                 } else {
                     custRow.style.display = 'none';
                 }
-                if (profile && profile.car) {
-                    carEl.textContent    = profile.car;
-                    carRow.style.display = '';
-                } else {
-                    carRow.style.display = 'none';
-                }
+                carEl.textContent    = (profile && profile.car) ? profile.car : '';
+                carRow.style.display = (profile && profile.car) ? '' : 'none';
             }
 
             let descText = svc.desc;
@@ -466,13 +511,13 @@
             const vehicleType   = selectedVehicle === 'car' ? 'Car/Sedan/Coupe' : 'Van/SUV/Truck';
             const locationLabel = selectedLocation === 'mobile' ? 'Mobile' : 'Flushing';
 
-            // Determine car suffix — picker first, then legacy profile
+            // Car suffix — picker first, then saved profile
             let carSuffix = '';
             if (_pickedCustomer && _pickedCustomer.car) {
                 carSuffix = ` — ${_pickedCustomer.car}`;
             } else if (typeof CustomerProfile !== 'undefined') {
-                const profile = CustomerProfile.get();
-                if (profile && profile.car) carSuffix = ` — ${profile.car}`;
+                const p = CustomerProfile.get();
+                if (p && p.car) carSuffix = ` — ${p.car}`;
             }
 
             const fullServiceStr = `${svc.name} (${locationLabel}) — $${price} (${vehicleType})${carSuffix}`;
@@ -480,17 +525,14 @@
 
             const params = { a2: fullServiceStr, a3: vehicleType, a4: serviceCode };
 
-            // Merge customer picker params (name, email, phone) — highest priority
-            const pickerParams = DSGCustomers.getCalendlyParams();
-            Object.assign(params, pickerParams);
-
-            // If no picker selection, fall back to saved profile
-            if (!_pickedCustomer && typeof CustomerProfile !== 'undefined') {
-                const profileParams = CustomerProfile.getCalendlyParams();
-                Object.assign(params, profileParams);
+            // Customer params — picker overrides saved profile
+            if (_pickedCustomer) {
+                Object.assign(params, DSGCustomers.getCalendlyParams());
+            } else if (typeof CustomerProfile !== 'undefined') {
+                Object.assign(params, CustomerProfile.getCalendlyParams());
             }
 
-            // Ensure +1 prefix on phone
+            // Always ensure +1 prefix
             if (!params.a1) {
                 params.a1 = '+1';
             } else if (!params.a1.startsWith('+1')) {
@@ -540,28 +582,40 @@
         function toggleDropdown(event) {
             event.preventDefault();
             event.stopPropagation();
-            var dropdown = document.getElementById('servicesDropdown');
-            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+            var dd = document.getElementById('servicesDropdown');
+            dd.style.display = (dd.style.display === 'block') ? 'none' : 'block';
         }
-        document.addEventListener('click', function(event) {
-            var isClickInside = document.querySelector('.non-clickable') && document.querySelector('.non-clickable').contains(event.target);
-            if (!isClickInside) document.getElementById('servicesDropdown').style.display = 'none';
+        document.addEventListener('click', function(e) {
+            var nc = document.querySelector('.non-clickable');
+            if (!nc || !nc.contains(e.target)) {
+                document.getElementById('servicesDropdown').style.display = 'none';
+            }
         });
 
-        // ========== INIT ==========
-        window.addEventListener('DOMContentLoaded', () => {
-            // Render DSG customer picker — callback fires when someone is selected
+        // ========== OPERATOR PICKER REVEAL ==========
+        let _operatorPickerRevealed = false;
+        function revealOperatorPicker() {
+            if (_operatorPickerRevealed) return;
+            _operatorPickerRevealed = true;
+            const widget = document.getElementById('customer-picker-widget');
+            widget.style.display = '';
+            // Now render it — lazy load so public users never trigger the fetch
             DSGCustomers.render('customer-picker-widget', function(contact) {
                 _pickedCustomer = contact;
                 updateSummary();
             });
+            // Hide the label after reveal so it looks clean
+            document.getElementById('customer-area-label').style.opacity = '0.3';
+        }
 
-            // Render legacy saved-profile widget
+        // ========== INIT ==========
+        window.addEventListener('DOMContentLoaded', () => {
+            // Operator customer picker is lazy — only renders on double-click of label
+            // Self-serve saved profile (hidden by default under "New customer?" toggle)
             if (typeof CustomerProfile !== 'undefined') {
                 CustomerProfile.render('profile-widget');
             }
 
-            // Auto-fill from URL params
             autoFillFromURL();
         });
     </script>
