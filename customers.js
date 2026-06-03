@@ -50,18 +50,37 @@ const DSGCustomers = (() => {
         localStorage.setItem(LS_CUSTOM_KEY, JSON.stringify(list));
     }
 
-    // ── Fetch from Apps Script ─────────────────────────────────────────────
-    async function fetchFromSheet() {
-        if (!WEB_APP_URL || WEB_APP_URL === 'YOUR_WEB_APP_URL_HERE') return null;
-        try {
-            const res  = await fetch(WEB_APP_URL, { redirect: 'follow' });
-            const json = await res.json();
-            if (json.ok && Array.isArray(json.customers)) {
-                setCache(json.customers);
-                return json.customers;
+    // ── Fetch from Apps Script via JSONP (bypasses CORS) ─────────────────
+    function fetchFromSheet() {
+        if (!WEB_APP_URL || WEB_APP_URL === 'YOUR_WEB_APP_URL_HERE') return Promise.resolve(null);
+        return new Promise((resolve) => {
+            const cbName = 'dsg_cb_' + Date.now();
+            const script = document.createElement('script');
+            const timeout = setTimeout(() => {
+                cleanup();
+                resolve(null);
+            }, 8000);
+
+            function cleanup() {
+                clearTimeout(timeout);
+                delete window[cbName];
+                if (script.parentNode) script.parentNode.removeChild(script);
             }
-        } catch {}
-        return null;
+
+            window[cbName] = function(data) {
+                cleanup();
+                if (data.ok && Array.isArray(data.customers)) {
+                    setCache(data.customers);
+                    resolve(data.customers);
+                } else {
+                    resolve(null);
+                }
+            };
+
+            script.src = WEB_APP_URL + '?callback=' + cbName;
+            script.onerror = () => { cleanup(); resolve(null); };
+            document.head.appendChild(script);
+        });
     }
 
     // ── Post new customer to Sheet ─────────────────────────────────────────
