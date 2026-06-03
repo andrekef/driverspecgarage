@@ -1,0 +1,390 @@
+/**
+ * Driver Spec Garage — Customer Database
+ * customers.js
+ *
+ * Built-in contacts from your CSV (cleaned up).
+ * New contacts added via the UI are saved to localStorage and merged at runtime.
+ * No page reload needed — new entries appear immediately in the dropdown.
+ */
+
+const DSGCustomers = (() => {
+
+    // ── Default contacts (from your CSV, cleaned) ──────────────────────────
+    const DEFAULT_CONTACTS = [
+        { name: 'Spyro Dimitratos',     email: 'sdimitratos@renkertoil.com',        phone: '+15167906039', car: '',             company: 'Renkert Oil' },
+        { name: 'Anthony Bolanos',       email: 'arb09290@gmail.com',                phone: '+16468561593', car: '',             company: '' },
+        { name: 'Daniel Aminov',         email: 'aminovdaniel196@gmail.com',         phone: '+19292877744', car: 'Urus',         company: '' },
+        { name: 'Moshe Aminov',          email: 'mosheaminov98@gmail.com',           phone: '+12126667368', car: '',             company: '' },
+        { name: 'Nathan Yakubov',        email: 'nathanyakubov626@gmail.com',        phone: '+17188644150', car: '',             company: '' },
+        { name: 'Rick Haniff',           email: 'ihaniff1@gmail.com',               phone: '+19172883786', car: '',             company: '' },
+        { name: 'Joshua Babadzhanov',    email: 'joshuababadzhanov@gmail.com',       phone: '+17183008033', car: '',             company: '' },
+        { name: 'Micheline Tocco',       email: 'micheline.tocco@gmail.com',         phone: '+16179574441', car: '',             company: '' },
+        { name: 'Josh (GREMT)',          email: 'josh@gremt.com',                   phone: '+15168058438', car: '',             company: 'GREMT' },
+        { name: 'Robert (GREMT)',        email: 'robert@gremt.com',                 phone: '+15168058438', car: '',             company: 'GREMT' },
+        { name: 'Johny Kaz',            email: 'jonykazz8@gmail.com',              phone: '+19293013311', car: 'M340i',        company: '' },
+        { name: 'Joe Collazo',          email: 'josephcollazo718@gmail.com',        phone: '+19292579339', car: '',             company: '' },
+        { name: 'Manny',                email: 'mannygg24@gmail.com',              phone: '+19045055109', car: 'K5 GT',        company: '' },
+        { name: 'Roach',                email: 'efraimrokach@gmail.com',            phone: '+15168510986', car: '',             company: '' },
+        { name: 'Tufo',                 email: 'waterdynamic@gmail.com',            phone: '+19295699420', car: '',             company: '' },
+        { name: 'Kris',                 email: 'thunderkid6252@yahoo.com',          phone: '+12127679512', car: '',             company: '' },
+        { name: 'Glock Lee',            email: 'garyxing929@gmail.com',             phone: '+16468816691', car: '',             company: '' },
+        { name: 'Mike',                 email: 'fierymaelstrom@gmail.com',          phone: '+13476884639', car: '',             company: '' },
+        { name: 'Zumar Badrudeen',      email: 'zsbadrudeen@gmail.com',             phone: '',             car: '',             company: '' },
+        { name: 'Johny Kaz (alt)',      email: 'needemail@gmail.com',               phone: '+16469723236', car: '',             company: '' },
+        { name: 'John Sage Oil',        email: 'info@mysageoil.com',               phone: '+15166610362', car: '',             company: 'Sage Oil' },
+        { name: 'Justin Kil',           email: 'justinkil2798@gmail.com',           phone: '+12019253135', car: '',             company: '' },
+        { name: 'Frosty',               email: 'ericonestopauto@gmail.com',         phone: '+13474377375', car: '',             company: '' },
+        { name: 'Justin Morales',       email: 'justinmorales807@gmail.com',        phone: '+13474331576', car: '',             company: '' },
+        { name: 'Harold',               email: 'haroldelizee05@gmail.com',          phone: '+19293013311', car: '',             company: '' },
+        { name: 'Joshua Bustamante',    email: 'josh921bustamante@outlook.com',     phone: '+13475270728', car: '',             company: '' },
+        { name: 'Steve',                email: 'esteveescorza@gmail.com',           phone: '+13474986327', car: '',             company: '' },
+        { name: 'Hector Flores',        email: 'hectorflores22@yahoo.com',          phone: '+13479094464', car: '',             company: '' },
+        { name: 'Elkin',                email: 'mobileautotechincorporated@gmail.com', phone: '+13472565908', car: '',          company: '' },
+        { name: 'Winnie',               email: 'lee1081@hotmail.com',              phone: '+17188733019', car: '',             company: '' },
+        { name: 'Frank',                email: 'fmarrero71@yahoo.com',             phone: '+15165106540', car: '',             company: '' },
+        { name: 'Stam',                 email: 'stam28koulouris@gmail.com',         phone: '+19292822217', car: '',             company: '' },
+        { name: 'Sukhwinder Singh',     email: 'sukhwinders2399@gmail.com',         phone: '',             car: '',             company: '' },
+        { name: 'Mario Rodriguez',      email: 'mhrod114@gmail.com',               phone: '+19173926583', car: '',             company: '' },
+        { name: 'Steven',               email: 'stevengbi@aol.com',                phone: '+13476306776', car: '',             company: '' },
+        { name: 'Linda',                email: 'lindanayelicb@gmail.com',           phone: '',             car: '',             company: '' },
+        { name: 'Alex',                 email: 'alexkef1999@gmail.com',             phone: '',             car: '',             company: '' },
+        { name: 'Unknown (X3M Whitestone)', email: 'driverspecgarage@gmail.com',   phone: '+19173917840', car: 'X3M',         company: '' },
+    ];
+
+    const LS_KEY = 'dsg_customers_v1';
+
+    // ── Storage helpers ────────────────────────────────────────────────────
+    function loadCustomContacts() {
+        try {
+            return JSON.parse(localStorage.getItem(LS_KEY)) || [];
+        } catch { return []; }
+    }
+
+    function saveCustomContacts(list) {
+        localStorage.setItem(LS_KEY, JSON.stringify(list));
+    }
+
+    function getAllContacts() {
+        const custom = loadCustomContacts();
+        // Custom contacts appear first so they're easy to find
+        return [...custom, ...DEFAULT_CONTACTS];
+    }
+
+    function addContact(contact) {
+        const custom = loadCustomContacts();
+        custom.unshift(contact); // newest first
+        saveCustomContacts(custom);
+        return getAllContacts();
+    }
+
+    // ── Normalize phone for Calendly (+1XXXXXXXXXX) ────────────────────────
+    function normalizePhone(raw) {
+        if (!raw) return '+1';
+        const digits = raw.replace(/\D/g, '');
+        if (digits.length === 10) return '+1' + digits;
+        if (digits.length === 11 && digits.startsWith('1')) return '+' + digits;
+        return '+1' + digits;
+    }
+
+    // ── Render the customer picker widget ─────────────────────────────────
+    // targetId   — id of the container <div> to inject into
+    // onSelect   — callback(contact) fired when a customer is chosen
+    function render(targetId, onSelect) {
+        const container = document.getElementById(targetId);
+        if (!container) return;
+
+        container.innerHTML = `
+        <style>
+            #dsg-picker {
+                margin-bottom: 24px;
+                font-family: inherit;
+            }
+            #dsg-picker .picker-row {
+                display: flex;
+                gap: 10px;
+                align-items: stretch;
+            }
+            #dsg-picker select {
+                flex: 1;
+                padding: 13px 38px 13px 14px;
+                font-size: 15px;
+                border: 2px solid #ddd;
+                border-radius: 5px;
+                background: white;
+                cursor: pointer;
+                transition: border-color 0.2s;
+                -webkit-appearance: none;
+                appearance: none;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: right 14px center;
+                color: #333;
+            }
+            #dsg-picker select:focus,
+            #dsg-picker select:hover { border-color: #e74c3c; outline: none; }
+            #dsg-picker .add-btn {
+                padding: 0 16px;
+                background: #2c3e50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 20px;
+                cursor: pointer;
+                transition: background 0.2s;
+                white-space: nowrap;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 44px;
+            }
+            #dsg-picker .add-btn:hover { background: #e74c3c; }
+
+            /* Selected customer chip */
+            #dsg-customer-chip {
+                display: none;
+                margin-top: 10px;
+                padding: 10px 14px;
+                background: #f0fdf4;
+                border: 1px solid #86efac;
+                border-radius: 6px;
+                font-size: 0.88rem;
+                color: #166534;
+                display: none;
+                align-items: center;
+                justify-content: space-between;
+                gap: 8px;
+            }
+            #dsg-customer-chip.active { display: flex; }
+            #dsg-customer-chip .chip-info { line-height: 1.5; }
+            #dsg-customer-chip .chip-name { font-weight: 700; font-size: 0.95rem; }
+            #dsg-customer-chip .chip-sub { color: #4d7c60; font-size: 0.8rem; }
+            #dsg-customer-chip .chip-clear {
+                cursor: pointer; color: #999; font-size: 1.1rem;
+                background: none; border: none; padding: 0 2px; flex-shrink: 0;
+            }
+            #dsg-customer-chip .chip-clear:hover { color: #e74c3c; }
+
+            /* Add customer modal */
+            #dsg-add-modal-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.45);
+                z-index: 9999;
+                align-items: center;
+                justify-content: center;
+            }
+            #dsg-add-modal-overlay.open { display: flex; }
+            #dsg-add-modal {
+                background: white;
+                border-radius: 10px;
+                padding: 28px 28px 24px;
+                width: 92%;
+                max-width: 420px;
+                box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+            }
+            #dsg-add-modal h3 { margin: 0 0 20px; font-size: 1.1rem; color: #222; }
+            #dsg-add-modal label {
+                display: block; font-size: 0.82rem; font-weight: 600;
+                color: #555; margin-bottom: 4px; margin-top: 14px;
+                text-transform: uppercase; letter-spacing: 0.5px;
+            }
+            #dsg-add-modal label:first-of-type { margin-top: 0; }
+            #dsg-add-modal input {
+                width: 100%; box-sizing: border-box;
+                padding: 11px 13px; font-size: 15px;
+                border: 2px solid #ddd; border-radius: 5px;
+                transition: border-color 0.2s;
+            }
+            #dsg-add-modal input:focus { outline: none; border-color: #e74c3c; }
+            .dsg-modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+            .dsg-modal-actions button {
+                flex: 1; padding: 13px;
+                border: none; border-radius: 5px;
+                font-size: 15px; font-weight: 600;
+                cursor: pointer; transition: background 0.2s;
+            }
+            .dsg-modal-save { background: #e74c3c; color: white; }
+            .dsg-modal-save:hover { background: #c0392b; }
+            .dsg-modal-cancel { background: #f0f0f0; color: #444; }
+            .dsg-modal-cancel:hover { background: #e0e0e0; }
+            .dsg-modal-err { color: #e74c3c; font-size: 0.82rem; margin-top: 8px; display: none; }
+            .dsg-modal-err.show { display: block; }
+        </style>
+
+        <div id="dsg-picker">
+            <div class="picker-row">
+                <select id="dsg-customer-select" onchange="DSGCustomers._onSelect(this.value)">
+                    <option value="">-- Select existing customer --</option>
+                </select>
+                <button class="add-btn" title="Add new customer" onclick="DSGCustomers._openModal()">＋</button>
+            </div>
+            <div id="dsg-customer-chip">
+                <div class="chip-info">
+                    <div class="chip-name" id="dsg-chip-name"></div>
+                    <div class="chip-sub" id="dsg-chip-sub"></div>
+                </div>
+                <button class="chip-clear" onclick="DSGCustomers._clearSelection()" title="Clear">✕</button>
+            </div>
+        </div>
+
+        <!-- Add Customer Modal -->
+        <div id="dsg-add-modal-overlay" onclick="DSGCustomers._closeModalOnBg(event)">
+            <div id="dsg-add-modal">
+                <h3>Add New Customer</h3>
+                <label>Name *</label>
+                <input type="text" id="dsg-new-name" placeholder="First Last" />
+                <label>Email</label>
+                <input type="email" id="dsg-new-email" placeholder="email@example.com" />
+                <label>Phone</label>
+                <input type="tel" id="dsg-new-phone" placeholder="646-123-4567" />
+                <label>Car / Vehicle</label>
+                <input type="text" id="dsg-new-car" placeholder="e.g. M4, Urus, X5M" />
+                <div class="dsg-modal-err" id="dsg-modal-err">Name is required.</div>
+                <div class="dsg-modal-actions">
+                    <button class="dsg-modal-cancel" onclick="DSGCustomers._closeModal()">Cancel</button>
+                    <button class="dsg-modal-save" onclick="DSGCustomers._saveNew()">Save &amp; Select</button>
+                </div>
+            </div>
+        </div>
+        `;
+
+        DSGCustomers._onSelectCallback = onSelect;
+        DSGCustomers._populateDropdown();
+    }
+
+    // ── Internal: populate/refresh the <select> ───────────────────────────
+    function _populateDropdown() {
+        const sel = document.getElementById('dsg-customer-select');
+        if (!sel) return;
+        const contacts = getAllContacts();
+        const custom   = loadCustomContacts();
+
+        sel.innerHTML = '<option value="">-- Select existing customer --</option>';
+
+        if (custom.length) {
+            const grp = document.createElement('optgroup');
+            grp.label = 'Recent / Added';
+            custom.forEach((c, i) => {
+                const opt = document.createElement('option');
+                opt.value = 'custom_' + i;
+                opt.textContent = c.name + (c.car ? ` (${c.car})` : '');
+                grp.appendChild(opt);
+            });
+            sel.appendChild(grp);
+        }
+
+        const grp2 = document.createElement('optgroup');
+        grp2.label = 'All Customers';
+        DEFAULT_CONTACTS.forEach((c, i) => {
+            const opt = document.createElement('option');
+            opt.value = 'default_' + i;
+            opt.textContent = c.name + (c.car ? ` (${c.car})` : '');
+            grp2.appendChild(opt);
+        });
+        sel.appendChild(grp2);
+    }
+
+    let _selectedContact = null;
+    let _onSelectCallback = null;
+
+    function _onSelect(val) {
+        if (!val) { _clearSelection(); return; }
+
+        const custom = loadCustomContacts();
+        let contact;
+        if (val.startsWith('custom_')) {
+            contact = custom[parseInt(val.replace('custom_', ''))];
+        } else {
+            contact = DEFAULT_CONTACTS[parseInt(val.replace('default_', ''))];
+        }
+        if (!contact) return;
+        _selectedContact = contact;
+
+        // Show chip
+        const chip = document.getElementById('dsg-customer-chip');
+        chip.classList.add('active');
+        document.getElementById('dsg-chip-name').textContent = contact.name + (contact.car ? ` — ${contact.car}` : '');
+        const sub = [contact.email, contact.phone].filter(Boolean).join(' · ');
+        document.getElementById('dsg-chip-sub').textContent = sub;
+
+        if (_onSelectCallback) _onSelectCallback(contact);
+    }
+
+    function _clearSelection() {
+        _selectedContact = null;
+        document.getElementById('dsg-customer-select').value = '';
+        document.getElementById('dsg-customer-chip').classList.remove('active');
+        if (_onSelectCallback) _onSelectCallback(null);
+    }
+
+    // ── Modal controls ─────────────────────────────────────────────────────
+    function _openModal() {
+        ['dsg-new-name','dsg-new-email','dsg-new-phone','dsg-new-car'].forEach(id => {
+            document.getElementById(id).value = '';
+        });
+        document.getElementById('dsg-modal-err').classList.remove('show');
+        document.getElementById('dsg-add-modal-overlay').classList.add('open');
+        setTimeout(() => document.getElementById('dsg-new-name').focus(), 100);
+    }
+
+    function _closeModal() {
+        document.getElementById('dsg-add-modal-overlay').classList.remove('open');
+    }
+
+    function _closeModalOnBg(e) {
+        if (e.target === document.getElementById('dsg-add-modal-overlay')) _closeModal();
+    }
+
+    function _saveNew() {
+        const name  = document.getElementById('dsg-new-name').value.trim();
+        const email = document.getElementById('dsg-new-email').value.trim();
+        const phone = document.getElementById('dsg-new-phone').value.trim();
+        const car   = document.getElementById('dsg-new-car').value.trim();
+
+        if (!name) {
+            document.getElementById('dsg-modal-err').classList.add('show');
+            return;
+        }
+
+        const contact = { name, email, phone: normalizePhone(phone), car, company: '' };
+        addContact(contact);
+        _closeModal();
+        _populateDropdown();
+
+        // Auto-select the newly added contact (it's first in custom list → custom_0)
+        document.getElementById('dsg-customer-select').value = 'custom_0';
+        _onSelect('custom_0');
+    }
+
+    // ── Public: get Calendly-ready params from selected contact ───────────
+    function getCalendlyParams() {
+        if (!_selectedContact) return {};
+        const c = _selectedContact;
+        const params = {};
+        if (c.name)  params.name  = c.name;
+        if (c.email) params.email = c.email;
+        if (c.phone) params.a1    = normalizePhone(c.phone);
+        return params;
+    }
+
+    function getSelected() { return _selectedContact; }
+
+    return {
+        render,
+        getAllContacts,
+        addContact,
+        getCalendlyParams,
+        getSelected,
+        normalizePhone,
+        // Internal (called from inline HTML handlers — must be on public API)
+        _onSelect,
+        _clearSelection,
+        _populateDropdown,
+        _openModal,
+        _closeModal,
+        _closeModalOnBg,
+        _saveNew,
+        _onSelectCallback: null,
+    };
+})();
