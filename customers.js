@@ -1,445 +1,623 @@
-/**
- * Driver Spec Garage — Customer Database
- * customers.js
- *
- * Fetches customer list from a Google Apps Script Web App (your private Sheet).
- * Falls back to an empty list if the fetch fails — no customer data in this file.
- *
- * SETUP: Replace the WEB_APP_URL below with your deployed Apps Script URL.
- */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Book Now - Driver Spec Garage</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        .booking-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            padding-left: max(40px, env(safe-area-inset-left));
+            padding-right: max(40px, env(safe-area-inset-right));
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .booking-container h1 { text-align: center; color: #333; margin-bottom: 10px; }
+        .booking-container > p  { text-align: center; color: #666; margin-bottom: 30px; }
 
-const DSGCustomers = (() => {
+        /* Steps */
+        .steps { display: flex; justify-content: center; gap: 8px; margin-bottom: 30px; }
+        .step  { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: #ccc; }
+        .step.active { color: #e74c3c; font-weight: 600; }
+        .step.done   { color: #27ae60; }
+        .step-num {
+            width: 24px; height: 24px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; font-weight: 700; background: #eee; color: #999;
+        }
+        .step.active .step-num { background: #e74c3c; color: white; }
+        .step.done   .step-num { background: #27ae60; color: white; }
+        .step-arrow { color: #ddd; font-size: 0.7rem; }
 
-    // ── PASTE YOUR WEB APP URL HERE ────────────────────────────────────────
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxnl4XXZnBD91o67nFFXy9A10dIs84OIhkiueflOP6Mtige7Dzga5fkJ3fQ8a7f5zo/exec';
-    // ───────────────────────────────────────────────────────────────────────
+        /* Customer area */
+        .customer-area {
+            margin-bottom: 28px;
+        }
+        .customer-area-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #bbb;
+            margin-bottom: 8px;
+        }
 
-    const LS_CACHE_KEY    = 'dsg_customers_cache_v1';   // fetched list cache
-    const LS_CACHE_TS_KEY = 'dsg_customers_cache_ts_v1'; // timestamp of last fetch
-    const LS_CUSTOM_KEY   = 'dsg_customers_custom_v1';  // locally added contacts
-    const CACHE_TTL_MS    = 5 * 60 * 1000;              // re-fetch after 5 minutes
+        /* Operator picker (DSGCustomers) */
+        /* Styles are injected by customers.js itself */
 
-    // Fallback — empty. Customer data lives only in your private Google Sheet.
-    // If the Sheet fetch fails and no cache exists, the dropdown shows nothing
-    // until connectivity is restored or the user manually adds someone via +.
-    const FALLBACK = [];
+        /* "New customer" collapsible */
+        .new-customer-toggle {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            color: #aaa;
+            cursor: pointer;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            width: fit-content;
+        }
+        .new-customer-toggle:hover { color: #e74c3c; }
+        .new-customer-toggle .nct-arrow { font-size: 0.6rem; transition: transform 0.2s; }
+        .new-customer-toggle .nct-arrow.open { transform: rotate(90deg); }
+        .new-customer-panel {
+            display: none;
+            margin-top: 10px;
+            padding: 2px 0 0;
+        }
+        .new-customer-panel.open { display: block; }
 
-    // ── Cache helpers ──────────────────────────────────────────────────────
-    function getCached() {
-        try {
-            const ts   = parseInt(localStorage.getItem(LS_CACHE_TS_KEY) || '0');
-            const data = JSON.parse(localStorage.getItem(LS_CACHE_KEY));
-            if (data && (Date.now() - ts) < CACHE_TTL_MS) return data;
-        } catch {}
-        return null;
-    }
+        /* Divider */
+        .section-divider { border: none; border-top: 1px solid #eee; margin: 0 0 24px; }
 
-    function setCache(list) {
-        try {
-            localStorage.setItem(LS_CACHE_KEY,    JSON.stringify(list));
-            localStorage.setItem(LS_CACHE_TS_KEY, String(Date.now()));
-        } catch {}
-    }
+        /* Service selector */
+        .selector-group { margin-bottom: 24px; }
+        .selector-group label {
+            display: block; font-size: 16px; font-weight: 600;
+            margin-bottom: 10px; color: #333;
+        }
+        .selector-group select {
+            width: 100%; padding: 15px; font-size: 16px;
+            border: 2px solid #ddd; border-radius: 5px;
+            background: white; cursor: pointer; transition: border-color 0.3s;
+            -webkit-appearance: none; appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 15px center;
+        }
+        .selector-group select:hover { border-color: #e74c3c; }
+        .selector-group select:focus { outline: none; border-color: #e74c3c; }
 
-    function getCustom() {
-        try { return JSON.parse(localStorage.getItem(LS_CUSTOM_KEY)) || []; }
-        catch { return []; }
-    }
+        /* Toggle buttons */
+        .toggle-options { display: flex; gap: 12px; }
+        .toggle-option {
+            flex: 1; padding: 14px; border: 2px solid #ddd; border-radius: 5px;
+            cursor: pointer; text-align: center; transition: all 0.2s;
+            font-size: 0.95rem; user-select: none; -webkit-tap-highlight-color: transparent;
+        }
+        .toggle-option:hover:not(.disabled) { border-color: #e74c3c; }
+        .toggle-option.selected  { border-color: #e74c3c; background: #fef2f2; }
+        .toggle-option.disabled  { opacity: 0.4; cursor: not-allowed; background: #f5f5f5; }
+        .toggle-option strong    { display: block; font-size: 0.95rem; color: #333; }
+        .toggle-option .toggle-sub { font-size: 0.8rem; color: #999; margin-top: 2px; }
 
-    function saveCustom(list) {
-        localStorage.setItem(LS_CUSTOM_KEY, JSON.stringify(list));
-    }
+        .location-notice {
+            background: #fff8f0; border: 1px solid #f5c48a; border-radius: 6px;
+            padding: 10px 14px; margin-top: 10px; font-size: 0.85rem;
+            color: #b45309; display: none;
+        }
+        .location-notice.active { display: block; }
 
-    // ── Fetch from Apps Script via JSONP (bypasses CORS) ─────────────────
-    function fetchFromSheet() {
-        if (!WEB_APP_URL || WEB_APP_URL === 'YOUR_WEB_APP_URL_HERE') return Promise.resolve(null);
-        return new Promise((resolve) => {
-            const cbName = 'dsg_cb_' + Date.now();
-            const script = document.createElement('script');
-            const timeout = setTimeout(() => {
-                cleanup();
-                resolve(null);
-            }, 8000);
+        /* Summary card */
+        .summary-card {
+            background: #f8f9fa; padding: 20px 24px; border-radius: 8px;
+            margin-bottom: 24px; border-left: 4px solid #e74c3c; display: none;
+        }
+        .summary-card.active { display: block; }
+        .summary-card h3 { margin: 0 0 12px 0; color: #333; font-size: 1.1rem; }
+        .summary-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 0.9rem; }
+        .summary-row .label { color: #777; }
+        .summary-row .value { color: #333; font-weight: 500; }
+        .summary-row .value.price { color: #e74c3c; font-weight: 700; font-size: 1.1rem; }
+        .summary-row .value.profile-car { color: #555; font-style: italic; }
+        .summary-desc {
+            margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;
+            font-size: 0.85rem; color: #777; line-height: 1.6;
+        }
 
-            function cleanup() {
-                clearTimeout(timeout);
-                delete window[cbName];
-                if (script.parentNode) script.parentNode.removeChild(script);
-            }
+        /* Book button */
+        .book-button {
+            width: 100%; padding: 18px; font-size: 18px; font-weight: 600;
+            background: #e74c3c; color: white; border: none; border-radius: 5px;
+            cursor: pointer; transition: background 0.2s; text-transform: uppercase;
+            letter-spacing: 1px; min-height: 56px;
+        }
+        .book-button:hover    { background: #c0392b; }
+        .book-button:disabled { background: #ccc; cursor: not-allowed; }
 
-            window[cbName] = function(data) {
-                cleanup();
-                if (data.ok && Array.isArray(data.customers)) {
-                    setCache(data.customers);
-                    resolve(data.customers);
-                } else {
-                    resolve(null);
-                }
-            };
-
-            script.src = WEB_APP_URL + '?callback=' + cbName;
-            script.onerror = () => { cleanup(); resolve(null); };
-            document.head.appendChild(script);
-        });
-    }
-
-    // ── Post new customer to Sheet ─────────────────────────────────────────
-    async function postToSheet(contact) {
-        if (!WEB_APP_URL || WEB_APP_URL === 'YOUR_WEB_APP_URL_HERE') return false;
-        try {
-            const res  = await fetch(WEB_APP_URL, {
-                method:  'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body:    JSON.stringify(contact),
-            });
-            const json = await res.json();
-            return json.ok === true;
-        } catch { return false; }
-    }
-
-    // ── Build full contact list (custom first, then sheet/fallback) ────────
-    function buildList(sheetContacts) {
-        const custom = getCustom();
-        const base   = sheetContacts || getCached() || FALLBACK;
-        return [...custom, ...base];
-    }
-
-    // ── Normalize phone ────────────────────────────────────────────────────
-    function normalizePhone(raw) {
-        if (!raw) return '+1';
-        const digits = raw.replace(/\D/g, '');
-        if (digits.length === 10) return '+1' + digits;
-        if (digits.length === 11 && digits.startsWith('1')) return '+' + digits;
-        return raw || '+1';
-    }
-
-    // ── State ──────────────────────────────────────────────────────────────
-    let _sheetContacts    = null;
-    let _selectedContact  = null;
-    let _onSelectCallback = null;
-
-    // ── Render ─────────────────────────────────────────────────────────────
-    async function render(targetId, onSelect) {
-        const container = document.getElementById(targetId);
-        if (!container) return;
-
-        _onSelectCallback = onSelect;
-
-        container.innerHTML = _buildHTML();
-        _injectStyles();
-
-        // Show loading state
-        _setDropdownLoading(true);
-
-        // Try to fetch fresh data, fall back to cache or FALLBACK
-        const fetched = await fetchFromSheet();
-        _sheetContacts = fetched;
-
-        _populateDropdown(buildList(_sheetContacts));
-        _setDropdownLoading(false);
-    }
-
-    function _buildHTML() {
-        return `
-        <div id="dsg-picker">
-            <div class="dsg-picker-row">
-                <select id="dsg-customer-select" onchange="DSGCustomers._onSelect(this.value)">
-                    <option value="">Loading customers…</option>
-                </select>
-                <button class="dsg-add-btn" title="Add new customer" onclick="DSGCustomers._openModal()">＋</button>
-                <button class="dsg-refresh-btn" title="Refresh from Sheet" onclick="DSGCustomers._refresh()">↻</button>
-            </div>
-            <div id="dsg-customer-chip">
-                <div class="dsg-chip-info">
-                    <div class="dsg-chip-name" id="dsg-chip-name"></div>
-                    <div class="dsg-chip-sub"  id="dsg-chip-sub"></div>
-                </div>
-                <button class="dsg-chip-clear" onclick="DSGCustomers._clearSelection()" title="Clear">✕</button>
-            </div>
+        @media (max-width: 600px) {
+            .booking-container { margin: 20px auto; padding: 24px 16px; border-radius: 0; box-shadow: none; }
+            .toggle-options { gap: 8px; }
+            .toggle-option { padding: 12px 8px; font-size: 0.85rem; }
+            .toggle-option strong { font-size: 0.85rem; }
+            .steps { gap: 4px; font-size: 0.75rem; }
+            .book-button { font-size: 16px; min-height: 52px; }
+        }
+        @media (hover: none) and (pointer: coarse) {
+            .toggle-option, .book-button { min-height: 48px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="driverspecgarage_new_logo.JPG" alt="Driver Spec Garage Logo"></a>
         </div>
+        <nav>
+            <ul>
+                <li class="non-clickable">
+                    <a href="#" onclick="toggleDropdown(event)">Services</a>
+                    <ul class="dropdown" id="servicesDropdown">
+                        <li><a href="paint-correction.html">Paint Correction</a></li>
+                        <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
+                        <li><a href="interior-steaming.html">Interior Steaming</a></li>
+                        <li><a href="packages.html">Packages</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="booking.html">Book Now</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <!-- Add Customer Modal -->
-        <div id="dsg-add-modal-overlay" onclick="DSGCustomers._closeModalOnBg(event)">
-            <div id="dsg-add-modal">
-                <h3>Add New Customer</h3>
-                <label>Name *</label>
-                <input type="text"  id="dsg-new-name"    placeholder="First Last" />
-                <label>Email</label>
-                <input type="email" id="dsg-new-email"   placeholder="email@example.com" />
-                <label>Phone</label>
-                <input type="tel"   id="dsg-new-phone"   placeholder="646-123-4567" />
-                <label>Car / Vehicle</label>
-                <input type="text"  id="dsg-new-car"     placeholder="e.g. M4, Urus, X5M" />
-                <div id="dsg-modal-status" class="dsg-modal-status"></div>
-                <div class="dsg-modal-err" id="dsg-modal-err">Name is required.</div>
-                <div class="dsg-modal-actions">
-                    <button class="dsg-modal-cancel" onclick="DSGCustomers._closeModal()">Cancel</button>
-                    <button class="dsg-modal-save"   id="dsg-modal-save-btn" onclick="DSGCustomers._saveNew()">Save &amp; Select</button>
+    <main>
+        <div class="booking-container">
+            <h1>Book Your Detail</h1>
+            <p>Select your service, vehicle, and location.</p>
+
+            <!-- Steps -->
+            <div class="steps">
+                <div class="step active" id="step1"><span class="step-num">1</span> Service</div>
+                <span class="step-arrow">&#9654;</span>
+                <div class="step" id="step2"><span class="step-num">2</span> Vehicle</div>
+                <span class="step-arrow">&#9654;</span>
+                <div class="step" id="step3"><span class="step-num">3</span> Location</div>
+                <span class="step-arrow">&#9654;</span>
+                <div class="step" id="step4"><span class="step-num">4</span> Book</div>
+            </div>
+
+            <!-- ─────────────────────────────────────────────────────────────
+                 CUSTOMER AREA
+                 Top section: operator quick-select (DSGCustomers dropdown)
+                 Bottom section: collapsible self-serve profile (CustomerProfile)
+            ──────────────────────────────────────────────────────────────── -->
+            <div class="customer-area">
+                <!-- Double-click "Customer" label to reveal operator picker -->
+                <div class="customer-area-label" id="customer-area-label" ondblclick="revealOperatorPicker()" style="cursor:default; user-select:none;">Customer</div>
+
+                <!-- Operator dropdown — hidden until double-click -->
+                <div id="customer-picker-widget" style="display:none;"></div>
+
+                <!-- "New customer?" toggle — reveals the CustomerProfile widget -->
+                <div class="new-customer-toggle" id="nct-toggle" onclick="toggleNewCustomer()">
+                    <span class="nct-arrow" id="nct-arrow">&#9654;</span>
+                    New customer? Save your info for next time
+                </div>
+                <div class="new-customer-panel" id="nct-panel">
+                    <div id="profile-widget"></div>
                 </div>
             </div>
-        </div>`;
-    }
 
-    function _injectStyles() {
-        if (document.getElementById('dsg-picker-styles')) return;
-        const s = document.createElement('style');
-        s.id = 'dsg-picker-styles';
-        s.textContent = `
-            #dsg-picker { margin-bottom: 16px; font-family: inherit; }
-            .dsg-picker-row { display: flex; gap: 8px; align-items: stretch; }
-            #dsg-customer-select {
-                flex: 1; padding: 13px 38px 13px 14px; font-size: 15px;
-                border: 2px solid #ddd; border-radius: 5px; background: white;
-                cursor: pointer; transition: border-color 0.2s;
-                -webkit-appearance: none; appearance: none;
-                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-                background-repeat: no-repeat; background-position: right 14px center; color: #333;
-            }
-            #dsg-customer-select:focus,
-            #dsg-customer-select:hover { border-color: #e74c3c; outline: none; }
-            #dsg-customer-select:disabled { opacity: 0.6; cursor: wait; }
+            <hr class="section-divider">
 
-            .dsg-add-btn, .dsg-refresh-btn {
-                padding: 0 14px; border: none; border-radius: 5px;
-                font-size: 18px; cursor: pointer; transition: background 0.2s;
-                display: flex; align-items: center; justify-content: center; min-width: 42px;
-            }
-            .dsg-add-btn     { background: #2c3e50; color: white; }
-            .dsg-add-btn:hover { background: #e74c3c; }
-            .dsg-refresh-btn { background: #f0f0f0; color: #555; font-size: 16px; }
-            .dsg-refresh-btn:hover { background: #e0e0e0; }
-            .dsg-refresh-btn.spinning { animation: dsg-spin 0.8s linear infinite; }
-            @keyframes dsg-spin { to { transform: rotate(360deg); } }
+            <!-- 1. Service -->
+            <div class="selector-group">
+                <label for="service-select">1. What do you need?</label>
+                <select id="service-select" onchange="onServiceChange()">
+                    <option value="">-- Select a Service --</option>
+                    <optgroup label="Detailing Packages">
+                        <option value="wash-wax">Wash &amp; Wax (Flushing only)</option>
+                        <option value="maintenance">Maintenance Detail</option>
+                        <option value="full-detail">Full Detail</option>
+                    </optgroup>
+                    <optgroup label="Seasonal">
+                        <option value="winter-resurrection">Winter Resurrection &#9733;</option>
+                    </optgroup>
+                    <optgroup label="Standalone Services">
+                        <option value="interior-detail">Interior Detail with Steaming</option>
+                        <option value="engine-bay">Engine Bay Detail</option>
+                    </optgroup>
+                    <optgroup label="Premium Services">
+                        <option value="paint-correction-1step">Paint Correction (1-Step)</option>
+                        <option value="paint-correction-2step">Paint Correction (2-Step)</option>
+                        <option value="ceramic-coating">Ceramic Coating</option>
+                    </optgroup>
+                </select>
+            </div>
 
-            #dsg-customer-chip {
-                display: none; margin-top: 8px; padding: 10px 14px;
-                background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px;
-                font-size: 0.88rem; color: #166534;
-                align-items: center; justify-content: space-between; gap: 8px;
-            }
-            #dsg-customer-chip.active { display: flex; }
-            .dsg-chip-info { line-height: 1.5; }
-            .dsg-chip-name { font-weight: 700; font-size: 0.95rem; }
-            .dsg-chip-sub  { color: #4d7c60; font-size: 0.8rem; }
-            .dsg-chip-clear {
-                cursor: pointer; color: #999; font-size: 1.1rem;
-                background: none; border: none; padding: 0 2px; flex-shrink: 0;
-            }
-            .dsg-chip-clear:hover { color: #e74c3c; }
+            <!-- 2. Vehicle Size -->
+            <div class="selector-group">
+                <label>2. Vehicle size</label>
+                <div class="toggle-options">
+                    <div class="toggle-option selected" onclick="selectVehicle('car')" id="btn-car">
+                        <strong>Car / Sedan / Coupe</strong>
+                    </div>
+                    <div class="toggle-option" onclick="selectVehicle('suv')" id="btn-suv">
+                        <strong>SUV / Van / Truck</strong>
+                    </div>
+                </div>
+            </div>
 
-            #dsg-add-modal-overlay {
-                display: none; position: fixed; inset: 0;
-                background: rgba(0,0,0,0.45); z-index: 9999;
-                align-items: center; justify-content: center;
-            }
-            #dsg-add-modal-overlay.open { display: flex; }
-            #dsg-add-modal {
-                background: white; border-radius: 10px; padding: 28px 28px 24px;
-                width: 92%; max-width: 420px; box-shadow: 0 8px 40px rgba(0,0,0,0.18);
-            }
-            #dsg-add-modal h3 { margin: 0 0 20px; font-size: 1.1rem; color: #222; }
-            #dsg-add-modal label {
-                display: block; font-size: 0.82rem; font-weight: 600; color: #555;
-                margin-bottom: 4px; margin-top: 14px;
-                text-transform: uppercase; letter-spacing: 0.5px;
-            }
-            #dsg-add-modal input {
-                width: 100%; box-sizing: border-box; padding: 11px 13px;
-                font-size: 15px; border: 2px solid #ddd; border-radius: 5px;
-                transition: border-color 0.2s;
-            }
-            #dsg-add-modal input:focus { outline: none; border-color: #e74c3c; }
-            .dsg-modal-actions { display: flex; gap: 10px; margin-top: 20px; }
-            .dsg-modal-actions button {
-                flex: 1; padding: 13px; border: none; border-radius: 5px;
-                font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s;
-            }
-            .dsg-modal-save   { background: #e74c3c; color: white; }
-            .dsg-modal-save:hover { background: #c0392b; }
-            .dsg-modal-cancel { background: #f0f0f0; color: #444; }
-            .dsg-modal-cancel:hover { background: #e0e0e0; }
-            .dsg-modal-err    { color: #e74c3c; font-size: 0.82rem; margin-top: 8px; display: none; }
-            .dsg-modal-err.show { display: block; }
-            .dsg-modal-status { font-size: 0.82rem; margin-top: 8px; color: #888; min-height: 18px; }
-        `;
-        document.head.appendChild(s);
-    }
+            <!-- 3. Location -->
+            <div class="selector-group">
+                <label>3. Where?</label>
+                <div class="toggle-options">
+                    <div class="toggle-option selected" onclick="selectLocation('mobile')" id="btn-mobile">
+                        <strong>Mobile</strong>
+                        <div class="toggle-sub">We come to you</div>
+                    </div>
+                    <div class="toggle-option" onclick="selectLocation('flushing')" id="btn-flushing">
+                        <strong>Flushing</strong>
+                        <div class="toggle-sub">Drop off</div>
+                    </div>
+                </div>
+                <div class="location-notice" id="location-notice">
+                    📍 This service is only available at our Flushing location.
+                </div>
+            </div>
 
-    function _setDropdownLoading(loading) {
-        const sel = document.getElementById('dsg-customer-select');
-        const ref = document.querySelector('.dsg-refresh-btn');
-        if (!sel) return;
-        sel.disabled = loading;
-        if (ref) ref.classList.toggle('spinning', loading);
-        if (loading) sel.innerHTML = '<option value="">Loading customers…</option>';
-    }
+            <!-- Summary -->
+            <div class="summary-card" id="summary">
+                <h3 id="summary-title"></h3>
+                <div class="summary-row" id="summary-customer-row" style="display:none;">
+                    <span class="label">Customer</span>
+                    <span class="value" id="summary-customer"></span>
+                </div>
+                <div class="summary-row" id="summary-car-row" style="display:none;">
+                    <span class="label">Vehicle (on file)</span>
+                    <span class="value profile-car" id="summary-car"></span>
+                </div>
+                <div class="summary-row">
+                    <span class="label">Vehicle size</span>
+                    <span class="value" id="summary-vehicle"></span>
+                </div>
+                <div class="summary-row">
+                    <span class="label">Location</span>
+                    <span class="value" id="summary-location"></span>
+                </div>
+                <div class="summary-row">
+                    <span class="label">Duration</span>
+                    <span class="value" id="summary-duration"></span>
+                </div>
+                <div class="summary-row">
+                    <span class="label">Price</span>
+                    <span class="value price" id="summary-price"></span>
+                </div>
+                <div class="summary-desc" id="summary-desc"></div>
+            </div>
 
-    function _populateDropdown(contacts) {
-        const sel = document.getElementById('dsg-customer-select');
-        if (!sel) return;
+            <!-- Book -->
+            <button class="book-button" id="book-button" onclick="openCalendly()" disabled>
+                Select a Service to Continue
+            </button>
+        </div>
+    </main>
 
-        const custom = getCustom();
-        sel.innerHTML = '<option value="">-- Select existing customer --</option>';
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Driver Spec Garage &nbsp;|&nbsp; 646-484-8689 &nbsp;|&nbsp; <a href="mailto:driverspecgarage@gmail.com">driverspecgarage@gmail.com</a></p>
+        </div>
+    </footer>
 
-        if (custom.length) {
-            const grp = document.createElement('optgroup');
-            grp.label = 'Recently Added';
-            custom.forEach((c, i) => {
-                const opt = document.createElement('option');
-                opt.value = 'custom_' + i;
-                opt.textContent = c.name + (c.car ? ` (${c.car})` : '');
-                grp.appendChild(opt);
-            });
-            sel.appendChild(grp);
+    <!--
+        Load order matters:
+        1. customers.js   — DSGCustomers operator picker
+        2. customer-profile.js — CustomerProfile self-serve widget
+        3. inline booking script
+    -->
+    <script src="customers.js"></script>
+    <script src="customer-profile.js"></script>
+
+    <script>
+        // ========== SERVICE DATA ==========
+        const services = {
+            'wash-wax': {
+                name: 'Wash & Wax',
+                prices: { 'flushing-car': 60, 'flushing-suv': 70 },
+                duration: 'About 45 minutes',
+                desc: 'Quick exterior refresh. Pre-foam hand wash, protector wax, wheels and tires dressed, door jambs, gas cap, exhaust tips, windows inside and out.',
+                flushingOnly: true
+            },
+            'maintenance': {
+                name: 'Maintenance Detail',
+                prices: { 'mobile-car': 140, 'mobile-suv': 160, 'flushing-car': 110, 'flushing-suv': 130 },
+                duration: '1.5 to 2 hours',
+                desc: 'Complete refresh. Ceramic sealant (~1 month), undercarriage wash, exhaust tips polished, engine bay detailed, full interior vacuum and wipe down.'
+            },
+            'full-detail': {
+                name: 'Full Detail',
+                prices: { 'mobile-car': 300, 'mobile-suv': 350, 'flushing-car': 250, 'flushing-suv': 300 },
+                duration: '3 to 4 hours',
+                desc: 'The complete reset. Iron, tar and clay bar decon, undercarriage wash, graphene ceramic sealant (3-4 months), deep interior with shampooing, leather conditioning, and steam sanitization.'
+            },
+            'winter-resurrection': {
+                name: 'Winter Resurrection',
+                prices: { 'mobile-car': 200, 'mobile-suv': 230, 'flushing-car': 160, 'flushing-suv': 190 },
+                duration: '3 to 3.5 hours',
+                desc: 'Acid wash to dissolve water spots and mineral deposits, iron decon, undercarriage acid foam and rinse, machine wax application, wheels and tires, door jambs and windows, basic interior.',
+                addon: '+$100 full interior with steaming, shampoo and leather conditioning'
+            },
+            'interior-detail': {
+                name: 'Interior Detail with Steaming',
+                prices: { 'mobile-car': 200, 'mobile-suv': 230, 'flushing-car': 200, 'flushing-suv': 230 },
+                duration: '2 to 2.5 hours',
+                desc: 'Deep interior clean. High-temperature steam cleaning, deep vacuum, carpet and mat shampooing, leather deep clean and conditioning, stain and odor removal.',
+                samePrice: true
+            },
+            'engine-bay': {
+                name: 'Engine Bay Detail',
+                prices: { 'mobile-car': 60, 'mobile-suv': 60, 'flushing-car': 60, 'flushing-suv': 60 },
+                duration: '30 to 45 minutes',
+                desc: 'Engine degreasing, component detailing, plastic and rubber dressing. Add to any service for $40.',
+                samePrice: true
+            },
+            'paint-correction-1step': {
+                name: 'Paint Correction (1-Step)',
+                prices: { 'mobile-car': 400, 'mobile-suv': 400, 'flushing-car': 400, 'flushing-suv': 400 },
+                duration: '4 to 5 hours',
+                desc: 'Single-step machine polish. Removes ~70-80% of swirls, light scratches and paint defects.',
+                samePrice: true
+            },
+            'paint-correction-2step': {
+                name: 'Paint Correction (2-Step)',
+                prices: { 'mobile-car': 600, 'mobile-suv': 600, 'flushing-car': 600, 'flushing-suv': 600 },
+                duration: '6 to 8 hours',
+                desc: 'Two-step correction. Compound stage for defect removal, then fine polish. Removes ~90% of defects.',
+                samePrice: true
+            },
+            'ceramic-coating': {
+                name: 'Ceramic Coating',
+                prices: { 'mobile-car': 900, 'mobile-suv': 900, 'flushing-car': 900, 'flushing-suv': 900 },
+                duration: '1 to 2 days',
+                desc: 'Professional ceramic coating with paint correction included. Long-term protection (2-3+ years).',
+                samePrice: true
+            }
+        };
+
+        let selectedService  = '';
+        let selectedVehicle  = 'car';
+        let selectedLocation = 'mobile';
+        let _pickedCustomer  = null; // set by DSGCustomers dropdown
+
+        // ========== NEW CUSTOMER PANEL TOGGLE ==========
+        function toggleNewCustomer() {
+            const panel  = document.getElementById('nct-panel');
+            const arrow  = document.getElementById('nct-arrow');
+            const isOpen = panel.classList.contains('open');
+            panel.classList.toggle('open', !isOpen);
+            arrow.classList.toggle('open', !isOpen);
         }
 
-        const sheetContacts = _sheetContacts || getCached() || FALLBACK;
-        if (sheetContacts.length) {
-            const grp2 = document.createElement('optgroup');
-            grp2.label = 'All Customers';
-            sheetContacts.forEach((c, i) => {
-                const opt = document.createElement('option');
-                opt.value = 'sheet_' + i;
-                opt.textContent = c.name + (c.car ? ` (${c.car})` : '');
-                grp2.appendChild(opt);
-            });
-            sel.appendChild(grp2);
+        // ========== VEHICLE / LOCATION ==========
+        function selectVehicle(size) {
+            selectedVehicle = size;
+            document.getElementById('btn-car').classList.toggle('selected', size === 'car');
+            document.getElementById('btn-suv').classList.toggle('selected', size === 'suv');
+            updateSummary();
         }
-    }
 
-    // ── Public: force refresh from Sheet ──────────────────────────────────
-    async function _refresh() {
-        _setDropdownLoading(true);
-        // Bust cache
-        localStorage.removeItem(LS_CACHE_KEY);
-        localStorage.removeItem(LS_CACHE_TS_KEY);
-        const fetched = await fetchFromSheet();
-        _sheetContacts = fetched;
-        _populateDropdown(buildList(_sheetContacts));
-        _setDropdownLoading(false);
-    }
-
-    // ── Select handler ────────────────────────────────────────────────────
-    function _onSelect(val) {
-        if (!val) { _clearSelection(); return; }
-
-        let contact;
-        if (val.startsWith('custom_')) {
-            contact = getCustom()[parseInt(val.replace('custom_', ''))];
-        } else {
-            const list = _sheetContacts || getCached() || FALLBACK;
-            contact = list[parseInt(val.replace('sheet_', ''))];
+        function selectLocation(loc) {
+            if (selectedService && services[selectedService].flushingOnly && loc === 'mobile') return;
+            selectedLocation = loc;
+            document.getElementById('btn-mobile').classList.toggle('selected', loc === 'mobile');
+            document.getElementById('btn-flushing').classList.toggle('selected', loc === 'flushing');
+            updateSummary();
         }
-        if (!contact) return;
-        _selectedContact = contact;
 
-        const chip = document.getElementById('dsg-customer-chip');
-        chip.classList.add('active');
-        document.getElementById('dsg-chip-name').textContent = contact.name + (contact.car ? ` — ${contact.car}` : '');
-        const sub = [contact.email, contact.phone].filter(Boolean).join(' · ');
-        document.getElementById('dsg-chip-sub').textContent = sub || 'No contact info';
+        function onServiceChange() {
+            selectedService = document.getElementById('service-select').value;
+            const svc            = services[selectedService];
+            const mobileBtn      = document.getElementById('btn-mobile');
+            const locationNotice = document.getElementById('location-notice');
 
-        if (_onSelectCallback) _onSelectCallback(contact);
-    }
+            if (svc && svc.flushingOnly) {
+                selectedLocation = 'flushing';
+                mobileBtn.classList.remove('selected');
+                mobileBtn.classList.add('disabled');
+                document.getElementById('btn-flushing').classList.add('selected');
+                locationNotice.classList.add('active');
+            } else {
+                mobileBtn.classList.remove('disabled');
+                locationNotice.classList.remove('active');
+            }
+            updateSummary();
+        }
 
-    function _clearSelection() {
-        _selectedContact = null;
-        const sel = document.getElementById('dsg-customer-select');
-        if (sel) sel.value = '';
-        const chip = document.getElementById('dsg-customer-chip');
-        if (chip) chip.classList.remove('active');
-        if (_onSelectCallback) _onSelectCallback(null);
-    }
+        // ========== SUMMARY ==========
+        function updateSummary() {
+            const summary    = document.getElementById('summary');
+            const btn        = document.getElementById('book-button');
+            const hasService = selectedService !== '';
 
-    // ── Modal ─────────────────────────────────────────────────────────────
-    function _openModal() {
-        ['dsg-new-name','dsg-new-email','dsg-new-phone','dsg-new-car'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.value = '';
+            document.getElementById('step1').className = hasService ? 'step done'   : 'step active';
+            document.getElementById('step2').className = hasService ? 'step done'   : 'step';
+            document.getElementById('step3').className = hasService ? 'step done'   : 'step';
+            document.getElementById('step4').className = hasService ? 'step active' : 'step';
+
+            if (!hasService) {
+                summary.classList.remove('active');
+                btn.disabled    = true;
+                btn.textContent = 'Select a Service to Continue';
+                return;
+            }
+
+            const svc      = services[selectedService];
+            const priceKey = selectedLocation + '-' + selectedVehicle;
+            const price    = svc.prices[priceKey];
+
+            document.getElementById('summary-title').textContent    = svc.name;
+            document.getElementById('summary-vehicle').textContent  = selectedVehicle === 'car' ? 'Car / Sedan / Coupe' : 'SUV / Van / Truck';
+            document.getElementById('summary-location').textContent = selectedLocation === 'mobile' ? 'Mobile (we come to you)' : 'Flushing drop-off';
+            document.getElementById('summary-duration').textContent = svc.duration;
+            document.getElementById('summary-price').textContent    = '$' + price;
+
+            // Priority: DSGCustomers picker > CustomerProfile saved info
+            const custRow = document.getElementById('summary-customer-row');
+            const carRow  = document.getElementById('summary-car-row');
+            const custEl  = document.getElementById('summary-customer');
+            const carEl   = document.getElementById('summary-car');
+
+            if (_pickedCustomer && _pickedCustomer.name) {
+                custEl.textContent    = _pickedCustomer.name;
+                custRow.style.display = '';
+                carEl.textContent     = _pickedCustomer.car || '';
+                carRow.style.display  = _pickedCustomer.car ? '' : 'none';
+            } else {
+                const profile = (typeof CustomerProfile !== 'undefined') ? CustomerProfile.get() : null;
+                if (profile && profile.firstName) {
+                    custEl.textContent    = [profile.firstName, profile.lastName].filter(Boolean).join(' ');
+                    custRow.style.display = '';
+                } else {
+                    custRow.style.display = 'none';
+                }
+                carEl.textContent    = (profile && profile.car) ? profile.car : '';
+                carRow.style.display = (profile && profile.car) ? '' : 'none';
+            }
+
+            let descText = svc.desc;
+            if (svc.addon) descText += '\n\nAdd-on: ' + svc.addon;
+            document.getElementById('summary-desc').textContent = descText;
+
+            summary.classList.add('active');
+            btn.disabled    = false;
+            btn.textContent = 'Book Now — $' + price;
+        }
+
+        // ========== CALENDLY ==========
+        function openCalendly() {
+            if (!selectedService) { alert('Please select a service first'); return; }
+
+            const svc           = services[selectedService];
+            const priceKey      = selectedLocation + '-' + selectedVehicle;
+            const price         = svc.prices[priceKey];
+            const vehicleType   = selectedVehicle === 'car' ? 'Car/Sedan/Coupe' : 'Van/SUV/Truck';
+            const locationLabel = selectedLocation === 'mobile' ? 'Mobile' : 'Flushing';
+
+            // Car suffix — picker first, then saved profile
+            let carSuffix = '';
+            if (_pickedCustomer && _pickedCustomer.car) {
+                carSuffix = ` — ${_pickedCustomer.car}`;
+            } else if (typeof CustomerProfile !== 'undefined') {
+                const p = CustomerProfile.get();
+                if (p && p.car) carSuffix = ` — ${p.car}`;
+            }
+
+            const fullServiceStr = `${svc.name} (${locationLabel}) — $${price} (${vehicleType})${carSuffix}`;
+            const serviceCode    = `${selectedService}-${selectedLocation}-${selectedVehicle}`;
+
+            const params = { a2: fullServiceStr, a3: vehicleType, a4: serviceCode };
+
+            // Customer params — picker overrides saved profile
+            if (_pickedCustomer) {
+                Object.assign(params, DSGCustomers.getCalendlyParams());
+            } else if (typeof CustomerProfile !== 'undefined') {
+                Object.assign(params, CustomerProfile.getCalendlyParams());
+            }
+
+            // Always ensure +1 prefix
+            if (!params.a1) {
+                params.a1 = '+1';
+            } else if (!params.a1.startsWith('+1')) {
+                params.a1 = '+1' + params.a1.replace(/^\+?1?/, '');
+            }
+
+            window.open('https://calendly.com/andrekef?' + new URLSearchParams(params).toString(), '_blank');
+        }
+
+        // ========== URL AUTO-FILL ==========
+        function autoFillFromURL() {
+            const params = new URLSearchParams(window.location.search);
+
+            const svc = params.get('service');
+            if (svc && services[svc]) {
+                document.getElementById('service-select').value = svc;
+                selectedService = svc;
+                if (services[svc].flushingOnly) {
+                    selectedLocation = 'flushing';
+                    document.getElementById('btn-mobile').classList.add('disabled');
+                    document.getElementById('btn-mobile').classList.remove('selected');
+                    document.getElementById('btn-flushing').classList.add('selected');
+                    document.getElementById('location-notice').classList.add('active');
+                }
+            }
+
+            const veh = params.get('vehicle');
+            if (veh === 'car' || veh === 'suv') selectVehicle(veh);
+
+            const loc = params.get('location');
+            if (loc === 'mobile' || loc === 'flushing') {
+                if (!selectedService || !services[selectedService]?.flushingOnly || loc === 'flushing') {
+                    selectLocation(loc);
+                }
+            }
+
+            if (svc) {
+                updateSummary();
+                setTimeout(() => {
+                    const el = document.getElementById('summary');
+                    if (el && window.innerWidth < 700) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+            }
+        }
+
+        // ========== NAV ==========
+        function toggleDropdown(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            var dd = document.getElementById('servicesDropdown');
+            dd.style.display = (dd.style.display === 'block') ? 'none' : 'block';
+        }
+        document.addEventListener('click', function(e) {
+            var nc = document.querySelector('.non-clickable');
+            if (!nc || !nc.contains(e.target)) {
+                document.getElementById('servicesDropdown').style.display = 'none';
+            }
         });
-        const err    = document.getElementById('dsg-modal-err');
-        const status = document.getElementById('dsg-modal-status');
-        if (err)    err.classList.remove('show');
-        if (status) status.textContent = '';
-        document.getElementById('dsg-add-modal-overlay').classList.add('open');
-        setTimeout(() => document.getElementById('dsg-new-name')?.focus(), 100);
-    }
 
-    function _closeModal() {
-        document.getElementById('dsg-add-modal-overlay').classList.remove('open');
-    }
-
-    function _closeModalOnBg(e) {
-        if (e.target === document.getElementById('dsg-add-modal-overlay')) _closeModal();
-    }
-
-    async function _saveNew() {
-        const name  = (document.getElementById('dsg-new-name')?.value  || '').trim();
-        const email = (document.getElementById('dsg-new-email')?.value || '').trim();
-        const phone = (document.getElementById('dsg-new-phone')?.value || '').trim();
-        const car   = (document.getElementById('dsg-new-car')?.value   || '').trim();
-
-        const errEl    = document.getElementById('dsg-modal-err');
-        const statusEl = document.getElementById('dsg-modal-status');
-        const saveBtn  = document.getElementById('dsg-modal-save-btn');
-
-        if (!name) { errEl?.classList.add('show'); return; }
-        errEl?.classList.remove('show');
-
-        const contact = { name, email, phone: normalizePhone(phone), car, company: '' };
-
-        // Save locally immediately so it's available even if Sheet write fails
-        const custom = getCustom();
-        custom.unshift(contact);
-        saveCustom(custom);
-
-        // Try to write to Sheet in background
-        if (statusEl) statusEl.textContent = 'Saving to Sheet…';
-        if (saveBtn)  saveBtn.disabled = true;
-
-        const saved = await postToSheet(contact);
-        if (statusEl) statusEl.textContent = saved ? '✓ Saved to Sheet' : '⚠ Saved locally (Sheet sync failed — add manually)';
-
-        // Refresh dropdown
-        _populateDropdown(buildList(_sheetContacts));
-
-        // Auto-select the new contact
-        const sel = document.getElementById('dsg-customer-select');
-        if (sel) {
-            sel.value = 'custom_0';
-            _onSelect('custom_0');
+        // ========== OPERATOR PICKER REVEAL ==========
+        let _operatorPickerRevealed = false;
+        function revealOperatorPicker() {
+            if (_operatorPickerRevealed) return;
+            _operatorPickerRevealed = true;
+            const widget = document.getElementById('customer-picker-widget');
+            widget.style.display = '';
+            // Now render it — lazy load so public users never trigger the fetch
+            DSGCustomers.render('customer-picker-widget', function(contact) {
+                _pickedCustomer = contact;
+                updateSummary();
+            });
+            // Hide the label after reveal so it looks clean
+            document.getElementById('customer-area-label').style.opacity = '0.3';
         }
 
-        setTimeout(() => {
-            _closeModal();
-            if (saveBtn) saveBtn.disabled = false;
-        }, 1200);
-    }
+        // ========== INIT ==========
+        window.addEventListener('DOMContentLoaded', () => {
+            // Operator customer picker is lazy — only renders on double-click of label
+            // Self-serve saved profile (hidden by default under "New customer?" toggle)
+            if (typeof CustomerProfile !== 'undefined') {
+                CustomerProfile.render('profile-widget');
+            }
 
-    // ── Calendly params ───────────────────────────────────────────────────
-    function getCalendlyParams() {
-        if (!_selectedContact) return {};
-        const c = _selectedContact;
-        const params = {};
-        if (c.name)  params.name  = c.name;
-        if (c.email) params.email = c.email;
-        if (c.phone) params.a1   = normalizePhone(c.phone);
-        return params;
-    }
-
-    function getSelected() { return _selectedContact; }
-
-    return {
-        render,
-        getCalendlyParams,
-        getSelected,
-        normalizePhone,
-        _onSelect,
-        _clearSelection,
-        _refresh,
-        _openModal,
-        _closeModal,
-        _closeModalOnBg,
-        _saveNew,
-    };
-})();
+            autoFillFromURL();
+        });
+    </script>
+</body>
+</html>
