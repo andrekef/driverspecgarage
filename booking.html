@@ -18,16 +18,8 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .booking-container h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .booking-container > p {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-        }
+        .booking-container h1 { text-align: center; color: #333; margin-bottom: 10px; }
+        .booking-container > p { text-align: center; color: #666; margin-bottom: 30px; }
 
         .steps {
             display: flex;
@@ -35,79 +27,44 @@
             gap: 8px;
             margin-bottom: 30px;
         }
-        .step {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85rem;
-            color: #ccc;
-        }
+        .step { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: #ccc; }
         .step.active { color: #e74c3c; font-weight: 600; }
         .step.done { color: #27ae60; }
         .step-num {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-            background: #eee;
-            color: #999;
+            width: 24px; height: 24px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; font-weight: 700; background: #eee; color: #999;
         }
         .step.active .step-num { background: #e74c3c; color: white; }
         .step.done .step-num { background: #27ae60; color: white; }
         .step-arrow { color: #ddd; font-size: 0.7rem; }
 
-        /* Profile widget separator */
         .profile-section-label {
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #bbb;
-            margin-bottom: 8px;
+            font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1px; color: #bbb; margin-bottom: 8px;
         }
 
         .selector-group { margin-bottom: 24px; }
         .selector-group label {
-            display: block;
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #333;
+            display: block; font-size: 16px; font-weight: 600;
+            margin-bottom: 10px; color: #333;
         }
         .selector-group select {
-            width: 100%;
-            padding: 15px;
-            font-size: 16px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            background: white;
-            cursor: pointer;
-            transition: border-color 0.3s;
-            -webkit-appearance: none;
-            appearance: none;
+            width: 100%; padding: 15px; font-size: 16px;
+            border: 2px solid #ddd; border-radius: 5px;
+            background: white; cursor: pointer; transition: border-color 0.3s;
+            -webkit-appearance: none; appearance: none;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
+            background-repeat: no-repeat; background-position: right 15px center;
         }
         .selector-group select:hover { border-color: #e74c3c; }
         .selector-group select:focus { outline: none; border-color: #e74c3c; }
 
         .toggle-options { display: flex; gap: 12px; }
         .toggle-option {
-            flex: 1;
-            padding: 14px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            transition: all 0.2s;
-            font-size: 0.95rem;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
+            flex: 1; padding: 14px; border: 2px solid #ddd; border-radius: 5px;
+            cursor: pointer; text-align: center; transition: all 0.2s;
+            font-size: 0.95rem; user-select: none; -webkit-tap-highlight-color: transparent;
         }
         .toggle-option:hover:not(.disabled) { border-color: #e74c3c; }
         .toggle-option.selected { border-color: #e74c3c; background: #fef2f2; }
@@ -116,24 +73,15 @@
         .toggle-option .toggle-sub { font-size: 0.8rem; color: #999; margin-top: 2px; }
 
         .location-notice {
-            background: #fff8f0;
-            border: 1px solid #f5c48a;
-            border-radius: 6px;
-            padding: 10px 14px;
-            margin-top: 10px;
-            font-size: 0.85rem;
-            color: #b45309;
-            display: none;
+            background: #fff8f0; border: 1px solid #f5c48a;
+            border-radius: 6px; padding: 10px 14px; margin-top: 10px;
+            font-size: 0.85rem; color: #b45309; display: none;
         }
         .location-notice.active { display: block; }
 
         .summary-card {
-            background: #f8f9fa;
-            padding: 20px 24px;
-            border-radius: 8px;
-            margin-bottom: 24px;
-            border-left: 4px solid #e74c3c;
-            display: none;
+            background: #f8f9fa; padding: 20px 24px; border-radius: 8px;
+            margin-bottom: 24px; border-left: 4px solid #e74c3c; display: none;
         }
         .summary-card.active { display: block; }
         .summary-card h3 { margin: 0 0 12px 0; color: #333; font-size: 1.1rem; }
@@ -141,49 +89,30 @@
         .summary-row .label { color: #777; }
         .summary-row .value { color: #333; font-weight: 500; }
         .summary-row .value.price { color: #e74c3c; font-weight: 700; font-size: 1.1rem; }
+        .summary-row .value.profile-car { color: #555; font-style: italic; }
         .summary-desc {
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid #eee;
-            font-size: 0.85rem;
-            color: #777;
-            line-height: 1.6;
-        }
-        /* Vehicle from saved profile shown in summary */
-        .summary-row .value.profile-car {
-            color: #555;
-            font-style: italic;
+            margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;
+            font-size: 0.85rem; color: #777; line-height: 1.6;
         }
 
         .book-button {
-            width: 100%;
-            padding: 18px;
-            font-size: 18px;
-            font-weight: 600;
-            background: #e74c3c;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.2s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            min-height: 56px;
+            width: 100%; padding: 18px; font-size: 18px; font-weight: 600;
+            background: #e74c3c; color: white; border: none; border-radius: 5px;
+            cursor: pointer; transition: background 0.2s;
+            text-transform: uppercase; letter-spacing: 1px; min-height: 56px;
         }
         .book-button:hover { background: #c0392b; }
         .book-button:disabled { background: #ccc; cursor: not-allowed; }
 
         .seasonal-badge {
-            display: inline-block;
-            background: #2c3e50;
-            color: white;
-            padding: 2px 7px;
-            border-radius: 3px;
-            font-size: 10px;
-            margin-left: 4px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            vertical-align: middle;
+            display: inline-block; background: #2c3e50; color: white;
+            padding: 2px 7px; border-radius: 3px; font-size: 10px;
+            margin-left: 4px; font-weight: 700; letter-spacing: 0.5px; vertical-align: middle;
+        }
+
+        /* Section divider between customer picker and service selector */
+        .section-divider {
+            border: none; border-top: 1px solid #eee; margin: 0 0 24px;
         }
 
         @media (max-width: 600px) {
@@ -194,7 +123,6 @@
             .steps { gap: 4px; font-size: 0.75rem; }
             .book-button { font-size: 16px; min-height: 52px; }
         }
-
         @media (hover: none) and (pointer: coarse) {
             .toggle-option, .book-button { min-height: 48px; }
         }
@@ -240,9 +168,15 @@
                 <div class="step" id="step4"><span class="step-num">4</span> Book</div>
             </div>
 
-            <!-- ── Customer Profile Widget ── -->
-            <p class="profile-section-label">Your Info</p>
+            <!-- ── Customer Picker (customers.js) ── -->
+            <p class="profile-section-label">Customer</p>
+            <div id="customer-picker-widget"></div>
+
+            <!-- ── Legacy profile widget (customer-profile.js) ── -->
+            <p class="profile-section-label">Your Saved Info</p>
             <div id="profile-widget"></div>
+
+            <hr class="section-divider">
 
             <!-- 1. Service -->
             <div class="selector-group">
@@ -343,7 +277,8 @@
         </div>
     </footer>
 
-    <!-- Customer profile module must load before booking script -->
+    <!-- Load customers.js FIRST, then customer-profile.js, then booking logic -->
+    <script src="customers.js"></script>
     <script src="customer-profile.js"></script>
 
     <script>
@@ -415,6 +350,7 @@
         let selectedService  = '';
         let selectedVehicle  = 'car';
         let selectedLocation = 'mobile';
+        let _pickedCustomer  = null; // set by DSGCustomers dropdown callback
 
         // ========== VEHICLE / LOCATION SELECTORS ==========
         function selectVehicle(size) {
@@ -435,8 +371,8 @@
         function onServiceChange() {
             selectedService = document.getElementById('service-select').value;
             const svc = services[selectedService];
-            const mobileBtn       = document.getElementById('btn-mobile');
-            const locationNotice  = document.getElementById('location-notice');
+            const mobileBtn      = document.getElementById('btn-mobile');
+            const locationNotice = document.getElementById('location-notice');
 
             if (svc && svc.flushingOnly) {
                 selectedLocation = 'flushing';
@@ -453,8 +389,8 @@
 
         // ========== SUMMARY ==========
         function updateSummary() {
-            const summary = document.getElementById('summary');
-            const btn     = document.getElementById('book-button');
+            const summary    = document.getElementById('summary');
+            const btn        = document.getElementById('book-button');
             const hasService = selectedService !== '';
 
             document.getElementById('step1').className = hasService ? 'step done'   : 'step active';
@@ -464,7 +400,7 @@
 
             if (!hasService) {
                 summary.classList.remove('active');
-                btn.disabled = true;
+                btn.disabled    = true;
                 btn.textContent = 'Select a Service to Continue';
                 return;
             }
@@ -479,25 +415,36 @@
             document.getElementById('summary-duration').textContent = svc.duration;
             document.getElementById('summary-price').textContent    = '$' + price;
 
-            // ── Inject saved customer info into summary ──
-            const profile        = CustomerProfile.get();
-            const custRow        = document.getElementById('summary-customer-row');
-            const carRow         = document.getElementById('summary-car-row');
-            const custEl         = document.getElementById('summary-customer');
-            const carEl          = document.getElementById('summary-car');
+            // Priority: DSGCustomers picker → fallback to CustomerProfile (saved profile widget)
+            const custRow = document.getElementById('summary-customer-row');
+            const carRow  = document.getElementById('summary-car-row');
+            const custEl  = document.getElementById('summary-customer');
+            const carEl   = document.getElementById('summary-car');
 
-            if (profile && profile.firstName) {
-                custEl.textContent   = [profile.firstName, profile.lastName].filter(Boolean).join(' ');
+            if (_pickedCustomer && _pickedCustomer.name) {
+                custEl.textContent    = _pickedCustomer.name;
                 custRow.style.display = '';
+                if (_pickedCustomer.car) {
+                    carEl.textContent   = _pickedCustomer.car;
+                    carRow.style.display = '';
+                } else {
+                    carRow.style.display = 'none';
+                }
             } else {
-                custRow.style.display = 'none';
-            }
-
-            if (profile && profile.car) {
-                carEl.textContent   = profile.car;
-                carRow.style.display = '';
-            } else {
-                carRow.style.display = 'none';
+                // Fall back to saved profile
+                const profile = (typeof CustomerProfile !== 'undefined') ? CustomerProfile.get() : null;
+                if (profile && profile.firstName) {
+                    custEl.textContent    = [profile.firstName, profile.lastName].filter(Boolean).join(' ');
+                    custRow.style.display = '';
+                } else {
+                    custRow.style.display = 'none';
+                }
+                if (profile && profile.car) {
+                    carEl.textContent    = profile.car;
+                    carRow.style.display = '';
+                } else {
+                    carRow.style.display = 'none';
+                }
             }
 
             let descText = svc.desc;
@@ -513,31 +460,37 @@
         function openCalendly() {
             if (!selectedService) { alert('Please select a service first'); return; }
 
-            const svc             = services[selectedService];
-            const priceKey        = selectedLocation + '-' + selectedVehicle;
-            const price           = svc.prices[priceKey];
-            const vehicleType     = selectedVehicle === 'car' ? 'Car/Sedan/Coupe' : 'Van/SUV/Truck';
-            const locationLabel   = selectedLocation === 'mobile' ? 'Mobile' : 'Flushing';
+            const svc           = services[selectedService];
+            const priceKey      = selectedLocation + '-' + selectedVehicle;
+            const price         = svc.prices[priceKey];
+            const vehicleType   = selectedVehicle === 'car' ? 'Car/Sedan/Coupe' : 'Van/SUV/Truck';
+            const locationLabel = selectedLocation === 'mobile' ? 'Mobile' : 'Flushing';
 
-            // Append saved vehicle model if available
-            const profile         = CustomerProfile.get();
-            const carSuffix       = (profile && profile.car) ? ` — ${profile.car}` : '';
-            const fullServiceStr  = `${svc.name} (${locationLabel}) — $${price} (${vehicleType})${carSuffix}`;
-            const serviceCode     = `${selectedService}-${selectedLocation}-${selectedVehicle}`;
+            // Determine car suffix — picker first, then legacy profile
+            let carSuffix = '';
+            if (_pickedCustomer && _pickedCustomer.car) {
+                carSuffix = ` — ${_pickedCustomer.car}`;
+            } else if (typeof CustomerProfile !== 'undefined') {
+                const profile = CustomerProfile.get();
+                if (profile && profile.car) carSuffix = ` — ${profile.car}`;
+            }
 
-            // Base params — service details
-            const params = {
-                a2: fullServiceStr,
-                a3: vehicleType,
-                a4: serviceCode
-            };
+            const fullServiceStr = `${svc.name} (${locationLabel}) — $${price} (${vehicleType})${carSuffix}`;
+            const serviceCode    = `${selectedService}-${selectedLocation}-${selectedVehicle}`;
 
-            // Merge saved customer profile params (name, email, phone → a1)
-            // getCalendlyParams() returns {} if nothing saved — safe to spread
-            const profileParams = CustomerProfile.getCalendlyParams();
-            Object.assign(params, profileParams);
+            const params = { a2: fullServiceStr, a3: vehicleType, a4: serviceCode };
 
-            // Always ensure +1 prefix on phone field
+            // Merge customer picker params (name, email, phone) — highest priority
+            const pickerParams = DSGCustomers.getCalendlyParams();
+            Object.assign(params, pickerParams);
+
+            // If no picker selection, fall back to saved profile
+            if (!_pickedCustomer && typeof CustomerProfile !== 'undefined') {
+                const profileParams = CustomerProfile.getCalendlyParams();
+                Object.assign(params, profileParams);
+            }
+
+            // Ensure +1 prefix on phone
             if (!params.a1) {
                 params.a1 = '+1';
             } else if (!params.a1.startsWith('+1')) {
@@ -557,7 +510,7 @@
                 selectedService = svc;
                 if (services[svc].flushingOnly) {
                     selectedLocation = 'flushing';
-                    document.getElementById('btn-mobile').classList.add('disabled', 'non-selected');
+                    document.getElementById('btn-mobile').classList.add('disabled');
                     document.getElementById('btn-mobile').classList.remove('selected');
                     document.getElementById('btn-flushing').classList.add('selected');
                     document.getElementById('location-notice').classList.add('active');
@@ -597,9 +550,18 @@
 
         // ========== INIT ==========
         window.addEventListener('DOMContentLoaded', () => {
-            // Render saved profile widget
-            CustomerProfile.render('profile-widget');
-            // Then auto-fill service from URL
+            // Render DSG customer picker — callback fires when someone is selected
+            DSGCustomers.render('customer-picker-widget', function(contact) {
+                _pickedCustomer = contact;
+                updateSummary();
+            });
+
+            // Render legacy saved-profile widget
+            if (typeof CustomerProfile !== 'undefined') {
+                CustomerProfile.render('profile-widget');
+            }
+
+            // Auto-fill from URL params
             autoFillFromURL();
         });
     </script>
