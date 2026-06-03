@@ -54,7 +54,7 @@ const DSGCustomers = (() => {
     async function fetchFromSheet() {
         if (!WEB_APP_URL || WEB_APP_URL === 'YOUR_WEB_APP_URL_HERE') return null;
         try {
-            const res  = await fetch(WEB_APP_URL);
+            const res  = await fetch(WEB_APP_URL, { redirect: 'follow' });
             const json = await res.json();
             if (json.ok && Array.isArray(json.customers)) {
                 setCache(json.customers);
